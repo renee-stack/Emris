@@ -23,4 +23,4 @@ Go through every item for each comment.
    - For `agent_draft` items: state the clerical correction that will be made.
    - For `client_input` and `other_agency` items: state what will be submitted or obtained.
    - For `no_action` items: use `""`.
-   - All `licensed_review`, `agent_draft`, `client_input`, and `other_agency` items must include: "will be bubbled, dated and initialed" or equivalent language indicating the revision is marked per Certified Plan Corrections protocol.
+   - Follow this place's response process where it applies. Say only what's true of this item, and don't use another city's wording.

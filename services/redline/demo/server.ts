@@ -2,7 +2,8 @@
 // The review workbench: run the agent on a correction letter, sign off each item, assemble the response.
 // A letter can be a real Seattle letter, a pasted letter from any city, or the fictional Chicago sample.
 // /start is the customer flow: drop a letter, see a free preview, unlock it. Payments use a Stripe Payment Link
-// when STRIPE_PAYMENT_LINK and STRIPE_SECRET_KEY are set. Without them, unlocking is a free design-partner offer.
+// when STRIPE_PAYMENT_LINK and STRIPE_SECRET_KEY are set (demo/payments.ts, docs/stripe-setup.md). Without them,
+// unlocking is a free design-partner offer.
 // Each analysis is a TrueForge session. Reject notes go to feedback/reviews.jsonl (not committed, because it can
 // hold client text), and improve learns from them.
 
@@ -12,9 +13,14 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseItems } from "../evals/score.ts";
 import { client, exportSession, FEEDBACK_FILE, headSha, readAgent, ROOT, runTurn, SUMMARY_CSV, syncAgent } from "../scripts/lib.ts";
+import { guardItems } from "./guard.ts";
 import { MAX_LETTER_CHARS, parseLetter, type ParsedComment } from "./parse-letter.ts";
-import { readPdfText } from "./read-pdf.ts";
-import { exportDoc, loadReport, newReportId, permitAlreadyUnlocked, publicView, saveReport, type Report } from "./reports.ts";
+import { checkoutUrl, configWarning, confirmPayment, handleStripeWebhook, paymentsOn, requiresServiceKey } from "./payments.ts";
+import { readUpload } from "./read-upload.ts";
+import { stripPersonal } from "./strip-personal.ts";
+import { jobResponse, startJob, type JobOutcome } from "./jobs.ts";
+import { createReport, earnsFreeRound, exportDoc, loadReport, newReportId, publicView, updateReport, type Report } from "./reports.ts";
+import { allowFreeRun, getStore, startMaintenance } from "./store.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.DEMO_PORT ?? 8792);
@@ -22,11 +28,8 @@ const MAX_BODY_BYTES = 200_000;
 const MAX_UPLOAD_BYTES = 15_000_000; // about 10 MB of file, once base64 encoded
 const FREE_RUNS_PER_HOUR = 6;
 const PRICE = "$59";
-const PAYMENT_LINK = process.env.STRIPE_PAYMENT_LINK || "";
-const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || "";
-const paymentsOn = () => Boolean(PAYMENT_LINK && STRIPE_KEY);
 // When set, /api/ calls need this key, so only the Emris proxy can reach the service. Stripe's /paid redirect is exempt,
-// because it proves itself by checking the session with Stripe.
+// because it proves itself by checking the session with Stripe. So is the webhook, which proves itself by its signature.
 const API_KEY = process.env.REDLINE_API_KEY || "";
 const readJson = (path: string) => JSON.parse(readFileSync(path, "utf8"));
 const readIf = (path: string) => (existsSync(path) ? readJson(path) : null);
@@ -113,15 +116,26 @@ function letterFrom(b: Record<string, unknown>): Letter {
   throw new Error("Unknown letter source.");
 }
 
+// The agent's files don't change while the service runs, so it syncs once. A failed sync is retried on the next letter.
+let agentSynced: Promise<unknown> | null = null;
+function ensureAgent(tf: ReturnType<typeof client>) {
+  agentSynced ??= syncAgent(tf, headSha()).catch((e) => {
+    agentSynced = null;
+    throw e;
+  });
+  return agentSynced;
+}
+
 async function analyze(letter: Letter) {
   const tf = client();
-  await syncAgent(tf, headSha());
+  await ensureAgent(tf);
   const { data: session } = await tf.sessions.create({ agent: { name: readAgent().agent.name }, metadata: { purpose: "demo" } });
   await tf.sessions.update(session.id, { title: `review: ${letter.project.address}` });
   const turn = await runTurn(tf, session.id, promptFor(letter), false);
   if (turn.status !== "done") throw new Error(turn.error ?? `The turn ended with status ${turn.status}`);
-  const items = parseItems(turn.text);
-  if (!items) throw new Error("The agent's reply had no valid JSON block.");
+  const parsed = parseItems(turn.text);
+  if (!parsed) throw new Error("The agent's reply had no valid JSON block.");
+  const items = guardItems(parsed, letter, packs);
   analyzed.set(session.id, letter);
   const exp = await exportSession(tf, session.id);
   // The audit trail: every tool call the agent made in this session, as TrueForge recorded it.
@@ -154,43 +168,24 @@ const PERMIT_PATTERNS = [/\b\d{7}-[A-Z]{2}(?![A-Za-z0-9])/, /\b1\d{8}\b/];
 const placeName = (id: string) => packs.find((p) => p.profile.id === id)?.profile.name ?? null;
 
 async function extract(b: Record<string, unknown>) {
-  let text = String(b.text ?? "");
-  if (b.pdf_base64) {
-    text = await readPdfText(new Uint8Array(Buffer.from(String(b.pdf_base64), "base64")));
-    if (text.replace(/\s/g, "").length < 40) return { error: "This PDF looks like a scan, so we can't read its text yet. Paste the comments instead." };
-  }
-  const comments = parseLetter(text);
+  const upload = await readUpload(b);
+  if (upload.error) return { error: upload.error, reason: upload.reason };
+  const text = upload.text ?? "";
   return {
-    comments,
+    comments: upload.comments ?? [],
+    warnings: upload.warnings ?? [],
     jurisdiction: PLACE_HINTS.find(([, re]) => re.test(text))?.[0] ?? null,
     permit_number: PERMIT_PATTERNS.map((re) => text.match(re)?.[0]).find(Boolean) ?? null,
   };
 }
 
-// Agent runs can outlast a proxied request, so a run returns a job id right away and the client polls.
-type Job = { status: "running" } | { status: "done"; code: number; value: unknown };
-const jobs = new Map<string, Job>();
-function startJob(work: () => Promise<{ status: number; value: unknown }>): string {
-  const id = newReportId();
-  jobs.set(id, { status: "running" });
-  work()
-    .then(({ status, value }) => jobs.set(id, { status: "done", code: status, value }))
-    .catch((e: Error) => jobs.set(id, { status: "done", code: 500, value: { error: e.message } }));
-  // Finished or not, a job is forgotten after an hour. Its report is saved separately.
-  setTimeout(() => jobs.delete(id), 3_600_000).unref();
-  return id;
+/** A customer sees that it failed and that nothing was charged. The cause, which can name internal addresses, goes to the log. */
+function failedRun(e: Error): JobOutcome {
+  console.error(`A letter failed to run: ${e.message}`);
+  return { status: 503, value: { error: "Redline couldn't read this letter just now, and you haven't been charged. Try again in a few minutes." } };
 }
 
-const runsByClient = new Map<string, number[]>();
-function allowFreeRun(client: string): boolean {
-  const cutoff = Date.now() - 3_600_000;
-  const recent = (runsByClient.get(client) ?? []).filter((t) => t > cutoff);
-  if (recent.length >= FREE_RUNS_PER_HOUR) return false;
-  runsByClient.set(client, [...recent, Date.now()]);
-  return true;
-}
-
-async function runReport(b: Record<string, unknown>, client: string) {
+async function runReport(b: Record<string, unknown>, client: string): Promise<JobOutcome> {
   const jurisdiction = String(b.jurisdiction ?? "");
   const place = placeName(jurisdiction);
   // Nothing runs and nothing is charged for a place or code edition we can't support.
@@ -199,17 +194,19 @@ async function runReport(b: Record<string, unknown>, client: string) {
     return { status: 200, value: { stop: "edition", message: "Your application is under Chicago's 2026 ordinance, which Redline doesn't cover yet, so there's nothing to pay. Leave your email and we'll tell you when it does." } };
   }
   const comments = (Array.isArray(b.comments) ? b.comments : [])
-    .map((c, i) => ({ id: `C${i + 1}`, heading: String((c as ParsedComment).heading ?? "Pasted").slice(0, 120), text: String((c as ParsedComment).text ?? "").slice(0, 3000).trim() }))
+    // The user can edit comments in the browser, so what comes back is stripped again before it's kept.
+    .map((c, i) => ({ id: `C${i + 1}`, heading: stripPersonal(String((c as ParsedComment).heading ?? "Pasted").slice(0, 120)), text: stripPersonal(String((c as ParsedComment).text ?? "").slice(0, 3000)).trim() }))
     .filter((c) => c.text)
     .slice(0, 40);
   if (!comments.length) return { status: 400, value: { error: "No comments to review." } };
-  if (!allowFreeRun(client)) return { status: 429, value: { error: "That's the limit of free previews for now. Try again in an hour." } };
+  if (!(await allowFreeRun(client, FREE_RUNS_PER_HOUR))) return { status: 429, value: { error: "That's the limit of free previews for now. Try again in an hour." } };
 
   const permit = String(b.permit_number ?? "").trim().slice(0, 40) || null;
-  const project = String(b.project ?? "").slice(0, 600);
+  const project = stripPersonal(String(b.project ?? "").slice(0, 600));
   const letter: Letter = { project: { jurisdiction, address: "Not given", description: project || "Not given.", reviewer: place }, sheets: [], comments };
   const run = await analyze(letter);
-  const nextRound = permitAlreadyUnlocked(permit);
+  const from = typeof b.from_report === "string" ? await loadReport(b.from_report) : null;
+  const nextRound = earnsFreeRound(from, permit);
   const report: Report = {
     id: newReportId(),
     created_at: new Date().toISOString(),
@@ -226,20 +223,8 @@ async function runReport(b: Record<string, unknown>, client: string) {
     learning_opt_in: false,
     decisions: {},
   };
-  saveReport(report);
-  return { status: 200, value: publicView(report) };
-}
-
-/** Stripe redirects here. The session is checked with Stripe, so the URL alone can't unlock anything. */
-async function confirmPayment(sessionId: string): Promise<string | null> {
-  if (!STRIPE_KEY || !/^cs_[\w]+$/.test(sessionId)) return null;
-  const res = await fetch(`https://api.stripe.com/v1/checkout/sessions/${sessionId}`, { headers: { authorization: `Bearer ${STRIPE_KEY}` } });
-  if (!res.ok) return null;
-  const session = (await res.json()) as { payment_status?: string; client_reference_id?: string };
-  const report = session.client_reference_id ? loadReport(session.client_reference_id) : null;
-  if (session.payment_status !== "paid" || !report) return null;
-  saveReport({ ...report, unlocked: true, unlocked_by: "stripe" });
-  return report.id;
+  await createReport(report);
+  return { status: 200, value: { report_id: report.id } };
 }
 
 async function handleProduct(req: IncomingMessage, res: ServerResponse): Promise<boolean> {
@@ -264,42 +249,38 @@ async function handleProduct(req: IncomingMessage, res: ServerResponse): Promise
     // Behind the keyed proxy, the socket is always the proxy, so it passes the visitor's address along.
     const forwarded = API_KEY ? String(req.headers["x-redline-client"] ?? "") : "";
     const client = forwarded || (req.socket.remoteAddress ?? "local");
-    return send(res, 202, { job_id: startJob(() => runReport(b, client)) }), true;
+    return send(res, 202, { job_id: await startJob(() => runReport(b, client).catch(failedRun)) }), true;
   }
   const job = path.match(/^\/api\/job\/([a-f0-9]{32})$/);
   if (req.method === "GET" && job) {
-    const state = jobs.get(job[1]);
-    if (!state) return send(res, 404, { error: "Job not found. Try running the letter again." }), true;
-    if (state.status === "running") return send(res, 200, { status: "running" }), true;
-    return send(res, state.code, state.code === 200 ? { status: "done", result: state.value } : state.value), true;
+    const { status, body: result } = await jobResponse(job[1]);
+    return send(res, status, result), true;
   }
   if (req.method === "POST" && path === "/api/waitlist") {
     const b = await body(req);
     const email = String(b.email ?? "").trim().slice(0, 200);
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return send(res, 400, { error: "Enter a valid email." }), true;
-    mkdirSync(join(ROOT, ".cache"), { recursive: true });
-    appendFileSync(join(ROOT, ".cache", "waitlist.jsonl"), JSON.stringify({ at: new Date().toISOString(), email, place: String(b.place ?? "").slice(0, 100), reason: String(b.reason ?? "").slice(0, 30) }) + "\n");
+    await (await getStore()).addWaitlist({ at: new Date().toISOString(), email, place: String(b.place ?? "").slice(0, 100), reason: String(b.reason ?? "").slice(0, 30) });
     return send(res, 200, { ok: true }), true;
   }
   const match = path.match(/^\/api\/report\/([a-f0-9]{32})(?:\/(unlock|review|optin|export))?$/);
   if (!match) return false;
-  const report = loadReport(match[1]);
+  const report = await loadReport(match[1]);
   if (!report) return send(res, 404, { error: "Report not found." }), true;
   const action = match[2];
   if (req.method === "GET" && !action) return send(res, 200, publicView(report)), true;
   if (req.method === "POST" && action === "unlock") {
-    if (paymentsOn()) return send(res, 200, { checkout_url: `${PAYMENT_LINK}?client_reference_id=${report.id}` }), true;
+    if (paymentsOn()) return send(res, 200, { checkout_url: checkoutUrl(report.id) }), true;
     const b = await body(req);
     if (b.design_partner !== true) return send(res, 400, { error: "Agree to the design partner terms first." }), true;
-    const unlocked: Report = { ...report, unlocked: true, unlocked_by: "design_partner", learning_opt_in: true };
-    saveReport(unlocked);
-    return send(res, 200, publicView(unlocked)), true;
+    const unlocked = await updateReport(report.id, (r) => ({ ...r, unlocked: true, unlocked_by: "design_partner", learning_opt_in: true }));
+    return unlocked ? send(res, 200, publicView(unlocked)) : send(res, 404, { error: "Report not found." }), true;
   }
   if (!report.unlocked) return send(res, 402, { error: "Unlock this permit first." }), true;
   if (req.method === "POST" && action === "optin") {
-    const updated = { ...report, learning_opt_in: (await body(req)).opt_in === true };
-    saveReport(updated);
-    return send(res, 200, publicView(updated)), true;
+    const optIn = (await body(req)).opt_in === true;
+    const updated = await updateReport(report.id, (r) => ({ ...r, learning_opt_in: optIn }));
+    return updated ? send(res, 200, publicView(updated)) : send(res, 404, { error: "Report not found." }), true;
   }
   if (req.method === "POST" && action === "review") {
     const b = await body(req);
@@ -307,8 +288,9 @@ async function handleProduct(req: IncomingMessage, res: ServerResponse): Promise
     const item = report.items.find((i) => i.comment === b.comment);
     if (!comment || !item || (b.decision !== "approve" && b.decision !== "reject")) return send(res, 400, { error: "Unknown comment or decision." }), true;
     const note = String(b.note ?? "").slice(0, 1000);
-    const updated: Report = { ...report, decisions: { ...report.decisions, [comment.id]: { decision: b.decision, note, at: new Date().toISOString() } } };
-    saveReport(updated);
+    const entry = { decision: b.decision as "approve" | "reject", note, at: new Date().toISOString() };
+    const updated = await updateReport(report.id, (r) => ({ ...r, decisions: { ...r.decisions, [comment.id]: entry } }));
+    if (!updated) return send(res, 404, { error: "Report not found." }), true;
     // Only customers who opted in teach the agent. Others' text stays in their own report.
     if (updated.learning_opt_in) {
       mkdirSync(dirname(FEEDBACK_FILE), { recursive: true });
@@ -325,7 +307,9 @@ async function handleProduct(req: IncomingMessage, res: ServerResponse): Promise
 
 createServer(async (req, res) => {
   try {
-    if (API_KEY && req.url?.startsWith("/api/") && req.headers["x-redline-key"] !== API_KEY) return send(res, 401, { error: "Missing or wrong service key." });
+    if (req.method === "GET" && req.url === "/health") return send(res, 200, { status: "ok" });
+    if (API_KEY && requiresServiceKey(req.method, req.url) && req.headers["x-redline-key"] !== API_KEY) return send(res, 401, { error: "Missing or wrong service key." });
+    if (await handleStripeWebhook(req, res)) return;
     if (await handleProduct(req, res)) return;
     if (req.method === "GET" && req.url === "/") {
       return void res.writeHead(200, { "content-type": "text/html; charset=utf-8" }).end(readFileSync(join(here, "index.html")));
@@ -363,4 +347,10 @@ createServer(async (req, res) => {
   } catch (e) {
     send(res, 500, { error: (e as Error).message });
   }
-}).listen(PORT, process.env.REDLINE_HOST ?? "127.0.0.1", () => console.log(`Redline on http://localhost:${PORT}`));
+}).listen(PORT, process.env.REDLINE_HOST ?? "127.0.0.1", () => {
+  console.log(`Redline on http://localhost:${PORT}`);
+  if (API_KEY && !process.env.DATABASE_URL) console.warn("Storage: local files, which are safe for one instance only. Set DATABASE_URL to run several.");
+  const warning = configWarning();
+  if (warning) console.warn(warning);
+  startMaintenance();
+});

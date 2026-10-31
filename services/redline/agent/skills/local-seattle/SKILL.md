@@ -5,7 +5,7 @@ description: Rules learned for projects in Seattle (jurisdiction id "seattle"). 
 
 # Seattle rules
 
-No local rules learned yet.
+**Responses.** Seattle has its own rules, in `SDCI-RESPONSE`. Don't use another city's wording in a draft.
 
 <!--
 The improve step puts what it learns about one place here,
