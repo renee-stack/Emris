@@ -1,4 +1,4 @@
-# Emris — Shared Contract (v2)
+# Emris — Shared Contract (v2.1)
 
 Emris scores Chicago census tracts on permit and infrastructure activity to surface the "path of progress" before it shows up in prices.
 
@@ -83,7 +83,7 @@ Permits outside every Chicago tract are dropped. Sorted by `issue_date` descendi
 
 ### 1.3 `data/infrastructure.json`
 
-Array of public infrastructure projects.
+Array of public infrastructure and catalyst projects. Built by `scripts/fetch_catalysts.py` (Firecrawl extraction from public pages, geocoded inside Chicago, max 40 Firecrawl projects), merged with any hand-curated entries.
 
 ```jsonc
 [
@@ -97,10 +97,14 @@ Array of public infrastructure projects.
     "budget_usd": 18500000,               // number | null
     "expected_completion": "2027",        // string | null, free form: "2027", "2027-Q3", "2027-06-30"
     "description": "Wider sidewalks, protected bike lanes and bus bulbs from Logan Blvd to Diversey.",
-    "source_url": null                    // string | null
+    "source_url": "https://www.transitchicago.com/rle/",  // string | null (always set when source = "firecrawl")
+    "source": "firecrawl",                // optional: "firecrawl" | "curated"
+    "retrieved_at": "2026-10-30"          // optional: ISO date the source was fetched or curated
   }
 ]
 ```
+
+`source` and `retrieved_at` are optional: readers must not require them. `id`s from Firecrawl start with `fc-`.
 
 ---
 

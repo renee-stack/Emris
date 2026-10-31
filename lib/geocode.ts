@@ -59,7 +59,8 @@ interface CensusMatch {
 }
 
 function withCity(q: string): string {
-  return /chicago|,\s*il\b|\billinois\b/i.test(q) ? q : `${q}, Chicago, IL`;
+  // Only a ", Chicago" after a comma is the city; "1500 W Chicago Ave" is a street.
+  return /,\s*chicago\b|,\s*il\b|\billinois\b/i.test(q) ? q : `${q}, Chicago, IL`;
 }
 
 function titleCaseLabel(matched: string): string {

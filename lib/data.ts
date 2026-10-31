@@ -72,6 +72,8 @@ export interface Project {
   expected_completion: string | null;
   description: string;
   source_url: string | null;
+  source?: "firecrawl" | "curated"; // optional (contract §1.3)
+  retrieved_at?: string; // optional ISO date
 }
 
 export type ProjectWithDistance = Project & { distance_mi: number };

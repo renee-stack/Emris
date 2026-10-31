@@ -3,3 +3,4 @@ shapely>=2.0
 pandas>=2.2
 requests>=2.32
 pyogrio>=0.9
+firecrawl>=4.5
