@@ -49,7 +49,29 @@ SEARCHES = [
     "Chicago streetscape project 2026",
     # Named catalysts from the brief that the generic queries may miss.
     "The 78 Chicago Quantum Park 1901 Project United Center construction 2026",
+    "The 78 Chicago Related Midwest construction 2026",
+    "Illinois Quantum and Microelectronics Park South Works construction",
+    "1901 Project United Center Madison Street construction",
 ]
+# Search results are kept only from these domains (official sources and established local news).
+OFFICIAL_DOMAINS = ("chicago.gov", "cityofchicago.org", "transitchicago.com", "chicagoparkdistrict.com",
+                    "illinois.gov", "cmap.illinois.gov", "transit.dot.gov", "flychicago.com", "pbcchicago.com")
+TRUSTED_DOMAINS = OFFICIAL_DOMAINS + ("chicagoyimby.com", "urbanize.city", "wttw.com", "suntimes.com",
+                                      "chicagotribune.com", "chicagobusiness.com", "blockclubchicago.org",
+                                      "chicago.curbed.com", "axios.com", "wbez.org", "crainschicago.com",
+                                      "cbsnews.com", "abc7chicago.com", "nbcchicago.com", "fox32chicago.com")
+# Names that are events or paperwork, not physical projects.
+NOT_A_PROJECT = re.compile(r"\b(tour|study|studies|hearing|open house|meeting|workshop|webinar|survey|kick-?off|"
+                           r"celebration|ribbon|program guide|newsletter|tree planting|trimming|sewer|resurfacing|"
+                           r"water main|pothole)\b", re.I)
+# Well-known catalyst sites, used when the page names the site but gives no street address.
+LANDMARKS = {
+    "the 78": (41.8668, -87.6335), "united center": (41.8807, -87.6742), "1901 project": (41.8807, -87.6742),
+    "bally": (41.8963, -87.6471), "south works": (41.7365, -87.5410), "quantum": (41.7365, -87.5410),
+    "western brown line": (41.9661, -87.6886), "austin green line": (41.8872, -87.7745),
+    "state/lake": (41.8857, -87.6278), "state and lake": (41.8857, -87.6278), "soldier field": (41.8623, -87.6167),
+}
+RLE_STATIONS = {103: "103rd St", 111: "111th St", 116: "Michigan Ave/116th St", 130: "130th St"}
 SEARCH_LIMIT = 5
 MAX_PROJECTS = 40
 
@@ -145,8 +167,12 @@ def fetch(kind: str, key: str, call, refresh: bool) -> dict:
     try:
         resp = call(client())
         body = {"ok": True, "response": resp.model_dump(mode="json")}
-    except Exception as e:  # cache failures too, so a blocked page doesn't burn credits every run
-        body = {"ok": False, "error": f"{type(e).__name__}: {e}"}
+    except Exception as e:
+        err = f"{type(e).__name__}: {e}"
+        # Account problems (bad key, no credits, rate limit) aren't about the page: report, don't cache.
+        if re.search(r"Unauthori|Payment|Insufficient|credits|RateLimit|429|401|402", err, re.I):
+            return {"ok": False, "error": err, "fetched_at": ""}
+        body = {"ok": False, "error": err}  # page-level failures are cached so a blocked page isn't retried every run
     body.update(kind=kind, key=key, fetched_at=datetime.now(timezone.utc).isoformat(timespec="seconds"))
     CACHE.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(body, indent=1))
@@ -165,6 +191,20 @@ def search_query(q: str, refresh: bool) -> dict:
 
 
 # ---------------------------------------------------------------- extraction -> raw projects
+
+def domain_of(url: str) -> str:
+    m = re.match(r"https?://([^/]+)", url or "")
+    return (m.group(1).lower() if m else "").removeprefix("www.")
+
+
+def on_domain(url: str, domains) -> bool:
+    d = domain_of(url)
+    return any(d == x or d.endswith("." + x) for x in domains)
+
+
+def trust_rank(url: str) -> int:
+    return 0 if on_domain(url, OFFICIAL_DOMAINS) else 1 if on_domain(url, TRUSTED_DOMAINS) else 2
+
 
 def doc_projects(doc: dict, fallback_url: str, fetched_at: str) -> list[dict]:
     meta = doc.get("metadata") or {}
@@ -188,13 +228,17 @@ def collect(refresh: bool) -> tuple[list[dict], list[dict]]:
         projects += ps
     for q in SEARCHES:
         body = search_query(q, refresh)
-        n = 0
+        n, skipped = 0, []
         if body["ok"]:
             for doc in body["response"].get("web") or []:
                 ps = doc_projects(doc, doc.get("url") or "", body["fetched_at"])
+                if ps and not on_domain(ps[0]["source_url"], TRUSTED_DOMAINS):
+                    skipped.append(domain_of(ps[0]["source_url"]))
+                    continue
                 n += len(ps)
                 projects += ps
-        report.append({"source": f"search: {q}", "ok": body["ok"], "projects": n, "error": body.get("error")})
+        note = f"skipped untrusted: {', '.join(skipped)}" if skipped else None
+        report.append({"source": f"search: {q}", "ok": body["ok"], "projects": n, "error": body.get("error") or note})
     return projects, report
 
 
@@ -211,7 +255,7 @@ def norm_enum(v, allowed, default):
 
 def clean(p: dict) -> dict | None:
     name = " ".join(str(p.get("name") or "").split())
-    if not name or not p.get("source_url"):
+    if not name or not p.get("source_url") or NOT_A_PROJECT.search(name):
         return None
     budget = p.get("budget_usd")
     try:
@@ -270,10 +314,18 @@ class Geocoder:
             try:
                 r = requests.get(CENSUS_URL, params={"address": q, "benchmark": "Public_AR_Current", "format": "json"}, timeout=20)
                 m = (r.json().get("result") or {}).get("addressMatches") or []
-                self.cache[q] = [m[0]["coordinates"]["y"], m[0]["coordinates"]["x"]] if m else None
+                self.cache[q] = [m[0]["coordinates"]["y"], m[0]["coordinates"]["x"], m[0]["matchedAddress"]] if m else None
             except Exception:
                 return None  # network hiccup: don't cache, try again next run
-        return self.cache[q]
+        hit = self.cache[q]
+        if not hit:
+            return None
+        # "1331 S Wells" must not come back as N Wells.
+        want = re.match(r"\s*\d+\s+([NSEW])\b\.?", text, re.I)
+        got = re.match(r"\s*\d+\s+([NSEW])\b", hit[2] if len(hit) > 2 else "", re.I)
+        if want and got and want.group(1).upper() != got.group(1).upper():
+            return None
+        return hit[:2]
 
     def neighborhood(self, *texts):
         for t in texts:
@@ -291,6 +343,10 @@ class Geocoder:
             ll = self.census(text)
             if ll and self.inside(*ll):
                 return ll[0], ll[1], method
+        blob = f"{p['name']} {p['location_text']}".lower()
+        for key, ll in LANDMARKS.items():
+            if key in blob:
+                return ll[0], ll[1], f"landmark:{key}"
         ll, nb = self.neighborhood(p["neighborhood"], p["location_text"], p["name"])
         if ll and self.inside(*ll):
             return ll[0], ll[1], f"centroid:{nb}"
@@ -313,15 +369,28 @@ def name_key(s: str) -> str:
 
 def similar(a: str, b: str) -> bool:
     ka, kb = name_key(a), name_key(b)
-    return bool(ka and kb) and (ka in kb or kb in ka or difflib.SequenceMatcher(None, ka, kb).ratio() >= 0.6)
+    if not (ka and kb):
+        return False
+    ta, tb = set(ka.split()), set(kb.split())
+    small, big = (ta, tb) if len(ta) <= len(tb) else (tb, ta)
+    # "The 1901 Project" ~ "1901 Project Phase 1", but a lone common word like "lake" is not enough.
+    if small <= big and (len(small) >= 2 or any(len(t) >= 4 and t.isdigit() for t in small)):
+        return True
+    return len(ta & tb) / len(ta | tb) >= 0.5 or difflib.SequenceMatcher(None, ka, kb).ratio() >= 0.75
 
 
 def filled(p: dict) -> int:
     return sum(p.get(k) not in (None, "") for k in ("budget_usd", "expected_completion", "description", "location_text"))
 
 
+def approx(p: dict) -> bool:
+    return p.get("method", "").startswith(("centroid", "landmark"))
+
+
 def same_project(a: dict, b: dict) -> bool:
-    if miles(a, b) >= 0.3 or not similar(a["name"], b["name"]):
+    # Centroid/landmark points are rough, so allow more distance when either one is approximate.
+    limit = 1.5 if approx(a) or approx(b) else 0.3
+    if miles(a, b) >= limit or not similar(a["name"], b["name"]):
         return False
     # Red Line Extension stations are separate points: different station numbers never merge.
     nums = lambda s: set(re.findall(r"\b(\d{2,3})(?:st|nd|rd|th)\b", s.lower()))
@@ -329,9 +398,51 @@ def same_project(a: dict, b: dict) -> bool:
     return not (na and nb and na != nb)
 
 
+def rle_number(p: dict) -> int | None:
+    """Station number if this is a Red Line Extension station (103, 111, Michigan/116, 130), else None."""
+    name = p["name"].lower()
+    # Only the Red Line Extension is building new stations at 103rd, 111th, Michigan/116th and 130th.
+    if not re.search(r"station|stop|red line|\brle\b", name):
+        return None
+    for n in RLE_STATIONS:
+        if re.search(rf"\b{n}(st|th|rd)?\b", name):
+            return n
+    return None
+
+
+def merge_rle(ps: list[dict]) -> tuple[list[dict], list[tuple[dict, dict]]]:
+    """Collapse every mention of a Red Line Extension station into one record per station."""
+    groups: dict[int, list[dict]] = {}
+    rest = []
+    for p in ps:
+        n = rle_number(p)
+        (groups.setdefault(n, []) if n else rest).append(p)
+    merged = []
+    for n, g in sorted(groups.items()):
+        g.sort(key=lambda p: (trust_rank(p["source_url"]), -filled(p)))
+        best = dict(g[0])
+        pts = [p for p in g if not approx(p)] or g
+        lat = sorted(p["lat"] for p in pts)[len(pts) // 2]
+        lng = sorted(p["lng"] for p in pts)[len(pts) // 2]
+        near = [p for p in pts if miles(p, {"lat": lat, "lng": lng}) < 1] or pts  # drop geocoding outliers
+        best["lat"] = sum(p["lat"] for p in near) / len(near)
+        best["lng"] = sum(p["lng"] for p in near) / len(near)
+        best["method"] = near[0]["method"]
+        best["name"] = f"Red Line Extension: {RLE_STATIONS[n]} Station"
+        best["type"] = "transit"
+        official = [p for p in g if trust_rank(p["source_url"]) == 0] or g
+        best["status"] = min((p["status"] for p in official), key=STATUS_RANK.get)
+        best["expected_completion"] = next((p["expected_completion"] for p in official if p["expected_completion"]), None)
+        best["budget_usd"] = None  # the $5.7B is for the whole line, not one station
+        merged += [(p, best) for p in g[1:]]
+        rest.append(best)
+    return rest, merged
+
+
 def dedupe(ps: list[dict]) -> tuple[list[dict], list[tuple[dict, dict]]]:
-    kept, merged = [], []
-    for p in sorted(ps, key=lambda p: -filled(p)):
+    ps, merged = merge_rle(ps)
+    kept = []
+    for p in sorted(ps, key=lambda p: (trust_rank(p["source_url"]), -filled(p))):
         dup = next((k for k in kept if same_project(k, p)), None)
         if dup:
             merged.append((p, dup))
@@ -458,9 +569,10 @@ def main() -> None:
         p = meth.get(r["name"], {})
         loc = (p.get("location_text") or "")[:33]
         how = p.get("method", "")
+        mark = "*" if how.startswith("centroid") else "+" if how.startswith("landmark") else " "
         print(f"{r['name'][:45]:<46} {r['status']:<18} {r['source']:<9} {loc:<34} {r['lat']:.4f},{r['lng']:.4f}"
-              f"{'*' if how.startswith('centroid') else ' ':<4} {r['source_url'] or ''}")
-    print("  * = located at a neighborhood centroid (no address on the page)")
+              f"{mark:<4} {r['source_url'] or ''}")
+    print("  * = neighborhood centroid (no address on the page)   + = known site location (e.g. The 78, United Center)")
 
     print("\nChanges vs old data/infrastructure.json:")
     if old_is_mock and not args.keep_mock:
