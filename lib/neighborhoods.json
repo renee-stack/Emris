@@ -104,6 +104,7 @@
     { "name": "Printers Row", "community_area": "Loop", "lat": 41.8737, "lng": -87.629, "aliases": ["Printer's Row"] },
     { "name": "Chinatown", "community_area": "Armour Square", "lat": 41.8517, "lng": -87.6338, "aliases": [] },
     { "name": "Bronzeville", "community_area": "Douglas", "lat": 41.8228, "lng": -87.6175, "aliases": [] },
+    { "name": "Red Line Extension", "community_area": "Roseland", "lat": 41.6836, "lng": -87.6213, "aliases": ["RLE", "Red Line Extension Project", "CTA Red Line Extension"] },
     { "name": "Little Village", "community_area": "South Lawndale", "lat": 41.8445, "lng": -87.711, "aliases": ["La Villita"] },
     { "name": "Back of the Yards", "community_area": "New City", "lat": 41.8091, "lng": -87.6614, "aliases": [] },
     { "name": "Canaryville", "community_area": "New City", "lat": 41.817, "lng": -87.639, "aliases": [] },

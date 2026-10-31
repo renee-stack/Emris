@@ -1,13 +1,15 @@
 // Turn free text into a Chicago lat/lng. Neighborhood names resolve locally; everything else goes to the
-// US Census Geocoder. Returns null on any failure (never throws).
+// US Census Geocoder. Infrastructure project names (from data/infrastructure.json) also resolve.
+// Returns null on any failure (never throws).
 import neighborhoods from "@/lib/neighborhoods.json";
 import { inChicagoBounds } from "@/lib/geo";
+import { getProjects } from "@/lib/data";
 
 export interface GeocodeResult {
   label: string;
   lat: number;
   lng: number;
-  source: "neighborhood" | "census";
+  source: "neighborhood" | "project" | "census";
 }
 
 type Entry = { name: string; lat: number; lng: number; aliases: string[] };
@@ -86,8 +88,27 @@ export async function censusGeocode(query: string): Promise<GeocodeResult | null
   }
 }
 
+const STOP = new Set(["the", "a", "an", "near", "around", "by", "at", "new", "project", "station", "of", "and"]);
+const tokens = (s: string) => normText(s).trim().split(" ").filter((t) => t.length > 1 && !STOP.has(t));
+
+/** An infrastructure project whose name contains every meaningful word of the query (at least 2 words). */
+export async function lookupProject(query: string): Promise<GeocodeResult | null> {
+  const want = tokens(query);
+  if (want.length < 2) return null;
+  try {
+    const projects = await getProjects();
+    const hit = projects.find((p) => {
+      const have = new Set(tokens(p.name));
+      return want.every((t) => have.has(t));
+    });
+    return hit ? { label: hit.name, lat: hit.lat, lng: hit.lng, source: "project" } : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function geocode(query: string): Promise<GeocodeResult | null> {
   const q = query.trim();
   if (!q) return null;
-  return lookupNeighborhood(q) ?? (await censusGeocode(q));
+  return lookupNeighborhood(q) ?? (await lookupProject(q)) ?? (await censusGeocode(q));
 }

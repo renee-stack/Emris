@@ -173,7 +173,7 @@ async function lookup(intent: Intent): Promise<{ context: Record<string, unknown
         url: fallbackUrl,
       };
     }
-    const isArea = place.source === "neighborhood";
+    const isArea = place.source !== "census"; // neighborhoods and projects cover an area, not a point
     let radius = isArea ? 0.75 : 0.5;
     let res = await nearPlace(place, radius);
     if (!isArea && res.permits.length === 0 && res.projects.length === 0) {
@@ -198,7 +198,7 @@ async function lookup(intent: Intent): Promise<{ context: Record<string, unknown
               top_tracts: top3,
             }
           : undefined,
-        note: "Emris currently tracks only a few neighborhoods, so many places have no tract.",
+        note: "Emris covers every Chicago census tract. Permits are new-construction permits with 5+ units (or unknown units) from the last 24 months; infrastructure is a curated project list, so an empty result means no such activity was recorded there.",
       },
       url: res.tract ? `/?tract=${res.tract.geoid}` : latLngUrl(place.lat, place.lng, isArea ? 14 : 15),
     };
