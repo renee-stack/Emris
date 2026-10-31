@@ -12,6 +12,12 @@ interface Comment {
   heading: string;
   text: string;
 }
+interface Flag {
+  level: "review" | "info";
+  action: string;
+  message: string;
+  before?: string;
+}
 interface Item {
   comment: string;
   text: string;
@@ -23,10 +29,12 @@ interface Item {
   citation: string | null;
   draft: string;
   decision: "approve" | "reject" | null;
+  flags?: Flag[];
 }
 interface Report {
   id: string;
   place: string;
+  jurisdiction: string;
   permit_number: string | null;
   unlocked: boolean;
   learning_opt_in: boolean;
@@ -61,10 +69,22 @@ async function api<T>(path: string, payload?: unknown): Promise<T> {
   return body as T;
 }
 
+const DOCX_TYPE = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+
 function toBase64(bytes: Uint8Array): string {
   let binary = "";
   for (let i = 0; i < bytes.length; i += 32768) binary += String.fromCharCode(...bytes.subarray(i, i + 32768));
   return btoa(binary);
+}
+
+function FlagNote({ flag }: { flag: Flag }) {
+  return (
+    <p className={`mt-2 rounded border-l-2 px-2 py-1 text-[13px] ${flag.level === "review" ? "border-safety bg-safety/5 text-ink" : "border-rule text-muted"}`}>
+      {flag.level === "review" && <b>Check: </b>}
+      {flag.message}
+      {flag.before && (flag.action === "rewritten" || flag.action === "removed") && <span className="mt-0.5 block text-muted">Original: {flag.before}</span>}
+    </p>
+  );
 }
 
 function ItemCard({ item, unlocked, onDecide }: { item: Item; unlocked: boolean; onDecide: (decision: "approve" | "reject", note: string) => void }) {
@@ -80,6 +100,7 @@ function ItemCard({ item, unlocked, onDecide }: { item: Item; unlocked: boolean;
         ))}
       </div>
       <p className="mt-2 text-sm leading-relaxed break-words text-muted">{item.text}</p>
+      {item.flags?.map((flag, i) => <FlagNote key={i} flag={flag} />)}
       {item.locked ? (
         <p className="mt-2 text-sm text-muted italic">Draft and citation unlock with this permit.</p>
       ) : (
@@ -118,6 +139,8 @@ export function RedlineFlow() {
   const [unavailable, setUnavailable] = useState<string | null>(null);
   const [stage, setStage] = useState<Stage>(reportId ? "working" : "drop");
   const [comments, setComments] = useState<Comment[]>([]);
+  const [warnings, setWarnings] = useState<string[]>([]);
+  const [nextRound, setNextRound] = useState<{ from: string; permit: string | null; place: string } | null>(null);
   const [place, setPlace] = useState("other");
   const [permit, setPermit] = useState("");
   const [edition2026, setEdition2026] = useState(false);
@@ -161,7 +184,7 @@ export function RedlineFlow() {
     };
   }, [reportId]);
 
-  function accept(x: { error?: string; comments?: Comment[]; jurisdiction?: string | null; permit_number?: string | null }) {
+  function accept(x: { error?: string; comments?: Comment[]; warnings?: string[]; jurisdiction?: string | null; permit_number?: string | null }) {
     if (x.error) {
       setError(x.error);
       setPasting(true);
@@ -173,8 +196,9 @@ export function RedlineFlow() {
       return;
     }
     setComments(x.comments);
-    setPlace(x.jurisdiction ?? "other");
-    setPermit(x.permit_number ?? "");
+    setWarnings(x.warnings ?? []);
+    setPlace(nextRound?.place ?? x.jurisdiction ?? "other");
+    setPermit(nextRound?.permit ?? x.permit_number ?? "");
     goTo("check");
   }
 
@@ -188,10 +212,15 @@ export function RedlineFlow() {
     try {
       if (/\.pdf$/i.test(file.name) || file.type === "application/pdf") {
         accept(await api("start/extract", { pdf_base64: toBase64(new Uint8Array(await file.arrayBuffer())) }));
+      } else if (/\.docx$/i.test(file.name) || file.type === DOCX_TYPE) {
+        accept(await api("start/extract", { docx_base64: toBase64(new Uint8Array(await file.arrayBuffer())) }));
       } else if (/\.txt$/i.test(file.name) || file.type === "text/plain") {
         accept(await api("start/extract", { text: await file.text() }));
+      } else if (/\.doc$/i.test(file.name)) {
+        setError("This is an older Word file. In Word, use Save As to save it as .docx or PDF, or paste the comments.");
+        setPasting(true);
       } else {
-        setError("We read PDF and text files so far. Paste the comments instead.");
+        setError("We read PDF, Word (.docx) and text files. Paste the comments instead.");
         setPasting(true);
       }
     } catch (e) {
@@ -203,7 +232,7 @@ export function RedlineFlow() {
     setError(null);
     goTo("working");
     try {
-      const { job_id } = await api<{ job_id: string }>("start/run", { comments, jurisdiction: place, permit_number: permit, chicago_2026: place === "chicago" && edition2026 });
+      const { job_id } = await api<{ job_id: string }>("start/run", { comments, from_report: nextRound?.from, jurisdiction: place, permit_number: permit, chicago_2026: place === "chicago" && edition2026 });
       let job = await api<{ status: string; result?: Report & { stop?: string; message?: string } }>(`job/${job_id}`);
       while (job.status === "running") {
         await new Promise((r) => setTimeout(r, 1500));
@@ -278,7 +307,21 @@ export function RedlineFlow() {
     }
   }
 
+  function startNextRound() {
+    if (!report) return;
+    setNextRound({ from: report.id, permit: report.permit_number, place: report.jurisdiction });
+    setComments([]);
+    setWarnings([]);
+    setReport(null);
+    setPasted("");
+    setError(null);
+    window.history.pushState(null, "", "/redline");
+    goTo("drop");
+  }
+
   function restart() {
+    setNextRound(null);
+    setWarnings([]);
     setComments([]);
     setReport(null);
     setPasted("");
@@ -304,7 +347,7 @@ export function RedlineFlow() {
       {stage === "drop" && (
         <>
           <h1 className="mt-4 font-display text-4xl leading-tight tracking-tight sm:text-5xl">Answer your correction letter in minutes</h1>
-          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink/80">Drop in the letter. See every comment sorted, with who needs to act, before you pay anything. No signup.</p>
+          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink/80">{nextRound ? `Add the next letter${nextRound.permit ? ` on permit ${nextRound.permit}` : ""}. It's included with this permit.` : "Drop in the letter. See every comment sorted, with who needs to act, before you pay anything. No signup."}</p>
           {unavailable ? (
             <p role="alert" className="mt-8 rounded-lg border border-rule p-4 text-sm text-muted">{unavailable}</p>
           ) : (
@@ -320,8 +363,8 @@ export function RedlineFlow() {
                 onDrop={onDrop}
               >
                 <span className="block text-lg font-semibold">Drop your correction letter</span>
-                <span className="text-sm text-muted">PDF up to 3 MB, or choose a file</span>
-                <input id="redline-file" type="file" accept=".pdf,.txt,application/pdf,text/plain" className="sr-only" onChange={(e) => e.target.files?.[0] && readFile(e.target.files[0])} />
+                <span className="text-sm text-muted">PDF or Word up to 3 MB, or choose a file</span>
+                <input id="redline-file" type="file" accept=".pdf,.docx,.doc,.txt,application/pdf,text/plain" className="sr-only" onChange={(e) => e.target.files?.[0] && readFile(e.target.files[0])} />
               </label>
               {!pasting && (
                 <button type="button" className={`${textLink} mt-3`} onClick={() => setPasting(true)}>Or paste the text</button>
@@ -357,6 +400,7 @@ export function RedlineFlow() {
         <>
           <h1 className="mt-4 font-display text-4xl tracking-tight">Check what we read</h1>
           <p className="mt-3 text-[15px] text-ink/80">We found {comments.length} comment{comments.length === 1 ? "" : "s"}. Fix anything we misread, then see your preview.</p>
+          {warnings.map((w) => <p key={w} className="mt-2 text-sm text-safety">{w}</p>)}
           <label htmlFor="redline-place" className="mt-5 mb-1 block text-sm text-muted">City</label>
           <select id="redline-place" className={field} value={place} onChange={(e) => setPlace(e.target.value)}>
             {offer?.places.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
@@ -432,6 +476,7 @@ export function RedlineFlow() {
               <div className="flex flex-wrap items-center gap-2">
                 <a href={`/api/redline/report/${report.id}/export`} className={quiet}>Download Word draft</a>
                 <button type="button" className={quiet} onClick={share}>Copy link for your architect</button>
+                <button type="button" className={quiet} onClick={startNextRound}>Add the next letter on this permit, free</button>
                 {copied && <span aria-live="polite" className="text-sm font-semibold break-all text-teal">{copied}</span>}
               </div>
               <label className="mt-3 flex items-start gap-2 text-sm text-muted">

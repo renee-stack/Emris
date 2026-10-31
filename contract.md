@@ -203,8 +203,8 @@ A proxy to the Redline service in `services/redline`, which answers building per
 | Route | Purpose |
 |---|---|
 | `GET offer` | Payments on or off, price, covered places |
-| `POST start/extract` | `{ text }` or `{ pdf_base64 }` → `{ comments, jurisdiction, permit_number }` |
-| `POST start/run` | `{ comments, jurisdiction, permit_number, chicago_2026 }` → `202 { job_id }` |
+| `POST start/extract` | `{ text }`, `{ pdf_base64 }` or `{ docx_base64 }` → `{ comments, warnings, jurisdiction, permit_number }` |
+| `POST start/run` | `{ comments, jurisdiction, permit_number, chicago_2026, from_report? }` → `202 { job_id }`. `from_report` is an unlocked report on the same permit, which makes this round free |
 | `GET job/[id]` | `{ status: "running" }` or `{ status: "done", result }`. `result` is a report, or `{ stop, message }` for a place or code edition Redline doesn't cover |
 | `GET report/[id]` | The report. The service withholds locked drafts and citations |
 | `POST report/[id]/unlock` | Returns `{ checkout_url }` if payments are on. Otherwise, with `{ design_partner: true }`, returns the unlocked report |
@@ -213,7 +213,9 @@ A proxy to the Redline service in `services/redline`, which answers building per
 | `POST waitlist` | `{ email, place, reason }` for places not covered |
 | `GET paid` | `?session_id=` → `{ report_id }`, after checking the session with Stripe |
 
-Report IDs are unguessable, and a report link gives access to that report.
+Report IDs are unguessable, and a report link gives access to that report. Each report item may carry `flags` from Redline's draft safety check, and the UI must show them.
+
+Stripe's webhook doesn't go through this proxy. It goes straight to the service, at `POST /api/stripe/webhook`, and proves itself with Stripe's signature.
 
 ---
 
