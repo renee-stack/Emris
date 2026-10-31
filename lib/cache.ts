@@ -4,7 +4,8 @@ import { promises as fs } from "node:fs";
 import { createHash } from "node:crypto";
 import path from "node:path";
 
-const ROOT = path.join(process.cwd(), ".cache");
+// Vercel functions can only write to /tmp (per instance, so it is a warm-instance cache there).
+const ROOT = process.env.VERCEL ? "/tmp/emris-cache" : path.join(process.cwd(), ".cache");
 const mem = new Map<string, unknown>();
 
 const fileFor = (ns: string, key: string) =>

@@ -4,6 +4,10 @@ const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
+  // API routes read data/ with fs at runtime; make sure Vercel bundles it with each function.
+  outputFileTracingIncludes: {
+    "/api/**": ["./data/*.json", "./data/*.geojson"],
+  },
   turbopack: {
     rules: {
       "*.css": {
