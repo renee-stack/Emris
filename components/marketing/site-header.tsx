@@ -3,11 +3,12 @@ import { Cta } from "./cta";
 import { Mark } from "./mark";
 import { SiteTabs } from "./site-tabs";
 
-export type MarketingSection = "home" | "platform" | "pricing" | "access";
+export type MarketingSection = "home" | "platform" | "pricing" | "access" | "redline";
 
 const links = [
   { href: "/platform", id: "platform", label: "Platform" },
   { href: "/pricing", id: "pricing", label: "Pricing" },
+  { href: "/redline", id: "redline", label: "Redline" },
 ] as const;
 
 function navClass(active: boolean) {
