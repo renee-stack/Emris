@@ -6,20 +6,47 @@ import { geocode, type GeocodeResult } from "@/lib/geocode";
 
 export const GEOID_RE = /^\d{11}$/;
 
+const STATUS_CODE: Record<number, string> = {
+  400: "bad_request",
+  401: "auth_required",
+  402: "payment_required",
+  404: "not_found",
+  409: "already_entitled",
+  429: "limit_reached",
+  500: "internal",
+};
+
 export class HttpError extends Error {
+  readonly code: string;
+  readonly extra: Record<string, unknown>;
   constructor(
     public status: number,
     message: string,
+    code?: string,
+    extra?: Record<string, unknown>,
   ) {
     super(message);
+    this.code = code ?? STATUS_CODE[status] ?? "internal";
+    this.extra = extra ?? {};
   }
 }
 
-/** JSON error response per contract §2. Unknown errors become 500. */
+/** JSON error response. Unknown errors become 500. */
 export function errorResponse(err: unknown): Response {
-  if (err instanceof HttpError) return Response.json({ error: err.message }, { status: err.status });
+  if (err instanceof HttpError) {
+    return Response.json({ error: err.message, code: err.code, ...err.extra }, { status: err.status });
+  }
   console.error(err);
-  return Response.json({ error: err instanceof Error ? err.message : "Internal error" }, { status: 500 });
+  const message = err instanceof Error ? err.message : "Internal error";
+  return Response.json({ error: message, code: "internal" }, { status: 500 });
+}
+
+export async function readJson(req: Request): Promise<unknown> {
+  try {
+    return await req.json();
+  } catch {
+    throw new HttpError(400, "Body must be JSON.");
+  }
 }
 
 export async function getTractFeature(geoid: string): Promise<TractFeature | null> {
