@@ -1,8 +1,16 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { updateSession } from "@/lib/supabase/update-session";
 
-export async function proxy(request: NextRequest) {
+function isDeepLink(url: URL): boolean {
+  const tract = url.searchParams.get("tract");
+  if (tract && /^\d{11}$/.test(tract)) return true;
+  const lat = url.searchParams.get("lat");
+  const lng = url.searchParams.get("lng");
+  if (lat == null || lng == null || lat.trim() === "" || lng.trim() === "") return false;
+  return Number.isFinite(Number(lat)) && Number.isFinite(Number(lng));
+}
+
+export function proxy(request: NextRequest) {
   const url = request.nextUrl;
 
   if (url.pathname === "/landing" || url.pathname.startsWith("/landing/")) {
@@ -11,11 +19,15 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(next);
   }
 
-  return updateSession(request);
+  if (url.pathname === "/" && isDeepLink(url)) {
+    const mapUrl = url.clone();
+    mapUrl.pathname = "/map";
+    return NextResponse.redirect(mapUrl);
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|json|geojson|mjs|ico)$).*)",
-  ],
+  matcher: ["/", "/landing", "/landing/:path*"],
 };

@@ -22,7 +22,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: "Emris",
-  description: "Path-of-progress scores for census tracts.",
+  description: "Path-of-progress scores for Chicago census tracts.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
