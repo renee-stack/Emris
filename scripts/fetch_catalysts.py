@@ -599,7 +599,6 @@ def main() -> None:
         return
     out = json.dumps(rows, indent=2, ensure_ascii=False) + "\n"
     INFRA.write_text(out)
-    (ROOT / "public" / "infrastructure.json").write_text(out)  # the map UI falls back to this copy
     print(f"\nWrote {len(rows)} projects to data/infrastructure.json")
 
 

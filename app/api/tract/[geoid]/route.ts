@@ -1,10 +1,16 @@
-import { errorResponse, tractDetail } from "@/lib/lookup";
+import { assertIp } from "@/lib/auth/guard";
+import { redactTract } from "@/lib/auth/redact";
+import { viewer } from "@/lib/auth/viewer";
+import { errorResponse, privateJson, tractDetail } from "@/lib/lookup";
 
-// GET /api/tract/[geoid] — contract §2.2.
-export async function GET(_req: Request, { params }: { params: Promise<{ geoid: string }> }) {
+// GET /api/tract/[geoid] — scores for everyone; permit and project rows require a session.
+export async function GET(req: Request, { params }: { params: Promise<{ geoid: string }> }) {
   try {
+    assertIp("tract:ip", 120, 60_000, req);
+    const user = await viewer();
     const { geoid } = await params;
-    return Response.json(await tractDetail(geoid));
+    const detail = await tractDetail(geoid);
+    return privateJson(redactTract(detail, user !== null));
   } catch (err) {
     return errorResponse(err);
   }

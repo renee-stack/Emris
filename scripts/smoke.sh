@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-# Smoke test for every API route. Usage: BASE=http://localhost:3000 scripts/smoke.sh
-# Needs curl and jq; /api/memo and /api/ask need ANTHROPIC_API_KEY in .env.local.
-# Cost: on a cold cache this makes 1 memo call and 5 ask calls (1 of them also uses the Haiku classifier).
-# Results are cached in .cache/, so reruns make no Claude calls. Delete .cache/ to force fresh calls.
+# Smoke test for the public API. Account-gated routes must refuse anonymous callers.
+# Usage: BASE=http://localhost:3000 scripts/smoke.sh
 set -u
 BASE="${BASE:-http://localhost:3000}"
 PASS=0
@@ -28,56 +26,80 @@ check() {
   fi
 }
 
-ask() {
-  local name="$1" question="$2" assert="$3"
-  check "ask: $name" 200 "($assert) and (.reply | type == \"string\" and length > 0 and length < 600) and (.reply | test(\"https?://|\\\\*\\\\*|^#\") | not) and (.url | test(\"^/\\\\?(tract=[0-9]{11}|lat=-?[0-9.]+&lng=-?[0-9.]+&z=[0-9]+)$\"))" \
-    -X POST "$BASE/api/ask" -H 'Content-Type: application/json' -d "$(jq -n --arg q "$question" '{question: $q}')"
-  jq -r '"      reply: \(.reply)\n      url:   \(.url)"' "$TMP" 2>/dev/null
-  echo "      $(grep -i '^x-emris-' "$HDR" | tr -d '\r' | tr '\n' ' ')"
-}
-
 GEOID=$(curl -s "$BASE/api/tracts" | jq -r '.features[0].properties.geoid')
+ADDR=$(jq -r '.[0].address' data/permits.json)
 
 echo "== /api/tracts"
-check "tracts collection" 200 '.type == "FeatureCollection" and (.features | length > 0) and (.as_of | type == "string")' "$BASE/api/tracts"
+check "tracts collection" 200 '.type == "FeatureCollection" and (.features | length > 0) and (.as_of | type == "string") and (has("top_permits") | not)' "$BASE/api/tracts"
 
-echo "== /api/tract/[geoid]"
-check "tract detail" 200 ".tract.geoid == \"$GEOID\" and (.top_permits | length <= 10) and (.top_permits | all(.geoid == \"$GEOID\")) and (.nearby_projects | all(.distance_mi <= 1))" "$BASE/api/tract/$GEOID"
-check "tract permits newest first" 200 '[.top_permits[].issue_date] == ([.top_permits[].issue_date] | sort | reverse)' "$BASE/api/tract/$GEOID"
+echo "== /api/tract/[geoid] (anonymous)"
+code=$(curl -s -o "$TMP" -w '%{http_code}' --max-time 90 "$BASE/api/tract/$GEOID?user_id=other-user&plan=pro")
+if [[ "$code" == "200" ]] && jq -e --arg a "$ADDR" --arg g "$GEOID" \
+  '.tract.geoid == $g and .top_permits == [] and .nearby_projects == [] and ([. | tostring] | .[0] | contains($a) | not)' \
+  "$TMP" >/dev/null; then
+  PASS=$((PASS + 1))
+  echo "PASS  tract score without permit rows"
+else
+  FAIL=$((FAIL + 1))
+  echo "FAIL  tract score without permit rows (status $code)"
+  head -c 400 "$TMP"
+  echo
+fi
 check "tract bad geoid -> 400" 400 '.error | type == "string"' "$BASE/api/tract/abc"
 check "tract unknown -> 404" 404 '.error | type == "string"' "$BASE/api/tract/17031999999"
 
-echo "== /api/near"
-check "near Pilsen (neighborhood)" 200 '.place.label == "Pilsen, Chicago" and (.permits | type == "array") and (.projects | all(.distance_mi <= 1))' --get "$BASE/api/near" --data-urlencode "q=pilsen" --data-urlencode "radius_mi=1"
-check "near Logan Square finds a tract" 200 '.tract != null and (.permits | length <= 25)' --get "$BASE/api/near" --data-urlencode "q=Logan Square"
-check "near address (Census geocoder)" 200 '(.place.lat | . > 41.6 and . < 42.1) and (.place.lng | . < -87.5)' --get "$BASE/api/near" --data-urlencode "q=1500 N Milwaukee Ave"
-check "near radius clamps" 200 '(.projects | all(.distance_mi <= 2))' --get "$BASE/api/near" --data-urlencode "q=West Loop" --data-urlencode "radius_mi=99"
-check "near missing q -> 400" 400 '.error | type == "string"' "$BASE/api/near"
-check "near nowhere -> 404" 404 '.error | type == "string"' --get "$BASE/api/near" --data-urlencode "q=zzzz qqqq nowhere 99999"
+echo "== /api/near (anonymous)"
+check "near requires a session" 401 '(.error | type == "string") and (has("permits") | not) and (has("projects") | not) and (has("place") | not)' \
+  --get "$BASE/api/near" --data-urlencode "q=pilsen" --data-urlencode "plan=pro" --data-urlencode "user_id=00000000-0000-0000-0000-000000000001"
+check "near missing q still requires a session" 401 '(has("permits") | not)' "$BASE/api/near"
 
-echo "== /api/memo"
-check "memo bad geoid -> 400" 400 '.error | type == "string"' -X POST "$BASE/api/memo" -H 'Content-Type: application/json' -d '{"geoid":"12"}'
-check "memo unknown -> 404" 404 '.error | type == "string"' -X POST "$BASE/api/memo" -H 'Content-Type: application/json' -d '{"geoid":"17031999999"}'
-check "memo" 200 ".geoid == \"$GEOID\" and (.title | endswith(\"Path of Progress Memo\")) and (.memo_markdown as \$m | [\"## Thesis\",\"## What the permits show\",\"## Infrastructure catalysts\",\"## Momentum\",\"## Risks and gaps in the data\",\"## Suggested next diligence steps\"] | all(. as \$h | \$m | contains(\$h)))" \
-  -X POST "$BASE/api/memo" -H 'Content-Type: application/json' -d "{\"geoid\":\"$GEOID\"}"
+echo "== /api/memo (anonymous)"
+check "memo requires a session" 401 '(.error | type == "string") and (has("memo_markdown") | not)' \
+  -X POST "$BASE/api/memo" -H 'Content-Type: application/json' \
+  -d "{\"geoid\":\"$GEOID\",\"user_id\":\"other-user\",\"plan\":\"pro\"}"
 
-echo "== /api/ask"
-check "ask empty -> 400" 400 '.error | type == "string"' -X POST "$BASE/api/ask" -H 'Content-Type: application/json' -d '{"question":"  "}'
-ask "address" "what permits have recently been filed near 1500 N Milwaukee Ave" '.url | startswith("/?")'
-ask "off-topic zoning" "what are the zoning requirements in Lincoln Park" '.reply | test("(?i)don.t have")'
-ask "neighborhood" "what's happening in Pilsen" '.url | startswith("/?")'
-ask "top 5" "top 5 tracts" '.url | startswith("/?tract=")'
-ask "named tract" "tell me about Bronzeville tract 3511" '.url == "/?tract=17031351100"'
+echo "== /api/ask (anonymous)"
+check "ask empty -> 400" 400 '(.error | type == "string") and (has("reply") | not)' \
+  -X POST "$BASE/api/ask" -H 'Content-Type: application/json' -d '{"question":"  "}'
+check "ask requires a session" 401 '(.error | type == "string") and (has("reply") | not) and (has("url") | not)' \
+  -X POST "$BASE/api/ask" -H 'Content-Type: application/json' \
+  -d '{"question":"what permits are near Pilsen","user_id":"other-user","plan":"pro"}'
 
-echo "== cache (repeat calls must not hit Claude)"
-cache_hit() {
-  if grep -qi '^x-emris-cache: hit' "$HDR"; then PASS=$((PASS + 1)); echo "PASS  $1"; else FAIL=$((FAIL + 1)); echo "FAIL  $1 (no cache hit)"; fi
-}
-check "memo repeat" 200 '.memo_markdown | length > 0' -X POST "$BASE/api/memo" -H 'Content-Type: application/json' -d "{\"geoid\":\"$GEOID\"}"
-cache_hit "memo repeat is cached"
-check "ask repeat (different case/punctuation)" 200 '.reply | length > 0' -X POST "$BASE/api/ask" -H 'Content-Type: application/json' -d '{"question":"Top 5 tracts?"}'
-cache_hit "ask repeat is cached"
+echo "== account files and auth"
+code=$(curl -s -o "$TMP" -w '%{http_code}' --max-time 20 "$BASE/permits.json")
+if [[ "$code" == "404" ]]; then PASS=$((PASS + 1)); echo "PASS  permits.json 404"; else FAIL=$((FAIL + 1)); echo "FAIL  permits.json ($code)"; fi
+code=$(curl -s -o "$TMP" -w '%{http_code}' --max-time 20 "$BASE/infrastructure.json")
+if [[ "$code" == "404" ]]; then PASS=$((PASS + 1)); echo "PASS  infrastructure.json 404"; else FAIL=$((FAIL + 1)); echo "FAIL  infrastructure.json ($code)"; fi
+code=$(curl -s -o "$TMP" -w '%{http_code}' --max-time 20 -X POST "$BASE/api/stripe/webhook" -H 'Content-Type: application/json' -d '{"type":"checkout.session.completed"}')
+if [[ "$code" == "404" ]]; then PASS=$((PASS + 1)); echo "PASS  unsigned stripe webhook 404"; else FAIL=$((FAIL + 1)); echo "FAIL  stripe webhook ($code)"; fi
+code=$(curl -s -o "$TMP" -w '%{http_code}' --max-time 20 -X POST "$BASE/api/auth/magic-link" -H 'Content-Type: application/json' -d '{"email":"ada@example.com","next":"https://evil.com","user_id":"other-user"}')
+if [[ "$code" == "503" || "$code" == "400" ]] && ! grep -q 'ada@example.com' "$TMP"; then PASS=$((PASS + 1)); echo "PASS  magic link ($code, email not echoed)"; else FAIL=$((FAIL + 1)); echo "FAIL  magic link ($code)"; cat "$TMP"; fi
+limited=0
+for _ in 1 2 3 4 5 6 7 8; do
+  code=$(curl -s -o "$TMP" -w '%{http_code}' --max-time 20 -X POST "$BASE/api/auth/magic-link" -H 'Content-Type: application/json' -d '{"email":"ada@example.com","next":"https://evil.com"}')
+  if [[ "$code" == "429" ]]; then limited=1; break; fi
+done
+if [[ "$limited" == "1" ]] && ! grep -q 'ada@example.com' "$TMP"; then PASS=$((PASS + 1)); echo "PASS  magic link rate limit"; else FAIL=$((FAIL + 1)); echo "FAIL  magic link rate limit ($code)"; fi
+loc=$(curl -s -o /dev/null -D - --max-time 20 "$BASE/auth/callback?next=https://evil.com" | tr -d '\r' | awk 'tolower($1)=="location:" {print $2}')
+case "$loc" in
+  "$BASE/map"|*/map) PASS=$((PASS + 1)); echo "PASS  callback next stays on /map ($loc)" ;;
+  *) FAIL=$((FAIL + 1)); echo "FAIL  callback open redirect ($loc)" ;;
+esac
+loc=$(curl -s -o /dev/null -D - --max-time 20 "$BASE/auth/callback?next=//evil.com" | tr -d '\r' | awk 'tolower($1)=="location:" {print $2}')
+case "$loc" in
+  *evil.com*) FAIL=$((FAIL + 1)); echo "FAIL  callback protocol-relative ($loc)" ;;
+  *) PASS=$((PASS + 1)); echo "PASS  callback protocol-relative blocked ($loc)" ;;
+esac
+final=$(curl -s --path-as-is -o /dev/null -w '%{url_effective}' -L --max-redirs 5 --max-time 20 "$BASE/landing//evil.com")
+host=$(printf '%s' "$final" | sed -E 's#^[a-z]+://([^/]+).*#\1#')
+base_host=$(printf '%s' "$BASE" | sed -E 's#^[a-z]+://([^/]+).*#\1#')
+if [[ "$host" == "$base_host" && "$final" != *"://evil.com"* ]]; then PASS=$((PASS + 1)); echo "PASS  landing redirect stays on $host ($final)"; else FAIL=$((FAIL + 1)); echo "FAIL  landing open redirect ($final)"; fi
+hdr=$(curl -s -D - -o /dev/null --max-time 20 "$BASE/map" | tr -d '\r')
+for name in content-security-policy x-frame-options x-content-type-options referrer-policy permissions-policy; do
+  if echo "$hdr" | grep -qi "^$name:"; then PASS=$((PASS + 1)); echo "PASS  header $name"; else FAIL=$((FAIL + 1)); echo "FAIL  header $name"; fi
+done
+if echo "$hdr" | grep -qi '^x-powered-by:'; then FAIL=$((FAIL + 1)); echo "FAIL  x-powered-by present"; else PASS=$((PASS + 1)); echo "PASS  no x-powered-by"; fi
 
 echo
 echo "$PASS passed, $FAIL failed"
-[[ $FAIL -eq 0 ]]
+[[ "$FAIL" == "0" ]]

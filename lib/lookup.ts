@@ -1,4 +1,6 @@
 // Data lookups shared by the API routes (and /api/ask). Server-only.
+import "server-only";
+
 import { getPermits, getProjects, getTracts } from "@/lib/data";
 import type { NearResponse, TractDetailResponse, TractFeature } from "@/lib/data";
 import { findTract, permitsNear, projectsNear, tractCentroid } from "@/lib/geo";
@@ -6,20 +8,38 @@ import { geocode, type GeocodeResult } from "@/lib/geocode";
 
 export const GEOID_RE = /^\d{11}$/;
 
+const PRIVATE = { "Cache-Control": "private, no-store", Vary: "Cookie" };
+
 export class HttpError extends Error {
+  readonly resets?: string;
   constructor(
     public status: number,
     message: string,
+    resets?: string,
   ) {
     super(message);
+    this.resets = resets;
   }
 }
 
-/** JSON error response per contract §2. Unknown errors become 500. */
+/** JSON error response per contract §2. Unknown errors become a generic 500. */
 export function errorResponse(err: unknown): Response {
-  if (err instanceof HttpError) return Response.json({ error: err.message }, { status: err.status });
+  if (err instanceof HttpError) {
+    const headers: Record<string, string> = { ...PRIVATE };
+    const body: { error: string; resets?: string } = { error: err.message };
+    if (err.resets) {
+      body.resets = err.resets;
+      const ms = Date.parse(err.resets);
+      if (Number.isFinite(ms)) headers["x-ratelimit-reset"] = String(Math.floor(ms / 1000));
+    }
+    return Response.json(body, { status: err.status, headers });
+  }
   console.error(err);
-  return Response.json({ error: err instanceof Error ? err.message : "Internal error" }, { status: 500 });
+  return Response.json({ error: "Internal error" }, { status: 500, headers: PRIVATE });
+}
+
+export function privateJson(data: unknown, status = 200, extra?: Record<string, string>): Response {
+  return Response.json(data, { status, headers: { ...PRIVATE, ...extra } });
 }
 
 export async function getTractFeature(geoid: string): Promise<TractFeature | null> {

@@ -3,7 +3,8 @@
     scripts/.venv/bin/python scripts/score.py [--as-of YYYY-MM-DD] [--refresh]
 
 Reads   data/infrastructure.json (whatever is there)
-Writes  data/tracts.geojson, public/tracts.geojson (identical), data/permits.json, public/permits.json
+Writes  data/tracts.geojson, public/tracts.geojson (identical scores), data/permits.json
+         Permit rows stay on the server. They are not copied to public/.
 Caches  raw downloads in data/raw/ (delete them or pass --refresh to re-download)
 """
 from __future__ import annotations
@@ -406,6 +407,8 @@ def main() -> None:
                     help="v2 = contract.md §3 (default); v1 = original formula, kept for comparison")
     ap.add_argument("--out", type=Path, help="write outputs here instead of data/ and public/")
     args = ap.parse_args()
+    if args.out and args.out.resolve() == PUBLIC.resolve():
+        sys.exit("refusing to write permit rows into public/")
     as_of: date = args.as_of
     print(f"Emris scoring {args.scoring}, as of {as_of}")
 
@@ -441,11 +444,16 @@ def main() -> None:
     if len(gj.encode()) > MAX_GEOJSON_BYTES:
         sys.exit(f"tracts.geojson is {len(gj.encode()) / 1e6:.1f} MB, over 5 MB; raise SIMPLIFY_FT")
     pj = json.dumps(permit_rows, indent=1, ensure_ascii=False)
-    out_dirs = (args.out,) if args.out else (DATA, PUBLIC)
-    for d in out_dirs:
-        d.mkdir(parents=True, exist_ok=True)
-        (d / "tracts.geojson").write_text(gj + "\n")
-        (d / "permits.json").write_text(pj + "\n")
+    if args.out:
+        args.out.mkdir(parents=True, exist_ok=True)
+        (args.out / "tracts.geojson").write_text(gj + "\n")
+        (args.out / "permits.json").write_text(pj + "\n")
+    else:
+        DATA.mkdir(parents=True, exist_ok=True)
+        PUBLIC.mkdir(parents=True, exist_ok=True)
+        (DATA / "tracts.geojson").write_text(gj + "\n")
+        (PUBLIC / "tracts.geojson").write_text(gj + "\n")
+        (DATA / "permits.json").write_text(pj + "\n")
 
     print(f"\nTracts: {len(features)}   Permits: {len(permit_rows)}   "
           f"tracts.geojson: {len(gj.encode()) / 1e6:.2f} MB")

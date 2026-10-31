@@ -11,6 +11,41 @@ export function mapReturnPath(placeId: string | null, tractId: string | null): s
   return query ? `/map?${query}` : "/map";
 }
 
+/** `/landing` and `/landing/...` become a same-origin path. Anything else is `/`. */
+export function pathAfterLanding(pathname: string): string {
+  if (pathname === "/landing") return "/";
+  if (!pathname.startsWith("/landing/")) return "/";
+  const rest = pathname.slice("/landing".length);
+  if (!isSameOriginPath(rest)) return "/";
+  return rest;
+}
+
+export function landingDestination(requestUrl: URL): URL | null {
+  if (requestUrl.pathname !== "/landing" && !requestUrl.pathname.startsWith("/landing/")) return null;
+  const next = new URL(requestUrl.href);
+  next.pathname = pathAfterLanding(requestUrl.pathname);
+  if (next.origin !== requestUrl.origin || next.username || next.password) {
+    next.pathname = "/";
+    next.search = "";
+    next.username = "";
+    next.password = "";
+  }
+  return next;
+}
+
+function isSameOriginPath(value: string): boolean {
+  if (!value.startsWith("/") || value.startsWith("//")) return false;
+  if (value.includes("\\") || value.includes("://") || /[\u0000-\u001F\u007F]/.test(value)) return false;
+  try {
+    const decoded = decodeURIComponent(value);
+    if (!decoded.startsWith("/") || decoded.startsWith("//")) return false;
+    if (decoded.includes("\\") || decoded.includes("://") || /[\u0000-\u001F\u007F]/.test(decoded)) return false;
+  } catch {
+    return false;
+  }
+  return true;
+}
+
 /** Allow only `/map` on this origin, with a place id and an 11-digit tract. */
 export function safeMapPath(value: string | null, origin: string): string {
   if (!value) return "/map";

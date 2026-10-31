@@ -5,7 +5,8 @@ import { FAST_MODEL, complete, getClaude, logUsage, toLastSentence } from "@/lib
 import { cached } from "@/lib/cache";
 import { findNeighborhoodInText, geocode } from "@/lib/geocode";
 import { nearestTracts } from "@/lib/geo";
-import { GEOID_RE, HttpError, errorResponse, getTractFeature, nearPlace, topTracts, tractDetail } from "@/lib/lookup";
+import { requireUser } from "@/lib/auth/guard";
+import { GEOID_RE, HttpError, errorResponse, getTractFeature, nearPlace, privateJson, topTracts, tractDetail } from "@/lib/lookup";
 import { allow, clientIp } from "@/lib/ratelimit";
 
 // Cost guards: every uncached question is a paid Claude call.
@@ -286,6 +287,10 @@ export async function POST(req: Request) {
     if (question.length > MAX_QUESTION_CHARS) {
       throw new HttpError(400, `Keep questions under ${MAX_QUESTION_CHARS} characters`);
     }
+    const user = await requireUser();
+    if (!allow(`ask:user:min:${user.id}`, PER_IP_PER_MINUTE, 60_000) || !allow(`ask:user:day:${user.id}`, PER_IP_PER_DAY, DAY)) {
+      throw new HttpError(429, "Too many questions. Try again later.");
+    }
 
     const { as_of } = await getTracts();
     let route: "regex" | "haiku" | undefined;
@@ -309,7 +314,7 @@ export async function POST(req: Request) {
     });
     const headers: Record<string, string> = { "x-emris-cache": hit ? "hit" : "miss" };
     if (route) headers["x-emris-route"] = route;
-    return Response.json(value, { headers });
+    return privateJson(value, 200, headers);
   } catch (err) {
     return errorResponse(err);
   }

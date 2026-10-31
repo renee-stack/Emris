@@ -1,8 +1,13 @@
 import type { MemoRequest, MemoResponse } from "@/lib/data";
+import { assertIp, assertRate, requireUser } from "@/lib/auth/guard";
 import { complete } from "@/lib/claude";
 import { cached } from "@/lib/cache";
-import { HttpError, errorResponse, tractDetail } from "@/lib/lookup";
+import { HttpError, errorResponse, privateJson, tractDetail } from "@/lib/lookup";
 import { getTracts } from "@/lib/data";
+
+const HOUR = 60 * 60 * 1000;
+const DAY = 24 * HOUR;
+const MAX_BODY_BYTES = 4_096;
 
 // POST /api/memo — contract §2.4 (section list per the API brief; see report).
 const SYSTEM = `You are writing a one-page investment committee brief for a multifamily acquisitions team in Chicago.
@@ -27,10 +32,20 @@ const trunc = (s: string, n = 160) => (s.length > n ? s.slice(0, n - 1).trimEnd(
 
 export async function POST(req: Request) {
   try {
+    assertIp("memo:ip", 20, HOUR, req);
+    const user = await requireUser();
+    assertRate(`memo:user:hour:${user.id}`, 10, HOUR);
+    assertRate(`memo:user:day:${user.id}`, 30, DAY);
+    if (Number(req.headers.get("content-length") ?? 0) > MAX_BODY_BYTES) {
+      throw new HttpError(413, "Request too large");
+    }
     let body: Partial<MemoRequest>;
     try {
-      body = await req.json();
-    } catch {
+      const raw = await req.text();
+      if (raw.length > MAX_BODY_BYTES) throw new HttpError(413, "Request too large");
+      body = JSON.parse(raw);
+    } catch (e) {
+      if (e instanceof HttpError) throw e;
       throw new HttpError(400, "Body must be JSON: { geoid }");
     }
     const geoid = typeof body.geoid === "string" ? body.geoid.trim() : "";
@@ -38,7 +53,7 @@ export async function POST(req: Request) {
     const { as_of, features } = await getTracts();
 
     const { value, hit } = await cached("memo", `${as_of}|${geoid}`, () => writeMemo(geoid, detail, as_of, features.length));
-    return Response.json(value, { headers: { "x-emris-cache": hit ? "hit" : "miss" } });
+    return privateJson(value, 200, { "x-emris-cache": hit ? "hit" : "miss" });
   } catch (err) {
     return errorResponse(err);
   }
