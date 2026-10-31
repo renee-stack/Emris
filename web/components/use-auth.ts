@@ -34,13 +34,14 @@ export function useAuth() {
   return { email, ready, configured };
 }
 
-export async function sendMagicLink(email: string): Promise<void> {
+export async function sendMagicLink(email: string, nextPath = "/map"): Promise<void> {
   const supabase = browserClient();
   if (!supabase) throw new Error("Sign-in isn't configured.");
+  const next = nextPath.startsWith("/") && !nextPath.startsWith("//") ? nextPath : "/map";
   const { error } = await supabase.auth.signInWithOtp({
     email: email.trim(),
     options: {
-      emailRedirectTo: `${window.location.origin}/auth/callback?next=/map`,
+      emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
     },
   });
   if (error) throw new Error(error.message);
