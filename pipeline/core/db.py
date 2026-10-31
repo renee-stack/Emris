@@ -22,7 +22,10 @@ def connect() -> psycopg.Connection:
     url = os.environ.get("DATABASE_URL")
     if not url:
         raise RuntimeError("DATABASE_URL is not set in .env (use --no-db to skip the database)")
-    return psycopg.connect(url, autocommit=False)
+    # autocommit: each `with conn.transaction()` block is then a real transaction that commits
+    # on exit. Without it, the first query opens an implicit transaction and every block
+    # becomes a savepoint inside it, which is rolled back when the connection closes.
+    return psycopg.connect(url, autocommit=True)
 
 
 def ewkb(geom) -> Optional[str]:
