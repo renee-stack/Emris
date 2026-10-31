@@ -4,7 +4,11 @@
 
 begin;
 
-create extension if not exists postgis;
+-- In Supabase's `extensions` schema, not `public`: PostGIS's spatial_ref_sys table can't have
+-- RLS (it's owned by the admin role), and in `public` the browser's anon key could edit it.
+-- `extensions` is on the default search_path, so geometry/geography resolve as usual.
+create schema if not exists extensions;
+create extension if not exists postgis with schema extensions;
 
 -- ---------- places ----------
 -- One row per place config (places/<state>/<place>.yaml), upserted by the pipeline.
