@@ -1,4 +1,4 @@
-# Emris — Shared Contract (v1)
+# Emris — Shared Contract (v2)
 
 Emris scores Chicago census tracts on permit and infrastructure activity to surface the "path of progress" before it shows up in prices.
 
@@ -62,7 +62,7 @@ Features have no top-level `id`. Map libraries should use `promoteId: "geoid"`.
 
 ### 1.2 `data/permits.json`
 
-Array of building permits for **new construction** in Chicago (source: City of Chicago building permits, `permit_type = "PERMIT - NEW CONSTRUCTION"`), issued in the 30 months before `as_of`.
+Array of building permits for **new construction** in Chicago (source: City of Chicago building permits, `permit_type = "PERMIT - NEW CONSTRUCTION"`), issued in the 24 months before `as_of`.
 
 ```jsonc
 [
@@ -213,8 +213,8 @@ The lowest value gets 0, the highest gets 100, ties get the same number.
 Let `age_years = (as_of - issue_date) in days / 365.25`.
 
 - **mf_permits**: `Σ 0.5 ^ age_years` over the tract's permits with `units >= 5` (12-month half-life). Permits with `units = null` are excluded.
-- **permit_momentum**: `L` = tract permits with `age_years < 1`, `P` = tract permits with `1 <= age_years < 2` (all unit counts, including null).
-  raw = `(L - P) / max(P, 1)`
+- **permit_momentum**: `L` = tract permits with `units >= 5` and `age_years < 1`; `P` = tract permits with `units >= 5` and `1 <= age_years < 2`. Permits with `units = null` are excluded.
+  raw = `(L - P) / (P + 2)` if `n >= MIN_ACTIVITY`, else `0` (see §3.3 for `n`).
 - **infra_proximity**: `Σ weight(status) × decay(d)` over all projects, where `d` = distance in miles from the tract centroid to the project.
   - weight: `under_construction 1.0`, `funded 0.8`, `planned 0.5`, `complete 0` (already priced in)
   - decay: `1` if `d <= 0.25`; `(1 - d) / 0.75` if `0.25 < d < 1`; `0` if `d >= 1`
@@ -223,13 +223,19 @@ Each raw value goes through `pctRank` → `signals.*`.
 
 ### 3.3 Composite, score, percentile, momentum
 
+Let `n` = the tract's permits with `units >= 5` and `age_years < 2`, and `MIN_ACTIVITY = 3`. A tract with fewer than 3 known multifamily permits has its permit signals pulled toward the citywide median, so one permit can't put it at the top. Infrastructure is not pulled.
+
 ```
-composite   = 0.45 * signals.mf_permits + 0.30 * signals.permit_momentum + 0.25 * signals.infra_proximity
+permit_part = 0.45 * signals.mf_permits + 0.30 * signals.permit_momentum
+k           = min(1, n / MIN_ACTIVITY)
+composite   = median(permit_part over all tracts) + (permit_part - median) * k
+              + 0.25 * signals.infra_proximity
+              + units_24mo * 1e-6                       // tie-break only
 score       = pctRank(composite)
-percentile  = round(100 * (count of tracts with composite < this composite) / n)   // "beats X% of Chicago tracts"
-momentum_pct = round to 1 decimal of 100 * (L - P) / max(P, 1)
-momentum    = "up" if momentum_pct >= 10, "down" if momentum_pct <= -10, else "flat"
-permit_count_24mo = count of tract permits with age_years < 2
+percentile  = round(100 * (count of tracts with composite < this composite) / N)   // N = tract count; "beats X% of Chicago tracts"
+momentum_pct = round to 1 decimal of 100 * (L - P) / max(P, 1)                      // L, P as in permit_momentum
+momentum    = "flat" if n < MIN_ACTIVITY; else "up" if momentum_pct > 10, "down" if momentum_pct < -10, else "flat"
+permit_count_24mo = count of tract permits with age_years < 2 (all unit counts, including null)
 units_24mo        = sum of units (null → 0) for those same permits
 ```
 
@@ -267,4 +273,4 @@ Put these in `.env.local` (never commit it).
 
 ## 6. Mocks
 
-`/mock` has hand-generated fake data in the exact shapes above (25 rectangular tracts across Logan Square, Humboldt Park, West Loop, Pilsen and Bronzeville; 40 permits; 10 projects). Scores in the mock are computed with §3 over just those 25 tracts. Regenerate with `node mock/generate.mjs`. None of the mock data is real.
+`/mock` has hand-generated fake data in the exact shapes above (25 rectangular tracts across Logan Square, Humboldt Park, West Loop, Pilsen and Bronzeville; 40 permits; 10 projects). Scores in the mock were computed with the v1 formula over just those 25 tracts, so they show the right shapes but not v2 scoring. Regenerate with `node mock/generate.mjs`. None of the mock data is real.
