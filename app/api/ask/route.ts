@@ -6,6 +6,15 @@ import { cached } from "@/lib/cache";
 import { findNeighborhoodInText, geocode } from "@/lib/geocode";
 import { nearestTracts } from "@/lib/geo";
 import { GEOID_RE, HttpError, errorResponse, getTractFeature, nearPlace, topTracts, tractDetail } from "@/lib/lookup";
+import { allow, clientIp } from "@/lib/ratelimit";
+
+// Cost guards: every uncached question is a paid Claude call.
+const MAX_QUESTION_CHARS = 280;
+const MAX_BODY_BYTES = 4_096;
+const PER_IP_PER_MINUTE = 10;
+const PER_IP_PER_DAY = 100;
+const MODEL_CALLS_PER_DAY = 500; // per server instance, uncached questions only
+const DAY = 86_400_000;
 
 // POST /api/ask — contract §2.5. Route the question (regex first, Haiku tool call only when ambiguous),
 // look the data up locally, then one Sonnet call writes the SMS reply. Replies are cached by question.
@@ -256,18 +265,34 @@ function sanitize(text: string): string {
 
 export async function POST(req: Request) {
   try {
+    const ip = clientIp(req);
+    if (!allow(`ask:min:${ip}`, PER_IP_PER_MINUTE, 60_000) || !allow(`ask:day:${ip}`, PER_IP_PER_DAY, DAY)) {
+      throw new HttpError(429, "Too many questions. Try again later.");
+    }
+    if (Number(req.headers.get("content-length") ?? 0) > MAX_BODY_BYTES) {
+      throw new HttpError(413, "Request too large");
+    }
     let body: Partial<AskRequest>;
     try {
-      body = await req.json();
-    } catch {
+      const raw = await req.text();
+      if (raw.length > MAX_BODY_BYTES) throw new HttpError(413, "Request too large");
+      body = JSON.parse(raw);
+    } catch (e) {
+      if (e instanceof HttpError) throw e;
       throw new HttpError(400, "Body must be JSON: { question }");
     }
     const question = typeof body.question === "string" ? body.question.trim() : "";
     if (!question) throw new HttpError(400, "question is required");
+    if (question.length > MAX_QUESTION_CHARS) {
+      throw new HttpError(400, `Keep questions under ${MAX_QUESTION_CHARS} characters`);
+    }
 
     const { as_of } = await getTracts();
     let route: "regex" | "haiku" | undefined;
     const { value, hit } = await cached("ask", `${as_of}|${normalizeQuestion(question)}`, async (): Promise<AskResponse> => {
+      if (!allow("ask:model-calls", MODEL_CALLS_PER_DAY, DAY)) {
+        throw new HttpError(503, "Emris has answered its limit of new questions for today. Try again tomorrow.");
+      }
       const local = await routeLocally(question);
       route = local ? "regex" : "haiku";
       const intent = local ?? (await classify(question));
