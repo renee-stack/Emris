@@ -1,69 +1,164 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import dynamic from "next/dynamic";
+import { useCallback, useEffect, useRef, useState } from "react";
+import MemoModal from "@/components/MemoModal";
+import SidePanel from "@/components/SidePanel";
+import { ApiError, fetchNear } from "@/components/load";
+import type { NearResponse, ProjectWithDistance } from "@/lib/data";
+import { pointHref, readDeepLink, tractHref } from "@/lib/spatial";
+import type { MapPlace } from "@/components/MapView";
+
+const MapView = dynamic(() => import("@/components/MapView"), {
+  ssr: false,
+  loading: () => <div className="fixed inset-0 bg-paper" />,
+});
+
+interface SearchState {
+  status: "loading" | "ready" | "error";
+  place: MapPlace | null;
+  result: NearResponse | null;
+  error: string | null;
+}
+
+interface MemoTarget {
+  geoid: string;
+  name: string;
+  score: number;
+}
+
+export default function Page() {
+  const [mode, setMode] = useState<"tract" | "search" | null>(null);
+  const [geoid, setGeoid] = useState<string | null>(null);
+  const [search, setSearch] = useState<SearchState | null>(null);
+  const [projects, setProjects] = useState<ProjectWithDistance[]>([]);
+  const [fit, setFit] = useState<{ geoid: string; token: number } | null>(null);
+  const [memo, setMemo] = useState<MemoTarget | null>(null);
+  const requestId = useRef(0);
+
+  const onProjects = useCallback((next: ProjectWithDistance[]) => {
+    setProjects(next);
+  }, []);
+
+  const closeMemo = useCallback(() => setMemo(null), []);
+
+  useEffect(() => {
+    const link = readDeepLink(window.location.search);
+    if (!link) return;
+    const id = ++requestId.current;
+    // The URL is only available on the client. Apply it after paint so the
+    // server shell and the first client render stay the same.
+    const timer = window.setTimeout(() => {
+      if (link.kind === "tract") {
+        setMode("tract");
+        setGeoid(link.geoid);
+        return;
+      }
+      const place = { lat: link.lat, lng: link.lng, zoom: link.zoom };
+      setMode("search");
+      setSearch({ status: "loading", place, result: null, error: null });
+      void fetchNear(`${link.lat},${link.lng}`)
+        .then((result) => {
+          if (id !== requestId.current) return;
+          setSearch({ status: "ready", place, result, error: null });
+          setProjects(result.projects);
+        })
+        .catch((err: unknown) => {
+          if (id !== requestId.current) return;
+          setSearch({
+            status: "error",
+            place,
+            result: null,
+            error:
+              err instanceof ApiError && err.status === 404
+                ? "Couldn't find that address or neighborhood."
+                : "The search didn't go through. Try again.",
+          });
+        });
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  const openTract = useCallback((id: string, fitCamera: boolean) => {
+    requestId.current += 1;
+    window.history.replaceState(null, "", tractHref(id));
+    setMode("tract");
+    setGeoid(id);
+    setSearch(null);
+    setProjects([]);
+    if (fitCamera) setFit({ geoid: id, token: Date.now() });
+  }, []);
+
+  const onSearch = useCallback((raw: string) => {
+    const query = raw.trim();
+    if (!query) return;
+    const id = ++requestId.current;
+    setMode("search");
+    setGeoid(null);
+    setProjects([]);
+    setSearch({ status: "loading", place: null, result: null, error: null });
+    void fetchNear(query)
+      .then((result) => {
+        if (id !== requestId.current) return;
+        const place = { lat: result.place.lat, lng: result.place.lng, zoom: 15 };
+        window.history.replaceState(null, "", pointHref(place.lat, place.lng, place.zoom));
+        setSearch({ status: "ready", place, result, error: null });
+        setProjects(result.projects);
+      })
+      .catch((err: unknown) => {
+        if (id !== requestId.current) return;
+        setSearch({
+          status: "error",
+          place: null,
+          result: null,
+          error:
+            err instanceof ApiError && err.status === 404
+              ? "Couldn't find that address or neighborhood."
+              : "The search didn't go through. Try again.",
+        });
+      });
+  }, []);
+
+  const onClose = useCallback(() => {
+    requestId.current += 1;
+    window.history.replaceState(null, "", "/");
+    setMode(null);
+    setGeoid(null);
+    setSearch(null);
+    setProjects([]);
+    setMemo(null);
+  }, []);
+
+  const place = mode === "search" ? (search?.place ?? null) : null;
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main className="fixed inset-0 overflow-hidden bg-paper">
+      <MapView
+        panelOpen={mode !== null}
+        projects={projects}
+        place={place}
+        fit={fit}
+        onTractClick={(id) => openTract(id, false)}
+        onSearch={onSearch}
+      />
+      <SidePanel
+        open={mode !== null}
+        mode={mode}
+        geoid={geoid}
+        search={search}
+        onClose={onClose}
+        onOpenTract={(id) => openTract(id, true)}
+        onProjects={onProjects}
+        onGenerateMemo={setMemo}
+      />
+      {memo ? (
+        <MemoModal
+          geoid={memo.geoid}
+          name={memo.name}
+          score={memo.score}
+          onClose={closeMemo}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      ) : null}
+    </main>
   );
 }
