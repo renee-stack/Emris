@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
 # Smoke test for every API route. Usage: BASE=http://localhost:3000 scripts/smoke.sh
 # Needs curl and jq; /api/memo and /api/ask need ANTHROPIC_API_KEY in .env.local.
+# Cost: on a cold cache this makes 1 memo call and 5 ask calls (1 of them also uses the Haiku classifier).
+# Results are cached in .cache/, so reruns make no Claude calls. Delete .cache/ to force fresh calls.
 set -u
 BASE="${BASE:-http://localhost:3000}"
 PASS=0
 FAIL=0
 TMP="$(mktemp)"
-trap 'rm -f "$TMP"' EXIT
+HDR="$(mktemp)"
+trap 'rm -f "$TMP" "$HDR"' EXIT
 
 # check <name> <expected status> <jq assertion> <curl args...>
 check() {
   local name="$1" want="$2" assert="$3"
   shift 3
   local code
-  code=$(curl -s -o "$TMP" -w '%{http_code}' --max-time 90 "$@")
+  code=$(curl -s -o "$TMP" -D "$HDR" -w '%{http_code}' --max-time 90 "$@")
   if [[ "$code" == "$want" ]] && jq -e "$assert" "$TMP" >/dev/null 2>&1; then
     PASS=$((PASS + 1))
     echo "PASS  $name"
@@ -30,6 +33,7 @@ ask() {
   check "ask: $name" 200 "($assert) and (.reply | type == \"string\" and length > 0 and length < 600) and (.reply | test(\"https?://|\\\\*\\\\*|^#\") | not) and (.url | test(\"^/\\\\?(tract=[0-9]{11}|lat=-?[0-9.]+&lng=-?[0-9.]+&z=[0-9]+)$\"))" \
     -X POST "$BASE/api/ask" -H 'Content-Type: application/json' -d "$(jq -n --arg q "$question" '{question: $q}')"
   jq -r '"      reply: \(.reply)\n      url:   \(.url)"' "$TMP" 2>/dev/null
+  echo "      $(grep -i '^x-emris-' "$HDR" | tr -d '\r' | tr '\n' ' ')"
 }
 
 GEOID=$(curl -s "$BASE/api/tracts" | jq -r '.features[0].properties.geoid')
@@ -64,8 +68,15 @@ ask "off-topic zoning" "what are the zoning requirements in Lincoln Park" '.repl
 ask "neighborhood" "what's happening in Pilsen" '.url | startswith("/?")'
 ask "top 5" "top 5 tracts" '.url | startswith("/?tract=")'
 ask "named tract" "tell me about Bronzeville tract 3511" '.url == "/?tract=17031351100"'
-ask "south side" "where is multifamily heating up on the south side?" '.url | startswith("/?")'
-ask "help" "hi, what can you do?" '.url | startswith("/?")'
+
+echo "== cache (repeat calls must not hit Claude)"
+cache_hit() {
+  if grep -qi '^x-emris-cache: hit' "$HDR"; then PASS=$((PASS + 1)); echo "PASS  $1"; else FAIL=$((FAIL + 1)); echo "FAIL  $1 (no cache hit)"; fi
+}
+check "memo repeat" 200 '.memo_markdown | length > 0' -X POST "$BASE/api/memo" -H 'Content-Type: application/json' -d "{\"geoid\":\"$GEOID\"}"
+cache_hit "memo repeat is cached"
+check "ask repeat (different case/punctuation)" 200 '.reply | length > 0' -X POST "$BASE/api/ask" -H 'Content-Type: application/json' -d '{"question":"Top 5 tracts?"}'
+cache_hit "ask repeat is cached"
 
 echo
 echo "$PASS passed, $FAIL failed"

@@ -30,6 +30,20 @@ for (const e of [...neighborhoods.nicknames, ...neighborhoods.community_areas] a
   }
 }
 
+// For scanning free text we keep "chicago" in names (so "South Chicago" never matches a bare "south").
+const normText = (s: string) => ` ${s.toLowerCase().replace(/['’.]/g, "").replace(/[^a-z0-9]+/g, " ").trim()} `;
+const TEXT_KEYS: { key: string; name: string }[] = [];
+for (const e of [...neighborhoods.nicknames, ...neighborhoods.community_areas] as Entry[]) {
+  for (const n of [e.name, ...e.aliases]) TEXT_KEYS.push({ key: normText(n), name: e.name });
+}
+TEXT_KEYS.sort((a, b) => b.key.length - a.key.length); // longest first: "West Garfield Park" before "Garfield Park"
+
+/** First (longest) known neighborhood or community area name mentioned in the text, or null. */
+export function findNeighborhoodInText(text: string): string | null {
+  const t = normText(text);
+  return TEXT_KEYS.find(({ key }) => t.includes(key))?.name ?? null;
+}
+
 export function lookupNeighborhood(query: string): GeocodeResult | null {
   const e = INDEX.get(norm(query)) ?? INDEX.get(norm(query).replace(/^the /, ""));
   return e ? { label: `${e.name}, Chicago`, lat: e.lat, lng: e.lng, source: "neighborhood" } : null;

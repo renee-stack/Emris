@@ -1,12 +1,14 @@
 import type Anthropic from "@anthropic-ai/sdk";
 import type { AskRequest, AskResponse } from "@/lib/data";
 import { getTracts } from "@/lib/data";
-import { MODEL, NO_THINKING, complete, getClaude } from "@/lib/claude";
-import { geocode } from "@/lib/geocode";
+import { FAST_MODEL, complete, getClaude, logUsage, toLastSentence } from "@/lib/claude";
+import { cacheGet, cacheSet } from "@/lib/cache";
+import { findNeighborhoodInText, geocode } from "@/lib/geocode";
 import { nearestTracts } from "@/lib/geo";
 import { GEOID_RE, HttpError, errorResponse, getTractFeature, nearPlace, topTracts, tractDetail } from "@/lib/lookup";
 
-// POST /api/ask — contract §2.5. Two Claude calls: classify intent (tool use), then write the reply.
+// POST /api/ask — contract §2.5. Route the question (regex first, Haiku tool call only when ambiguous),
+// look the data up locally, then one Sonnet call writes the SMS reply. Replies are cached by question.
 
 type Intent =
   | { type: "place"; query: string }
@@ -38,7 +40,7 @@ const CLASSIFY_TOOL: Anthropic.Tool = {
 const REPLY_SYSTEM = `You are Emris, texting a multifamily real estate developer in Chicago. Emris tracks new-construction building permits and public infrastructure projects (transit, parks, streetscapes, civic) and scores census tracts 0-100 on "path of progress" (multifamily permits, permit momentum year over year, nearby infrastructure).
 
 Write the SMS reply from the JSON you are given:
-- Under 550 characters. Plain text only: no markdown, no bullets, no asterisks, no URLs, no emoji.
+- Under 500 characters (about 3-4 short sentences). Plain text only: no markdown, no bullets, no asterisks, no URLs, no emoji.
 - Lead with the direct answer in the first sentence.
 - Mention 1-3 specific permits or projects by address or name (with units, date or status when given).
 - Only use facts in the JSON. Never invent numbers or places.
@@ -50,18 +52,15 @@ const fmtLatLng = (n: number) => String(Math.round(n * 1e5) / 1e5);
 const latLngUrl = (lat: number, lng: number, z: number) => `/?lat=${fmtLatLng(lat)}&lng=${fmtLatLng(lng)}&z=${z}`;
 
 async function classify(question: string): Promise<Intent> {
-  const { features } = await getTracts();
-  const tractList = features.map((f) => `${f.properties.geoid} ${f.properties.name}`).join("\n");
   const msg = await getClaude().messages.create({
-    model: MODEL,
-    max_tokens: 300,
-    thinking: NO_THINKING,
-    system: `Always respond by calling the route_question tool exactly once, with no other text. Tracked tracts:\n${tractList}`,
+    model: FAST_MODEL,
+    max_tokens: 100,
+    system: "Route the user's question about Chicago development activity with the route_question tool.",
     tools: [CLASSIFY_TOOL],
-    // Forced tool_choice ("tool"/"any") is rejected by this model, so use auto and fall back to help.
-    tool_choice: { type: "auto" },
+    tool_choice: { type: "tool", name: "route_question" },
     messages: [{ role: "user", content: question }],
   });
+  logUsage("ask.classify", msg);
   const block = msg.content.find((b): b is Anthropic.ToolUseBlock => b.type === "tool_use");
   const input = (block?.input ?? {}) as Record<string, unknown>;
   switch (input.type) {
@@ -78,6 +77,47 @@ async function classify(question: string): Promise<Intent> {
   }
   return { type: "help", off_topic: typeof input.off_topic === "string" ? input.off_topic : undefined };
 }
+
+// ---------- local routing (no API call) ----------
+
+const OFF_TOPIC_RE =
+  /\b(zon(ing|ed)|rents?|rental rates?|prices?|pricing|cost|values?|crime|safe(ty)?|schools?|tax(es)?|tif|demographics?|income|vacanc(y|ies)|cap rates?|weather|parking|setbacks?|density|far|lot sizes?)\b/i;
+const GEOID_IN_TEXT_RE = /\b(\d{11})\b/;
+const TRACT_NUM_RE = /\btract\s*#?\s*(\d{1,4}(?:\.\d{1,2})?)\b/i;
+const TOP_RE = /\b(?:top|best|hottest|highest[- ]scoring)\s+(?:(\d{1,2})\s+)?(?:census\s+)?(?:tracts?|areas|neighborhoods|spots)\b|^\s*top\s+(\d{1,2})\s*$/i;
+const ADDRESS_RE =
+  /\b(\d{1,5}\s+(?:[NSEW]\.?\s+)?(?:[A-Za-z0-9.']+\s+){0,4}?(?:Ave|Avenue|St|Street|Blvd|Boulevard|Rd|Road|Dr|Drive|Pl|Place|Ct|Court|Pkwy|Parkway|Way|Ln|Lane|Ter|Terrace|Hwy)\b\.?)/i;
+const GREETING_RE = /^\s*(hi|hello|hey|yo|help|start|what can you do|how does (this|it) work)\b/i;
+
+/** Decide the intent locally when the question is unambiguous; null means ask the classifier. */
+async function routeLocally(question: string): Promise<Intent | null> {
+  if (OFF_TOPIC_RE.test(question)) return null; // let the model spot what they're really asking
+
+  const { features } = await getTracts();
+  const geoid = question.match(GEOID_IN_TEXT_RE)?.[1];
+  if (geoid) return { type: "tract", geoid };
+  const tractNum = question.match(TRACT_NUM_RE)?.[1];
+  if (tractNum) {
+    const hit = features.find((f) => f.properties.name.endsWith(`Tract ${tractNum}`));
+    if (hit) return { type: "tract", geoid: hit.properties.geoid };
+  }
+
+  const address = question.match(ADDRESS_RE)?.[1]?.replace(/\.$/, "");
+  const area = findNeighborhoodInText(question);
+  const top = question.match(TOP_RE);
+
+  if (top) {
+    if (address || area) return null; // "best tracts in Pilsen" etc. is ambiguous
+    const n = Number(top[1] ?? top[2] ?? 3);
+    return { type: "top", n: Math.min(10, Math.max(1, n)) };
+  }
+  if (address) return { type: "place", query: address };
+  if (area) return { type: "place", query: area };
+  if (GREETING_RE.test(question)) return { type: "help" };
+  return null;
+}
+
+const trunc = (s: string, n = 160) => (s.length > n ? s.slice(0, n - 1).trimEnd() + "…" : s);
 
 const slimTract = (t: { name: string; score: number; percentile: number; momentum: string; momentum_pct: number; permit_count_24mo: number; units_24mo: number }) => ({
   name: t.name,
@@ -99,10 +139,11 @@ async function lookup(intent: Intent): Promise<{ context: Record<string, unknown
     const details = await Promise.all(tracts.map((f) => tractDetail(f.properties.geoid)));
     return {
       context: {
-        top_tracts: details.map((d) => ({
+        // at most 5 permits and 5 projects in total
+        top_tracts: details.map((d, i) => ({
           ...slimTract(d.tract),
-          newest_permits: d.top_permits.slice(0, 2).map(slimPermit),
-          nearest_project: d.nearby_projects[0] ? slimProject(d.nearby_projects[0]) : null,
+          newest_permit: i < 5 && d.top_permits[0] ? slimPermit(d.top_permits[0]) : undefined,
+          nearest_project: i < 5 && d.nearby_projects[0] ? slimProject(d.nearby_projects[0]) : undefined,
         })),
       },
       url: tracts[0] ? `/?tract=${tracts[0].properties.geoid}` : "/",
@@ -118,7 +159,7 @@ async function lookup(intent: Intent): Promise<{ context: Record<string, unknown
         tract: slimTract(d.tract),
         signals: d.tract.signals,
         top_permits: d.top_permits.slice(0, 5).map(slimPermit),
-        nearby_projects: d.nearby_projects.slice(0, 4).map(slimProject),
+        nearby_projects: d.nearby_projects.slice(0, 5).map(slimProject),
       },
       url: `/?tract=${intent.geoid}`,
     };
@@ -147,9 +188,9 @@ async function lookup(intent: Intent): Promise<{ context: Record<string, unknown
         place: res.place.label,
         search_radius_mi: radius,
         tract_containing_place: res.tract ? slimTract(res.tract) : null,
-        permits_nearby: res.permits.slice(0, 6).map(slimPermit),
+        permits_nearby: res.permits.slice(0, 5).map(slimPermit),
         permit_count_in_radius: res.permits.length,
-        projects_nearby: res.projects.slice(0, 4).map(slimProject),
+        projects_nearby: res.projects.slice(0, 5).map(slimProject),
         found: !nothing,
         suggestions: nothing
           ? {
@@ -182,16 +223,20 @@ const slimPermit = (p: { address: string; issue_date: string; units: number | nu
   address: p.address,
   issue_date: p.issue_date,
   units: p.units,
-  description: p.description,
+  description: trunc(p.description),
 });
-const slimProject = (p: { name: string; type: string; status: string; expected_completion: string | null; budget_usd: number | null; distance_mi: number }) => ({
+const slimProject = (p: { name: string; type: string; status: string; expected_completion: string | null; budget_usd: number | null; distance_mi: number; description: string }) => ({
   name: p.name,
   type: p.type,
   status: p.status,
   expected_completion: p.expected_completion,
   budget_usd: p.budget_usd,
   distance_mi: p.distance_mi,
+  description: trunc(p.description),
 });
+
+const normalizeQuestion = (q: string) =>
+  q.toLowerCase().replace(/[’']/g, "'").replace(/[?!.,]+/g, " ").replace(/\s+/g, " ").trim();
 
 /** Enforce plain text, no URLs, under 600 chars. */
 function sanitize(text: string): string {
@@ -220,16 +265,25 @@ export async function POST(req: Request) {
     const question = typeof body.question === "string" ? body.question.trim() : "";
     if (!question) throw new HttpError(400, "question is required");
 
-    const intent = await classify(question);
+    const { as_of } = await getTracts();
+    const cacheKey = `${as_of}|${normalizeQuestion(question)}`;
+    const cached = await cacheGet<AskResponse>("ask", cacheKey);
+    if (cached) return Response.json(cached, { headers: { "x-emris-cache": "hit" } });
+
+    const local = await routeLocally(question);
+    const intent = local ?? (await classify(question));
     const { context, url } = await lookup(intent);
-    const draft = await complete({
+    const { text, truncated } = await complete({
+      label: `ask.reply(${local ? "regex" : "haiku"}:${intent.type})`,
       system: REPLY_SYSTEM,
       user: JSON.stringify({ question, intent: intent.type, ...context }),
-      maxTokens: 400,
+      maxTokens: 250,
     });
-    const res: AskResponse & { intent?: Intent } = { reply: sanitize(draft), url };
-    if (process.env.NODE_ENV !== "production") res.intent = intent; // debug aid for smoke tests
-    return Response.json(res);
+    const reply = sanitize(truncated ? toLastSentence(text) : text);
+    if (!reply) throw new Error("Empty reply from model");
+    const res: AskResponse = { reply, url };
+    await cacheSet("ask", cacheKey, res);
+    return Response.json(res, { headers: { "x-emris-cache": "miss", "x-emris-route": local ? "regex" : "haiku" } });
   } catch (err) {
     return errorResponse(err);
   }
