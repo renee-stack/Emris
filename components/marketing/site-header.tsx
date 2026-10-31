@@ -48,6 +48,9 @@ export function SiteHeader({ current }: { current?: MarketingSection }) {
           <Link href="/map" className="hidden text-sm text-ink hover:text-teal sm:inline">
             Test it out
           </Link>
+          <Link href="/signin" className="text-sm text-ink hover:text-teal">
+            Sign in
+          </Link>
           <Cta
             href="/access"
             variant={current === "access" ? "safety" : "ink"}

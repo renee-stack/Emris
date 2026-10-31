@@ -11,6 +11,28 @@ export function mapReturnPath(placeId: string | null, tractId: string | null): s
   return query ? `/map?${query}` : "/map";
 }
 
+const ALLOWED_PATHS = new Set(["/map", "/onboarding", "/account", "/signin", "/pricing"]);
+
+/**
+ * Same-site path only. Map queries keep a place id and an 11-digit tract.
+ * Anything else, including a host or a backslash, becomes `/map`.
+ */
+export function safeNextPath(value: string | null, origin: string): string {
+  if (!value) return "/map";
+  if (value.includes("\\") || /[\u0000-\u001F\u007F]/.test(value)) return "/map";
+  if (!value.startsWith("/") || value.startsWith("//")) return "/map";
+  let url: URL;
+  try {
+    url = new URL(value, origin);
+  } catch {
+    return "/map";
+  }
+  if (url.origin !== origin || url.username || url.password) return "/map";
+  if (url.pathname === "/map") return mapReturnPath(url.searchParams.get("place"), url.searchParams.get("tract"));
+  if (ALLOWED_PATHS.has(url.pathname)) return url.pathname;
+  return "/map";
+}
+
 /** Allow only `/map` on this origin, with a place id and an 11-digit tract. */
 export function safeMapPath(value: string | null, origin: string): string {
   if (!value) return "/map";

@@ -6,6 +6,7 @@ import { cached } from "@/lib/cache";
 import { findNeighborhoodInText, geocode } from "@/lib/geocode";
 import { nearestTracts } from "@/lib/geo";
 import { GEOID_RE, HttpError, errorResponse, getTractFeature, nearPlace, topTracts, tractDetail } from "@/lib/lookup";
+import { requestUser } from "@/lib/auth/session";
 import { allow, clientIp } from "@/lib/ratelimit";
 
 // Cost guards: every uncached question is a paid Claude call.
@@ -265,7 +266,8 @@ function sanitize(text: string): string {
 
 export async function POST(req: Request) {
   try {
-    const ip = clientIp(req);
+    const user = await requestUser();
+    const ip = user ? `${clientIp(req)}:${user.id}` : clientIp(req);
     if (!allow(`ask:min:${ip}`, PER_IP_PER_MINUTE, 60_000) || !allow(`ask:day:${ip}`, PER_IP_PER_DAY, DAY)) {
       throw new HttpError(429, "Too many questions. Try again later.");
     }

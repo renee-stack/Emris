@@ -19,6 +19,13 @@ export function allow(key: string, limit: number, windowMs: number, now = Date.n
   return true;
 }
 
+/** When a limited key will be allowed again, if it is currently blocked. */
+export function retryAt(key: string, now = Date.now()): number | null {
+  const w = windows.get(key);
+  if (!w || now >= w.resetAt) return null;
+  return w.resetAt;
+}
+
 function prune(now: number) {
   for (const [k, w] of windows) if (now >= w.resetAt) windows.delete(k);
 }

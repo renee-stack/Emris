@@ -7,7 +7,9 @@ import MemoModal from "@/components/MemoModal";
 import SidePanel, { type SearchState } from "@/components/SidePanel";
 import { ApiError, fetchNear, fetchPlaces, fetchTracts } from "@/components/load";
 import { resetMillis, type CityPlace } from "@/components/places";
+import MapTour, { tourRequested } from "@/components/MapTour";
 import { signOut, useAuth } from "@/components/use-auth";
+import { markCheck } from "@/lib/checklist";
 import type { ProjectWithDistance, TractCollection, TractProps } from "@/lib/data";
 
 const MapView = dynamic(() => import("@/components/MapView"), {
@@ -87,6 +89,7 @@ export default function Page() {
   const [tracts, setTracts] = useState<TractCollection | null>(null);
   const [tractCoverage, setTractCoverage] = useState<unknown>(null);
   const [tractsError, setTractsError] = useState<string | null>(null);
+  const [showTour, setShowTour] = useState(false);
   const requestId = useRef(0);
   const placeIdRef = useRef(placeId);
   placeIdRef.current = placeId;
@@ -96,6 +99,22 @@ export default function Page() {
   }, []);
 
   const closeMemo = useCallback(() => setMemo(null), []);
+
+  useEffect(() => {
+    setShowTour(tourRequested());
+  }, []);
+
+  useEffect(() => {
+    if (signedIn && geoid) markCheck("tract");
+  }, [signedIn, geoid]);
+
+  useEffect(() => {
+    if (signedIn && search?.status === "ready") markCheck("search");
+  }, [signedIn, search]);
+
+  useEffect(() => {
+    if (signedIn && memo) markCheck("memo");
+  }, [signedIn, memo]);
 
   useEffect(() => {
     const saved = readSavedPlace();
@@ -388,6 +407,7 @@ export default function Page() {
         onProjects={onProjects}
         onGenerateMemo={setMemo}
       />
+      {showTour ? <MapTour /> : null}
       {memo && signedIn ? (
         <MemoModal
           geoid={memo.geoid}

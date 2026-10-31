@@ -11,6 +11,7 @@ import type {
   TractProps,
 } from "@/lib/data";
 import AccountPrompt from "@/components/AccountPrompt";
+import GettingStarted from "@/components/GettingStarted";
 import { ApiError, fetchTract } from "@/components/load";
 import { coverageLabel, searchLimitMessage } from "@/components/places";
 import { STATUS_LABEL, formatMiles, formatMomentumPct, formatMonth } from "@/lib/spatial";
@@ -185,6 +186,11 @@ export default function SidePanel({
         {mode === "account" && authReady && !signedIn ? (
           <div className="pr-8 pt-8">
             <AccountPrompt placeId={placeId} tractId={geoid} />
+          </div>
+        ) : null}
+        {mode === "account" && authReady && signedIn ? (
+          <div className="pr-8 pt-8">
+            <GettingStarted placeName={placeName} />
           </div>
         ) : null}
         {mode === "tract" && authReady && signedIn ? (

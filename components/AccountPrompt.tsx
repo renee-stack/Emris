@@ -59,6 +59,15 @@ export default function AccountPrompt({ placeId, tractId }: Props) {
         >
           {pending ? "Sending…" : "Email me a link"}
         </button>
+        <a
+          href={`/auth/google?next=${encodeURIComponent(mapReturnPath(placeId, tractId))}`}
+          className="mt-3 flex h-12 w-full items-center justify-center border border-ink/25 font-sans text-sm font-medium"
+        >
+          Continue with Google
+        </a>
+        <a href="/signin" className="mt-3 inline-block font-sans text-sm underline underline-offset-2">
+          Sign-in page
+        </a>
       </form>
       {message ? <p className="mt-3 font-sans text-sm text-teal">{message}</p> : null}
       {error ? <p className="mt-3 font-sans text-sm text-safety">{error}</p> : null}

@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { browserClient } from "@/lib/supabase/browser";
 import { supabaseEnv } from "@/lib/supabase/env";
-import { safeMapPath } from "@/lib/supabase/return-path";
 
 export function useAuth() {
   const [email, setEmail] = useState<string | null>(null);
@@ -11,24 +9,19 @@ export function useAuth() {
   const configured = supabaseEnv() !== null;
 
   useEffect(() => {
-    const supabase = browserClient();
-    if (!supabase) {
-      setReady(true);
-      return;
-    }
     let cancelled = false;
-    void supabase.auth.getSession().then(({ data }) => {
-      if (cancelled) return;
-      setEmail(data.session?.user.email ?? null);
-      setReady(true);
-    });
-    const { data } = supabase.auth.onAuthStateChange((_event, session) => {
-      setEmail(session?.user.email ?? null);
-      setReady(true);
-    });
+    void fetch("/api/auth/session", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((body: { user?: { email?: string | null } | null }) => {
+        if (cancelled) return;
+        setEmail(body.user?.email ?? null);
+        setReady(true);
+      })
+      .catch(() => {
+        if (!cancelled) setReady(true);
+      });
     return () => {
       cancelled = true;
-      data.subscription.unsubscribe();
     };
   }, []);
 
@@ -36,21 +29,20 @@ export function useAuth() {
 }
 
 export async function sendMagicLink(email: string, nextPath: string): Promise<void> {
-  const supabase = browserClient();
-  if (!supabase) throw new Error("Sign-in isn't configured.");
-  const next = safeMapPath(nextPath, window.location.origin);
-  const { error } = await supabase.auth.signInWithOtp({
-    email: email.trim(),
-    options: {
-      emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`,
-    },
+  const res = await fetch("/api/auth/magic-link", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, next: nextPath }),
   });
-  if (error) throw new Error(error.message);
+  const body = (await res.json().catch(() => null)) as { error?: string } | null;
+  if (!res.ok) throw new Error(body?.error || "Couldn't send the sign-in link.");
 }
 
 export async function signOut(): Promise<void> {
-  const supabase = browserClient();
-  if (!supabase) return;
-  const { error } = await supabase.auth.signOut();
-  if (error) throw new Error(error.message);
+  const res = await fetch("/api/auth/signout", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ scope: "local" }),
+  });
+  if (!res.ok) throw new Error("Couldn't sign out.");
 }
