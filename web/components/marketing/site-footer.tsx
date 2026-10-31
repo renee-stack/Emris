@@ -6,6 +6,7 @@ const links = [
   { href: "/pricing", label: "Pricing" },
   { href: "/access", label: "Request access" },
   { href: "/map", label: "Test it out" },
+  { href: "/account/billing", label: "Account" },
 ];
 
 export function SiteFooter() {
