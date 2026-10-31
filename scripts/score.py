@@ -252,7 +252,7 @@ def load_permits(as_of: date, refresh: bool) -> pd.DataFrame:
 # ---------------------------------------------------------------- scoring
 
 def score(tracts: gpd.GeoDataFrame, geoms: list[dict], permits: pd.DataFrame,
-          projects: list[dict], as_of: date, scoring: str = "v1") -> list[dict]:
+          projects: list[dict], as_of: date, scoring: str = "v2") -> list[dict]:
     as_of_ts = pd.Timestamp(as_of)
     permits = permits.copy()
     permits["age"] = (as_of_ts - pd.to_datetime(permits["issue_date"])).dt.days / 365.25
@@ -402,8 +402,8 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--as-of", type=date.fromisoformat, default=date.today())
     ap.add_argument("--refresh", action="store_true", help="re-download everything in data/raw")
-    ap.add_argument("--scoring", choices=["v1", "v2"], default="v1",
-                    help="v1 = contract.md §3 as signed off; v2 = proposed fix (scripts/proposal-scoring-v2.md)")
+    ap.add_argument("--scoring", choices=["v1", "v2"], default="v2",
+                    help="v2 = contract.md §3 (default); v1 = original formula, kept for comparison")
     ap.add_argument("--out", type=Path, help="write outputs here instead of data/ and public/")
     args = ap.parse_args()
     as_of: date = args.as_of

@@ -1,6 +1,6 @@
 # Proposal: contract.md §3 scoring v2
 
-**Status:** proposed, needs sign-off from all four builders. Not live: `data/` still holds v1 output.
+**Status:** adopted 2026-10-30 as contract v2. `data/` and `public/` hold v2 output; `--scoring v1` reproduces the old formula.
 **Try it:** `scripts/.venv/bin/python scripts/score.py --scoring v2 --out /some/dir`
 
 ## Why
