@@ -112,24 +112,15 @@ export interface MemoResponse {
   memo_markdown: string;
 }
 
-/** POST /api/ask */
-export interface AskRequest {
-  question: string;
-}
-export interface AskResponse {
-  reply: string; // plain text, < 600 chars, no markdown
-  url: string; // "/?tract=<geoid>" or "/?lat=..&lng=..&z=.."
-}
-
 // ---------- loaders ----------
 
-const DATA_DIR = path.join(process.cwd(), "data");
-
-async function readJson<T>(file: string): Promise<T> {
-  return JSON.parse(await fs.readFile(path.join(DATA_DIR, file), "utf8")) as T;
+// Hackathon data in ../legacy/data, kept until the API reads Postgres (contract.md v2).
+// The path stays static so the bundler traces only that folder.
+async function readJson<T>(file: "tracts.geojson" | "permits.json" | "infrastructure.json"): Promise<T> {
+  return JSON.parse(await fs.readFile(path.join(process.cwd(), "..", "legacy", "data", file), "utf8")) as T;
 }
 
-// Cached per server process. Restart the dev server after replacing files in /data.
+// Cached per server process. Restart the dev server after replacing files in legacy/data.
 let tractsP: Promise<TractCollection> | undefined;
 let permitsP: Promise<Permit[]> | undefined;
 let projectsP: Promise<Project[]> | undefined;

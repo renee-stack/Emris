@@ -1,8 +1,7 @@
 // Thin wrapper around the Anthropic SDK. Server-only.
 import Anthropic from "@anthropic-ai/sdk";
 
-export const MODEL = "claude-sonnet-5-5"; // memo + phone reply
-export const FAST_MODEL = "claude-haiku-5-5"; // intent classifier
+export const MODEL = "claude-sonnet-5-5"; // IC memo
 
 // Sonnet thinks by default, which eats max_tokens. "between_tools" turns pre-response thinking off.
 export const NO_THINKING = { type: "between_tools" } as const;
@@ -41,10 +40,4 @@ export async function complete(opts: {
     .join("")
     .trim();
   return { text, truncated: msg.stop_reason === "max_tokens" };
-}
-
-/** Cut text back to its last full sentence (used when max_tokens truncates a reply). */
-export function toLastSentence(text: string): string {
-  const m = text.match(/^[\s\S]*[.!?](?=\s|$)/);
-  return m ? m[0].trim() : text.trim();
 }

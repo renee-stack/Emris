@@ -1,5 +1,0 @@
-.cache
-data/raw
-scripts/.venv
-mock
-.env*

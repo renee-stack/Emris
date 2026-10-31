@@ -12,18 +12,18 @@ Emris is a market intelligence tool for multifamily real estate developers and i
 Users are real estate professionals, not data scientists. Every label and empty state should read like a professional CRE tool (Crexi or CoStar polish). Say "tract" or the place name, never "GEOID" or "feature".
 
 ## The most important rule: nothing is hard-coded to a place
-- Emris works for any US place. Illinois is only the first set of config files.
+- Emris works for any US place. The first state loaded is only the first set of config files.
 - Never hard-code a city, county, state, coordinates, bounds, zoom level or neighborhood list. Read places from `GET /api/places` and fit the map to the bounds it returns.
-- CI fails the build if a place name (chicago, cook, illinois, dupage, etc.) appears in code outside `places/`, `tests/fixtures/`, `docs/` and `legacy/`.
+- CI fails the build if a city, county or state name appears in code outside `places/`, `tests/fixtures/`, `docs/` and `legacy/` (list in `scripts/check_place_names.sh`).
 
 ## Read these first
 - `docs/PLAN.md`: the 7-day plan
-- `contract.md`: every API shape and data record. Never invent a field; if something is missing, stop and tell Renee.
+- `docs/contract.md`: every API shape and data record. Never invent a field; if something is missing, stop and tell Renee.
 - `places/il/AUDIT.md`: what data exists per place
 
 ## Who owns what (do not edit outside your area)
 - You (Cursor) own `web/` except `web/app/api/`.
-- Do not edit `web/app/api/`, `db/`, `pipeline/`, `places/`, `contract.md`.
+- Do not edit `web/app/api/`, `db/`, `pipeline/`, `places/`, `docs/contract.md`.
 
 ## Access tiers (enforced on the server, the UI only reflects them)
 - Signed out: map and tract scores only. Clicking anything else prompts "Create a free account".

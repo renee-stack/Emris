@@ -68,14 +68,6 @@ export function findTract(features: TractFeature[], pt: LatLng): TractFeature | 
   return features.find((f) => booleanPointInPolygon(point, f.geometry)) ?? null;
 }
 
-/** Tracts sorted by centroid distance from the point. */
-export function nearestTracts(features: TractFeature[], pt: LatLng, n = 3): (TractFeature & { distance_mi: number })[] {
-  return features
-    .map((f) => ({ ...f, distance_mi: round2(haversineMi(pt, tractCentroid(f.geometry))) }))
-    .sort((a, b) => a.distance_mi - b.distance_mi)
-    .slice(0, n);
-}
-
 /** Chicago's rough bounding box, used to reject geocoder hits outside the city. */
 export function inChicagoBounds(pt: LatLng): boolean {
   return pt.lat >= 41.64 && pt.lat <= 42.03 && pt.lng >= -87.95 && pt.lng <= -87.52;

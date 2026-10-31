@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Emris
 
-## Getting Started
+Market intelligence for multifamily developers: scores census tracts on the "path of progress" (multifamily permits, permit momentum, nearby infrastructure), shows 50 years of building history (Wayback), and sells area and property reports.
 
-First, run the development server:
+v2 works for any US place from configuration. Code never names a place; places live in `places/<state>/*.yaml`.
+
+| Folder | What |
+| --- | --- |
+| `docs/` | `PLAN.md` (7-day plan) and `contract.md` (configs, records, API; read first) |
+| `places/` | Place configs + `_schema.py` |
+| `pipeline/` | `connectors/` (one per source type), `core/` (shared steps), `custom/` (rare hooks) |
+| `db/migrations/` | Postgres + PostGIS schema |
+| `web/` | Next.js app and API routes |
+| `tests/fixtures/` | Sample source rows per place |
+| `legacy/` | Hackathon build (v1 scripts, data, contract), for reference |
+
+## Setup
+
+One `.env` at the repo root (never committed). `web/.env.local` is a symlink to it:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+ln -s ../.env web/.env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Pipeline (Python 3.12):
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt
+.venv/bin/python -m pipeline.validate
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Web app:
 
-## Learn More
+```bash
+cd web && npm install && npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+CI (`.github/workflows/guardrails.yml`) runs `scripts/check_place_names.sh` and `python -m pipeline.validate`.

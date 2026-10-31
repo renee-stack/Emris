@@ -1,0 +1,51 @@
+# places/il/_state.yaml
+# State defaults and the baseline sources every Illinois tract is scored from,
+# even where no place file covers it (places/il/AUDIT.md sections 4 to 6).
+
+state: IL
+state_fips: "17"
+name: Illinois
+
+defaults:
+  peer_group: state:17            # tracts outside a metro peer group rank statewide
+  coverage_tier: baseline
+  since_months: 24
+
+geography:
+  connector: tiger
+  year: 2020
+  # Cartographic boundary tracts (clipped to shoreline), same file the hackathon used
+  url: https://www2.census.gov/geo/tiger/GENZ2020/shp/cb_2020_17_tract_500k.zip
+
+baseline:
+  # Census Building Permits Survey (AUDIT.md section 4). Reported by permit-issuing
+  # place, not tract: allocated to tracts by each tract's share of the place's housing units.
+  permits:
+    connector: census_bps
+    frequency: annual
+    url: TODO exact place-file URL pattern and column layout (AUDIT.md section 4)
+    allocate_by: housing_units
+
+  # ACS 5-year (AUDIT.md section 5). 2024 = the 2020-2024 release, checked live 2026-10-31.
+  housing:
+    connector: acs
+    dataset: acs5
+    year: 2024
+    variables:
+      housing_units: B25001_001E
+      built_total: B25034_001E
+      built_2020_later: B25034_002E
+      built_2010_2019: B25034_003E
+      built_2000_2009: B25034_004E
+      built_1990_1999: B25034_005E
+      built_1980_1989: B25034_006E
+      built_1970_1979: B25034_007E
+      built_1960_1969: B25034_008E
+      built_1950_1959: B25034_009E
+      built_1940_1949: B25034_010E
+      built_1939_earlier: B25034_011E
+    # Rehab age band (built 1976 to 2001) ~ 1990s + 1980s + half of the 1970s
+    rehab_band_weights:
+      B25034_005E: 1.0
+      B25034_006E: 1.0
+      B25034_007E: 0.5

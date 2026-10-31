@@ -1,4 +1,4 @@
-// Data lookups shared by the API routes (and /api/ask). Server-only.
+// Data lookups shared by the API routes. Server-only.
 import { getPermits, getProjects, getTracts } from "@/lib/data";
 import type { NearResponse, TractDetailResponse, TractFeature } from "@/lib/data";
 import { findTract, permitsNear, projectsNear, tractCentroid } from "@/lib/geo";
@@ -67,10 +67,3 @@ export async function near(q: string, radiusMi: number): Promise<NearResponse & 
   return { ...(await nearPlace(place, radiusMi)), source: place.source };
 }
 
-/** Tracts by score, highest first. */
-export async function topTracts(n: number) {
-  const { features } = await getTracts();
-  return [...features]
-    .sort((a, b) => b.properties.score - a.properties.score || b.properties.percentile - a.properties.percentile)
-    .slice(0, n);
-}
