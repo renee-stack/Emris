@@ -25,3 +25,4 @@ sources:
         stories: stories             # text, e.g. "2 STORY"
         land_use: land_use_code
         owner_name: taxpayer_name
+      year_built_source: county_gis

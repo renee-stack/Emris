@@ -1,4 +1,4 @@
-# Emris contract v2.0
+# Emris contract v2.1
 
 The shared agreement between every agent and lane. Read it before building anything. **Never invent a field**: if you need one that is not here, stop and ask Renee, and the change lands here first.
 
@@ -36,8 +36,8 @@ places/
 | `defaults.proximity_decay_mi` | `[full, zero]` miles | no | Code default `[0.25, 1.0]` |
 | `defaults.coverage_tier` | tier (§1.4) | no | Code default `baseline` |
 | `defaults.since_months` | int | no | Permit look-back. Code default `24` |
-| `geography` | source | yes | Tract boundaries for the whole state (connector `tiger`) |
-| `baseline.permits` | source | yes | Permit counts for every place (connector `census_bps`) |
+| `geography` | source | yes | Boundaries for the whole state (connector `tiger`): `url` (tracts), `places_url` and `cousub_url` (to match baseline permits to the place or township that issued them) |
+| `baseline.permits` | source | yes | Permit counts for every place (connector `census_bps`): `url` with a `{year}` placeholder, `years` = newest N annual files (default 3) |
 | `baseline.housing` | source | yes | Housing units and year-built shares per tract (connector `acs`) |
 
 Every tract in the state is scored at least at the baseline tier from these three sources, even if no place file covers it.
@@ -89,13 +89,13 @@ Every source has a `connector` naming its source **type**. Connectors are writte
 | `csv` | A CSV at `url` or a repo path | One-off feeds |
 | `shovels` | Shovels permits API | Paid national permits (later) |
 | `census_bps` | Census Building Permits Survey place files | Baseline permits |
-| `acs` | Census ACS 5-year API | Housing units, year-built shares |
+| `acs` | Census ACS 5-year table-based summary files (keyless downloads) | Housing units, year-built shares |
 | `tiger` | Census TIGER/Line tract shapefiles | Tract boundaries |
 | `firecrawl` | Firecrawl JSON extraction from `urls` | Catalysts |
 
 **Field mapping.** Each `fields` map is `<standard field>: <source column>`. A list of columns is joined with single spaces (e.g. an address split over three columns). The standard field names are those in §2.
 
-**Hooks.** Wherever a value can't be read from a column, a config may name a Python function: `{ hook: custom.<module> }` resolves to `pipeline/custom/<module>.py`. Hooks must pass the same fixture tests as connectors.
+**Hooks.** Wherever a value can't be read from a column, a config may name a Python function: `{ hook: custom.<module>.<function> }` calls `<function>` in `pipeline/custom/<module>.py` (`{ hook: custom.<module> }` calls its `run`). Validation checks the function exists. Hooks must pass the same fixture tests as connectors.
 
 **`TODO`.** Any scalar value may be the string `TODO` (optionally followed by a note, e.g. `TODO confirm field`). Validation passes but lists every TODO. The pipeline refuses to run a source that still contains one.
 
@@ -106,11 +106,12 @@ Every source has a `connector` naming its source **type**. Connectors are writte
 | `connector`, `domain`, `dataset` / `url` | Where to read |
 | `since_months` | Look-back, default from state |
 | `fields` | Maps onto `StandardPermit` (§2.1). Required: `permit_id`, `issued`. Also available: `status`, `permit_type`, `work_type`, `text`, `cost`, `parcel_ids`, `lat`, `lng`, `address`, `tract_hint` |
-| `parcel_id_format` | `{ pad_right: "<chars>", length: <int> }` to bring permit parcel ids to the assessor's format |
+| `parcel_id_format` | Bring parcel ids to the assessor's format: `separator` (one value holds several ids, e.g. `"\|"`), `strip` (characters removed, e.g. `"-"`), `pad_right` + `length`. An id of the wrong length after this is dropped |
 | `normalize_dashes` | If true, en and em dashes in `permit_type`/`work_type` become `-` before matching |
 | `units.field` | Column holding a unit count |
 | `units.from_text` | A regex with one capture group, or `{ hook: ... }`. Used when `units.field` is empty |
 | `classes` | Rules that put every permit into one class (below) |
+| `record_url` | Link to one permit; `{column}` placeholders are source columns. Default: the dataset |
 
 **Permit classes.** `new_mf`, `alteration`, `demolition`, `roof`, `major_mep`, `other`. Each rule is a map of conditions, all of which must hold:
 
@@ -133,8 +134,13 @@ A list, because one place often needs several datasets (e.g. one for small build
 | `connector` + location | As above |
 | `role` | `characteristics` (default) or `geometry` (supplies only points for parcel ids) |
 | `latest_year_only` | For yearly datasets: keep only the newest `year` per parcel |
+| `years_back` | With `latest_year_only`: read the newest N years of the source first (default 1). Use the reassessment cycle for sources that only list reassessed parcels |
+| `parcel_id_format` | As for permits |
+| `value_maps` | Non-numeric source values per standard field, e.g. `{ units: { "Two": 2 } }` |
+| `aggregate` | Combining several rows for one parcel (e.g. one per building): `{ <field>: first \| sum \| min \| max }`, default `first` |
+| `year_built_source` | `assessor` (default) or `county_gis`, copied to `StandardProperty.year_built_source` |
 | `fields` | Maps onto `StandardProperty` (§2.2). `parcel_id` is required. Also available: `year`, `address`, `lat`, `lng`, `year_built`, `units`, `stories`, `land_use`, `owner_name` |
-| `filter` | Equality filters on standard or source fields, e.g. `{ county_fips: "17031" }` |
+| `filter` | Equality filters on **source** columns, applied in the query. A list means "any of", e.g. `{ township_code: ["70", "71"] }` |
 
 When several sources describe one parcel, earlier entries in the list win field by field.
 
@@ -189,11 +195,11 @@ sources:
       lng: longitude
       address: [street_number, street_direction, street_name]   # joined with spaces
       tract_hint: census_tract
-    parcel_id_format: { pad_right: "0000", length: 14 }         # 10-digit PIN -> 14
+    parcel_id_format: { separator: "|", pad_right: "0000", length: 14 }   # 10-digit PINs -> 14
     normalize_dashes: true
     units:
       field: residential_unit_change
-      from_text: { hook: custom.units_from_text }
+      from_text: { hook: custom.units_from_text.parse_units }
     classes:
       new_mf: { permit_type: "PERMIT - NEW CONSTRUCTION", min_units: 5 }
       major_mep:
@@ -416,7 +422,7 @@ Request: `{ "report_type": "area" | "property", "target_id": "<id>" }`
 Responses:
 - **200:** the user has an entitlement for exactly this `report_type` and `target_id`.
   ```json
-  { "report_id": "<uuid>", "status": "ready" | "building", "pdf_url": "<signed url or null>", "report": { "...": "report JSON, defined in v2.1 with the reports lane" } }
+  { "report_id": "<uuid>", "status": "ready" | "building", "pdf_url": "<signed url or null>", "report": { "...": "report JSON, defined with the reports lane" } }
   ```
 - **402:** signed in without an entitlement: `{ "error", "code": "payment_required", "preview": { "title", "first_section_markdown" } }`. The UI offers checkout.
 - **401:** signed out.
@@ -450,6 +456,7 @@ Called by Stripe only.
 
 Postgres with PostGIS (Supabase). The schema is `db/migrations/001_init.sql`. Migrations are numbered and append-only. Never edit one that has been applied; add the next number.
 
+- `002_baseline_permits.sql` adds `baseline_permits`: Census BPS units per tract per year (by building size), allocated from the issuing place by housing-unit share.
 - All geometry is SRID 4326.
 - Radius and point-in-tract queries run in SQL (`ST_DWithin` on `geography`, `ST_Contains`), not in JavaScript.
 - Every pipeline run writes dated rows to `score_snapshots`. "Current" means the newest `as_of` per place.
@@ -469,7 +476,7 @@ One `.env` at the repo root, never committed (`.gitignore` has `.env*`).
 | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` | browser auth |
 | `ANTHROPIC_API_KEY` | IC memo |
 | `FIRECRAWL_API_KEY` | catalysts connector |
-| `CENSUS_API_KEY` | `acs` connector (optional, raises rate limits) |
+| `SOCRATA_APP_TOKEN` | `socrata` connector (optional, raises rate limits) |
 | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` | `/api/checkout`, `/api/stripe/webhook` |
 
 ---

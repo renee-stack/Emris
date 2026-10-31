@@ -1,0 +1,9 @@
+Survey,State,6-Digit,County,Census Place,FIPS Place,FIPS MCD,Pop,CSA,CBSA,Footnote,Central,Zip,Region,Division,Number of,Place,,1-unit,,,2-units,,,3-4 units,,,5+ units,,,1-unit rep,,,2-units rep,,,3-4 units rep,,,5+ units rep
+Date,Code,ID,Code,Code,Code,Code,  ,Code,Code,Code,City,Code,Code,Code,Months Rep,Name,Bldgs,Units,Value,Bldgs,Units,Value,Bldgs,Units,Value,Bldgs,Units,Value,Bldgs,Units,Value,Bldgs,Units,Value,Bldgs,Units,Value,Bldgs,Units,Value
+ 
+2025,17,147700,031,1051,14000 ,14000 ,2677643 ,176,16980,2,1,60602      ,2,3,12,Chicago,371,371,165463390,84,168,48380607,150,478,114516654,103,2899,708985203,371,371,165463390,84,168,48380607,150,478,114516654,103,2899,708985203
+2025,17,171100,031,    ,99990 ,00000 ,99581 ,176,16980,2, ,60602      ,2,3,0,Cook County Part Unincorporated Area,18,18,6988414,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2025,17,315700,183,    ,00000 ,30965 ,5545 ,169,19180, , ,60942      ,2,3,0,Grant township,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2025,17,114100,013,    ,00000 ,00000 ,3004 ,476,41180, , ,62047      ,2,3,12,Calhoun County,5,5,1427545,0,0,0,0,0,0,0,0,0,5,5,1427545,0,0,0,0,0,0,0,0,0
+2025,17,001000,095,0005,00113 ,11891 ,3008 ,999,23660, , ,61410      ,2,3,12,Abingdon,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2025,18,002000,001,    ,99990 ,00000 ,19449 ,258,19540,2, ,46733      ,2,3,12,Adams County Unincorporated Area,76,76,15108758,0,0,0,0,0,0,0,0,0,76,76,15108758,0,0,0,0,0,0,0,0,0

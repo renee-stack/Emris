@@ -57,17 +57,29 @@ class Strict(BaseModel):
 
 
 class Hook(Strict):
-    """`{ hook: custom.<module> }` -> pipeline/custom/<module>.py"""
+    """`{ hook: custom.<module>.<function> }` -> <function> in pipeline/custom/<module>.py.
+    `{ hook: custom.<module> }` calls the module's `run` function."""
 
-    hook: Annotated[str, StringConstraints(pattern=r"^custom\.[a-z_][a-z0-9_]*$")]
+    hook: Annotated[str, StringConstraints(pattern=r"^custom\.[a-z_][a-z0-9_]*(?:\.[a-z_][a-z0-9_]*)?$")]
 
     @field_validator("hook")
     @classmethod
     def _module_exists(cls, v: str) -> str:
-        path = CUSTOM_DIR / f"{v.split('.', 1)[1]}.py"
+        path = CUSTOM_DIR / f"{v.split('.')[1]}.py"
         if not path.is_file():
             raise ValueError(f"no such hook module: {path.relative_to(REPO_ROOT)}")
+        fn = v.split(".")[2] if v.count(".") == 2 else "run"
+        if not re.search(rf"^def {fn}\(", path.read_text(), re.M):
+            raise ValueError(f"{path.relative_to(REPO_ROOT)} has no function {fn}()")
         return v
+
+    @property
+    def module(self) -> str:
+        return self.hook.split(".")[1]
+
+    @property
+    def function(self) -> str:
+        return self.hook.split(".")[2] if self.hook.count(".") == 2 else "run"
 
 
 def _decay(v: list[float]) -> list[float]:
@@ -116,8 +128,12 @@ class PermitFields(Strict):
 
 
 class ParcelIdFormat(Strict):
-    pad_right: str = ""
-    length: Annotated[int, Field(gt=0)]
+    """How to turn a source's parcel id value into the assessor's format."""
+
+    separator: Optional[str] = None  # one value can hold several ids, e.g. "a | b"
+    strip: str = ""  # characters removed first, e.g. "-" for 20-03-111-016-0000
+    pad_right: str = ""  # appended while shorter than length
+    length: Optional[Annotated[int, Field(gt=0)]] = None  # expected length after padding
 
 
 class Units(Strict):
@@ -194,6 +210,8 @@ class PermitSource(Located):
     normalize_dashes: bool = False
     units: Optional[Units] = None
     classes: Classes
+    # Link a human can open for one permit; {column} placeholders are source columns.
+    record_url: Optional[str] = None
 
     @model_validator(mode="after")
     def _rules_have_inputs(self):
@@ -226,14 +244,25 @@ class ParcelFields(Strict):
 
 
 Scalar = Union[str, int, float, bool]
+PropertyField = Literal["year_built", "units", "stories", "land_use", "owner_name", "address", "lat", "lng"]
 
 
 class ParcelSource(Located):
     name: Annotated[str, StringConstraints(pattern=r"^[a-z0-9_]+$")]
     role: Literal["characteristics", "geometry"] = "characteristics"
     latest_year_only: bool = False
+    # With latest_year_only: read the newest N years in the source, then keep each parcel's
+    # newest row. Use the reassessment cycle for sources that only list reassessed parcels.
+    years_back: Annotated[int, Field(ge=1, le=20)] = 1
     fields: ParcelFields
+    parcel_id_format: Optional[ParcelIdFormat] = None
+    # Source-side equality filters (column: value or list of values), applied in the query.
     filter: dict[str, Union[Scalar, list[Scalar]]] = {}
+    # Source values that aren't numbers, e.g. { units: { "Two": 2 } }. Unmapped values parse as numbers.
+    value_maps: dict[PropertyField, dict[str, Union[int, float, str]]] = {}
+    # How to combine several rows for one parcel (e.g. one row per building card). Default first.
+    aggregate: dict[PropertyField, Literal["first", "sum", "min", "max"]] = {}
+    year_built_source: Literal["assessor", "county_gis"] = "assessor"
 
     @model_validator(mode="after")
     def _role(self):
@@ -241,6 +270,8 @@ class ParcelSource(Located):
             raise ValueError("role: geometry needs fields.lat and fields.lng")
         if self.latest_year_only and not self.fields.year:
             raise ValueError("latest_year_only needs fields.year")
+        if self.years_back > 1 and not self.latest_year_only:
+            raise ValueError("years_back needs latest_year_only: true")
         return self
 
 
@@ -325,7 +356,9 @@ class StateDefaults(Strict):
 class TigerSource(Strict):
     connector: Literal["tiger"]
     year: Annotated[int, Field(ge=2010)]
-    url: str
+    url: str  # tracts
+    places_url: str  # incorporated places + CDPs: match baseline permits to the issuing place
+    cousub_url: str  # county subdivisions: for township-issued permits
 
 
 AcsVar = Annotated[str, StringConstraints(pattern=r"^B\d{5}[A-Z]?_\d{3}E$")]
@@ -351,6 +384,7 @@ class BpsSource(Strict):
     frequency: Literal["annual", "monthly"] = "annual"
     url: str  # file URL pattern; {year} / {yyyymm} placeholders allowed
     allocate_by: Literal["housing_units"] = "housing_units"
+    years: Annotated[int, Field(ge=1, le=10)] = 3  # newest N annual files
 
 
 class Baseline(Strict):

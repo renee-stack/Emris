@@ -47,3 +47,6 @@ __pycache__/
 
 # local caches
 .cache/
+
+# pipeline downloads and outputs (raw API responses, normalized records)
+/data/

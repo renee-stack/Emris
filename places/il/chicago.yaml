@@ -1,6 +1,6 @@
 # places/il/chicago.yaml
-# Draft from the Day 0 audit (places/il/AUDIT.md). TODO = still to confirm.
-# The schema in places/_schema.py is the source of truth; adjust key names to match it.
+# Loaded by `python -m pipeline.run il-chicago`. Schema: places/_schema.py, docs/contract.md section 1.
+# Data findings behind each choice: places/il/AUDIT.md.
 
 place_id: il-chicago
 name: Chicago
@@ -25,18 +25,18 @@ sources:
       work_type: work_type
       text: work_description
       cost: reported_cost
-      parcel_ids: pin_list          # 10-digit, may hold several
+      parcel_ids: pin_list          # 10-digit, several joined with " | "
       lat: latitude
       lng: longitude
       address: [street_number, street_direction, street_name]
       tract_hint: census_tract
-    parcel_id_format: { pad_right: "0000", length: 14 }
+    parcel_id_format: { separator: "|", pad_right: "0000", length: 14 }
     normalize_dashes: true          # Express Program label uses an en dash
     units:
       # 94% filled on new construction since 2024, always null before (AUDIT.md section 1).
       # 0 is real (garages, caisson/foundation-only phases); text is used only when null.
       field: residential_unit_change
-      from_text: { hook: custom.units_from_text }   # port of scripts/units.py
+      from_text: { hook: custom.units_from_text.parse_units }   # port of the hackathon parser
     classes:
       new_mf:
         permit_type: "PERMIT - NEW CONSTRUCTION"
@@ -55,27 +55,36 @@ sources:
             min_cost: 25000          # starting floor; tune after reviewing results
           - permit_type: "PERMIT - ELEVATOR EQUIPMENT"
       other: { default: true }
+    record_url: "https://data.cityofchicago.org/resource/ydr8-5enu.json?permit_={permit_}"
 
   parcels:
     - name: residential_under_7_units
       connector: socrata
       domain: datacatalog.cookcountyil.gov
       dataset: x54s-btds
-      latest_year_only: true
+      latest_year_only: true          # one row per parcel per year, every year
+      # Assessor township codes inside the city. Only narrows the download; membership
+      # comes from the locations source below.
+      filter: { township_code: ["70", "71", "72", "73", "74", "75", "76", "77"] }
       fields:
         parcel_id: pin
         year: year
         year_built: char_yrblt
         land_use: class
-        # Words, not numbers: None (=1), Two .. Six. Connector needs a word-to-number map.
         units: char_apts
+      # Words, not numbers. "None" = no extra apartments, i.e. a single-family house.
+      value_maps:
+        units: { "None": 1, "Two": 2, "Three": 3, "Four": 4, "Five": 5, "Six": 6 }
+      aggregate: { units: sum, year_built: min }   # one row per building card
     - name: commercial_incl_7plus_apartments
       connector: socrata
       domain: datacatalog.cookcountyil.gov
       dataset: csik-bsws
       latest_year_only: true
+      years_back: 3                  # lists only parcels reassessed that year (3-year cycle)
+      parcel_id_format: { strip: "-", length: 14 }
       fields:
-        parcel_id: keypin            # dashed (20-03-111-016-0000): strip dashes to join
+        parcel_id: keypin            # dashed: 20-03-111-016-0000
         year: year
         address: address
         land_use: class_es
@@ -92,5 +101,5 @@ sources:
 
   catalysts:
     connector: firecrawl
-    urls: []                         # TODO: CTA projects, city capital plan, local news pages
-    seed_file: legacy/data/infrastructure.json   # hackathon list, kept as curated fallback (moved by Agent 1)
+    urls: []                         # to add: transit agency projects, city capital plan, local news
+    seed_file: legacy/data/infrastructure.json   # hackathon Firecrawl list, loaded as curated

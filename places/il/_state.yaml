@@ -16,6 +16,8 @@ geography:
   year: 2020
   # Cartographic boundary tracts (clipped to shoreline), same file the hackathon used
   url: https://www2.census.gov/geo/tiger/GENZ2020/shp/cb_2020_17_tract_500k.zip
+  places_url: https://www2.census.gov/geo/tiger/GENZ2020/shp/cb_2020_17_place_500k.zip
+  cousub_url: https://www2.census.gov/geo/tiger/GENZ2020/shp/cb_2020_17_cousub_500k.zip
 
 baseline:
   # Census Building Permits Survey (AUDIT.md section 4). Reported by permit-issuing
@@ -27,6 +29,7 @@ baseline:
     # one blank row, then data; layout in AUDIT.md section 4.
     url: https://www2.census.gov/econ/bps/Place/Midwest%20Region/mw{year}a.txt
     allocate_by: housing_units
+    years: 3                        # newest 3 annual files, for momentum
 
   # ACS 5-year (AUDIT.md section 5). 2024 = the 2020-2024 release, checked live 2026-10-31.
   housing:

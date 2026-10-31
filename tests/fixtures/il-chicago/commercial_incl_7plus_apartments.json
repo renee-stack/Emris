@@ -1,0 +1,402 @@
+[
+ {
+  "keypin": "20-03-102-001-0000",
+  "year": "2024",
+  "address": "3901 S MICHIGAN CHICAGO",
+  "yearbuilt": "1997.0",
+  "tot_units": "115.0",
+  "class_es": "5-29, 5-29, 5-29, 5-29, 5-29"
+ },
+ {
+  "keypin": "20-03-424-020-0000",
+  "year": "2024",
+  "address": "518 E 47TH CHICAGO",
+  "yearbuilt": "1910.0",
+  "tot_units": "66.0",
+  "class_es": "5-16, 5-16"
+ },
+ {
+  "keypin": "20-11-416-001-0000",
+  "year": "2024",
+  "address": "1411 E 53RD CHICAGO",
+  "yearbuilt": "2017.0",
+  "tot_units": "98.0",
+  "class_es": "5-29, 5-29"
+ },
+ {
+  "keypin": "20-12-103-015-0000",
+  "year": "2024",
+  "address": "4920 S CHICAGO BEACH CHICAGO",
+  "yearbuilt": "1983.0",
+  "tot_units": "184.0",
+  "class_es": "5-29, 5-29"
+ },
+ {
+  "keypin": "20-14-400-034-0000",
+  "year": "2024",
+  "address": "5235  HARPER CT CHICAGO",
+  "yearbuilt": "2021.0",
+  "tot_units": "167.0",
+  "class_es": "5-29, 5-29, 5-29, 5-29"
+ },
+ {
+  "keypin": "20-22-216-016-0000",
+  "year": "2024",
+  "address": "6535 S MARTIN LUTHER KING CHICAGO",
+  "yearbuilt": "1971.0",
+  "tot_units": "54.0",
+  "class_es": "5-29, 5-29, 5-29, 5-29, 5-29"
+ },
+ {
+  "keypin": "20-26-308-003-0000",
+  "year": "2024",
+  "address": "7615 S COTTAGE GROVE CHICAGO",
+  "yearbuilt": "1976.0",
+  "tot_units": "34.0",
+  "class_es": "5-29, 5-29, 5-29, 5-29, 5-29"
+ },
+ {
+  "keypin": "20-26-319-034-0000",
+  "year": "2024",
+  "address": "7856 S INGLESIDE CHICAGO",
+  "yearbuilt": "1936.0",
+  "tot_units": "28.0",
+  "class_es": "5-29, 5-90"
+ },
+ {
+  "keypin": "20-26-402-010-0000",
+  "year": "2024",
+  "address": "1359 E 75TH CHICAGO",
+  "yearbuilt": "1917.0",
+  "tot_units": "16.0",
+  "class_es": "5-16"
+ },
+ {
+  "keypin": "20-36-111-058-0000",
+  "year": "2024",
+  "address": "8101 S STONY ISLAND CHICAGO",
+  "yearbuilt": "1961.0",
+  "tot_units": "55.0",
+  "class_es": "5-29"
+ },
+ {
+  "keypin": "25-01-308-025-0000",
+  "year": "2024",
+  "address": "9201 S STONY ISLAND CHICAGO",
+  "yearbuilt": "1956.0",
+  "tot_units": "38.0",
+  "class_es": "5-29"
+ },
+ {
+  "keypin": "25-02-405-032-0000",
+  "year": "2024",
+  "address": "9132 S STONY ISLAND CHICAGO",
+  "yearbuilt": "1962.0",
+  "tot_units": "22.0",
+  "class_es": "5-29, 5-29, 5-29, 5-29"
+ },
+ {
+  "keypin": "20-11-412-053-0000",
+  "year": "2024",
+  "address": "5231 S HARPER CHICAGO",
+  "yearbuilt": "2011.0",
+  "tot_units": "131.0",
+  "class_es": "5-97"
+ },
+ {
+  "keypin": "25-03-403-039-0000",
+  "year": "2024",
+  "address": "9112 S COTTAGE GROVE CHICAGO",
+  "yearbuilt": "1971.0",
+  "tot_units": "37.0",
+  "class_es": "5-29"
+ },
+ {
+  "keypin": "20-02-115-015-0000",
+  "year": "2024",
+  "address": "4119 S LAKE PARK CHICAGO",
+  "yearbuilt": "2005.0",
+  "tot_units": "76.0",
+  "class_es": "3-97"
+ },
+ {
+  "keypin": "20-02-116-001-0000",
+  "year": "2024",
+  "address": "4119 S ELLIS CHICAGO",
+  "yearbuilt": "1903.0",
+  "tot_units": "19.0",
+  "class_es": "9-15"
+ },
+ {
+  "keypin": "20-02-301-051-0000",
+  "year": "2024",
+  "address": "4342 S ELLIS CHICAGO",
+  "yearbuilt": "1923.0",
+  "tot_units": "40.0",
+  "class_es": "3-15"
+ },
+ {
+  "keypin": "20-02-305-014-0000",
+  "year": "2024",
+  "address": "4400 S DREXEL CHICAGO",
+  "yearbuilt": "1924.0",
+  "tot_units": "46.0",
+  "class_es": "3-15, 3-15"
+ },
+ {
+  "keypin": "20-02-311-016-0000",
+  "year": "2024",
+  "address": "4520 S DREXEL CHICAGO",
+  "yearbuilt": "1922.0",
+  "tot_units": "68.0",
+  "class_es": "3-15"
+ },
+ {
+  "keypin": "20-02-316-004-0000",
+  "year": "2024",
+  "address": "4619 S DREXEL CHICAGO",
+  "yearbuilt": "1927.0",
+  "tot_units": "62.0",
+  "class_es": "3-15"
+ },
+ {
+  "keypin": "20-03-102-026-0000",
+  "year": "2024",
+  "address": "3908 S INDIANA CHICAGO",
+  "yearbuilt": "2005.0",
+  "tot_units": "15.0",
+  "class_es": "9-96"
+ },
+ {
+  "keypin": "20-03-102-027-0000",
+  "year": "2024",
+  "address": "3906 S INDIANA CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "3.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-102-028-0000",
+  "year": "2024",
+  "address": "3904 S INDIANA CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "5.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-102-029-0000",
+  "year": "2024",
+  "address": "3900 S INDIANA CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "6.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-115-016-0000",
+  "year": "2024",
+  "address": "4155 S INDIANA CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "18.0",
+  "class_es": "9-13"
+ },
+ {
+  "keypin": "20-03-115-038-0000",
+  "year": "2024",
+  "address": "4102 S PRAIRIE CHICAGO",
+  "yearbuilt": "2005.0",
+  "tot_units": "13.0",
+  "class_es": "9-96"
+ },
+ {
+  "keypin": "20-03-115-039-0000",
+  "year": "2024",
+  "address": "4104 S PRAIRIE CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "5.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-115-040-0000",
+  "year": "2024",
+  "address": "4106 S PRAIRIE CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "3.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-115-041-0000",
+  "year": "2024",
+  "address": "4108 S PRAIRIE CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "3.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-115-042-0000",
+  "year": "2024",
+  "address": "4110 S PRAIRIE CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "6.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-115-043-0000",
+  "year": "2024",
+  "address": "4112 S PRAIRIE CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "5.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-115-044-0000",
+  "year": "2024",
+  "address": "4114 S PRAIRIE CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "3.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-115-045-0000",
+  "year": "2024",
+  "address": "4116 S PRAIRIE CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "6.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-115-046-0000",
+  "year": "2024",
+  "address": "4118 S PRAIRIE CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "6.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-116-003-0000",
+  "year": "2024",
+  "address": "4113 S PRAIRIE CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "5.0",
+  "class_es": "9-13"
+ },
+ {
+  "keypin": "20-03-116-004-0000",
+  "year": "2024",
+  "address": "4123 S PRAIRIE CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "3.0",
+  "class_es": "9-13"
+ },
+ {
+  "keypin": "20-03-116-005-0000",
+  "year": "2024",
+  "address": "4127 S PRAIRIE CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "3.0",
+  "class_es": "9-13"
+ },
+ {
+  "keypin": "20-03-116-006-0000",
+  "year": "2024",
+  "address": "4131 S PRAIRIE CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "6.0",
+  "class_es": "9-13"
+ },
+ {
+  "keypin": "20-03-118-006-0000",
+  "year": "2024",
+  "address": "4235 S STATE CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "6.0",
+  "class_es": "9-13"
+ },
+ {
+  "keypin": "20-03-118-007-0000",
+  "year": "2024",
+  "address": "4237 S STATE CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "6.0",
+  "class_es": "9-13"
+ },
+ {
+  "keypin": "20-03-118-009-0000",
+  "year": "2024",
+  "address": "4249 S STATE CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "5.0",
+  "class_es": "9-13"
+ },
+ {
+  "keypin": "20-03-118-036-0000",
+  "year": "2024",
+  "address": "4238 S WABASH CHICAGO",
+  "yearbuilt": "2010.0",
+  "tot_units": "3.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-118-037-0000",
+  "year": "2024",
+  "address": "4238 S WABASH CHICAGO",
+  "yearbuilt": "2010.0",
+  "tot_units": "3.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-118-038-0000",
+  "year": "2024",
+  "address": "4238 S WABASH CHICAGO",
+  "yearbuilt": "2010.0",
+  "tot_units": "6.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-118-039-0000",
+  "year": "2024",
+  "address": "4238 S WABASH CHICAGO",
+  "yearbuilt": "2010.0",
+  "tot_units": "6.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-118-040-0000",
+  "year": "2024",
+  "address": "4238 S WABASH CHICAGO",
+  "yearbuilt": "2010.0",
+  "tot_units": "5.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-118-041-0000",
+  "year": "2024",
+  "address": "4238 S WABASH CHICAGO",
+  "yearbuilt": "2010.0",
+  "tot_units": "3.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-118-042-0000",
+  "year": "2024",
+  "address": "4238 S WABASH CHICAGO",
+  "yearbuilt": "2010.0",
+  "tot_units": "6.0",
+  "class_es": "9-97"
+ },
+ {
+  "keypin": "20-03-119-008-0000",
+  "year": "2024",
+  "address": "4227 S WABASH CHICAGO",
+  "yearbuilt": "2006.0",
+  "tot_units": "6.0",
+  "class_es": "9-13"
+ },
+ {
+  "keypin": "20-03-119-022-0000",
+  "year": "2024",
+  "address": "4232 S MICHIGAN CHICAGO",
+  "yearbuilt": "1918.0",
+  "tot_units": "42.0",
+  "class_es": "3-15"
+ }
+]

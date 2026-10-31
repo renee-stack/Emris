@@ -1,0 +1,352 @@
+[
+ {
+  "pin": "17092020190000",
+  "year": "2026.0",
+  "char_yrblt": "1888.0",
+  "char_apts": "Two",
+  "class": "212"
+ },
+ {
+  "pin": "17092030090000",
+  "year": "2026.0",
+  "char_yrblt": "1882.0",
+  "char_apts": "Four",
+  "class": "212"
+ },
+ {
+  "pin": "17092030250000",
+  "year": "2026.0",
+  "char_yrblt": "1890.0",
+  "char_apts": "None",
+  "class": "209"
+ },
+ {
+  "pin": "17092040180000",
+  "year": "2026.0",
+  "char_yrblt": "1891.0",
+  "char_apts": "Three",
+  "class": "212"
+ },
+ {
+  "pin": "17092040190000",
+  "year": "2026.0",
+  "char_yrblt": "1948.0",
+  "char_apts": "Two",
+  "class": "212"
+ },
+ {
+  "pin": "17092050060000",
+  "year": "2026.0",
+  "char_yrblt": "1897.0",
+  "char_apts": "Two",
+  "class": "212"
+ },
+ {
+  "pin": "17092050070000",
+  "year": "2026.0",
+  "char_yrblt": "1897.0",
+  "char_apts": "Two",
+  "class": "212"
+ },
+ {
+  "pin": "17092050090000",
+  "year": "2026.0",
+  "char_yrblt": "1892.0",
+  "char_apts": "Two",
+  "class": "212"
+ },
+ {
+  "pin": "17092090210000",
+  "year": "2026.0",
+  "char_yrblt": "1896.0",
+  "char_apts": "Five",
+  "class": "212"
+ },
+ {
+  "pin": "17092090240000",
+  "year": "2026.0",
+  "char_yrblt": "1938.0",
+  "char_apts": "Four",
+  "class": "212"
+ },
+ {
+  "pin": "17092120190000",
+  "year": "2026.0",
+  "char_yrblt": "1894.0",
+  "char_apts": "Four",
+  "class": "212"
+ },
+ {
+  "pin": "17092140070000",
+  "year": "2026.0",
+  "char_yrblt": "1871.0",
+  "char_apts": "Two",
+  "class": "212"
+ },
+ {
+  "pin": "17092140090000",
+  "year": "2026.0",
+  "char_yrblt": "1871.0",
+  "char_apts": "Three",
+  "class": "211"
+ },
+ {
+  "pin": "17092210090000",
+  "year": "2026.0",
+  "char_yrblt": "1881.0",
+  "char_apts": "Four",
+  "class": "212"
+ },
+ {
+  "pin": "17092260040000",
+  "year": "2026.0",
+  "char_yrblt": "1911.0",
+  "char_apts": "Three",
+  "class": "211"
+ },
+ {
+  "pin": "17092260070000",
+  "year": "2026.0",
+  "char_yrblt": "1890.0",
+  "char_apts": "None",
+  "class": "205"
+ },
+ {
+  "pin": "17092260070000",
+  "year": "2026.0",
+  "char_yrblt": "1890.0",
+  "char_apts": "Three",
+  "class": "212"
+ },
+ {
+  "pin": "17092270350000",
+  "year": "2026.0",
+  "char_yrblt": "1882.0",
+  "char_apts": "Four",
+  "class": "212"
+ },
+ {
+  "pin": "17092310040000",
+  "year": "2026.0",
+  "char_yrblt": "1885.0",
+  "char_apts": "Five",
+  "class": "212"
+ },
+ {
+  "pin": "17092370030000",
+  "year": "2026.0",
+  "char_yrblt": "1912.0",
+  "char_apts": "Four",
+  "class": "212"
+ },
+ {
+  "pin": "17092380040000",
+  "year": "2026.0",
+  "char_yrblt": "1879.0",
+  "char_apts": "Four",
+  "class": "212"
+ },
+ {
+  "pin": "17092390180000",
+  "year": "2026.0",
+  "char_yrblt": "1892.0",
+  "char_apts": "Three",
+  "class": "212"
+ },
+ {
+  "pin": "17092390220000",
+  "year": "2026.0",
+  "char_yrblt": "1895.0",
+  "char_apts": "Three",
+  "class": "212"
+ },
+ {
+  "pin": "17092390240000",
+  "year": "2026.0",
+  "char_yrblt": "1895.0",
+  "char_apts": "Four",
+  "class": "212"
+ },
+ {
+  "pin": "17092480200000",
+  "year": "2026.0",
+  "char_yrblt": "1972.0",
+  "char_apts": "Three",
+  "class": "212"
+ },
+ {
+  "pin": "17092530030000",
+  "year": "2026.0",
+  "char_yrblt": "1892.0",
+  "char_apts": "Four",
+  "class": "212"
+ },
+ {
+  "pin": "17092600060000",
+  "year": "2026.0",
+  "char_yrblt": "1881.0",
+  "char_apts": "Five",
+  "class": "212"
+ },
+ {
+  "pin": "17092600070000",
+  "year": "2026.0",
+  "char_yrblt": "1884.0",
+  "char_apts": "Two",
+  "class": "212"
+ },
+ {
+  "pin": "17092600100000",
+  "year": "2026.0",
+  "char_yrblt": "1879.0",
+  "char_apts": "Two",
+  "class": "212"
+ },
+ {
+  "pin": "17092620080000",
+  "year": "2026.0",
+  "char_yrblt": "1911.0",
+  "char_apts": "Two",
+  "class": "212"
+ },
+ {
+  "pin": "17093030560000",
+  "year": "2026.0",
+  "char_yrblt": "1999.0",
+  "char_apts": "None",
+  "class": "295"
+ },
+ {
+  "pin": "17093030580000",
+  "year": "2026.0",
+  "char_yrblt": "1999.0",
+  "char_apts": "None",
+  "class": "295"
+ },
+ {
+  "pin": "17093030590000",
+  "year": "2026.0",
+  "char_yrblt": "1999.0",
+  "char_apts": "None",
+  "class": "295"
+ },
+ {
+  "pin": "17093030640000",
+  "year": "2026.0",
+  "char_yrblt": "1999.0",
+  "char_apts": "None",
+  "class": "295"
+ },
+ {
+  "pin": "17093030660000",
+  "year": "2026.0",
+  "char_yrblt": "1999.0",
+  "char_apts": "None",
+  "class": "295"
+ },
+ {
+  "pin": "17093030680000",
+  "year": "2026.0",
+  "char_yrblt": "1999.0",
+  "char_apts": "None",
+  "class": "295"
+ },
+ {
+  "pin": "17093030690000",
+  "year": "2026.0",
+  "char_yrblt": "1999.0",
+  "char_apts": "None",
+  "class": "295"
+ },
+ {
+  "pin": "17093030700000",
+  "year": "2026.0",
+  "char_yrblt": "1999.0",
+  "char_apts": "None",
+  "class": "295"
+ },
+ {
+  "pin": "17093030710000",
+  "year": "2026.0",
+  "char_yrblt": "1998.0",
+  "char_apts": "None",
+  "class": "295"
+ },
+ {
+  "pin": "17093030750000",
+  "year": "2026.0",
+  "char_yrblt": "1999.0",
+  "char_apts": "None",
+  "class": "295"
+ },
+ {
+  "pin": "17093030770000",
+  "year": "2026.0",
+  "char_yrblt": "1999.0",
+  "char_apts": "None",
+  "class": "295"
+ },
+ {
+  "pin": "17093060210000",
+  "year": "2026.0",
+  "char_yrblt": "1988.0",
+  "char_apts": "None",
+  "class": "295"
+ },
+ {
+  "pin": "17093060220000",
+  "year": "2026.0",
+  "char_yrblt": "1988.0",
+  "char_apts": "None",
+  "class": "295"
+ },
+ {
+  "pin": "17093060240000",
+  "year": "2026.0",
+  "char_yrblt": "1988.0",
+  "char_apts": "None",
+  "class": "295"
+ },
+ {
+  "pin": "17093200040000",
+  "year": "2026.0",
+  "char_yrblt": "1898.0",
+  "char_apts": "Six",
+  "class": "212"
+ },
+ {
+  "pin": "17101010080000",
+  "year": "2026.0",
+  "char_yrblt": "1915.0",
+  "char_apts": "Three",
+  "class": "211"
+ },
+ {
+  "pin": "17101040320000",
+  "year": "2026.0",
+  "char_yrblt": "1944.0",
+  "char_apts": "Two",
+  "class": "212"
+ },
+ {
+  "pin": "17101070040000",
+  "year": "2026.0",
+  "char_yrblt": "1909.0",
+  "char_apts": "Five",
+  "class": "212"
+ },
+ {
+  "pin": "17101220070000",
+  "year": "2026.0",
+  "char_yrblt": "1911.0",
+  "char_apts": "Four",
+  "class": "212"
+ },
+ {
+  "pin": "17221010110000",
+  "year": "2026.0",
+  "char_yrblt": "1908.0",
+  "char_apts": "Three",
+  "class": "212"
+ }
+]

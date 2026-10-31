@@ -1,0 +1,10 @@
+{
+ "place_id": "il-chicago",
+ "retrieved": "2026-10-31",
+ "files": {
+  "permits.json": 50,
+  "residential_under_7_units.json": 50,
+  "commercial_incl_7plus_apartments.json": 50,
+  "locations.json": 50
+ }
+}
