@@ -1,0 +1,24 @@
+{
+  "name": "emris-imessage",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Emris iMessage agent (Photon Spectrum) that answers texts via POST /api/ask",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "test-local": "tsx src/test-local.ts",
+    "stub": "tsx stub/server.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "spectrum-ts": "^12.14.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3"
+  }
+}
