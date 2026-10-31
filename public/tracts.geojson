@@ -1,0 +1,1131 @@
+{
+  "type": "FeatureCollection",
+  "as_of": "2026-10-30",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031221500",
+        "name": "Logan Square · Tract 2215",
+        "score": 42,
+        "percentile": 40,
+        "momentum": "down",
+        "momentum_pct": -50,
+        "signals": {
+          "mf_permits": 67,
+          "permit_momentum": 17,
+          "infra_proximity": 33
+        },
+        "permit_count_24mo": 3,
+        "units_24mo": 99
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.7265,
+              41.9145
+            ],
+            [
+              -87.7145,
+              41.9145
+            ],
+            [
+              -87.7145,
+              41.9235
+            ],
+            [
+              -87.7265,
+              41.9235
+            ],
+            [
+              -87.7265,
+              41.9145
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031221600",
+        "name": "Logan Square · Tract 2216",
+        "score": 54,
+        "percentile": 52,
+        "momentum": "flat",
+        "momentum_pct": 0,
+        "signals": {
+          "mf_permits": 50,
+          "permit_momentum": 38,
+          "infra_proximity": 63
+        },
+        "permit_count_24mo": 2,
+        "units_24mo": 20
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.7145,
+              41.9145
+            ],
+            [
+              -87.7025,
+              41.9145
+            ],
+            [
+              -87.7025,
+              41.9235
+            ],
+            [
+              -87.7145,
+              41.9235
+            ],
+            [
+              -87.7145,
+              41.9145
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031221700",
+        "name": "Logan Square · Tract 2217",
+        "score": 21,
+        "percentile": 20,
+        "momentum": "flat",
+        "momentum_pct": 0,
+        "signals": {
+          "mf_permits": 21,
+          "permit_momentum": 38,
+          "infra_proximity": 38
+        },
+        "permit_count_24mo": 0,
+        "units_24mo": 0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.7025,
+              41.9145
+            ],
+            [
+              -87.6905,
+              41.9145
+            ],
+            [
+              -87.6905,
+              41.9235
+            ],
+            [
+              -87.7025,
+              41.9235
+            ],
+            [
+              -87.7025,
+              41.9145
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031222000",
+        "name": "Logan Square · Tract 2220",
+        "score": 0,
+        "percentile": 0,
+        "momentum": "down",
+        "momentum_pct": -100,
+        "signals": {
+          "mf_permits": 21,
+          "permit_momentum": 6,
+          "infra_proximity": 17
+        },
+        "permit_count_24mo": 1,
+        "units_24mo": 0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.7265,
+              41.9235
+            ],
+            [
+              -87.7145,
+              41.9235
+            ],
+            [
+              -87.7145,
+              41.9325
+            ],
+            [
+              -87.7265,
+              41.9325
+            ],
+            [
+              -87.7265,
+              41.9235
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031222200",
+        "name": "Logan Square · Tract 2222",
+        "score": 83,
+        "percentile": 80,
+        "momentum": "up",
+        "momentum_pct": 200,
+        "signals": {
+          "mf_permits": 54,
+          "permit_momentum": 94,
+          "infra_proximity": 83
+        },
+        "permit_count_24mo": 2,
+        "units_24mo": 21
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.7145,
+              41.9235
+            ],
+            [
+              -87.7025,
+              41.9235
+            ],
+            [
+              -87.7025,
+              41.9325
+            ],
+            [
+              -87.7145,
+              41.9325
+            ],
+            [
+              -87.7145,
+              41.9235
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031230100",
+        "name": "Humboldt Park · Tract 2301",
+        "score": 25,
+        "percentile": 24,
+        "momentum": "up",
+        "momentum_pct": 100,
+        "signals": {
+          "mf_permits": 21,
+          "permit_momentum": 75,
+          "infra_proximity": 13
+        },
+        "permit_count_24mo": 3,
+        "units_24mo": 9
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.739,
+              41.8935
+            ],
+            [
+              -87.727,
+              41.8935
+            ],
+            [
+              -87.727,
+              41.9025
+            ],
+            [
+              -87.739,
+              41.9025
+            ],
+            [
+              -87.739,
+              41.8935
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031230300",
+        "name": "Humboldt Park · Tract 2303",
+        "score": 33,
+        "percentile": 32,
+        "momentum": "flat",
+        "momentum_pct": 0,
+        "signals": {
+          "mf_permits": 21,
+          "permit_momentum": 38,
+          "infra_proximity": 67
+        },
+        "permit_count_24mo": 0,
+        "units_24mo": 0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.727,
+              41.8935
+            ],
+            [
+              -87.715,
+              41.8935
+            ],
+            [
+              -87.715,
+              41.9025
+            ],
+            [
+              -87.727,
+              41.9025
+            ],
+            [
+              -87.727,
+              41.8935
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031230400",
+        "name": "Humboldt Park · Tract 2304",
+        "score": 67,
+        "percentile": 64,
+        "momentum": "up",
+        "momentum_pct": 100,
+        "signals": {
+          "mf_permits": 75,
+          "permit_momentum": 75,
+          "infra_proximity": 25
+        },
+        "permit_count_24mo": 1,
+        "units_24mo": 17
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.715,
+              41.8935
+            ],
+            [
+              -87.703,
+              41.8935
+            ],
+            [
+              -87.703,
+              41.9025
+            ],
+            [
+              -87.715,
+              41.9025
+            ],
+            [
+              -87.715,
+              41.8935
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031230500",
+        "name": "Humboldt Park · Tract 2305",
+        "score": 13,
+        "percentile": 12,
+        "momentum": "flat",
+        "momentum_pct": 0,
+        "signals": {
+          "mf_permits": 21,
+          "permit_momentum": 38,
+          "infra_proximity": 4
+        },
+        "permit_count_24mo": 0,
+        "units_24mo": 0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.739,
+              41.9025
+            ],
+            [
+              -87.727,
+              41.9025
+            ],
+            [
+              -87.727,
+              41.9115
+            ],
+            [
+              -87.739,
+              41.9115
+            ],
+            [
+              -87.739,
+              41.9025
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031230900",
+        "name": "Humboldt Park · Tract 2309",
+        "score": 4,
+        "percentile": 4,
+        "momentum": "down",
+        "momentum_pct": -100,
+        "signals": {
+          "mf_permits": 21,
+          "permit_momentum": 6,
+          "infra_proximity": 21
+        },
+        "permit_count_24mo": 1,
+        "units_24mo": 0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.727,
+              41.9025
+            ],
+            [
+              -87.715,
+              41.9025
+            ],
+            [
+              -87.715,
+              41.9115
+            ],
+            [
+              -87.727,
+              41.9115
+            ],
+            [
+              -87.727,
+              41.9025
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031283100",
+        "name": "West Loop · Tract 2831",
+        "score": 79,
+        "percentile": 76,
+        "momentum": "up",
+        "momentum_pct": 50,
+        "signals": {
+          "mf_permits": 100,
+          "permit_momentum": 58,
+          "infra_proximity": 42
+        },
+        "permit_count_24mo": 5,
+        "units_24mo": 178
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.666,
+              41.874
+            ],
+            [
+              -87.654,
+              41.874
+            ],
+            [
+              -87.654,
+              41.883
+            ],
+            [
+              -87.666,
+              41.883
+            ],
+            [
+              -87.666,
+              41.874
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031283200",
+        "name": "West Loop · Tract 2832",
+        "score": 50,
+        "percentile": 48,
+        "momentum": "down",
+        "momentum_pct": -100,
+        "signals": {
+          "mf_permits": 46,
+          "permit_momentum": 6,
+          "infra_proximity": 96
+        },
+        "permit_count_24mo": 1,
+        "units_24mo": 5
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.654,
+              41.874
+            ],
+            [
+              -87.642,
+              41.874
+            ],
+            [
+              -87.642,
+              41.883
+            ],
+            [
+              -87.654,
+              41.883
+            ],
+            [
+              -87.654,
+              41.874
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031283300",
+        "name": "West Loop · Tract 2833",
+        "score": 17,
+        "percentile": 16,
+        "momentum": "down",
+        "momentum_pct": -100,
+        "signals": {
+          "mf_permits": 21,
+          "permit_momentum": 6,
+          "infra_proximity": 46
+        },
+        "permit_count_24mo": 1,
+        "units_24mo": 3
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.642,
+              41.874
+            ],
+            [
+              -87.63,
+              41.874
+            ],
+            [
+              -87.63,
+              41.883
+            ],
+            [
+              -87.642,
+              41.883
+            ],
+            [
+              -87.642,
+              41.874
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031833000",
+        "name": "West Loop · Tract 8330",
+        "score": 75,
+        "percentile": 72,
+        "momentum": "up",
+        "momentum_pct": 100,
+        "signals": {
+          "mf_permits": 58,
+          "permit_momentum": 75,
+          "infra_proximity": 71
+        },
+        "permit_count_24mo": 1,
+        "units_24mo": 19
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.666,
+              41.883
+            ],
+            [
+              -87.654,
+              41.883
+            ],
+            [
+              -87.654,
+              41.892
+            ],
+            [
+              -87.666,
+              41.892
+            ],
+            [
+              -87.666,
+              41.883
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031833100",
+        "name": "West Loop · Tract 8331",
+        "score": 46,
+        "percentile": 44,
+        "momentum": "flat",
+        "momentum_pct": 0,
+        "signals": {
+          "mf_permits": 21,
+          "permit_momentum": 38,
+          "infra_proximity": 100
+        },
+        "permit_count_24mo": 0,
+        "units_24mo": 0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.654,
+              41.883
+            ],
+            [
+              -87.642,
+              41.883
+            ],
+            [
+              -87.642,
+              41.892
+            ],
+            [
+              -87.654,
+              41.892
+            ],
+            [
+              -87.654,
+              41.883
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031310101",
+        "name": "Pilsen · Tract 3101.01",
+        "score": 100,
+        "percentile": 96,
+        "momentum": "up",
+        "momentum_pct": 300,
+        "signals": {
+          "mf_permits": 88,
+          "permit_momentum": 100,
+          "infra_proximity": 92
+        },
+        "permit_count_24mo": 3,
+        "units_24mo": 15
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.68,
+              41.8475
+            ],
+            [
+              -87.668,
+              41.8475
+            ],
+            [
+              -87.668,
+              41.8565
+            ],
+            [
+              -87.68,
+              41.8565
+            ],
+            [
+              -87.68,
+              41.8475
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031310102",
+        "name": "Pilsen · Tract 3101.02",
+        "score": 58,
+        "percentile": 56,
+        "momentum": "flat",
+        "momentum_pct": 0,
+        "signals": {
+          "mf_permits": 63,
+          "permit_momentum": 38,
+          "infra_proximity": 79
+        },
+        "permit_count_24mo": 2,
+        "units_24mo": 7
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.668,
+              41.8475
+            ],
+            [
+              -87.656,
+              41.8475
+            ],
+            [
+              -87.656,
+              41.8565
+            ],
+            [
+              -87.668,
+              41.8565
+            ],
+            [
+              -87.668,
+              41.8475
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031310200",
+        "name": "Pilsen · Tract 3102",
+        "score": 8,
+        "percentile": 8,
+        "momentum": "flat",
+        "momentum_pct": 0,
+        "signals": {
+          "mf_permits": 21,
+          "permit_momentum": 38,
+          "infra_proximity": 0
+        },
+        "permit_count_24mo": 0,
+        "units_24mo": 0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.656,
+              41.8475
+            ],
+            [
+              -87.644,
+              41.8475
+            ],
+            [
+              -87.644,
+              41.8565
+            ],
+            [
+              -87.656,
+              41.8565
+            ],
+            [
+              -87.656,
+              41.8475
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031310300",
+        "name": "Pilsen · Tract 3103",
+        "score": 38,
+        "percentile": 36,
+        "momentum": "flat",
+        "momentum_pct": 0,
+        "signals": {
+          "mf_permits": 21,
+          "permit_momentum": 38,
+          "infra_proximity": 75
+        },
+        "permit_count_24mo": 0,
+        "units_24mo": 0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.68,
+              41.8565
+            ],
+            [
+              -87.668,
+              41.8565
+            ],
+            [
+              -87.668,
+              41.8655
+            ],
+            [
+              -87.68,
+              41.8655
+            ],
+            [
+              -87.68,
+              41.8565
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031843100",
+        "name": "Pilsen · Tract 8431",
+        "score": 96,
+        "percentile": 92,
+        "momentum": "up",
+        "momentum_pct": 200,
+        "signals": {
+          "mf_permits": 96,
+          "permit_momentum": 94,
+          "infra_proximity": 54
+        },
+        "permit_count_24mo": 2,
+        "units_24mo": 92
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.668,
+              41.8565
+            ],
+            [
+              -87.656,
+              41.8565
+            ],
+            [
+              -87.656,
+              41.8655
+            ],
+            [
+              -87.668,
+              41.8655
+            ],
+            [
+              -87.668,
+              41.8565
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031351100",
+        "name": "Bronzeville · Tract 3511",
+        "score": 88,
+        "percentile": 84,
+        "momentum": "up",
+        "momentum_pct": 100,
+        "signals": {
+          "mf_permits": 92,
+          "permit_momentum": 75,
+          "infra_proximity": 50
+        },
+        "permit_count_24mo": 3,
+        "units_24mo": 117
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.635,
+              41.815
+            ],
+            [
+              -87.623,
+              41.815
+            ],
+            [
+              -87.623,
+              41.824
+            ],
+            [
+              -87.635,
+              41.824
+            ],
+            [
+              -87.635,
+              41.815
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031351200",
+        "name": "Bronzeville · Tract 3512",
+        "score": 92,
+        "percentile": 88,
+        "momentum": "up",
+        "momentum_pct": 100,
+        "signals": {
+          "mf_permits": 71,
+          "permit_momentum": 75,
+          "infra_proximity": 88
+        },
+        "permit_count_24mo": 1,
+        "units_24mo": 115
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.623,
+              41.815
+            ],
+            [
+              -87.611,
+              41.815
+            ],
+            [
+              -87.611,
+              41.824
+            ],
+            [
+              -87.623,
+              41.824
+            ],
+            [
+              -87.623,
+              41.815
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031351400",
+        "name": "Bronzeville · Tract 3514",
+        "score": 71,
+        "percentile": 68,
+        "momentum": "up",
+        "momentum_pct": 100,
+        "signals": {
+          "mf_permits": 79,
+          "permit_momentum": 75,
+          "infra_proximity": 29
+        },
+        "permit_count_24mo": 1,
+        "units_24mo": 35
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.611,
+              41.815
+            ],
+            [
+              -87.599,
+              41.815
+            ],
+            [
+              -87.599,
+              41.824
+            ],
+            [
+              -87.611,
+              41.824
+            ],
+            [
+              -87.611,
+              41.815
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031351500",
+        "name": "Bronzeville · Tract 3515",
+        "score": 63,
+        "percentile": 60,
+        "momentum": "up",
+        "momentum_pct": 100,
+        "signals": {
+          "mf_permits": 83,
+          "permit_momentum": 75,
+          "infra_proximity": 8
+        },
+        "permit_count_24mo": 3,
+        "units_24mo": 70
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.635,
+              41.824
+            ],
+            [
+              -87.623,
+              41.824
+            ],
+            [
+              -87.623,
+              41.833
+            ],
+            [
+              -87.635,
+              41.833
+            ],
+            [
+              -87.635,
+              41.824
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "geoid": "17031835700",
+        "name": "Bronzeville · Tract 8357",
+        "score": 29,
+        "percentile": 28,
+        "momentum": "flat",
+        "momentum_pct": 0,
+        "signals": {
+          "mf_permits": 21,
+          "permit_momentum": 38,
+          "infra_proximity": 58
+        },
+        "permit_count_24mo": 0,
+        "units_24mo": 0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.623,
+              41.824
+            ],
+            [
+              -87.611,
+              41.824
+            ],
+            [
+              -87.611,
+              41.833
+            ],
+            [
+              -87.623,
+              41.833
+            ],
+            [
+              -87.623,
+              41.824
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

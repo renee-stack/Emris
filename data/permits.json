@@ -1,0 +1,402 @@
+[
+  {
+    "id": "100968061",
+    "address": "3114 S Indiana Ave",
+    "lat": 41.825571,
+    "lng": -87.630125,
+    "issue_date": "2026-10-30",
+    "units": null,
+    "description": "Erect new mixed-use building per plans; unit count not reported",
+    "geoid": "17031351500"
+  },
+  {
+    "id": "100960921",
+    "address": "409 S Halsted St",
+    "lat": 41.874503,
+    "lng": -87.654669,
+    "issue_date": "2026-10-28",
+    "units": 51,
+    "description": "Erect a 8-story, 51-unit residential building with ground-floor retail",
+    "geoid": "17031283100"
+  },
+  {
+    "id": "100962551",
+    "address": "1652 S Morgan St",
+    "lat": 41.852024,
+    "lng": -87.677938,
+    "issue_date": "2026-10-27",
+    "units": 12,
+    "description": "Erect a 3-story, 12-unit residential building with enclosed parking",
+    "geoid": "17031310101"
+  },
+  {
+    "id": "100968549",
+    "address": "2988 S Calumet Ave",
+    "lat": 41.827863,
+    "lng": -87.633302,
+    "issue_date": "2026-10-25",
+    "units": 66,
+    "description": "Erect a 9-story, 66-unit residential building with ground-floor retail",
+    "geoid": "17031351500"
+  },
+  {
+    "id": "100965903",
+    "address": "3390 S Indiana Ave",
+    "lat": 41.820578,
+    "lng": -87.601599,
+    "issue_date": "2026-10-22",
+    "units": 35,
+    "description": "Erect a 6-story, 35-unit residential building with enclosed parking",
+    "geoid": "17031351400"
+  },
+  {
+    "id": "100955620",
+    "address": "1072 N California Ave",
+    "lat": 41.901301,
+    "lng": -87.711262,
+    "issue_date": "2026-10-12",
+    "units": 17,
+    "description": "Erect a 4-story, 17-unit residential building with ground-floor retail",
+    "geoid": "17031230400"
+  },
+  {
+    "id": "100964473",
+    "address": "1357 S Halsted St",
+    "lat": 41.857348,
+    "lng": -87.663903,
+    "issue_date": "2026-10-07",
+    "units": 87,
+    "description": "Erect a 12-story, 87-unit residential building with ground-floor retail",
+    "geoid": "17031843100"
+  },
+  {
+    "id": "100967200",
+    "address": "3278 S Dr Martin Luther King Jr Dr",
+    "lat": 41.822618,
+    "lng": -87.611434,
+    "issue_date": "2026-09-19",
+    "units": 115,
+    "description": "Erect a 14-story, 115-unit residential building with ground-floor retail",
+    "geoid": "17031351200"
+  },
+  {
+    "id": "100963034",
+    "address": "1191 S Racine Ave",
+    "lat": 41.860366,
+    "lng": -87.667503,
+    "issue_date": "2026-08-26",
+    "units": 5,
+    "description": "Erect a 3-story, 5-unit residential building with enclosed parking",
+    "geoid": "17031843100"
+  },
+  {
+    "id": "100958756",
+    "address": "370 S Morgan St",
+    "lat": 41.875184,
+    "lng": -87.665527,
+    "issue_date": "2026-08-11",
+    "units": null,
+    "description": "Erect new mixed-use building per plans; unit count not reported",
+    "geoid": "17031283100"
+  },
+  {
+    "id": "100964112",
+    "address": "1817 S Loomis St",
+    "lat": 41.849027,
+    "lng": -87.678001,
+    "issue_date": "2026-08-06",
+    "units": 3,
+    "description": "Erect a 3-story, 3-unit masonry residential building with rear garage",
+    "geoid": "17031310101"
+  },
+  {
+    "id": "100956497",
+    "address": "1097 N Spaulding Ave",
+    "lat": 41.901737,
+    "lng": -87.731237,
+    "issue_date": "2026-07-24",
+    "units": 4,
+    "description": "Erect a 3-story, 4-unit masonry residential building with rear garage",
+    "geoid": "17031230100"
+  },
+  {
+    "id": "100951756",
+    "address": "2199 N Kimball Ave",
+    "lat": 41.921665,
+    "lng": -87.726253,
+    "issue_date": "2026-07-21",
+    "units": 95,
+    "description": "Erect a 13-story, 95-unit residential building with ground-floor retail",
+    "geoid": "17031221500"
+  },
+  {
+    "id": "100966495",
+    "address": "3346 S Prairie Ave",
+    "lat": 41.821371,
+    "lng": -87.626468,
+    "issue_date": "2026-06-22",
+    "units": 5,
+    "description": "Erect a 3-story, 5-unit residential building with ground-floor retail",
+    "geoid": "17031351100"
+  },
+  {
+    "id": "100964070",
+    "address": "1421 S Loomis St",
+    "lat": 41.85619,
+    "lng": -87.67829,
+    "issue_date": "2026-04-30",
+    "units": null,
+    "description": "Erect new mixed-use building per plans; unit count not reported",
+    "geoid": "17031310101"
+  },
+  {
+    "id": "100952626",
+    "address": "2508 N Kedzie Ave",
+    "lat": 41.927264,
+    "lng": -87.709898,
+    "issue_date": "2026-03-03",
+    "units": null,
+    "description": "Erect new mixed-use building per plans; unit count not reported",
+    "geoid": "17031222200"
+  },
+  {
+    "id": "100965079",
+    "address": "1424 S Halsted St",
+    "lat": 41.85614,
+    "lng": -87.656091,
+    "issue_date": "2026-02-27",
+    "units": 5,
+    "description": "Erect a 3-story, 5-unit residential building with ground-floor retail",
+    "geoid": "17031310102"
+  },
+  {
+    "id": "100959314",
+    "address": "432 S Halsted St",
+    "lat": 41.874075,
+    "lng": -87.665733,
+    "issue_date": "2026-02-24",
+    "units": 36,
+    "description": "Erect a 6-story, 36-unit residential building with enclosed parking",
+    "geoid": "17031283100"
+  },
+  {
+    "id": "100955286",
+    "address": "787 N Sawyer Ave",
+    "lat": 41.896135,
+    "lng": -87.731534,
+    "issue_date": "2026-02-22",
+    "units": 3,
+    "description": "Erect a 3-story, 3-unit masonry residential building with rear garage",
+    "geoid": "17031230100"
+  },
+  {
+    "id": "100957982",
+    "address": "209 N Racine Ave",
+    "lat": 41.885679,
+    "lng": -87.65578,
+    "issue_date": "2026-01-21",
+    "units": 19,
+    "description": "Erect a 4-story, 19-unit residential building with ground-floor retail",
+    "geoid": "17031833000"
+  },
+  {
+    "id": "100966038",
+    "address": "3536 S Dr Martin Luther King Jr Dr",
+    "lat": 41.817934,
+    "lng": -87.626429,
+    "issue_date": "2026-01-03",
+    "units": 84,
+    "description": "Erect a 11-story, 84-unit residential building with ground-floor retail",
+    "geoid": "17031351100"
+  },
+  {
+    "id": "100950256",
+    "address": "2292 N Kedzie Ave",
+    "lat": 41.923371,
+    "lng": -87.7065,
+    "issue_date": "2025-11-28",
+    "units": 4,
+    "description": "Erect a 3-story, 4-unit masonry residential building with rear garage",
+    "geoid": "17031221600"
+  },
+  {
+    "id": "100953757",
+    "address": "2771 N California Ave",
+    "lat": 41.932017,
+    "lng": -87.705781,
+    "issue_date": "2025-11-11",
+    "units": 21,
+    "description": "Erect a 4-story, 21-unit residential building with enclosed parking",
+    "geoid": "17031222200"
+  },
+  {
+    "id": "100959779",
+    "address": "413 S Morgan St",
+    "lat": 41.874424,
+    "lng": -87.632923,
+    "issue_date": "2025-10-10",
+    "units": 3,
+    "description": "Erect a 3-story, 3-unit masonry residential building with rear garage",
+    "geoid": "17031283300"
+  },
+  {
+    "id": "100950974",
+    "address": "2184 N Sacramento Ave",
+    "lat": 41.921427,
+    "lng": -87.71866,
+    "issue_date": "2025-09-07",
+    "units": 4,
+    "description": "Erect a 3-story, 4-unit masonry residential building with rear garage",
+    "geoid": "17031221500"
+  },
+  {
+    "id": "100953341",
+    "address": "1982 N Kimball Ave",
+    "lat": 41.917774,
+    "lng": -87.70535,
+    "issue_date": "2025-09-02",
+    "units": 16,
+    "description": "Erect a 4-story, 16-unit residential building with ground-floor retail",
+    "geoid": "17031221600"
+  },
+  {
+    "id": "100969146",
+    "address": "3602 S State St",
+    "lat": 41.816748,
+    "lng": -87.630951,
+    "issue_date": "2025-08-29",
+    "units": 28,
+    "description": "Erect a 5-story, 28-unit residential building with ground-floor retail",
+    "geoid": "17031351100"
+  },
+  {
+    "id": "100951661",
+    "address": "2088 N Whipple St",
+    "lat": 41.919682,
+    "lng": -87.718702,
+    "issue_date": "2025-08-03",
+    "units": null,
+    "description": "Erect new mixed-use building per plans; unit count not reported",
+    "geoid": "17031221500"
+  },
+  {
+    "id": "100955206",
+    "address": "763 N Spaulding Ave",
+    "lat": 41.895702,
+    "lng": -87.728246,
+    "issue_date": "2025-07-31",
+    "units": 2,
+    "description": "Erect a 3-story, 2-unit masonry residential building with rear garage",
+    "geoid": "17031230100"
+  },
+  {
+    "id": "100960448",
+    "address": "212 S Green St",
+    "lat": 41.878054,
+    "lng": -87.653082,
+    "issue_date": "2025-07-03",
+    "units": 5,
+    "description": "Erect a 3-story, 5-unit residential building with enclosed parking",
+    "geoid": "17031283200"
+  },
+  {
+    "id": "100963693",
+    "address": "1752 S Racine Ave",
+    "lat": 41.850206,
+    "lng": -87.661192,
+    "issue_date": "2025-04-30",
+    "units": 2,
+    "description": "Erect a 3-story, 2-unit masonry residential building with rear garage",
+    "geoid": "17031310102"
+  },
+  {
+    "id": "100956608",
+    "address": "1427 N Sawyer Ave",
+    "lat": 41.907699,
+    "lng": -87.722999,
+    "issue_date": "2025-04-14",
+    "units": null,
+    "description": "Erect new mixed-use building per plans; unit count not reported",
+    "geoid": "17031230900"
+  },
+  {
+    "id": "100969505",
+    "address": "2838 S Indiana Ave",
+    "lat": 41.830567,
+    "lng": -87.633696,
+    "issue_date": "2025-03-18",
+    "units": 4,
+    "description": "Erect a 3-story, 4-unit masonry residential building with rear garage",
+    "geoid": "17031351500"
+  },
+  {
+    "id": "100957327",
+    "address": "307 S Green St",
+    "lat": 41.876355,
+    "lng": -87.662077,
+    "issue_date": "2025-02-27",
+    "units": 2,
+    "description": "Erect a 3-story, 2-unit masonry residential building with rear garage",
+    "geoid": "17031283100"
+  },
+  {
+    "id": "100955155",
+    "address": "2727 N Whipple St",
+    "lat": 41.931211,
+    "lng": -87.724096,
+    "issue_date": "2025-01-05",
+    "units": null,
+    "description": "Erect new mixed-use building per plans; unit count not reported",
+    "geoid": "17031222000"
+  },
+  {
+    "id": "100956731",
+    "address": "22 N Green St",
+    "lat": 41.882307,
+    "lng": -87.654896,
+    "issue_date": "2024-12-12",
+    "units": 89,
+    "description": "Erect a 12-story, 89-unit residential building with ground-floor retail",
+    "geoid": "17031283100"
+  },
+  {
+    "id": "100958870",
+    "address": "63 N Green St",
+    "lat": 41.883031,
+    "lng": -87.649881,
+    "issue_date": "2024-10-03",
+    "units": 4,
+    "description": "Erect a 3-story, 4-unit masonry residential building with rear garage",
+    "geoid": "17031833100"
+  },
+  {
+    "id": "100954532",
+    "address": "2064 N Whipple St",
+    "lat": 41.919236,
+    "lng": -87.69229,
+    "issue_date": "2024-09-13",
+    "units": 2,
+    "description": "Erect a 3-story, 2-unit masonry residential building with rear garage",
+    "geoid": "17031221700"
+  },
+  {
+    "id": "100961852",
+    "address": "1827 S Loomis St",
+    "lat": 41.84886,
+    "lng": -87.647116,
+    "issue_date": "2024-08-04",
+    "units": 4,
+    "description": "Erect a 3-story, 4-unit masonry residential building with rear garage",
+    "geoid": "17031310200"
+  },
+  {
+    "id": "100961306",
+    "address": "260 N Racine Ave",
+    "lat": 41.886595,
+    "lng": -87.66185,
+    "issue_date": "2024-07-15",
+    "units": null,
+    "description": "Erect new mixed-use building per plans; unit count not reported",
+    "geoid": "17031833000"
+  }
+]

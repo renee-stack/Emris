@@ -1,0 +1,122 @@
+[
+  {
+    "id": "infra-001",
+    "name": "Milwaukee Ave Streetscape (Logan Sq)",
+    "type": "streetscape",
+    "status": "under_construction",
+    "lat": 41.9262,
+    "lng": -87.7032,
+    "budget_usd": 18500000,
+    "expected_completion": "2027",
+    "description": "Wider sidewalks, protected bike lanes and bus bulbs along Milwaukee Ave near the Logan Square circle.",
+    "source_url": null
+  },
+  {
+    "id": "infra-002",
+    "name": "Bloomingdale Trail West Extension",
+    "type": "park",
+    "status": "planned",
+    "lat": 41.9176,
+    "lng": -87.7228,
+    "budget_usd": null,
+    "expected_completion": null,
+    "description": "Proposed westward extension of the elevated trail with new access ramps.",
+    "source_url": null
+  },
+  {
+    "id": "infra-003",
+    "name": "Chicago Ave Bus Priority Corridor",
+    "type": "transit",
+    "status": "funded",
+    "lat": 41.8961,
+    "lng": -87.7195,
+    "budget_usd": 32000000,
+    "expected_completion": "2028-Q2",
+    "description": "Dedicated bus lanes, signal priority and upgraded stops on Chicago Ave.",
+    "source_url": null
+  },
+  {
+    "id": "infra-004",
+    "name": "Humboldt Park Boathouse Restoration",
+    "type": "park",
+    "status": "complete",
+    "lat": 41.9041,
+    "lng": -87.7066,
+    "budget_usd": 9800000,
+    "expected_completion": "2025",
+    "description": "Restoration of the historic boathouse and lagoon edge.",
+    "source_url": null
+  },
+  {
+    "id": "infra-005",
+    "name": "Fulton Market Streetscape Phase 2",
+    "type": "streetscape",
+    "status": "under_construction",
+    "lat": 41.8868,
+    "lng": -87.6512,
+    "budget_usd": 24000000,
+    "expected_completion": "2027-Q1",
+    "description": "Curbless shared street, lighting and plantings on Fulton Market.",
+    "source_url": null
+  },
+  {
+    "id": "infra-006",
+    "name": "West Loop Public Library Expansion",
+    "type": "civic",
+    "status": "funded",
+    "lat": 41.8812,
+    "lng": -87.6448,
+    "budget_usd": 14500000,
+    "expected_completion": "2028",
+    "description": "Second-phase expansion with community rooms and teen space.",
+    "source_url": null
+  },
+  {
+    "id": "infra-007",
+    "name": "El Paseo Trail",
+    "type": "park",
+    "status": "funded",
+    "lat": 41.8524,
+    "lng": -87.6703,
+    "budget_usd": 21000000,
+    "expected_completion": "2028",
+    "description": "Rail-to-trail conversion along a former freight corridor.",
+    "source_url": null
+  },
+  {
+    "id": "infra-008",
+    "name": "18th St Pink Line Station Rehab",
+    "type": "transit",
+    "status": "planned",
+    "lat": 41.8578,
+    "lng": -87.6694,
+    "budget_usd": 40000000,
+    "expected_completion": "2029",
+    "description": "Accessibility upgrades, new platform canopy and elevators.",
+    "source_url": null
+  },
+  {
+    "id": "infra-009",
+    "name": "43rd St Green Line Accessibility",
+    "type": "transit",
+    "status": "under_construction",
+    "lat": 41.8167,
+    "lng": -87.6191,
+    "budget_usd": 38000000,
+    "expected_completion": "2027-Q3",
+    "description": "Elevator installation and station rebuild.",
+    "source_url": null
+  },
+  {
+    "id": "infra-010",
+    "name": "Bronzeville Lakefront Mixed-Use Site",
+    "type": "other",
+    "status": "planned",
+    "lat": 41.8296,
+    "lng": -87.6105,
+    "budget_usd": null,
+    "expected_completion": null,
+    "description": "Former hospital campus master plan with housing, retail and research space.",
+    "source_url": null
+  }
+]
