@@ -41,6 +41,7 @@ MIN_CITY_SHARE = 0.10  # tract kept if >= 10% of its land area is inside the cit
 SIMPLIFY_FT = 40  # coverage simplification tolerance; keeps shared edges aligned
 MAX_GEOJSON_BYTES = 5_000_000
 
+MIN_ACTIVITY = 3  # v2: permits (5+ units, last 24 mo) needed for full weight on permit signals
 WEIGHT = {"under_construction": 1.0, "funded": 0.8, "planned": 0.5, "complete": 0.0}
 EARTH_MI = 3958.8
 
@@ -251,16 +252,18 @@ def load_permits(as_of: date, refresh: bool) -> pd.DataFrame:
 # ---------------------------------------------------------------- scoring
 
 def score(tracts: gpd.GeoDataFrame, geoms: list[dict], permits: pd.DataFrame,
-          projects: list[dict], as_of: date) -> list[dict]:
+          projects: list[dict], as_of: date, scoring: str = "v1") -> list[dict]:
     as_of_ts = pd.Timestamp(as_of)
     permits = permits.copy()
     permits["age"] = (as_of_ts - pd.to_datetime(permits["issue_date"])).dt.days / 365.25
     permits["u"] = pd.to_numeric(permits["units"], errors="coerce")  # None -> NaN
+    # v2 (proposed §3): momentum counts only permits with a known unit count (>= 5).
+    permits["mom_ok"] = (permits["u"] >= 5) if scoring == "v2" else True
     g = permits.groupby("geoid")
 
     mf = g.apply(lambda d: float((0.5 ** d.loc[d["u"] >= 5, "age"]).sum()), include_groups=False)
-    L = g["age"].apply(lambda a: int((a < 1).sum()))
-    P = g["age"].apply(lambda a: int(((a >= 1) & (a < 2)).sum()))
+    L = g.apply(lambda d: int(((d["age"] < 1) & d["mom_ok"]).sum()), include_groups=False)
+    P = g.apply(lambda d: int(((d["age"] >= 1) & (d["age"] < 2) & d["mom_ok"]).sum()), include_groups=False)
     cnt24 = g["age"].apply(lambda a: int((a < 2).sum()))
     units24 = g.apply(lambda d: int(d.loc[d["age"] < 2, "u"].fillna(0).sum()), include_groups=False)
 
@@ -268,7 +271,13 @@ def score(tracts: gpd.GeoDataFrame, geoms: list[dict], permits: pd.DataFrame,
     mf_raw = ids.map(mf).fillna(0.0).to_numpy()
     L_ = ids.map(L).fillna(0).to_numpy()
     P_ = ids.map(P).fillna(0).to_numpy()
-    mom_raw = (L_ - P_) / np.maximum(P_, 1)
+    mom_pct_raw = (L_ - P_) / np.maximum(P_, 1)
+    n_act = L_ + P_
+    if scoring == "v2":
+        # Smoothed, and neutral (0) below MIN_ACTIVITY permits so 1 vs 0 is not +100%.
+        mom_raw = np.where(n_act >= MIN_ACTIVITY, (L_ - P_) / (P_ + 2), 0.0)
+    else:
+        mom_raw = mom_pct_raw
 
     cents = np.array([contract_centroid(gm) for gm in geoms])  # (lat, lng)
     infra_raw = np.zeros(len(tracts))
@@ -281,14 +290,24 @@ def score(tracts: gpd.GeoDataFrame, geoms: list[dict], permits: pd.DataFrame,
         infra_raw += w * decay
 
     s_mf, s_mom, s_infra = pct_rank(mf_raw), pct_rank(mom_raw), pct_rank(infra_raw)
-    composite = 0.45 * s_mf + 0.30 * s_mom + 0.25 * s_infra
+    if scoring == "v2":
+        # Shrink the permit part toward the citywide median when evidence is thin,
+        # so one permit can't put a tract at the top. Infrastructure is not shrunk.
+        permit_part = 0.45 * s_mf + 0.30 * s_mom
+        med = float(np.median(permit_part))
+        k = np.minimum(1.0, n_act / MIN_ACTIVITY)
+        units_arr = ids.map(units24).fillna(0).to_numpy()
+        composite = med + (permit_part - med) * k + 0.25 * s_infra + units_arr * 1e-6  # tie-break by units
+    else:
+        composite = 0.45 * s_mf + 0.30 * s_mom + 0.25 * s_infra
     scores = pct_rank(composite)
     sorted_c = np.sort(composite)
     pctl = np.floor(100 * np.searchsorted(sorted_c, composite, "left") / len(composite) + 0.5).astype(int)
 
     features = []
     for i, row in tracts.iterrows():
-        mp = math.floor(mom_raw[i] * 1000 + 0.5) / 10
+        mp = math.floor(mom_pct_raw[i] * 1000 + 0.5) / 10
+        thin = scoring == "v2" and n_act[i] < MIN_ACTIVITY
         features.append({
             "type": "Feature",
             "properties": {
@@ -296,7 +315,7 @@ def score(tracts: gpd.GeoDataFrame, geoms: list[dict], permits: pd.DataFrame,
                 "name": row["name"],
                 "score": int(scores[i]),
                 "percentile": int(pctl[i]),
-                "momentum": "up" if mp > 10 else "down" if mp < -10 else "flat",
+                "momentum": "flat" if thin else "up" if mp > 10 else "down" if mp < -10 else "flat",
                 "momentum_pct": mp,
                 "signals": {
                     "mf_permits": int(s_mf[i]),
@@ -383,9 +402,12 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--as-of", type=date.fromisoformat, default=date.today())
     ap.add_argument("--refresh", action="store_true", help="re-download everything in data/raw")
+    ap.add_argument("--scoring", choices=["v1", "v2"], default="v1",
+                    help="v1 = contract.md §3 as signed off; v2 = proposed fix (scripts/proposal-scoring-v2.md)")
+    ap.add_argument("--out", type=Path, help="write outputs here instead of data/ and public/")
     args = ap.parse_args()
     as_of: date = args.as_of
-    print(f"Emris scoring, as of {as_of}")
+    print(f"Emris scoring {args.scoring}, as of {as_of}")
 
     tracts = load_tracts(args.refresh)
     permits = load_permits(as_of, args.refresh)
@@ -403,7 +425,7 @@ def main() -> None:
              and any(p.get("id") == "infra-001" for p in projects) else ""))
 
     geoms = simplified_geojson_geoms(tracts)
-    features = score(tracts, geoms, permits, projects, as_of)
+    features = score(tracts, geoms, permits, projects, as_of, args.scoring)
     fc = {"type": "FeatureCollection", "as_of": as_of.isoformat(), "features": features}
 
     permits = permits.sort_values(["issue_date", "id"], ascending=[False, True])
@@ -419,7 +441,9 @@ def main() -> None:
     if len(gj.encode()) > MAX_GEOJSON_BYTES:
         sys.exit(f"tracts.geojson is {len(gj.encode()) / 1e6:.1f} MB, over 5 MB; raise SIMPLIFY_FT")
     pj = json.dumps(permit_rows, indent=1, ensure_ascii=False)
-    for d in (DATA, PUBLIC):
+    out_dirs = (args.out,) if args.out else (DATA, PUBLIC)
+    for d in out_dirs:
+        d.mkdir(parents=True, exist_ok=True)
         (d / "tracts.geojson").write_text(gj + "\n")
         (d / "permits.json").write_text(pj + "\n")
 
