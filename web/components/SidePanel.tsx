@@ -8,21 +8,30 @@ import type {
   ProjectStatus,
   ProjectWithDistance,
   TractDetailResponse,
+  TractProps,
 } from "@/lib/data";
+import AccountPrompt from "@/components/AccountPrompt";
 import { ApiError, fetchTract } from "@/components/load";
+import { coverageLabel, searchLimitMessage } from "@/components/places";
 import { STATUS_LABEL, formatMiles, formatMomentumPct, formatMonth } from "@/lib/spatial";
 
-interface SearchState {
-  status: "loading" | "ready" | "error";
+export interface SearchState {
+  status: "loading" | "ready" | "error" | "limited";
   place: { lat: number; lng: number; zoom: number } | null;
   result: NearResponse | null;
   error: string | null;
+  resets: string | null;
 }
 
 interface Props {
   open: boolean;
-  mode: "tract" | "search" | null;
+  mode: "tract" | "search" | "account" | null;
   geoid: string | null;
+  summary: TractProps | null;
+  placeName: string | null;
+  coverageSources: unknown[];
+  signedIn: boolean;
+  authReady: boolean;
   search: SearchState | null;
   onClose: () => void;
   onOpenTract: (geoid: string) => void;
@@ -56,6 +65,14 @@ function StatusChip({ status }: { status: ProjectStatus }) {
   );
 }
 
+function CoverageBadge({ label }: { label: string }) {
+  return (
+    <p className="mt-3 inline-flex rounded-full border border-rule px-2 py-0.5 font-sans text-[11px] leading-4 text-muted">
+      {label}
+    </p>
+  );
+}
+
 function Bones() {
   return (
     <div className="animate-pulse space-y-3">
@@ -72,10 +89,20 @@ function unitsLabel(units: number | null): string {
   return units === 1 ? "1 unit" : `${units} units`;
 }
 
+function rankLine(percentile: number, placeName: string | null): string {
+  const top = `Top ${Math.max(0, 100 - percentile)}%`;
+  return placeName ? `${top} in ${placeName}` : top;
+}
+
 export default function SidePanel({
   open,
   mode,
   geoid,
+  summary,
+  placeName,
+  coverageSources,
+  signedIn,
+  authReady,
   search,
   onClose,
   onOpenTract,
@@ -87,7 +114,7 @@ export default function SidePanel({
   const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
-    if (mode !== "tract" || !geoid) return;
+    if (!signedIn || mode !== "tract" || !geoid) return;
     let cancelled = false;
     const requested = geoid;
     void fetchTract(requested)
@@ -109,11 +136,12 @@ export default function SidePanel({
     return () => {
       cancelled = true;
     };
-  }, [mode, geoid, attempt, onProjects]);
+  }, [signedIn, mode, geoid, attempt, onProjects]);
 
   const shown = detail && detail.tract.geoid === geoid ? detail : null;
   const tract = shown?.tract;
   const tractError = error && error.geoid === geoid ? error.message : null;
+  const badge = coverageLabel(summary, shown?.tract, ...coverageSources);
 
   return (
     <aside
@@ -132,11 +160,27 @@ export default function SidePanel({
         <X className="h-4 w-4" />
       </button>
       <div className="min-h-0 flex-1 overflow-y-auto px-5 pb-8 pt-5">
-        {mode === "tract" ? (
+        {mode === "tract" && !authReady ? (
+          <div className="space-y-6 pr-8 pt-8">
+            <Bones />
+            <Bones />
+          </div>
+        ) : null}
+        {mode === "tract" && authReady && !signedIn ? (
+          <ScoreOnly summary={summary} badge={badge} />
+        ) : null}
+        {mode === "account" && authReady && !signedIn ? (
+          <div className="pr-8 pt-8">
+            <AccountPrompt />
+          </div>
+        ) : null}
+        {mode === "tract" && authReady && signedIn ? (
           <TractBody
             loading={!shown && !tractError}
             error={tractError}
             detail={shown}
+            placeName={placeName}
+            badge={badge}
             onRetry={() => {
               setDetail(null);
               setError(null);
@@ -144,11 +188,11 @@ export default function SidePanel({
             }}
           />
         ) : null}
-        {mode === "search" && search ? (
+        {mode === "search" && search && signedIn ? (
           <SearchBody search={search} onOpenTract={onOpenTract} />
         ) : null}
       </div>
-      {mode === "tract" && tract ? (
+      {mode === "tract" && signedIn && tract ? (
         <footer className="shrink-0 border-t border-rule p-4">
           <button
             type="button"
@@ -165,15 +209,36 @@ export default function SidePanel({
   );
 }
 
+function ScoreOnly({ summary, badge }: { summary: TractProps | null; badge: string }) {
+  if (!summary) {
+    return <p className="pr-8 pt-8 font-sans text-sm text-ink">We couldn&apos;t find that tract.</p>;
+  }
+  return (
+    <div className="pr-8">
+      <h2 className="font-display text-[26px] leading-tight text-ink">{summary.name}</h2>
+      <div className="mt-3 flex items-baseline gap-1">
+        <span className="font-mono text-5xl leading-none">{summary.score}</span>
+        <span className="font-mono text-lg text-muted">/100</span>
+      </div>
+      <CoverageBadge label={badge} />
+      <AccountPrompt />
+    </div>
+  );
+}
+
 function TractBody({
   loading,
   error,
   detail,
+  placeName,
+  badge,
   onRetry,
 }: {
   loading: boolean;
   error: string | null;
   detail: TractDetailResponse | null;
+  placeName: string | null;
+  badge: string;
   onRetry: () => void;
 }) {
   if (error) {
@@ -207,14 +272,11 @@ function TractBody({
         <span className="font-mono text-5xl leading-none">{tract.score}</span>
         <span className="font-mono text-lg text-muted">/100</span>
       </div>
-      <p className="mt-1 font-sans text-sm text-ink">
-        Top {Math.max(0, 100 - tract.percentile)}% in Chicago
-      </p>
+      <p className="mt-1 font-sans text-sm text-ink">{rankLine(tract.percentile, placeName)}</p>
+      <CoverageBadge label={badge} />
       <div className="mt-3 flex items-center gap-2 font-sans text-sm">
         <MomentumIcon momentum={tract.momentum} />
-        <span>
-          {formatMomentumPct(tract.momentum_pct)} vs prior 12 mo
-        </span>
+        <span>{formatMomentumPct(tract.momentum_pct)} vs prior 12 mo</span>
       </div>
 
       <section className="mt-8">
@@ -305,6 +367,20 @@ function SearchBody({
   search: SearchState;
   onOpenTract: (geoid: string) => void;
 }) {
+  if (search.status === "limited") {
+    return (
+      <div className="pr-8 pt-8">
+        <p className="font-sans text-sm text-ink">{searchLimitMessage(search.resets)}</p>
+        <button
+          type="button"
+          className="mt-4 h-12 w-full bg-safety font-sans text-sm font-medium text-paper"
+          onClick={() => undefined}
+        >
+          Upgrade
+        </button>
+      </div>
+    );
+  }
   if (search.status === "error") {
     return <p className="pr-8 pt-8 font-sans text-sm text-ink">{search.error}</p>;
   }
@@ -338,7 +414,7 @@ function SearchBody({
             </button>
           ) : (
             <p className="mt-4 font-sans text-sm text-muted">
-              This point isn&apos;t inside a scored Chicago tract.
+              This point isn&apos;t inside a scored tract.
             </p>
           )}
           <section className="mt-8">
