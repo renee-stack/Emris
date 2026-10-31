@@ -59,6 +59,16 @@ body {
   transform: translateX(-408px);
 }
 
+@media (max-width: 767px) {
+  .maplibregl-ctrl-attrib {
+    max-width: 42vw;
+  }
+
+  .panel-open .maplibregl-ctrl-bottom-right {
+    transform: translateY(calc(-1 * min(70vh, 560px)));
+  }
+}
+
 @media print {
   body {
     height: auto !important;

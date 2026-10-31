@@ -5,12 +5,13 @@ import type { GeoJSONSource, Map as MlMap, MapLayerMouseEvent, Marker } from "ma
 import { circle } from "@turf/circle";
 import { ArrowDown, ArrowUp, Minus } from "lucide-react";
 import type { Momentum, ProjectWithDistance, TractCollection } from "@/lib/data";
-import { fetchTracts } from "@/components/load";
-import { featureBounds, readDeepLink } from "@/lib/spatial";
+import { featureBounds } from "@/lib/spatial";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 const STYLE = "https://tiles.openfreemap.org/styles/positron";
-const CITY = { lng: -87.68, lat: 41.85, zoom: 10.5 };
+/** Contiguous US overview until a place is selected. Not a city default. */
+const OVERVIEW = { lng: -98.35, lat: 39.5, zoom: 3.5 };
+const PLACE_PAD = { top: 96, bottom: 180, left: 24, right: 24 };
 const FRAME = { top: 96, bottom: 180, left: 24, right: 440 };
 const SCORE_FALLBACK = ["#e7f4f1", "#b7dfd6", "#6fbfb2", "#2a8f82", "#0e4f48"];
 
@@ -23,10 +24,14 @@ export interface MapPlace {
 interface Props {
   panelOpen: boolean;
   projects: ProjectWithDistance[];
-  place: MapPlace | null;
+  searchPin: MapPlace | null;
   fit: { geoid: string; token: number } | null;
+  bounds: [[number, number], [number, number]] | null;
+  placeId: string | null;
+  placeName: string | null;
+  tracts: TractCollection | null;
+  loadError: string | null;
   onTractClick: (geoid: string) => void;
-  onSearch: (query: string) => void;
 }
 
 interface Tip {
@@ -75,16 +80,22 @@ function diamondImage(fill: string): ImageData {
   return ctx.getImageData(0, 0, size, size);
 }
 
-function fitGeoid(map: MlMap, collection: TractCollection, geoid: string) {
-  const feature = collection.features.find((item) => item.properties.geoid === geoid);
-  if (!feature) return;
-  map.fitBounds(featureBounds(feature.geometry), {
-    padding: FRAME,
+function fitOptions(padding: { top: number; bottom: number; left: number; right: number }) {
+  return {
+    padding,
     duration: 300,
     maxDuration: 300,
     curve: 1,
     easing: easeOut,
     essential: true,
+  };
+}
+
+function fitGeoid(map: MlMap, collection: TractCollection, geoid: string) {
+  const feature = collection.features.find((item) => item.properties.geoid === geoid);
+  if (!feature) return;
+  map.fitBounds(featureBounds(feature.geometry), {
+    ...fitOptions(FRAME),
     maxZoom: 15,
     absolutePadding: true,
   });
@@ -101,23 +112,51 @@ function MomentumIcon({ momentum }: { momentum: Momentum }) {
 export default function MapView({
   panelOpen,
   projects,
-  place,
+  searchPin,
   fit,
+  bounds,
+  placeId,
+  placeName,
+  tracts,
+  loadError,
   onTractClick,
-  onSearch,
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MlMap | null>(null);
   const tractsRef = useRef<TractCollection | null>(null);
+  const boundsRef = useRef(bounds);
+  const placeIdRef = useRef(placeId);
   const markerRef = useRef<Marker | null>(null);
   const markerClass = useRef<typeof Marker | null>(null);
   const onTractRef = useRef(onTractClick);
   const panelRef = useRef(panelOpen);
 
   const [ready, setReady] = useState(false);
-  const [loadError, setLoadError] = useState<string | null>(null);
   const [tip, setTip] = useState<Tip | null>(null);
-  const [query, setQuery] = useState("");
+  const fittedPlace = useRef<string | null>(null);
+  const fitPlaceRef = useRef<(map: MlMap) => void>(() => {});
+
+  boundsRef.current = bounds;
+  placeIdRef.current = placeId;
+  tractsRef.current = tracts;
+
+  fitPlaceRef.current = (map) => {
+    const id = placeIdRef.current;
+    const box = boundsRef.current;
+    if (!id || !box || fittedPlace.current === id) return;
+    const container = map.getContainer();
+    if (container.clientWidth < 10 || container.clientHeight < 10) return;
+    const fromOverview = fittedPlace.current == null;
+    fittedPlace.current = id;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    map.stop();
+    map.fitBounds(box, {
+      padding: PLACE_PAD,
+      duration: reduce ? 0 : fromOverview ? 1800 : 800,
+      easing: easeOut,
+      essential: true,
+    });
+  };
 
   useEffect(() => {
     onTractRef.current = onTractClick;
@@ -136,13 +175,11 @@ export default function MapView({
       if (cancelled || !containerRef.current) return;
       maplibregl.setWorkerUrl(`${window.location.origin}/maplibre-gl-worker.mjs`);
       markerClass.current = maplibregl.Marker;
-      const link = readDeepLink(window.location.search);
-      const initialPoint = link?.kind === "point" ? link : null;
       map = new maplibregl.Map({
         container: containerRef.current,
         style: STYLE,
-        center: initialPoint ? [initialPoint.lng, initialPoint.lat] : [CITY.lng, CITY.lat],
-        zoom: initialPoint ? initialPoint.zoom : CITY.zoom,
+        center: [OVERVIEW.lng, OVERVIEW.lat],
+        zoom: OVERVIEW.zoom,
         logoPosition: "bottom-right",
         attributionControl: { compact: false },
         dragRotate: false,
@@ -151,7 +188,10 @@ export default function MapView({
       });
       mapRef.current = map;
       map.touchZoomRotate.disableRotation();
-      const resize = () => map?.resize();
+      const resize = () => {
+        map?.resize();
+        if (map) fitPlaceRef.current(map);
+      };
       observer = new ResizeObserver(resize);
       observer.observe(containerRef.current);
       requestAnimationFrame(resize);
@@ -164,7 +204,7 @@ export default function MapView({
         const safety = cssColor("--safety", "#e85d04");
         map.addSource("tracts", {
           type: "geojson",
-          data: emptyCollection(),
+          data: (tractsRef.current ?? emptyCollection()) as GeoJSON.FeatureCollection,
           promoteId: "geoid",
         });
         map.addSource("search-circle", { type: "geojson", data: emptyCollection() });
@@ -259,25 +299,7 @@ export default function MapView({
           const geoid = event.features?.[0]?.properties?.geoid;
           if (typeof geoid === "string" && geoid) onTractRef.current(geoid);
         });
-
-        void fetchTracts()
-          .then((collection) => {
-            if (cancelled || !map) return;
-            tractsRef.current = collection;
-            const source = map.getSource("tracts");
-            if (source?.type === "geojson") {
-              (source as GeoJSONSource).setData(collection as GeoJSON.FeatureCollection);
-            }
-            const deep = readDeepLink(window.location.search);
-            if (deep?.kind === "tract") fitGeoid(map, collection, deep.geoid);
-            setLoadError(null);
-          })
-          .catch(() => {
-            if (!cancelled) setLoadError("Couldn't load tract scores.");
-          })
-          .finally(() => {
-            if (!cancelled) setReady(true);
-          });
+        setReady(true);
       });
     })();
 
@@ -288,8 +310,23 @@ export default function MapView({
       markerRef.current = null;
       map?.remove();
       if (mapRef.current === map) mapRef.current = null;
+      setReady(false);
     };
   }, []);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !ready) return;
+    const source = map.getSource("tracts");
+    if (source?.type !== "geojson") return;
+    (source as GeoJSONSource).setData((tracts ?? emptyCollection()) as GeoJSON.FeatureCollection);
+  }, [tracts, ready]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !ready) return;
+    fitPlaceRef.current(map);
+  }, [bounds, placeId, ready]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -315,18 +352,18 @@ export default function MapView({
     markerRef.current?.remove();
     markerRef.current = null;
     if (source?.type === "geojson") {
-      if (!place) {
+      if (!searchPin) {
         (source as GeoJSONSource).setData(emptyCollection());
       } else {
         (source as GeoJSONSource).setData(
-          circle([place.lng, place.lat], 0.25, { steps: 64, units: "miles" }),
+          circle([searchPin.lng, searchPin.lat], 0.25, { steps: 64, units: "miles" }),
         );
       }
     }
-    if (!place) return;
+    if (!searchPin) return;
     map.flyTo({
-      center: [place.lng, place.lat],
-      zoom: place.zoom,
+      center: [searchPin.lng, searchPin.lat],
+      zoom: searchPin.zoom,
       duration: 300,
       maxDuration: 300,
       curve: 1,
@@ -336,8 +373,10 @@ export default function MapView({
     });
     const el = document.createElement("div");
     el.className = "place-marker";
-    markerRef.current = new MarkerClass({ element: el }).setLngLat([place.lng, place.lat]).addTo(map);
-  }, [place, ready]);
+    markerRef.current = new MarkerClass({ element: el })
+      .setLngLat([searchPin.lng, searchPin.lat])
+      .addTo(map);
+  }, [searchPin, ready]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -346,31 +385,21 @@ export default function MapView({
     fitGeoid(map, collection, fit.geoid);
   }, [fit, ready]);
 
+  const rankLabel = placeName ? `Top 10% in ${placeName}` : "Top 10%";
+  const sourceLabel = placeName
+    ? `${placeName} · Permits and public infrastructure filings · Prototype`
+    : "Permits and public infrastructure filings · Prototype";
+
   return (
     <div className={`absolute inset-0 ${panelOpen ? "panel-open" : ""}`}>
       <div className="absolute inset-0">
         <div ref={containerRef} className="h-full w-full" />
       </div>
-      <form
-        className="absolute left-4 top-4 z-10 w-[360px] rounded-lg border border-rule bg-paper p-4 shadow-md"
-        onSubmit={(event) => {
-          event.preventDefault();
-          onSearch(query);
-        }}
+      <div
+        className={`absolute left-4 z-20 w-[min(220px,calc(100vw-2rem))] rounded-lg border border-rule bg-paper p-3 shadow-md ${
+          panelOpen ? "bottom-16 max-md:bottom-[calc(min(70vh,560px)+12px)]" : "bottom-16"
+        }`}
       >
-        <div className="font-display text-[28px] leading-none tracking-tight text-ink">Emris</div>
-        <label className="sr-only" htmlFor="emris-search">
-          Search an address or neighborhood
-        </label>
-        <input
-          id="emris-search"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search an address or neighborhood"
-          className="mt-3 w-full border-b border-rule bg-transparent pb-1.5 font-sans text-sm text-ink outline-none placeholder:text-muted focus:border-ink"
-        />
-      </form>
-      <div className="absolute bottom-16 left-4 z-10 rounded-lg border border-rule bg-paper p-3 shadow-md">
         <div className="font-sans text-xs font-medium text-ink">Path-of-progress score</div>
         <div className="mt-2 flex h-2 w-[200px] overflow-hidden">
           <span className="h-full flex-1 bg-score-1" />
@@ -385,18 +414,20 @@ export default function MapView({
         </div>
         <div className="mt-2 flex items-center gap-2 whitespace-nowrap font-sans text-[11px] text-ink">
           <span className="h-[2px] w-6 shrink-0 bg-safety" />
-          Top 10% in Chicago
+          {rankLabel}
         </div>
       </div>
       <p
-        className={`pointer-events-none absolute bottom-12 z-10 max-w-[420px] font-sans text-[11px] leading-snug text-ink/70 transition-[right] duration-300 ease ${
-          panelOpen ? "right-[416px]" : "right-4"
+        className={`pointer-events-none absolute z-20 font-sans text-[11px] leading-snug text-ink/70 transition-[right,bottom] duration-300 ease max-md:max-w-[46vw] max-md:text-right ${
+          panelOpen
+            ? "bottom-12 right-[416px] max-md:right-4 max-md:bottom-[calc(min(70vh,560px)+148px)]"
+            : "bottom-12 right-4"
         }`}
       >
-        Chicago · Permits and public infrastructure filings · Prototype
+        {sourceLabel}
       </p>
       {loadError ? (
-        <p className="absolute left-4 top-36 z-10 rounded-md border border-rule bg-paper px-3 py-2 font-sans text-sm text-ink shadow-md">
+        <p className="absolute left-4 top-64 z-10 rounded-md border border-rule bg-paper px-3 py-2 font-sans text-sm text-ink shadow-md">
           {loadError}
         </p>
       ) : null}

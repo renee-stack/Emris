@@ -6,13 +6,16 @@ import type {
   TractCollection,
   TractDetailResponse,
 } from "@/lib/data";
+import { collectionCoverage, parsePlaces, resetRaw, type CityPlace } from "@/components/places";
 import { buildMemo, buildNear, buildTractDetail, type Bundle } from "@/lib/spatial";
 
 export class ApiError extends Error {
   status: number;
-  constructor(status: number, message: string) {
+  resets: string | null;
+  constructor(status: number, message: string, resets: string | null = null) {
     super(message);
     this.status = status;
+    this.resets = resets;
   }
 }
 
@@ -43,18 +46,25 @@ function publicBundle(): Promise<Bundle> {
   return bundleP;
 }
 
-export async function fetchTracts(): Promise<TractCollection> {
-  try {
-    const res = await fetch("/api/tracts", { cache: "no-store" });
-    if (res.ok) return (await res.json()) as TractCollection;
-  } catch {
-    // Fall through to the static file.
-  }
-  return (await publicBundle()).tracts;
+export async function fetchPlaces(): Promise<CityPlace[]> {
+  const res = await fetch("/api/places", { cache: "no-store" });
+  if (!res.ok) throw new ApiError(res.status, "Couldn't load places.");
+  return parsePlaces(await res.json());
+}
+
+export async function fetchTracts(
+  placeId: string,
+): Promise<{ collection: TractCollection; coverage: unknown }> {
+  const res = await fetch(`/api/tracts?place_id=${encodeURIComponent(placeId)}`, {
+    cache: "no-store",
+  });
+  if (!res.ok) throw new ApiError(res.status, "Couldn't load tract scores.");
+  const body: unknown = await res.json();
+  return { collection: body as TractCollection, coverage: collectionCoverage(body) };
 }
 
 export async function fetchTract(geoid: string): Promise<TractDetailResponse> {
-  const res = await fetch(`/api/tract/${geoid}`, { cache: "no-store" });
+  const res = await fetch(`/api/tract/${encodeURIComponent(geoid)}`, { cache: "no-store" });
   const json = (res.headers.get("content-type") ?? "").includes("json");
   if (res.ok) return (await res.json()) as TractDetailResponse;
   if (json) {
@@ -73,13 +83,17 @@ export async function fetchNear(query: string): Promise<NearResponse> {
     { cache: "no-store" },
   );
   const json = (res.headers.get("content-type") ?? "").includes("json");
+  if (res.status === 429) {
+    const body = json ? await res.json().catch(() => null) : null;
+    throw new ApiError(429, "Search limit reached.", resetRaw(body, res.headers));
+  }
   if (res.ok) return (await res.json()) as NearResponse;
   if (json) {
     const body = (await res.json().catch(() => null)) as { error?: string } | null;
     throw new ApiError(res.status, body?.error ?? "Could not search.");
   }
   const near = buildNear(query, 0.25, await publicBundle());
-  if (!near) throw new ApiError(404, "Couldn't find that place in Chicago.");
+  if (!near) throw new ApiError(404, "Couldn't find that place.");
   return near;
 }
 
