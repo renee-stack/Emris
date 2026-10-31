@@ -1,26 +1,91 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #ffffff;
+  --ink: #171717;
+  --rule: #e6e6e6;
+  --muted: #737373;
+  --teal: #0f766e;
+  --teal-mid: #1a9a8c;
+  --safety: #e85d04;
+  /* Five-step path-of-progress ramp. Step breaks at 20, 40, 60, 80. */
+  --score-1: #e7f4f1;
+  --score-2: #b7dfd6;
+  --score-3: #6fbfb2;
+  --score-4: #2a8f82;
+  --score-5: #0e4f48;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-rule: var(--rule);
+  --color-muted: var(--muted);
+  --color-teal: var(--teal);
+  --color-teal-mid: var(--teal-mid);
+  --color-safety: var(--safety);
+  --color-score-1: var(--score-1);
+  --color-score-2: var(--score-2);
+  --color-score-3: var(--score-3);
+  --color-score-4: var(--score-4);
+  --color-score-5: var(--score-5);
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-ibm-plex-sans);
+  --font-mono: var(--font-ibm-plex-mono);
+  --font-display: var(--font-archivo);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-ibm-plex-sans), sans-serif;
+}
+
+.place-marker {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--safety);
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(23, 23, 23, 0.35);
+}
+
+.maplibregl-ctrl-bottom-right {
+  transition: transform 300ms ease;
+}
+
+.panel-open .maplibregl-ctrl-bottom-right {
+  transform: translateX(-408px);
+}
+
+@media print {
+  body {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .memo-sheet,
+  .memo-sheet * {
+    visibility: visible;
+  }
+
+  .memo-no-print,
+  .memo-no-print * {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  .memo-sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-width: none !important;
+    box-shadow: none !important;
+  }
 }
