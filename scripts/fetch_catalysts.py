@@ -597,7 +597,9 @@ def main() -> None:
     if args.dry_run:
         print("\n--dry-run: data/infrastructure.json not written")
         return
-    INFRA.write_text(json.dumps(rows, indent=2, ensure_ascii=False) + "\n")
+    out = json.dumps(rows, indent=2, ensure_ascii=False) + "\n"
+    INFRA.write_text(out)
+    (ROOT / "public" / "infrastructure.json").write_text(out)  # the map UI falls back to this copy
     print(f"\nWrote {len(rows)} projects to data/infrastructure.json")
 
 
