@@ -284,7 +284,7 @@ export default function PlatformPage() {
             <h2 className="max-w-[16ch] font-display text-4xl leading-[0.98] tracking-tight sm:text-5xl">
               See your metro scored, tract by tract.
             </h2>
-            <Cta href="/landing/access">Request access</Cta>
+            <Cta href="/access">Request access</Cta>
           </div>
         </section>
       </main>

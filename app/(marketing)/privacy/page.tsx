@@ -25,8 +25,8 @@ export default function PrivacyPage() {
             </p>
             <p>
               Tract names, scores, and prices marked illustrative on these pages
-              are samples. The live Chicago map is the product at the home route,
-              and it reads the same public-record files the app already serves.
+              are samples. The live Chicago map is at Test it out, and it reads
+              the same public-record files the app already serves.
             </p>
           </div>
         </article>

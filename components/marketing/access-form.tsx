@@ -117,7 +117,7 @@ export function AccessForm() {
       </button>
       <p className="mt-3 text-center text-xs leading-relaxed text-muted">
         Nothing is sent from this form. No marketing lists. See our{" "}
-        <Link href="/landing/privacy" className="underline underline-offset-2 hover:text-ink">
+        <Link href="/privacy" className="underline underline-offset-2 hover:text-ink">
           privacy policy
         </Link>
         .

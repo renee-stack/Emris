@@ -5,8 +5,8 @@ import { Mark } from "./mark";
 export type MarketingSection = "home" | "platform" | "pricing" | "access";
 
 const links = [
-  { href: "/landing/platform", id: "platform", label: "Platform" },
-  { href: "/landing/pricing", id: "pricing", label: "Pricing" },
+  { href: "/platform", id: "platform", label: "Platform" },
+  { href: "/pricing", id: "pricing", label: "Pricing" },
 ] as const;
 
 function navClass(active: boolean) {
@@ -25,7 +25,7 @@ export function SiteHeader({ current }: { current?: MarketingSection }) {
         Skip to content
       </a>
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
-        <Link href="/landing" className="flex items-center gap-2.5">
+        <Link href="/" className="flex items-center gap-2.5">
           <Mark />
           <span className="font-display text-xl leading-none tracking-tight">
             Emris
@@ -44,11 +44,11 @@ export function SiteHeader({ current }: { current?: MarketingSection }) {
           ))}
         </nav>
         <div className="flex items-center gap-4 sm:gap-5">
-          <Link href="/" className="hidden text-sm text-ink hover:text-teal sm:inline">
-            Sign in
+          <Link href="/map" className="hidden text-sm text-ink hover:text-teal sm:inline">
+            Test it out
           </Link>
           <Cta
-            href="/landing/access"
+            href="/access"
             variant={current === "access" ? "safety" : "ink"}
             className="px-3.5 py-2"
           >
@@ -70,8 +70,8 @@ export function SiteHeader({ current }: { current?: MarketingSection }) {
             {link.label}
           </Link>
         ))}
-        <Link href="/" className="text-sm text-ink hover:text-teal">
-          Sign in
+        <Link href="/map" className="text-sm text-ink hover:text-teal">
+          Test it out
         </Link>
       </nav>
     </header>

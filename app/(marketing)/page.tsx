@@ -115,8 +115,11 @@ export default function LandingPage() {
               it up in plain English your investment committee can act on.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Cta href="/landing/access">Request access</Cta>
-              <Cta href="/landing/platform#scoring" variant="outline">
+              <Cta href="/access">Request access</Cta>
+              <Cta href="/map" variant="outline">
+                Test it out
+              </Cta>
+              <Cta href="/platform#scoring" variant="outline">
                 How scoring works
               </Cta>
             </div>
@@ -226,7 +229,7 @@ export default function LandingPage() {
                 </ul>
                 <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-rule pt-4 text-sm">
                   <p className="text-muted">Every sentence links back to its source filing.</p>
-                  <Link href="/landing/platform#export" className="font-semibold hover:text-teal">
+                  <Link href="/platform#export" className="font-semibold hover:text-teal">
                     Export as IC memo →
                   </Link>
                 </div>
@@ -270,8 +273,11 @@ export default function LandingPage() {
                 is moving there.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Cta href="/landing/access">Request access</Cta>
-                <Cta href="/landing/pricing" variant="outlineLight">
+                <Cta href="/access">Request access</Cta>
+                <Cta href="/map" variant="outlineLight">
+                  Test it out
+                </Cta>
+                <Cta href="/pricing" variant="outlineLight">
                   See pricing
                 </Cta>
               </div>

@@ -75,7 +75,7 @@ export default function PricingPage() {
                 For a single team watching one market.
               </p>
               <p className="mt-6 font-display text-4xl tracking-tight">On request</p>
-              <Cta href="/landing/access" variant="outline" className="mt-6 w-full">
+              <Cta href="/access" variant="outline" className="mt-6 w-full">
                 Request access
               </Cta>
               <ul className="mt-6 space-y-3 border-t border-rule pt-5">
@@ -94,7 +94,7 @@ export default function PricingPage() {
                 For acquisitions teams building a multi-market pipeline.
               </p>
               <p className="mt-6 font-display text-4xl tracking-tight">On request</p>
-              <Cta href="/landing/access" className="mt-6 w-full">
+              <Cta href="/access" className="mt-6 w-full">
                 Request access
               </Cta>
               <ul className="mt-6 space-y-3 border-t border-paper/15 pt-5">
@@ -112,7 +112,7 @@ export default function PricingPage() {
                 For developers and funds covering many markets.
               </p>
               <p className="mt-6 font-display text-4xl tracking-tight">Custom</p>
-              <Cta href="/landing/access" variant="outline" className="mt-6 w-full">
+              <Cta href="/access" variant="outline" className="mt-6 w-full">
                 Talk to us
               </Cta>
               <ul className="mt-6 space-y-3 border-t border-rule pt-5">

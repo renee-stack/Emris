@@ -9,6 +9,10 @@ import type { NearResponse, ProjectWithDistance } from "@/lib/data";
 import { pointHref, readDeepLink, tractHref } from "@/lib/spatial";
 import type { MapPlace } from "@/components/MapView";
 
+function mapHref(href: string): string {
+  return href.startsWith("/?") ? `/map${href.slice(1)}` : "/map";
+}
+
 const MapView = dynamic(() => import("@/components/MapView"), {
   ssr: false,
   loading: () => <div className="fixed inset-0 bg-paper" />,
@@ -81,7 +85,7 @@ export default function Page() {
 
   const openTract = useCallback((id: string, fitCamera: boolean) => {
     requestId.current += 1;
-    window.history.replaceState(null, "", tractHref(id));
+    window.history.replaceState(null, "", mapHref(tractHref(id)));
     setMode("tract");
     setGeoid(id);
     setSearch(null);
@@ -101,7 +105,7 @@ export default function Page() {
       .then((result) => {
         if (id !== requestId.current) return;
         const place = { lat: result.place.lat, lng: result.place.lng, zoom: 15 };
-        window.history.replaceState(null, "", pointHref(place.lat, place.lng, place.zoom));
+        window.history.replaceState(null, "", mapHref(pointHref(place.lat, place.lng, place.zoom)));
         setSearch({ status: "ready", place, result, error: null });
         setProjects(result.projects);
       })
@@ -121,7 +125,7 @@ export default function Page() {
 
   const onClose = useCallback(() => {
     requestId.current += 1;
-    window.history.replaceState(null, "", "/");
+    window.history.replaceState(null, "", "/map");
     setMode(null);
     setGeoid(null);
     setSearch(null);
