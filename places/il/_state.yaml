@@ -23,7 +23,9 @@ baseline:
   permits:
     connector: census_bps
     frequency: annual
-    url: TODO exact place-file URL pattern and column layout (AUDIT.md section 4)
+    # Midwest region annual place file, 1980 onward; latest mw2025a.txt. Two header rows,
+    # one blank row, then data; layout in AUDIT.md section 4.
+    url: https://www2.census.gov/econ/bps/Place/Midwest%20Region/mw{year}a.txt
     allocate_by: housing_units
 
   # ACS 5-year (AUDIT.md section 5). 2024 = the 2020-2024 release, checked live 2026-10-31.

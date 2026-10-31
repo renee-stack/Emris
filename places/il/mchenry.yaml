@@ -1,0 +1,10 @@
+# places/il/mchenry.yaml
+# Draft from the Day 0 audit (places/il/AUDIT.md sections 3 and 6).
+# Baseline: no public county parcel data found (only paid resellers).
+
+place_id: il-mchenry
+name: McHenry County
+state: IL
+county_fips: "17111"
+peer_group: cbsa:16980
+coverage_tier: baseline

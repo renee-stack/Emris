@@ -1,0 +1,47 @@
+# places/il/cook-suburban.yaml
+# Draft from the Day 0 audit (places/il/AUDIT.md sections 2 and 6).
+# No census_place: covers Cook County minus every other place file in it (Chicago).
+# Permits come from the state baseline (Census BPS by town); municipal permits aren't open.
+
+place_id: il-cook-suburban
+name: Suburban Cook County
+state: IL
+county_fips: "17031"
+peer_group: cbsa:16980
+coverage_tier: parcel_partial
+proximity_decay_mi: [0.25, 1.0]
+
+sources:
+  parcels:
+    - name: residential_under_7_units
+      connector: socrata
+      domain: datacatalog.cookcountyil.gov
+      dataset: x54s-btds
+      latest_year_only: true         # newest year per parcel (one triad reassessed per year)
+      fields:
+        parcel_id: pin
+        year: year
+        year_built: char_yrblt
+        land_use: class
+        # Words, not numbers: None (=1), Two .. Six. Connector needs a word-to-number map.
+        units: char_apts
+    - name: commercial_incl_7plus_apartments
+      connector: socrata
+      domain: datacatalog.cookcountyil.gov
+      dataset: csik-bsws
+      latest_year_only: true         # suburbs were assessed in 2022, 2023 and 2025
+      fields:
+        parcel_id: keypin            # dashed: strip dashes to join
+        year: year
+        address: address
+        land_use: class_es
+        units: tot_units
+        year_built: yearbuilt
+    - name: locations
+      connector: socrata
+      domain: datacatalog.cookcountyil.gov
+      dataset: pabr-t5kh
+      role: geometry
+      # No filter: equality filters can't say "not in the city". Parcels are assigned to
+      # this place by the tract they fall in.
+      fields: { parcel_id: pin, lat: lat, lng: lon }

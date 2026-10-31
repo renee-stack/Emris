@@ -1,0 +1,12 @@
+# places/il/dupage.yaml
+# Draft from the Day 0 audit (places/il/AUDIT.md sections 3 and 6).
+# Baseline: the county parcel layer has no year built or units (96 fields, rechecked
+# 2026-10-31), so it can't feed Wayback. Layer, for later:
+# https://gis.dupageco.org/arcgis/rest/services/Tyler/ParcelsRealEstateCCWGS84SR4326/MapServer/0
+
+place_id: il-dupage
+name: DuPage County
+state: IL
+county_fips: "17043"
+peer_group: cbsa:16980
+coverage_tier: baseline

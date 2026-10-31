@@ -1,0 +1,27 @@
+# places/il/lake.yaml
+# Draft from the Day 0 audit (places/il/AUDIT.md sections 3 and 6).
+# Year built is on 97% of residential improved parcels but ~5% of commercial ones,
+# where most large apartment complexes sit. No units field. Permits: state baseline.
+
+place_id: il-lake
+name: Lake County
+state: IL
+county_fips: "17097"
+peer_group: cbsa:16980
+coverage_tier: county_gis
+proximity_decay_mi: [0.25, 1.0]
+
+sources:
+  parcels:
+    - name: tax_parcels
+      connector: arcgis
+      url: https://maps.lakecountyil.gov/arcgis/rest/services/GISMapping/WABParcels/MapServer/12
+      fields:
+        parcel_id: PIN               # 10 characters
+        address: situs_addr_line_1
+        lat: INSIDE_Y                # already WGS84
+        lng: INSIDE_X
+        year_built: improve_year_built
+        stories: stories             # text, e.g. "2 STORY"
+        land_use: land_use_code
+        owner_name: taxpayer_name

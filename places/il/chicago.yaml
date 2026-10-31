@@ -33,7 +33,9 @@ sources:
     parcel_id_format: { pad_right: "0000", length: 14 }
     normalize_dashes: true          # Express Program label uses an en dash
     units:
-      field: residential_unit_change    # TODO: check how often it is filled
+      # 94% filled on new construction since 2024, always null before (AUDIT.md section 1).
+      # 0 is real (garages, caisson/foundation-only phases); text is used only when null.
+      field: residential_unit_change
       from_text: { hook: custom.units_from_text }   # port of scripts/units.py
     classes:
       new_mf:
@@ -65,26 +67,28 @@ sources:
         year: year
         year_built: char_yrblt
         land_use: class
-        units: TODO                  # confirm the apartments-count field name
+        # Words, not numbers: None (=1), Two .. Six. Connector needs a word-to-number map.
+        units: char_apts
     - name: commercial_incl_7plus_apartments
       connector: socrata
       domain: datacatalog.cookcountyil.gov
       dataset: csik-bsws
       latest_year_only: true
       fields:
-        parcel_id: keypin
+        parcel_id: keypin            # dashed (20-03-111-016-0000): strip dashes to join
         year: year
         address: address
         land_use: class_es
         units: tot_units
-        year_built: TODO             # not on the data page; see AUDIT.md section 2
+        year_built: yearbuilt        # text like "1908.0"; 99.9% filled for 7+ units (AUDIT.md section 2)
     - name: locations
       connector: socrata
       domain: datacatalog.cookcountyil.gov
       dataset: pabr-t5kh
       role: geometry
       fields: { parcel_id: pin, lat: lat, lng: lon }
-      filter: { county_fips: "17031", city: TODO }   # limit to parcels inside the city
+      # Source column: Census place of the parcel. 881,574 parcels, all CITY OF CHICAGO.
+      filter: { census_place_geoid: "1714000" }
 
   catalysts:
     connector: firecrawl

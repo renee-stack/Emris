@@ -1,0 +1,11 @@
+# places/il/will.yaml
+# Draft from the Day 0 audit (places/il/AUDIT.md sections 3 and 6).
+# Baseline: the county's public parcel layer has no year built or units. Layer, for later:
+# https://gis.willcountyillinois.com/server/rest/services/Eagleview/Parcels_25/MapServer/0
+
+place_id: il-will
+name: Will County
+state: IL
+county_fips: "17197"
+peer_group: cbsa:16980
+coverage_tier: baseline

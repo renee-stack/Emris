@@ -1,0 +1,11 @@
+# places/il/kane.yaml
+# Draft from the Day 0 audit (places/il/AUDIT.md sections 3 and 6).
+# Baseline: the county parcel layer has no year built or units. Layer, for later:
+# https://gistech.countyofkane.org/arcgis/rest/services/KanePINList/MapServer/0
+
+place_id: il-kane
+name: Kane County
+state: IL
+county_fips: "17089"
+peer_group: cbsa:16980
+coverage_tier: baseline
