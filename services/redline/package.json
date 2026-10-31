@@ -1,0 +1,35 @@
+{
+  "name": "redline",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A self-improving agent that answers building permit correction letters, built on TrueForge.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.14"
+  },
+  "scripts": {
+    "mcp": "tsx mcp/server.ts",
+    "demo": "tsx demo/server.ts",
+    "setup": "tsx scripts/setup.ts",
+    "run-evals": "tsx scripts/run-evals.ts",
+    "improve": "tsx scripts/improve.ts",
+    "export-session": "tsx scripts/export-session.ts",
+    "score": "tsx evals/score.ts",
+    "real:build": "tsx realdata/build-seattle.ts",
+    "real:run": "tsx realdata/run.ts",
+    "real:improve": "tsx realdata/improve.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "@truefoundry/trueforge-sdk": "^0.180.0",
+    "pdfjs-dist": "^4.10.38",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
