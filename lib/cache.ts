@@ -3,6 +3,7 @@
 import { promises as fs } from "node:fs";
 import { createHash } from "node:crypto";
 import path from "node:path";
+import { unstable_cache } from "next/cache";
 
 // Vercel functions can only write to /tmp (per instance, so it is a warm-instance cache there).
 const ROOT = process.env.VERCEL ? "/tmp/emris-cache" : path.join(process.cwd(), ".cache");
@@ -39,4 +40,28 @@ export async function cacheSet<T>(ns: string, key: string, value: T): Promise<vo
   } catch {
     // disk cache is best-effort
   }
+}
+
+// Bump to invalidate every cached Claude result (e.g. after changing a prompt).
+const CACHE_VERSION = "1";
+
+/**
+ * Return the cached value for (ns, key), or run `compute` once and cache it.
+ * Layers: memory -> local disk (dev) -> Next's data cache on Vercel, which is shared by all
+ * instances and survives redeploys. Errors thrown by `compute` are never cached.
+ */
+export async function cached<T>(ns: string, key: string, compute: () => Promise<T>): Promise<{ value: T; hit: boolean }> {
+  const local = await cacheGet<T>(ns, key);
+  if (local !== undefined) return { value: local, hit: true };
+
+  let ran = false;
+  const run = async () => {
+    ran = true;
+    return compute();
+  };
+  const value = process.env.VERCEL
+    ? await unstable_cache(run, ["emris", CACHE_VERSION, ns, key], { revalidate: false, tags: [`emris-${ns}`] })()
+    : await run();
+  await cacheSet(ns, key, value);
+  return { value, hit: !ran };
 }

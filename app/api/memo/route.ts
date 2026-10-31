@@ -1,6 +1,6 @@
 import type { MemoRequest, MemoResponse } from "@/lib/data";
 import { complete } from "@/lib/claude";
-import { cacheGet, cacheSet } from "@/lib/cache";
+import { cached } from "@/lib/cache";
 import { HttpError, errorResponse, tractDetail } from "@/lib/lookup";
 import { getTracts } from "@/lib/data";
 
@@ -37,15 +37,24 @@ export async function POST(req: Request) {
     const detail = await tractDetail(geoid); // 400 / 404
     const { as_of, features } = await getTracts();
 
-    const cacheKey = `${as_of}|${geoid}`;
-    const cached = await cacheGet<MemoResponse>("memo", cacheKey);
-    if (cached) return Response.json(cached, { headers: { "x-emris-cache": "hit" } });
+    const { value, hit } = await cached("memo", `${as_of}|${geoid}`, () => writeMemo(geoid, detail, as_of, features.length));
+    return Response.json(value, { headers: { "x-emris-cache": hit ? "hit" : "miss" } });
+  } catch (err) {
+    return errorResponse(err);
+  }
+}
 
+async function writeMemo(
+  geoid: string,
+  detail: Awaited<ReturnType<typeof tractDetail>>,
+  as_of: string,
+  tractCount: number,
+): Promise<MemoResponse> {
     // Compact payload: only the fields the prompt uses.
     const t = detail.tract;
     const payload = {
       as_of,
-      tracts_in_dataset: features.length,
+      tracts_in_dataset: tractCount,
       tract: {
         name: t.name,
         score: t.score,
@@ -82,14 +91,9 @@ export async function POST(req: Request) {
     if (!text) throw new Error("Empty memo from model");
     if (truncated) throw new Error("Memo was cut off by max_tokens; not cached");
 
-    const res: MemoResponse = {
+    return {
       geoid,
       title: `${detail.tract.name} — Path of Progress Memo`,
       memo_markdown: text,
     };
-    await cacheSet("memo", cacheKey, res);
-    return Response.json(res, { headers: { "x-emris-cache": "miss" } });
-  } catch (err) {
-    return errorResponse(err);
-  }
 }

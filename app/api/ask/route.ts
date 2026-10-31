@@ -2,7 +2,7 @@ import type Anthropic from "@anthropic-ai/sdk";
 import type { AskRequest, AskResponse } from "@/lib/data";
 import { getTracts } from "@/lib/data";
 import { FAST_MODEL, complete, getClaude, logUsage, toLastSentence } from "@/lib/claude";
-import { cacheGet, cacheSet } from "@/lib/cache";
+import { cached } from "@/lib/cache";
 import { findNeighborhoodInText, geocode } from "@/lib/geocode";
 import { nearestTracts } from "@/lib/geo";
 import { GEOID_RE, HttpError, errorResponse, getTractFeature, nearPlace, topTracts, tractDetail } from "@/lib/lookup";
@@ -266,24 +266,25 @@ export async function POST(req: Request) {
     if (!question) throw new HttpError(400, "question is required");
 
     const { as_of } = await getTracts();
-    const cacheKey = `${as_of}|${normalizeQuestion(question)}`;
-    const cached = await cacheGet<AskResponse>("ask", cacheKey);
-    if (cached) return Response.json(cached, { headers: { "x-emris-cache": "hit" } });
-
-    const local = await routeLocally(question);
-    const intent = local ?? (await classify(question));
-    const { context, url } = await lookup(intent);
-    const { text, truncated } = await complete({
-      label: `ask.reply(${local ? "regex" : "haiku"}:${intent.type})`,
-      system: REPLY_SYSTEM,
-      user: JSON.stringify({ question, intent: intent.type, ...context }),
-      maxTokens: 250,
+    let route: "regex" | "haiku" | undefined;
+    const { value, hit } = await cached("ask", `${as_of}|${normalizeQuestion(question)}`, async (): Promise<AskResponse> => {
+      const local = await routeLocally(question);
+      route = local ? "regex" : "haiku";
+      const intent = local ?? (await classify(question));
+      const { context, url } = await lookup(intent);
+      const { text, truncated } = await complete({
+        label: `ask.reply(${route}:${intent.type})`,
+        system: REPLY_SYSTEM,
+        user: JSON.stringify({ question, intent: intent.type, ...context }),
+        maxTokens: 250,
+      });
+      const reply = sanitize(truncated ? toLastSentence(text) : text);
+      if (!reply) throw new Error("Empty reply from model");
+      return { reply, url };
     });
-    const reply = sanitize(truncated ? toLastSentence(text) : text);
-    if (!reply) throw new Error("Empty reply from model");
-    const res: AskResponse = { reply, url };
-    await cacheSet("ask", cacheKey, res);
-    return Response.json(res, { headers: { "x-emris-cache": "miss", "x-emris-route": local ? "regex" : "haiku" } });
+    const headers: Record<string, string> = { "x-emris-cache": hit ? "hit" : "miss" };
+    if (route) headers["x-emris-route"] = route;
+    return Response.json(value, { headers });
   } catch (err) {
     return errorResponse(err);
   }
