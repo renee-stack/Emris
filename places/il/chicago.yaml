@@ -1,0 +1,92 @@
+# places/il/chicago.yaml
+# Draft from the Day 0 audit (places/il/AUDIT.md). TODO = still to confirm.
+# The schema in places/_schema.py is the source of truth; adjust key names to match it.
+
+place_id: il-chicago
+name: Chicago
+state: IL
+county_fips: "17031"
+census_place: "1714000"
+peer_group: cbsa:16980            # Chicago-Naperville-Elgin metro; percentile group
+coverage_tier: parcel
+proximity_decay_mi: [0.25, 1.0]   # full weight inside 0.25 mi, zero at 1 mi
+
+sources:
+  permits:
+    connector: socrata
+    domain: data.cityofchicago.org
+    dataset: ydr8-5enu
+    since_months: 24
+    fields:
+      permit_id: permit_
+      issued: issue_date
+      status: permit_status
+      permit_type: permit_type
+      work_type: work_type
+      text: work_description
+      cost: reported_cost
+      parcel_ids: pin_list          # 10-digit, may hold several
+      lat: latitude
+      lng: longitude
+      address: [street_number, street_direction, street_name]
+      tract_hint: census_tract
+    parcel_id_format: { pad_right: "0000", length: 14 }
+    normalize_dashes: true          # Express Program label uses an en dash
+    units:
+      field: residential_unit_change    # TODO: check how often it is filled
+      from_text: { hook: custom.units_from_text }   # port of scripts/units.py
+    classes:
+      new_mf:
+        permit_type: "PERMIT - NEW CONSTRUCTION"
+        min_units: 5
+      alteration:
+        permit_type: "PERMIT - RENOVATION/ALTERATION"
+      demolition:
+        permit_type: "PERMIT - WRECKING/DEMOLITION"
+      roof:
+        permit_type: "PERMIT - EXPRESS PERMIT PROGRAM"
+        work_type: ["Reroofing"]
+      major_mep:
+        any_of:
+          - permit_type: "PERMIT - EXPRESS PERMIT PROGRAM"
+            work_type: ["Electrical Work", "Plumbing Work", "Mechanical Work"]
+            min_cost: 25000          # starting floor; tune after reviewing results
+          - permit_type: "PERMIT - ELEVATOR EQUIPMENT"
+      other: { default: true }
+
+  parcels:
+    - name: residential_under_7_units
+      connector: socrata
+      domain: datacatalog.cookcountyil.gov
+      dataset: x54s-btds
+      latest_year_only: true
+      fields:
+        parcel_id: pin
+        year: year
+        year_built: char_yrblt
+        land_use: class
+        units: TODO                  # confirm the apartments-count field name
+    - name: commercial_incl_7plus_apartments
+      connector: socrata
+      domain: datacatalog.cookcountyil.gov
+      dataset: csik-bsws
+      latest_year_only: true
+      fields:
+        parcel_id: keypin
+        year: year
+        address: address
+        land_use: class_es
+        units: tot_units
+        year_built: TODO             # not on the data page; see AUDIT.md section 2
+    - name: locations
+      connector: socrata
+      domain: datacatalog.cookcountyil.gov
+      dataset: pabr-t5kh
+      role: geometry
+      fields: { parcel_id: pin, lat: lat, lng: lon }
+      filter: { county_fips: "17031", city: TODO }   # limit to parcels inside the city
+
+  catalysts:
+    connector: firecrawl
+    urls: []                         # TODO: CTA projects, city capital plan, local news pages
+    seed_file: legacy/data/infrastructure.json   # hackathon list, kept as curated fallback (moved by Agent 1)

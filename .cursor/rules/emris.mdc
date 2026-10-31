@@ -1,0 +1,41 @@
+---
+description: Emris v2 project context for the web app
+globs:
+alwaysApply: true
+---
+
+# Emris v2: project context
+
+## What Emris is
+Emris is a market intelligence tool for multifamily real estate developers and investors. It finds the "path of progress": areas where new construction permits and public infrastructure investment are building up before that shows up in rents and land prices. It scores census tracts, shows 50 years of building history (Wayback) to find rehab candidates, and sells paid area and property reports.
+
+Users are real estate professionals, not data scientists. Every label and empty state should read like a professional CRE tool (Crexi or CoStar polish). Say "tract" or the place name, never "GEOID" or "feature".
+
+## The most important rule: nothing is hard-coded to a place
+- Emris works for any US place. Illinois is only the first set of config files.
+- Never hard-code a city, county, state, coordinates, bounds, zoom level or neighborhood list. Read places from `GET /api/places` and fit the map to the bounds it returns.
+- CI fails the build if a place name (chicago, cook, illinois, dupage, etc.) appears in code outside `places/`, `tests/fixtures/`, `docs/` and `legacy/`.
+
+## Read these first
+- `docs/PLAN.md`: the 7-day plan
+- `contract.md`: every API shape and data record. Never invent a field; if something is missing, stop and tell Renee.
+- `places/il/AUDIT.md`: what data exists per place
+
+## Who owns what (do not edit outside your area)
+- You (Cursor) own `web/` except `web/app/api/`.
+- Do not edit `web/app/api/`, `db/`, `pipeline/`, `places/`, `contract.md`.
+
+## Access tiers (enforced on the server, the UI only reflects them)
+- Signed out: map and tract scores only. Clicking anything else prompts "Create a free account".
+- Free account: Wayback slider, tract panel with permits, search and nearby permits limited to 3 per week (API returns 429 with a reset date).
+- Paid: area and property reports, named rehab candidates, IC memo PDF. Checkout is Stripe Checkout: the UI calls `POST /api/checkout` and redirects to the URL it returns.
+- Every tract response has a `coverage` object. Always show it, e.g. "Based on 3 of 3 signals" or "Baseline data only".
+
+## Tech
+- Next.js App Router, TypeScript, Tailwind. Read `node_modules/next/dist/docs/` before using Next APIs (see AGENTS.md).
+- Map: `maplibre-gl` with the free OpenFreeMap positron style. No Mapbox.
+- Auth: Supabase Auth (email magic link) via `@supabase/ssr`.
+- Map components are client-only.
+
+## Design system (unchanged from v1)
+Surveyor / blueprint feel. Ink #101716, Paper #F7F6F2, Muted #4A5551, Rule #D7DBD6, Deep teal #0F2A2E, Mid teal #1F5C5A, Safety orange #C2410C (CTAs, top-decile highlight). Score ramp low to high: #EEF2EE, #C8DCD5, #8FBDB1, #3F8A80, #0F2A2E. Fonts: Archivo 800 headings, IBM Plex Sans UI, IBM Plex Mono for every number, date and address.
