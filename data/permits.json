@@ -1,402 +1,4012 @@
 [
-  {
-    "id": "100968061",
-    "address": "3114 S Indiana Ave",
-    "lat": 41.825571,
-    "lng": -87.630125,
-    "issue_date": "2026-10-30",
-    "units": null,
-    "description": "Erect new mixed-use building per plans; unit count not reported",
-    "geoid": "17031351500"
-  },
-  {
-    "id": "100960921",
-    "address": "409 S Halsted St",
-    "lat": 41.874503,
-    "lng": -87.654669,
-    "issue_date": "2026-10-28",
-    "units": 51,
-    "description": "Erect a 8-story, 51-unit residential building with ground-floor retail",
-    "geoid": "17031283100"
-  },
-  {
-    "id": "100962551",
-    "address": "1652 S Morgan St",
-    "lat": 41.852024,
-    "lng": -87.677938,
-    "issue_date": "2026-10-27",
-    "units": 12,
-    "description": "Erect a 3-story, 12-unit residential building with enclosed parking",
-    "geoid": "17031310101"
-  },
-  {
-    "id": "100968549",
-    "address": "2988 S Calumet Ave",
-    "lat": 41.827863,
-    "lng": -87.633302,
-    "issue_date": "2026-10-25",
-    "units": 66,
-    "description": "Erect a 9-story, 66-unit residential building with ground-floor retail",
-    "geoid": "17031351500"
-  },
-  {
-    "id": "100965903",
-    "address": "3390 S Indiana Ave",
-    "lat": 41.820578,
-    "lng": -87.601599,
-    "issue_date": "2026-10-22",
-    "units": 35,
-    "description": "Erect a 6-story, 35-unit residential building with enclosed parking",
-    "geoid": "17031351400"
-  },
-  {
-    "id": "100955620",
-    "address": "1072 N California Ave",
-    "lat": 41.901301,
-    "lng": -87.711262,
-    "issue_date": "2026-10-12",
-    "units": 17,
-    "description": "Erect a 4-story, 17-unit residential building with ground-floor retail",
-    "geoid": "17031230400"
-  },
-  {
-    "id": "100964473",
-    "address": "1357 S Halsted St",
-    "lat": 41.857348,
-    "lng": -87.663903,
-    "issue_date": "2026-10-07",
-    "units": 87,
-    "description": "Erect a 12-story, 87-unit residential building with ground-floor retail",
-    "geoid": "17031843100"
-  },
-  {
-    "id": "100967200",
-    "address": "3278 S Dr Martin Luther King Jr Dr",
-    "lat": 41.822618,
-    "lng": -87.611434,
-    "issue_date": "2026-09-19",
-    "units": 115,
-    "description": "Erect a 14-story, 115-unit residential building with ground-floor retail",
-    "geoid": "17031351200"
-  },
-  {
-    "id": "100963034",
-    "address": "1191 S Racine Ave",
-    "lat": 41.860366,
-    "lng": -87.667503,
-    "issue_date": "2026-08-26",
-    "units": 5,
-    "description": "Erect a 3-story, 5-unit residential building with enclosed parking",
-    "geoid": "17031843100"
-  },
-  {
-    "id": "100958756",
-    "address": "370 S Morgan St",
-    "lat": 41.875184,
-    "lng": -87.665527,
-    "issue_date": "2026-08-11",
-    "units": null,
-    "description": "Erect new mixed-use building per plans; unit count not reported",
-    "geoid": "17031283100"
-  },
-  {
-    "id": "100964112",
-    "address": "1817 S Loomis St",
-    "lat": 41.849027,
-    "lng": -87.678001,
-    "issue_date": "2026-08-06",
-    "units": 3,
-    "description": "Erect a 3-story, 3-unit masonry residential building with rear garage",
-    "geoid": "17031310101"
-  },
-  {
-    "id": "100956497",
-    "address": "1097 N Spaulding Ave",
-    "lat": 41.901737,
-    "lng": -87.731237,
-    "issue_date": "2026-07-24",
-    "units": 4,
-    "description": "Erect a 3-story, 4-unit masonry residential building with rear garage",
-    "geoid": "17031230100"
-  },
-  {
-    "id": "100951756",
-    "address": "2199 N Kimball Ave",
-    "lat": 41.921665,
-    "lng": -87.726253,
-    "issue_date": "2026-07-21",
-    "units": 95,
-    "description": "Erect a 13-story, 95-unit residential building with ground-floor retail",
-    "geoid": "17031221500"
-  },
-  {
-    "id": "100966495",
-    "address": "3346 S Prairie Ave",
-    "lat": 41.821371,
-    "lng": -87.626468,
-    "issue_date": "2026-06-22",
-    "units": 5,
-    "description": "Erect a 3-story, 5-unit residential building with ground-floor retail",
-    "geoid": "17031351100"
-  },
-  {
-    "id": "100964070",
-    "address": "1421 S Loomis St",
-    "lat": 41.85619,
-    "lng": -87.67829,
-    "issue_date": "2026-04-30",
-    "units": null,
-    "description": "Erect new mixed-use building per plans; unit count not reported",
-    "geoid": "17031310101"
-  },
-  {
-    "id": "100952626",
-    "address": "2508 N Kedzie Ave",
-    "lat": 41.927264,
-    "lng": -87.709898,
-    "issue_date": "2026-03-03",
-    "units": null,
-    "description": "Erect new mixed-use building per plans; unit count not reported",
-    "geoid": "17031222200"
-  },
-  {
-    "id": "100965079",
-    "address": "1424 S Halsted St",
-    "lat": 41.85614,
-    "lng": -87.656091,
-    "issue_date": "2026-02-27",
-    "units": 5,
-    "description": "Erect a 3-story, 5-unit residential building with ground-floor retail",
-    "geoid": "17031310102"
-  },
-  {
-    "id": "100959314",
-    "address": "432 S Halsted St",
-    "lat": 41.874075,
-    "lng": -87.665733,
-    "issue_date": "2026-02-24",
-    "units": 36,
-    "description": "Erect a 6-story, 36-unit residential building with enclosed parking",
-    "geoid": "17031283100"
-  },
-  {
-    "id": "100955286",
-    "address": "787 N Sawyer Ave",
-    "lat": 41.896135,
-    "lng": -87.731534,
-    "issue_date": "2026-02-22",
-    "units": 3,
-    "description": "Erect a 3-story, 3-unit masonry residential building with rear garage",
-    "geoid": "17031230100"
-  },
-  {
-    "id": "100957982",
-    "address": "209 N Racine Ave",
-    "lat": 41.885679,
-    "lng": -87.65578,
-    "issue_date": "2026-01-21",
-    "units": 19,
-    "description": "Erect a 4-story, 19-unit residential building with ground-floor retail",
-    "geoid": "17031833000"
-  },
-  {
-    "id": "100966038",
-    "address": "3536 S Dr Martin Luther King Jr Dr",
-    "lat": 41.817934,
-    "lng": -87.626429,
-    "issue_date": "2026-01-03",
-    "units": 84,
-    "description": "Erect a 11-story, 84-unit residential building with ground-floor retail",
-    "geoid": "17031351100"
-  },
-  {
-    "id": "100950256",
-    "address": "2292 N Kedzie Ave",
-    "lat": 41.923371,
-    "lng": -87.7065,
-    "issue_date": "2025-11-28",
-    "units": 4,
-    "description": "Erect a 3-story, 4-unit masonry residential building with rear garage",
-    "geoid": "17031221600"
-  },
-  {
-    "id": "100953757",
-    "address": "2771 N California Ave",
-    "lat": 41.932017,
-    "lng": -87.705781,
-    "issue_date": "2025-11-11",
-    "units": 21,
-    "description": "Erect a 4-story, 21-unit residential building with enclosed parking",
-    "geoid": "17031222200"
-  },
-  {
-    "id": "100959779",
-    "address": "413 S Morgan St",
-    "lat": 41.874424,
-    "lng": -87.632923,
-    "issue_date": "2025-10-10",
-    "units": 3,
-    "description": "Erect a 3-story, 3-unit masonry residential building with rear garage",
-    "geoid": "17031283300"
-  },
-  {
-    "id": "100950974",
-    "address": "2184 N Sacramento Ave",
-    "lat": 41.921427,
-    "lng": -87.71866,
-    "issue_date": "2025-09-07",
-    "units": 4,
-    "description": "Erect a 3-story, 4-unit masonry residential building with rear garage",
-    "geoid": "17031221500"
-  },
-  {
-    "id": "100953341",
-    "address": "1982 N Kimball Ave",
-    "lat": 41.917774,
-    "lng": -87.70535,
-    "issue_date": "2025-09-02",
-    "units": 16,
-    "description": "Erect a 4-story, 16-unit residential building with ground-floor retail",
-    "geoid": "17031221600"
-  },
-  {
-    "id": "100969146",
-    "address": "3602 S State St",
-    "lat": 41.816748,
-    "lng": -87.630951,
-    "issue_date": "2025-08-29",
-    "units": 28,
-    "description": "Erect a 5-story, 28-unit residential building with ground-floor retail",
-    "geoid": "17031351100"
-  },
-  {
-    "id": "100951661",
-    "address": "2088 N Whipple St",
-    "lat": 41.919682,
-    "lng": -87.718702,
-    "issue_date": "2025-08-03",
-    "units": null,
-    "description": "Erect new mixed-use building per plans; unit count not reported",
-    "geoid": "17031221500"
-  },
-  {
-    "id": "100955206",
-    "address": "763 N Spaulding Ave",
-    "lat": 41.895702,
-    "lng": -87.728246,
-    "issue_date": "2025-07-31",
-    "units": 2,
-    "description": "Erect a 3-story, 2-unit masonry residential building with rear garage",
-    "geoid": "17031230100"
-  },
-  {
-    "id": "100960448",
-    "address": "212 S Green St",
-    "lat": 41.878054,
-    "lng": -87.653082,
-    "issue_date": "2025-07-03",
-    "units": 5,
-    "description": "Erect a 3-story, 5-unit residential building with enclosed parking",
-    "geoid": "17031283200"
-  },
-  {
-    "id": "100963693",
-    "address": "1752 S Racine Ave",
-    "lat": 41.850206,
-    "lng": -87.661192,
-    "issue_date": "2025-04-30",
-    "units": 2,
-    "description": "Erect a 3-story, 2-unit masonry residential building with rear garage",
-    "geoid": "17031310102"
-  },
-  {
-    "id": "100956608",
-    "address": "1427 N Sawyer Ave",
-    "lat": 41.907699,
-    "lng": -87.722999,
-    "issue_date": "2025-04-14",
-    "units": null,
-    "description": "Erect new mixed-use building per plans; unit count not reported",
-    "geoid": "17031230900"
-  },
-  {
-    "id": "100969505",
-    "address": "2838 S Indiana Ave",
-    "lat": 41.830567,
-    "lng": -87.633696,
-    "issue_date": "2025-03-18",
-    "units": 4,
-    "description": "Erect a 3-story, 4-unit masonry residential building with rear garage",
-    "geoid": "17031351500"
-  },
-  {
-    "id": "100957327",
-    "address": "307 S Green St",
-    "lat": 41.876355,
-    "lng": -87.662077,
-    "issue_date": "2025-02-27",
-    "units": 2,
-    "description": "Erect a 3-story, 2-unit masonry residential building with rear garage",
-    "geoid": "17031283100"
-  },
-  {
-    "id": "100955155",
-    "address": "2727 N Whipple St",
-    "lat": 41.931211,
-    "lng": -87.724096,
-    "issue_date": "2025-01-05",
-    "units": null,
-    "description": "Erect new mixed-use building per plans; unit count not reported",
-    "geoid": "17031222000"
-  },
-  {
-    "id": "100956731",
-    "address": "22 N Green St",
-    "lat": 41.882307,
-    "lng": -87.654896,
-    "issue_date": "2024-12-12",
-    "units": 89,
-    "description": "Erect a 12-story, 89-unit residential building with ground-floor retail",
-    "geoid": "17031283100"
-  },
-  {
-    "id": "100958870",
-    "address": "63 N Green St",
-    "lat": 41.883031,
-    "lng": -87.649881,
-    "issue_date": "2024-10-03",
-    "units": 4,
-    "description": "Erect a 3-story, 4-unit masonry residential building with rear garage",
-    "geoid": "17031833100"
-  },
-  {
-    "id": "100954532",
-    "address": "2064 N Whipple St",
-    "lat": 41.919236,
-    "lng": -87.69229,
-    "issue_date": "2024-09-13",
-    "units": 2,
-    "description": "Erect a 3-story, 2-unit masonry residential building with rear garage",
-    "geoid": "17031221700"
-  },
-  {
-    "id": "100961852",
-    "address": "1827 S Loomis St",
-    "lat": 41.84886,
-    "lng": -87.647116,
-    "issue_date": "2024-08-04",
-    "units": 4,
-    "description": "Erect a 3-story, 4-unit masonry residential building with rear garage",
-    "geoid": "17031310200"
-  },
-  {
-    "id": "100961306",
-    "address": "260 N Racine Ave",
-    "lat": 41.886595,
-    "lng": -87.66185,
-    "issue_date": "2024-07-15",
-    "units": null,
-    "description": "Erect new mixed-use building per plans; unit count not reported",
-    "geoid": "17031833000"
-  }
+ {
+  "id": "101081084",
+  "address": "1022 N California Ave",
+  "lat": 41.899932,
+  "lng": -87.696954,
+  "issue_date": "2026-10-27",
+  "units": 6,
+  "description": "NEW CONSTRUCTION: 3-STORY 6-DU MASONRY BUILDING W/ FINISHED BASEMENT & OCCUPIABLE ROOFTOP, FRONT BALCONIES, ROOFTOP ACCESS STAIRS & DETACHED 6-CAR GARAGE W/ OCCUPIABLE ROOFTOP CONSTRUCTION TYPE IIIA, USE GROUP R-2 AS PER PLANS",
+  "geoid": "17031240900"
+ },
+ {
+  "id": "101078029",
+  "address": "500 S Central Ave",
+  "lat": 41.873773,
+  "lng": -87.76477,
+  "issue_date": "2026-10-26",
+  "units": null,
+  "description": "IMPROVEMENTS TO COLUMBUS PARK IN TWO AREAS OF THE PARK: AREA 1 - SMALL PERFORMANCE PLATFORM, NEW FENCING, ADA IMPROVEMENTS, AND ELECTRICAL UPGRADES. AREA 2 - REMOVAL OF A FORMER SPRAY POOL, INSTALLATION OF NEW CONCRETE WALKS, PLANTING ISLANDS, A SEAT WALL, AND SITE FURNISHINGS.",
+  "geoid": "17031252101"
+ },
+ {
+  "id": "101079767",
+  "address": "4207 W Fifth Ave",
+  "lat": 41.871483,
+  "lng": -87.730423,
+  "issue_date": "2026-10-26",
+  "units": null,
+  "description": "NEW 3 STORY WOOD FRAMED MULTIPLE UNIT RESIDENTIAL BUILDING WITH A ROOF TOP DECK. ERECTING A 4-STORY REAR METAL PORCH AND FRONT 1-STORY METAL DECK. INSTALLING NEW MECHANICAL, ELECTRICAL, AND PLUMBING SYSTEMS. (TYPE 5A CONSTRUCTION AND R-5 USE). PROVIDING 2-CAR GARAGE (TYPE 5A CONSTRUCTION AND GROUP U USE). PROVIDING 1 ON-STREET PARKING AND 3 BIKE SPACES.",
+  "geoid": "17031261000"
+ },
+ {
+  "id": "101086839",
+  "address": "1414 N Elk Grove Ave",
+  "lat": 41.908669,
+  "lng": -87.673209,
+  "issue_date": "2026-10-26",
+  "units": 6,
+  "description": "ERECT A 3, STORY VA, 6 DWELLING, UNIT BUILDING WITH BASEMENT, NFPA 13R SPRINKLER SYSTEM, ROOF DECK,2 ROOF ACCESS, REAR STAIRS, FIRST, FLOOR REAR COVERED DECK, SECOND, AND THIRD, FLOOR REAR COVERED PORCHES, AND A DETACHED 6 CAR GARAGE WITH ROOF DECK, AND PERGOLAS; REAR WOOD FENCES; FRONT ORNAMENTAL IRON FENCES. EXISTING OCCUPANCY R-2; PROPOSED OCCUPANCY R-2; TYPE OF CONSTRUCTION VA, PER PLANS.",
+  "geoid": "17031241500"
+ },
+ {
+  "id": "101085492",
+  "address": "4922 N Sheridan Rd",
+  "lat": 41.972277,
+  "lng": -87.65505,
+  "issue_date": "2026-10-23",
+  "units": 31,
+  "description": "FOUNDATION ONLY FOR A 5-STORY RESIDENTIAL BUILDING (31 TOTAL UNITS - 9 EFFICIENCY UNITS + 22 DWELLING UNITS) TO INCLUDE THREE (3) AT GRADE AUTOMOBILE PARKING SPOTS, THIRTY-TWO (32) 1ST FLOOR BICYCLE PARKING SPACES AND ASSOCIATED SITE WORK AS PER PLANS.(OCCUPANCY GROUP: R-2 / TYPE III-A CONSTRUCTION)",
+  "geoid": "17031031200"
+ },
+ {
+  "id": "101083232",
+  "address": "1058 E 93rd Pl",
+  "lat": 41.725164,
+  "lng": -87.59738,
+  "issue_date": "2026-10-22",
+  "units": null,
+  "description": "FOUNDATION PERMIT FOR 1 STORY COMFORT STATION STRUCTURE AND WATER FEATURE WITHIN EXISTING CHICAGO PARK DISTRICT PARK. (OCCUPANCY GROUP U, TYPE IIA CONSTRUCTION)",
+  "geoid": "17031470100"
+ },
+ {
+  "id": "101086373",
+  "address": "5850 N Mobile Ave",
+  "lat": 41.988041,
+  "lng": -87.785361,
+  "issue_date": "2026-10-22",
+  "units": null,
+  "description": "REMOVE EXISTING DETACHED GARAGE AND REPALCE WITH A NEW DETACHED 2-CAR WOOD FRAME GARAGE. CURRENT USE/OCCUPANCY CLASSIFICATION: RESIDENTIAL ACCESSORY STRUCTURE (R-5). PROPOSED USE/OCCUPANCY CLASSIFICATION: RESIDENTIAL ACCESSORY STRUCTURE (R-5) AS PER PLANS",
+  "geoid": "17031100100"
+ },
+ {
+  "id": "101087126",
+  "address": "1014 N Spaulding Ave",
+  "lat": 41.899701,
+  "lng": -87.709494,
+  "issue_date": "2026-10-22",
+  "units": 40,
+  "description": "FULL BUILDING PERMIT FOR 5 STORY 40 D.U. BUILDING WITH BASEMENT, 24 CAR GARAGE (FLOOR 1), DECK (2ND FLOOR) OVER PORTION OF GARAGE, DECK (FLOOR 1-5), BALCONIES (FLOORS 3-5), ROOFTOP STAIR ENCLOSURE, ELEVATOR OVER-RUN, 1 EXTERIOR LOADING BERTH, FULLY SPRINKLERED, 40 ON-SITE BICYCLE PARKING SPACES & A TRASH STORAGE AT FLOOR 1. (OCCUPANCY GROUP R-2, S-2, TYPE IIIA CONSTRUCTION). CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031836600"
+ },
+ {
+  "id": "101088416",
+  "address": "6504 S Western Ave",
+  "lat": 41.775393,
+  "lng": -87.683688,
+  "issue_date": "2026-10-22",
+  "units": null,
+  "description": "INTERIOR ALTERATION OF EXISTING 2,800 SF COMMERCIAL TENANT SPACE TO HAIR SALON SUITES. NO ALTERATIONS TO THE STRUCTURAL SYSTEM. (OCCUPANCY B; CONSTRUCTION TYPE IIIB)",
+  "geoid": "17031660800"
+ },
+ {
+  "id": "101060432",
+  "address": "1447 S Ashland Ave",
+  "lat": 41.861877,
+  "lng": -87.666109,
+  "issue_date": "2026-10-20",
+  "units": null,
+  "description": "NEW PARKING SPACES",
+  "geoid": "17031842900"
+ },
+ {
+  "id": "101080040",
+  "address": "1004 W Hubbard St",
+  "lat": 41.890146,
+  "lng": -87.6525,
+  "issue_date": "2026-10-20",
+  "units": 70,
+  "description": "NEW CONSTRUCTION. CAISSONS, SHALLOW FOUNDATIONS, UNDERGROUND UTILITIES, LEVEL 1 STEEL FRAMING AND DECKING, MASONRY STAIR AND ELEVATOR CORES TO THE TOP OF THE BUILDING AS PER PLANS. 7-STORY MIXED-USE BUILDNG. OCCUPANCY TYPES R-2, A-2 & S-2; TYPE 1-B CONSTRUCTION. ZONING DISTRICT B2-5. 70 APARTMENT UNITS, 20 INTERIOR AT-GRADE PARKING STALLS. CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031243500"
+ },
+ {
+  "id": "101086034",
+  "address": "1347 W Taylor St",
+  "lat": 41.869238,
+  "lng": -87.661103,
+  "issue_date": "2026-10-15",
+  "units": null,
+  "description": "FIELD REVISIONS TO EXISTING PERMIT #101075380LAYOUTS ADJUSTED TO ALLOW STRUCTURAL BRACED WALLS ACROSS ALL LEVELS. ELECTRICAL AND MECHANICAL PLANS HAVE BEEN UPDATED ACCORDINGLY. WALL TYPES HAVE BEEN UPDATED PER STRUCTURAL PLANS. LOT DIMENSIONS CORRECTED PER SURVEY. ELECTRICAL LOAD CALC ADDED AND WATER SERVICE SIZE ADJUSTED.",
+  "geoid": "17031283200"
+ },
+ {
+  "id": "101088733",
+  "address": "6156 S Champlain Ave",
+  "lat": 41.782314,
+  "lng": -87.609771,
+  "issue_date": "2026-10-15",
+  "units": 6,
+  "description": "NEW 4-STORY, 6-UNIT NONSPRINKLERED RESIDENTIAL BUILDING (OCCUPANCY TYPE R-2, TYPE III-B CONSTRUCTION). STRUCTURAL PEER REVIEW.",
+  "geoid": "17031420500"
+ },
+ {
+  "id": "101084412",
+  "address": "1137 W Altgeld St",
+  "lat": 41.927016,
+  "lng": -87.657564,
+  "issue_date": "2026-10-13",
+  "units": 6,
+  "description": "ERECT A 3 STORY, SIX DWELLING UNIT TYPE MASONRY BUILDING WITH BASEMENT, REAR STAIRS AND FRONT OPEN DECKS AT 1ST, 2ND AND 3RD FLOORS, OCCUPIABLE ROOF DECKS, PERGOLAS AND STAIR ENCLOSURE. A NEW DETACHED SIX CAR MASONRY GARAGE WITH A ROOF DECK, PERGOLA AND METAL ACCESS STAIR. SIX BIKE PARKING SPOTS, MASONRY TRASH ENCLOSURE, 6-FOOT-HIGH PRIVACY FENCE AND IRON FENCE AS PER PLANS. PROVIDE AUTOMATIC FIRE SUPPRESSION SYSTEM THROUGHOUT BUILDING.",
+  "geoid": "17031070400"
+ },
+ {
+  "id": "101081192",
+  "address": "8332 S Dr Martin L King Jr Dr",
+  "lat": 41.742811,
+  "lng": -87.614845,
+  "issue_date": "2026-10-09",
+  "units": 52,
+  "description": "NEW CONSTRUCTION OF A 52 UNIT SENIOR RESIDENTIAL BUILDING. THE PROJECT INCLUDES (44) 1 BEDROOM UNITS AND (8) 2 BEDROOM UNITS. THIS PROJECT ALSO INCLUDES ELECTRICAL, MECHANICAL, PLUMBING, CIVIL, AND STRUCTURAL. (OCCUPANCY GROUP R-2; TYPE IIIA CONSTRUCTION) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031440300"
+ },
+ {
+  "id": "101081916",
+  "address": "2625 W Pershing Rd",
+  "lat": 41.822753,
+  "lng": -87.690538,
+  "issue_date": "2026-10-09",
+  "units": null,
+  "description": "FULL BUILDING PERMIT FOR 1 RESTAURANT WITH DRIVE THRU AND MASONRY TRASH ENCLOSURE WITH 10 PARKING SPACES (OCCUPANCY GROUP B, TYPE 3B CONSTRUCTION) DEMOLITION PERMIT MUST BE OBTAINED FOR 3910 S ARCHER BUILDING ON LOT.",
+  "geoid": "17031580600"
+ },
+ {
+  "id": "101085393",
+  "address": "3040 N Lincoln Ave",
+  "lat": 41.936944,
+  "lng": -87.665065,
+  "issue_date": "2026-10-08",
+  "units": 9,
+  "description": "ERECT A 4 STORY MIXED USE 9 DWELLING UNIT TYPE IIIA APARTMENT RENTAL MASONRY BUILDING WITH AN ELEVATOR, BALCONIES FOR THE RESIDENTIAL UNITS, ROOF DECK AT 4TH FLOOR LEVEL, OFFICES ON THE GROUND FLOOR, TRASH ENCLOSURE AND AN EIGHT CAR PARKING GARAGE, AS PER PLANS. R2 OCCUPANCY CLASSIFICATION. STRUCTURAL PEER REVIEW PROVIDED.",
+  "geoid": "17031062700"
+ },
+ {
+  "id": "101079464",
+  "address": "8000 S Lake Shore Dr",
+  "lat": 41.750084,
+  "lng": -87.54196,
+  "issue_date": "2026-10-07",
+  "units": null,
+  "description": "PILES (VERTICAL PENETRATIONS) ONLY PERMIT FOR A PROPOSED 5-STORY HOSPITAL BUILDING AS PER PLANS. (CONSTRUCTION TYPE: 1A; OCCUPANCY: I-2 INSTITUTIONAL) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031460100"
+ },
+ {
+  "id": "101087238",
+  "address": "2353 W Byron St",
+  "lat": 41.952094,
+  "lng": -87.688097,
+  "issue_date": "2026-10-07",
+  "units": 8,
+  "description": "FULL BUILDING PERMIT FOR 5 STORY 8 D.U. BUILDING WITH BASEMENT, 1ST FLOOR RETAIL, 8 CAR GARAGE AT 1ST FLOOR, DECK OVER PORTION OF GARAGE AT 2ND STORY, REAR BALCONY AT 2ND THRU 5TH STORY, DECK AT 2ND THRU 5TH STORY, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, ELEVATOR OVER-RUN, ENTIRE BUILDING SPRINKLERED, 8 ON-SITE BICYCLE PARKING SPACES & A TRASH STORAGE AREA AT 1ST FLOOR AS PER PLANS (OCCUPANCY GROUP R-2, S-2, M, TYPE IIIA CONSTRUCTION)CONSULTANT V3 COMPANIES OF IL",
+  "geoid": "17031050500"
+ },
+ {
+  "id": "101081111",
+  "address": "315 S Jefferson St",
+  "lat": 41.87752,
+  "lng": -87.642374,
+  "issue_date": "2026-10-05",
+  "units": 52,
+  "description": "NEW CONSTRUCTION OF A 9-STORY MIXED USE BUILDING WITH BASEMENT ON CAISSONS. THE 1ST FLOOR WILL CONSIST OF RESIDENTIAL LOBBY, 21 MECHANIZED PARKING SPACES, OFFICE, AND RETAIL TENANT SPACE WITH 52 RESIDENTIAL UNITS ON THE ABOVE FLOORS. (OCCUPANCY: R-2, M; CONSTRUCTION TYPE: 1B) CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031281900"
+ },
+ {
+  "id": "101081360",
+  "address": "4717 S Calumet Ave",
+  "lat": 41.808818,
+  "lng": -87.617992,
+  "issue_date": "2026-09-29",
+  "units": null,
+  "description": "PBC/DFSS/2FM - #10030: PILES (VERTICAL PENETRATION) ONLY FOR NEW CONSTRUCTION OF A 2-STORY SENIOR CENTER TO INCLUDE AT-GRADE PARKING (39 AUTOMOBILE PARKING SPACES), ORNAMENTAL FENCING, TRASH ENCLOSURE AND ASSOCIATED SITE WORK AS PER PLANS. (OCCUPANCY GROUP: A-3 / TYPE IIB CONSTRUCTION). CASE-ONS INCLUDED ON THIS PERMIT",
+  "geoid": "17031835800"
+ },
+ {
+  "id": "101082898",
+  "address": "10500 S Woodlawn Ave",
+  "lat": 41.703718,
+  "lng": -87.594356,
+  "issue_date": "2026-09-23",
+  "units": null,
+  "description": "INSTALL NEW 2000A SERVICE TO SERVE EV CHARGING STATIONS; SEE CONSTRUCTION DRAWINGS FOR COMPLETE SCOPE OF WORK",
+  "geoid": "17031500200"
+ },
+ {
+  "id": "101080177",
+  "address": "2628 S State St",
+  "lat": 41.844794,
+  "lng": -87.62709,
+  "issue_date": "2026-09-22",
+  "units": null,
+  "description": "NON REQUIRED ACCESSORY SURFACE PARKING LOT WITH 58 VEHICLE PARKING SPACES AND A UNDERGROUND STORMWATER RETENTION TANK TO SERVE TRAINING FACILITY AT 2540 S STATE ST. INCLUDES LANDSCAPE, LIGHTING, ELECTRICAL, PAVING, AND FENCING (OCCUPANCY GROUP U, TYPE IA CONSTRUCTION)",
+  "geoid": "17031350400"
+ },
+ {
+  "id": "101085778",
+  "address": "1334 W Grand Ave",
+  "lat": 41.891157,
+  "lng": -87.660465,
+  "issue_date": "2026-09-22",
+  "units": 9,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 9 D.U. BUILDING, 1ST FLOOR RETAIL, 9 CAR GARAGE AT 1ST FLOOR, DECK OVER PORTION OF GARAGE AT 2ND STORY, BALCONIES 2ND THRU 4TH FLOORS, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, FULLY SPRINKLERED, 30 ON-SITE BICYCLE PARKING SPACES & A TRASH STORAGE AREA AT 1ST FLOOR (OCCUPANCY GROUP R-2, S-2, M, TYPE IIIA CONSTRUCTION) V3 COMPANIES OF IL",
+  "geoid": "17031243400"
+ },
+ {
+  "id": "101086032",
+  "address": "3909 N Ashland Ave",
+  "lat": 41.952778,
+  "lng": -87.668859,
+  "issue_date": "2026-09-21",
+  "units": 8,
+  "description": "ERECT A 4 STORY, 8 DWELLING UNIT TYPE IIIA MASONRY BUILDING WITH FRONT AND REAR DECKS AT 1ST, 2ND, 3RD AND 4TH FLOORS. NO ROOF DECK. PROVIDE THREE EXTERIOR PARKING SPACES, 6'-0\" HIGH PRIVACY FENCE AND EXTERIOR MASONRYTRASH ENCLOSURE, AS PER PLANS. R2 OCCUPANCY CLASSIFICATION.",
+  "geoid": "17031060400"
+ },
+ {
+  "id": "101079416",
+  "address": "1455 W Fillmore St",
+  "lat": 41.868403,
+  "lng": -87.663777,
+  "issue_date": "2026-09-18",
+  "units": 50,
+  "description": "NEW CONSTRUCTION 5-STORY BUILDING WITH STRUCTURAL STEEL FRAME 50 DWELLING UNITS. 25 PARKING SPACES PROVIDED IN ENCLOSED GARAGE. USE: MULTI-UNIT RESIDENTIAL AND PARKING GARAGE (R-2/S-2) TYPE III-A CONSTRUCTION. CONSULTANT REVIEWER: V3 COMPANIES.",
+  "geoid": "17031283100"
+ },
+ {
+  "id": "101088149",
+  "address": "333 E Huron St",
+  "lat": 41.89492,
+  "lng": -87.619017,
+  "issue_date": "2026-09-18",
+  "units": null,
+  "description": "INSTALLATION OF TWO (2) 2000 AMP TEMPORARY ELECTRICAL SERVICE AS PER PLANS.",
+  "geoid": "17031081401"
+ },
+ {
+  "id": "101080184",
+  "address": "2025 W 17th St",
+  "lat": 41.858428,
+  "lng": -87.677042,
+  "issue_date": "2026-09-17",
+  "units": 6,
+  "description": "NEW CONSTRUCTION 4 STORY W/ BASEMENT FRAME BUILDING WITH 6 DWELLING UNITS. PROPOSED REAR COVERED PORCHES AT FIRST FLOOR, ROOFTOP DECK W/ STAIR ENCLOSURES, TRASH ENCLOSURE, 3 CAR SPACES, 6 BIKE SPACES, METAL AND WOOD FENCES PER PLANS (OCCUPANCY CLASS R-2, CONSTRUCTION TYPE VA) **SELF-CERT**",
+  "geoid": "17031310900"
+ },
+ {
+  "id": "101078161",
+  "address": "136 N Kedzie Ave",
+  "lat": 41.883969,
+  "lng": -87.706355,
+  "issue_date": "2026-09-16",
+  "units": 51,
+  "description": "FULL BUILDING PERMIT FOR A 5-STORY MIXED-USE BUILDING WITH GROUND FLOOR COMMERCIAL AND OFFICE SPACE WITH 51 AFFORDABLE DWELLING UNITS. INCLUDES 12 INDOOR PARKING SPACES, TRASH ENCLOSURE, AND GREEN ROOFS (OCC GROUP A-2, A-3, B, M, R-2, U; TYPE IIIA CONSTRUCTION). CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031836800"
+ },
+ {
+  "id": "101086233",
+  "address": "306 N Peoria St",
+  "lat": 41.887021,
+  "lng": -87.649996,
+  "issue_date": "2026-09-16",
+  "units": null,
+  "description": "FOUNDATION PERMIT - THIS WORK CONSISTS OF A MAT FOUNDATION, BASEMENT, & FIRST FLOOR SLAB FOR A 3-STORY MIXED-OCCUPANCY BUILDING. AS PER PLANS ALL REMAINING BUILDING CONSTRUCTION WILL BE SUBMITTED UNDER A SUBSEQUENT FULL BUILDING PERMIT. (OCC: R-2,M,B) (CONSTRUCTION TYPE: 1A, 3A)(CONSULTANT REVIEWER- V3 COMPANIES OF IL)",
+  "geoid": "17031833000"
+ },
+ {
+  "id": "101076474",
+  "address": "1817 N California Ave",
+  "lat": 41.914465,
+  "lng": -87.696963,
+  "issue_date": "2026-09-15",
+  "units": 24,
+  "description": "FULL BUILDING PERMIT FOR 5 STORY 24 D.U. BUILDING, 24 CAR GARAGE AT 1ST STORY, DECK AT 2ND STORY OVER PORTION OF GARAGE, FRONT DECK AT 2ND THRU 5TH STORY, REAR BALCONY AT 3RD THRU 5TH STORY, FRONT PATIO AT 1ST STORY, ROOFTOP STAIR ENCLOSURE, ELEVATOR OVER-RUN, 1 EXTERIOR LOADING BERTH, 24 ON-SITE BICYCLE PARKING SPACES, 6' HIGH 13' BY 3' MASONRY TRASH ENCLOSURE, ENTIRE BUILDING SPRINKLERED (OCCUPANCY GROUP R-2, S-2, TYPE IIIA CONSTRUCTION). CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031832400"
+ },
+ {
+  "id": "101085863",
+  "address": "1932 S Desplaines St",
+  "lat": 41.855823,
+  "lng": -87.642929,
+  "issue_date": "2026-09-10",
+  "units": null,
+  "description": "FIELD REVISIONS TO EXISTING PERMIT #101073001. UPDATED WALL TYPES PER STRUCTURAL PLANS, PLUMBING AND MECHANICAL EQUIPMENT PLACING ADJUSTMENTS, ELECTRICAL LOAD CALCULATIONS AND WATER SERVICE SIZE ADJUSTMENT",
+  "geoid": "17031310200"
+ },
+ {
+  "id": "101071485",
+  "address": "2053 W Irving Park Rd",
+  "lat": 41.954016,
+  "lng": -87.680867,
+  "issue_date": "2026-09-09",
+  "units": 9,
+  "description": "ERECT A 4 STORY, 9 DWELLING UNIT MIXED USE SPRINKLERED MASONRY BUILDING WITH AN ELEVATOR. TENANT RETAIL SPACE ON THE GROUND FLOOR, NEW MASONRY TRASH ENCLOSURE, 6FOOT HIGH WOOD FENCE AND FIVE EXTERIOR PARKING STALLS AT THE REAR OF THE PROPERTY, AS PER PLANS. R2 OCCUPANCY CLASSIFICATION.",
+  "geoid": "17031050500"
+ },
+ {
+  "id": "101085637",
+  "address": "3058 N Drake Ave",
+  "lat": 41.93735,
+  "lng": -87.716254,
+  "issue_date": "2026-09-08",
+  "units": null,
+  "description": "CONSTRUCT A NEW DETACHED FRAME 2 CAR GARAGE WITH A ROOFTOP DECK AT THE REAR OF A LOT IMPROVED WITH A FRAME RESIDENTIAL BUILDINGT",
+  "geoid": "17031210601"
+ },
+ {
+  "id": "101071666",
+  "address": "5339 S State St",
+  "lat": 41.796956,
+  "lng": -87.625614,
+  "issue_date": "2026-09-02",
+  "units": null,
+  "description": "NEW 2 STORY DANCE STUDIO BUILDING (OCCUPANCY GROUP B; CONSTRUCTION TYPE IIIA) V3 COMPANIES OF IL",
+  "geoid": "17031400300"
+ },
+ {
+  "id": "101079346",
+  "address": "7 W Elm St",
+  "lat": 41.903063,
+  "lng": -87.628931,
+  "issue_date": "2026-09-02",
+  "units": null,
+  "description": "CAISSONS AND FOUNDATION PERMIT THROUGH THE SECOND FLOOR FOR A 28 STORY, 315' TALL MULTIFAMILY RESIDENTIAL TOWER COMPOSED OF 304 RENTAL PROPERTIES. (OCCUPANCY: R, B, A, M, S/CONSTRUCTION TYPE: IA). CONSULTANT REVIEWER: PRIMERA ENGINEERING",
+  "geoid": "17031081100"
+ },
+ {
+  "id": "101083837",
+  "address": "3034 W Peterson Ave",
+  "lat": 41.990517,
+  "lng": -87.705614,
+  "issue_date": "2026-09-02",
+  "units": null,
+  "description": "REFERENCE DEMO PERMIT #101078582. NEW EXTERIOR MASONRY WALL TO ENCLOSE PORTION OF EXISTING BUILDING TO REMAIN AND NEW, ACCESSORY SIX-STALL SURFACE PARKING LOT WITH REQUIRED LANDSCAPING. EXISTING CONSTRUCTION TYPE IIIB, OCCUPANCY B, UNSPRINKLERED (NS).",
+  "geoid": "17031020702"
+ },
+ {
+  "id": "101082351",
+  "address": "1532 N Bell Ave",
+  "lat": 41.909546,
+  "lng": -87.683688,
+  "issue_date": "2026-09-01",
+  "units": 7,
+  "description": "FULL BUILDING PERMIT FOR 3 STORY 7 D.U. BUILDING WITH BASEMENT, ROOFTOP DECK, PERGOLA, ROOFTOP STAIR ENCLOSURES, REAR DECK AT 1ST STORY, FRONT BALONY AT 1ST THRU 3RD STORY, DETACHED 4 CAR & 3 CAR GARAGRES WITH ROOFTOP DECK (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031241200"
+ },
+ {
+  "id": "101082357",
+  "address": "1540 N Bell Ave",
+  "lat": 41.909773,
+  "lng": -87.683694,
+  "issue_date": "2026-09-01",
+  "units": 7,
+  "description": "FULL BUILDING PERMIT FOR 3 STORY 7 D.U. BUILDING WITH BASEMENT, ROOFTOP DECK, PERGOLA, ROOFTOP STAIR ENCLOSURES, REAR DECK AT 1ST STORY, FRONT BALONY AT 1ST THRU 3RD STORY, DETACHED 4 CAR & 3 CAR GARAGRES WITH ROOFTOP DECK (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031241200"
+ },
+ {
+  "id": "101082364",
+  "address": "1541 N Oakley Blvd",
+  "lat": 41.909757,
+  "lng": -87.684617,
+  "issue_date": "2026-09-01",
+  "units": 7,
+  "description": "FULL BUILDING PERMIT FOR 3 STORY 7 D.U. BUILDING WITH BASEMENT, ROOFTOP DECK, PERGOLA, ROOFTOP STAIR ENCLOSURES, REAR DECK AT 1ST STORY, FRONT BALONY AT 1ST THRU 3RD STORY, DETACHED 4 CAR & 3 CAR GARAGRES WITH ROOFTOP DECK (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031241200"
+ },
+ {
+  "id": "101082365",
+  "address": "1535 N Oakley Blvd",
+  "lat": 41.909587,
+  "lng": -87.684613,
+  "issue_date": "2026-09-01",
+  "units": 7,
+  "description": "FULL BUILDING PERMIT FOR 3 STORY 7 D.U. BUILDING WITH BASEMENT, ROOFTOP DECK, PERGOLA, ROOFTOP STAIR ENCLOSURES, REAR DECK AT 1ST STORY, FRONT BALONY AT 1ST THRU 3RD STORY, DETACHED 4 CAR & 3 CAR GARAGRES WITH ROOFTOP DECK (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031241200"
+ },
+ {
+  "id": "101084811",
+  "address": "536 N Western Ave",
+  "lat": 41.891748,
+  "lng": -87.686874,
+  "issue_date": "2026-09-01",
+  "units": 9,
+  "description": "FULL BUILDING PERMIT FOR 5 STORY 9 D.U. BUILDING, 1ST FLOOR RETAIL, 9 CAR GARAGE AT 1ST FLOOR, DECK AT 2ND STORY OVER PORTION OF GARAGE, FRONT DECK AT 2ND THRU 4TH STORY, REAR BALCONY AT 3RD/4TH STORY, ROOF DECK AT 5TH FLOOR, ELEVATOR OVER-RUN, ENTIRE BUILDING SPRINKLERED, 9 ON-SITE BICYCLE PARKING SPACES & A TRASH STORAGE AREA AT 1ST FLOOR AS PER PLAN (OCCUPANCY GROUP R-2, M, S-2 TYPE IIIA CONSTRUCTION) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031242800"
+ },
+ {
+  "id": "101079470",
+  "address": "11101 S Vincennes Ave",
+  "lat": 41.692061,
+  "lng": -87.663212,
+  "issue_date": "2026-08-31",
+  "units": null,
+  "description": "INSTALL REINFORCED CONCRETE SLAB TO SUPPORT (1) 22'X 8' PREFABRICATED COMMERCIAL GRADE SELF SERVE PET WASH UNIT.",
+  "geoid": "17031750500"
+ },
+ {
+  "id": "101076759",
+  "address": "3768 N Clark St",
+  "lat": 41.950713,
+  "lng": -87.659518,
+  "issue_date": "2026-08-28",
+  "units": 5,
+  "description": "ERECT A 4 STORY, FIVE DWELLING UNIT TYPE IIIA MASONRY BUILDING WITH A BASEMENT, ENCLOSED REAR AND FRONT STAIRS AND FRONT DECKS AT 1ST, 2ND, 3RD FLOORS AND A ROOF DECK FOR THE FOURTH FLOOR UNITS. WORK INCLUDES A NEW MASONRY TRASH ENCLOSURE AND AN ATTACHED FIVE CAR GARAGE WITH A PRIVATE ROOF DECK AND ACCESS STAIRCASE, AS PER PLANS. 3768-72 N CLARK STREET",
+  "geoid": "17031061200"
+ },
+ {
+  "id": "101071434",
+  "address": "437 N Hamlin Ave",
+  "lat": 41.889063,
+  "lng": -87.720864,
+  "issue_date": "2026-08-25",
+  "units": 6,
+  "description": "ERECT A 3 STORY SIX DWELLING UNIT TYPE IIIA MASONRY BUILDING WITH A BASEMENT, ENCLOSED REAR STAIRS AND FRONT DECKS FOR THE 1ST, 2ND AND 3RD FLOORS, A DETACHED SIX CAR MASONRY GARAGE, MASONRY TRASH ENCLOSURE, 6-FOOT-HIGH PRIVACY FENCE, AS PER PLANS.**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031231500"
+ },
+ {
+  "id": "101083185",
+  "address": "3200 N Lake Shore Dr",
+  "lat": 41.940909,
+  "lng": -87.639369,
+  "issue_date": "2026-08-25",
+  "units": null,
+  "description": "] INTERIOR RENOVATION OF COMMON, SHARED AMENITY SPACE ON THE SECOND FLOOR WITHIN AN EXISTING 28-STORY HIGH-RISE MULTI-FAMILY CONDOMINIUM BUILDING. RENOVATION MAINLY INCLUDES UPDATED FINISH MATERIALS AND LIGHTING. MINOR CONSTRUCTION WILL BE DONE TO COMBINE EXISTING KITCHENETTE WITH MULTIPURPOSE ROOM FOR (1) LARGE COMBINED SPACE. MINOR CHANGES TO MEP SYSTEMS ARE PROPOSED TO ACCOMMODATE ALTERED AMENITY ROOM LAYOUTS, INCLUDING REPLACING THE KITCHEN SINK IN SAME LOCATION AND INSTALLING NEW HVAC REGISTERS IN NEW ACT CEILING IN APPROXIMATELY SAME LOCATIONS. NEW LIGHT FIXTURES AND KITCHEN APPLIANCES TO BE INSTALLED. NO CHANGE TO SITE, SETBACKS, EXTERIOR, EXITING/EGRESS, FIRE PROTECTION, DWELLING UNITS, OR BUILDING STRUCTURE. BUILDNG IS PRIMARILY R-2 - MULTI-FAMILY RESIDENTIAL, BUT ALSO CONTAINS B - BUSINESS (COMMERCIAL SPACE N.I.C.) AND U - PARKING GARAGE (N.I.C.). TYPE IA CONSTRUCTION.",
+  "geoid": "17031061902"
+ },
+ {
+  "id": "101083301",
+  "address": "917 W Belmont Ave",
+  "lat": 41.939829,
+  "lng": -87.652243,
+  "issue_date": "2026-08-25",
+  "units": 46,
+  "description": "NEW CONSTRUCTION OF A 5-STORY MIXED-USE BUILDING TO INCLUDE GROUND FLOOR RETAIL, AT-GRADE PARKING (6 PARKING SPACES), RESIDENTIAL (46 TOTAL UNITS; 36 EFFICIENCY UNITS + 10 DWELLING UNITS) ON FLOORS 2-5 AND ASSOCIATED SITE WORK AS PER PLANS. (OCCUPANCY GROUP: R-2, A-2; TYPE III-A CONSTRUCTION) CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031063000"
+ },
+ {
+  "id": "101076014",
+  "address": "1548 W 14th Pl",
+  "lat": 41.86247,
+  "lng": -87.666113,
+  "issue_date": "2026-08-24",
+  "units": 8,
+  "description": "ERECT NEW (4) STORY MULTI-FAMILY RESIDENTIAL MASONRY BUILDING, 6'-0\"H. MASONRY TRASH ENCLOSURE, 6'-0\"H. WOOD FENCE, 6'-0\"H. METAL FENCE & (5) OUTDOOR PARKING SPACE AT REAR.- TYPE IIIA CONSTRUCTION - (8) DWELLING UNIT TOTAL",
+  "geoid": "17031842900"
+ },
+ {
+  "id": "101079067",
+  "address": "4943 N Damen Ave",
+  "lat": 41.971856,
+  "lng": -87.679133,
+  "issue_date": "2026-08-24",
+  "units": 16,
+  "description": "FULL PERMIT FOR A 5-STORY MIXED USE BUILDING WITH 16 DWELLING UNITS, 2 RETAIL SPACES, OCCUPIABLE PUBLIC ROOFTOP DECK, 20 BICYCLE SPACES AND 16 CAR ATTACHED GARAGE (OCCUPANCY GROUP B, R2, S2; TYPE III-A CONSTRUCTION)",
+  "geoid": "17031040402"
+ },
+ {
+  "id": "101054522",
+  "address": "1022 W Jackson Blvd",
+  "lat": 41.877965,
+  "lng": -87.652867,
+  "issue_date": "2026-08-19",
+  "units": 380,
+  "description": "CAISSONS (VERTICAL PENETRATION) ONLY FOR THE NEW CONSTRUCTION OF A 25-STORY MIXED USE BUILDING TO INCLUDE GROUND FLOOR RETAIL, PARKING ON LEVELS 2 & 3 (163 AUTOMOBILE PARKING SPACES & 380 BICYCLE PARKING SPACES) AND RESIDENTIAL (380 DWELLING UNITS) AS PER PLANS. (CONSTRUCTION TYPE: 1A / OCCUPANCY CLASSIFICATION: R-2 / M) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031833100"
+ },
+ {
+  "id": "101078587",
+  "address": "3548 N Clark St",
+  "lat": 41.94679,
+  "lng": -87.656358,
+  "issue_date": "2026-08-13",
+  "units": null,
+  "description": "CONSTRUCT A 2 STORY TYPE IIIA MASONRY BUILDING WITH A BASEMENT FOR A NEW GENERAL RESTAURANT AS PER ARCHITECTURAL PLANS.",
+  "geoid": "17031832000"
+ },
+ {
+  "id": "101081985",
+  "address": "1232 W North Ave",
+  "lat": 41.910876,
+  "lng": -87.658278,
+  "issue_date": "2026-08-13",
+  "units": null,
+  "description": "INTERIOR ALTERATION FOR 1 STORY HOME DEPOT BUILDING INCLUDES RECONFIGURATION OF THE SELF-CHECKOUT PAYMENT KIOSKS. CLOSING OF EGRESS DOORS ON THE LEFT ENTRY VESTIBULE,& A DOUBLE DOOR NEAR THE RIGHT ENTRY VESTIBULE & ADD AN EGRESS DOOR AT THE GARDEN CENTER (OCC: M,B,S-1; TYPE IIB CONSTRUCTION; BUILDING IS FULLY SPRINKLERED) (V3 OUTSOURCED REVIEWER) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031842300"
+ },
+ {
+  "id": "101082353",
+  "address": "3041 N Western Ave",
+  "lat": 41.937006,
+  "lng": -87.687794,
+  "issue_date": "2026-08-11",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 6 D.U. BUILDING WITH BASEMENT, REAR TERRACE AT 1ST STORY, REAR DECK AT 4TH STORY, FRONT BALCONY AT 1ST THRU 4TH STORY, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURE, DETACHED 1 CAR GARAGE & 5 CAR GARAGE WITH ROOFTOP DECK AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031843700"
+ },
+ {
+  "id": "101080109",
+  "address": "804 N Tripp Ave",
+  "lat": 41.895397,
+  "lng": -87.73237,
+  "issue_date": "2026-08-10",
+  "units": null,
+  "description": "ERECT 1 STORY SINGLE TENANT RESTAURANT BUILDING WITH DUAL LANE DRIVE THROUGH AND 31 PARKING SPACES INCLUDING MASONRY TRASH ENCLOSURE AND SCREENING FENCING (OCCUPANCY A2 CONSTRUCTION TYPE IIB) PER PLANS",
+  "geoid": "17031842100"
+ },
+ {
+  "id": "101085867",
+  "address": "1002 N Wood St",
+  "lat": 41.899751,
+  "lng": -87.672433,
+  "issue_date": "2026-08-10",
+  "units": 7,
+  "description": "TITLE 14, BRC TITLE 14R: INTERIOR DEMOLITION/STRIP-OUT OF AN EXISTING SEVEN (7) UNIT, THREE-STORY PLUS BASEMENT MASONRY BUILDING. REMOVE AND DISPOSE OF EXISTING INTERIOR COMPONENTS INCLUDING, BUT NOT LIMITED TO, NON-STRUCTURAL WALLS, DOORS, WINDOWS/FRAMES, FINISHES, AND EXISTING MECHANICAL, ELECTRICAL, AND PLUMBING (MEP) SYSTEMS AS INDICATED. EXTERIOR BUILDING SHELL REMAINS IN PLACE. ROOF AND FLOOR STRUCTURES TO REMAIN. WORK INCLUDES PREPARATION FOR RENOVATION.(OCCUPANCY: R-2 RESIDENTIAL MULTI-FAMILY CONSTRUCTION TYPE III-A)",
+  "geoid": "17031242200"
+ },
+ {
+  "id": "101080516",
+  "address": "4852 N Sawyer Ave",
+  "lat": 41.969996,
+  "lng": -87.709888,
+  "issue_date": "2026-08-07",
+  "units": 6,
+  "description": "PROPOSED 3 STORY/6 UNIT RESIDENCE W/ROOF DECK/ENCLOSURES, REAR 3 STORY STAIRS TO ROOF, REAR 1ST FLOOR PORCHES AND 2ND/3RD FLOOR DECKS, AND 6 CAR GARAGE W/ROOF DECK AND PERGOLA, PER PLANS.",
+  "geoid": "17031140200"
+ },
+ {
+  "id": "101081369",
+  "address": "1033 N Christiana Ave",
+  "lat": 41.900214,
+  "lng": -87.710391,
+  "issue_date": "2026-08-07",
+  "units": 40,
+  "description": "DDS 2019 CBC: FULL BUILDING PERMIT FOR 5 STORY 40 D.U. BUILDING WITH BASEMENT, 21 CAR GARAGE AT 1ST FLOOR, 3 EXTERIOR PARKING SPACES ON CONCRETE PAD, DECK AT 2ND STORY OVER PORTION OF GARAGE, DECK AT 1ST THRU 5TH STORY, BALCONY AT 3RD THRU 5TH STORY, ROOFTOP STAIR ENCLOSURE, ELEVATOR OVER-RUN, 1 EXTERIOR LOADING BERTH, ENTIRE BUILDING SPRINKLERED, 6' HIGH MASONRY TRASH ENCLOSURE, 40 ON-SITE BICYCLE PARKING SPACES AS PER PLAN (OCCUPANCY GROUP R-2, S-2, TYPE IIIA CONSTRUCTION). CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031836600"
+ },
+ {
+  "id": "101055542",
+  "address": "2740 N Hoyne Ave",
+  "lat": 41.931499,
+  "lng": -87.678984,
+  "issue_date": "2026-08-04",
+  "units": 59,
+  "description": "FULL BUILDING PERMIT FOR 5 STORY, 59 DWELLING UNIT MIXED OCCUPANCY BUILDING AND 10 OUTDOOR PARKING SPACES (OCCUPANCY GROUPS R-2, S-2, A-3, AND B, TYPE 1-B CONST.) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031070700"
+ },
+ {
+  "id": "101084207",
+  "address": "3806 N Ashland Ave",
+  "lat": 41.950899,
+  "lng": -87.669113,
+  "issue_date": "2026-07-31",
+  "units": null,
+  "description": "PHASE 2 OF A RESIDENTIAL DECK \"100% IN KIND\" REPLACEMENT OF AN EXISTING WOOD DECK. PHASE 1 WAS THE ACTUAL FLAT DECK AND THAT PROJECT WAS ALREADY GRANTED AN EXPRESS PERMIT (PERMIT #B200465965. THIS SET (PHASE 2) ADDS A PERGOLA, PRIVACY FENCE AND MISC. OUTDOOR FURNITURE TO THE OVERALL PROJECT.",
+  "geoid": "17031060300"
+ },
+ {
+  "id": "101063869",
+  "address": "3843 N Cicero Ave",
+  "lat": 41.951065,
+  "lng": -87.747103,
+  "issue_date": "2026-07-27",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF 1,710 SF DUNKIN DRIVE THRU WITH OCCUPANCY TYPE A2- ASSEMBLY WITH UNDER 50 OCCUPANTS. WORK INCLUDES SITE, ARCHITECTURAL, MECHANICAL, ELECTRICAL, AND PLUMBING. THIS HAS RECEIVED ZONING APPROVAL UNDER CAL. NO. 77-24-Z. DEMO OF PRIOR BUILDING UNDER PERMIT #101056901.",
+  "geoid": "17031831700"
+ },
+ {
+  "id": "101082990",
+  "address": "307 N Michigan Ave",
+  "lat": 41.887004,
+  "lng": -87.624395,
+  "issue_date": "2026-07-22",
+  "units": null,
+  "description": "INTERIOR ALTERATIONS TO EXISTING 14TH FLOOR OFFICE SPACE. WORK TO INCLUDE DEMO, NEW PARTITIONS, MECHANICAL, ELECTRICAL AND PLUMBING AS PER PLANS. NO STRUCTURAL WORK. NO CHANGE IN USE. (OCCUPANCY TYPE: B-BUSINESS OFFICE; CONSTRUCTION TYPE: 1A)",
+  "geoid": "17031320102"
+ },
+ {
+  "id": "101082343",
+  "address": "11462 S Church St",
+  "lat": 41.685489,
+  "lng": -87.668955,
+  "issue_date": "2026-07-20",
+  "units": null,
+  "description": "REPLACE EXISTING SIDE WOOD OPEN PORCH WITH NEW OPEN WOOD PORCH SAME SIZE AND LOCATION AS EXISTING IN 2 STORY W/ BASEMENT MULTI-UNIT RESIDENTIAL BUILDING (OCCUPANCY GROUP R-2; TYPE 3A CONSTRUCTION)",
+  "geoid": "17031750500"
+ },
+ {
+  "id": "101080842",
+  "address": "6027 N Kenmore Ave",
+  "lat": 41.99175,
+  "lng": -87.656717,
+  "issue_date": "2026-07-17",
+  "units": 24,
+  "description": "ERECT NEW 5 STORY, 24DU APARTMENT BUILDING W/BASEMENT, ROOFTOP STAIR ENCLOSURES, ELEVATOR PENTHOUSE, ROOF DECKS, REAR BALCONIES AND TRASH ENCLOSURE AS PER PLANS (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION) CERTIFIED PLAN CORRECTIONS.",
+  "geoid": "17031030101"
+ },
+ {
+  "id": "101076263",
+  "address": "726 N Kedzie Ave",
+  "lat": 41.894551,
+  "lng": -87.706673,
+  "issue_date": "2026-07-16",
+  "units": null,
+  "description": "FULL BUILDING PERMIT FOR 1-STORY PARK FIELDHOUSE WITH GYMNASIUM AND 4 OUTDOOR PARKING SPACES. (OCCUPANCY GROUP A-3; TYPE II-B CONSTRUCTION)**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031836700"
+ },
+ {
+  "id": "101082559",
+  "address": "1118 N California Ave",
+  "lat": 41.901662,
+  "lng": -87.696995,
+  "issue_date": "2026-07-16",
+  "units": 5,
+  "description": "NEW CONSTRUCTION OF A (6,956) SQ. FT., 4-STORY, TYPE IIIA MASONRY, 43' HT., 5-UNIT RESIDENTIAL BUILDING WITH (174) SQ. FT., REAR DECK, (1,427) SQ. FT., ROOFTOP DECK, 3-CAR PARKING PAD, 6' HT., SOILD WOOD FENCE, AND 6' HT., FRONT METAL FENCE WITH GATE (OCCUPANCY GROUP R-2; TYPE IIIA MASONRY).",
+  "geoid": "17031240900"
+ },
+ {
+  "id": "101078046",
+  "address": "1347 W Foster Ave",
+  "lat": 41.976147,
+  "lng": -87.664226,
+  "issue_date": "2026-07-15",
+  "units": 6,
+  "description": "NEW CONSTRUCTION FULL BUILDING PERMIT (3) THREE STORY,+ BASEMENT,(6) SIX RESIDENTIAL DWELLING UNIT BUILDING WITH (1) ROOFTOP STAIR PENTHOUSE/ENCLOSURE AND PRIVATE OCCUPIABLE ROOF DECKS.DETACHED SIX (6) CAR GARAGE WITH DECK. OCCUPANCY CLASS R-2, RESIDENTIAL USE,CONSTRUCTION TYPE 3-A WITH FULL SPRINKLER AS PER NFPA.",
+  "geoid": "17031031100"
+ },
+ {
+  "id": "101083795",
+  "address": "19 N Campbell Ave",
+  "lat": 41.881766,
+  "lng": -87.688353,
+  "issue_date": "2026-07-15",
+  "units": 8,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 8 D.U. BUILDING WITH BASEMENT, DETACHED 4 CAR GARAGE, 1 EXTERIOR PARKING SPACE ON CONCRETE PAD, FRONT/REAR BALCONY AT 1ST THRU 4TH STORY, 4' HIGH ORNAMENTAL METAL FENCE, 6' MASONRY TRASH ENCLOSURE AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031837800"
+ },
+ {
+  "id": "101065912",
+  "address": "910 S Wells St",
+  "lat": 41.870653,
+  "lng": -87.633679,
+  "issue_date": "2026-07-14",
+  "units": null,
+  "description": "DIRECT DEVELOPER SERVICES - PILES (VERTICAL PENETRATION) ONLY PERMIT. INSTALLATION OF (225) PILES THAT ARE HP 14X73 (14\"X14.5\") AND HP 14X102 (14\"X14.75\") AND APPROXIMATELY 77' BELOW GRADE FOR MIXED USE BUILDING OCCUPANCY GROUPS A-3,M,R-2,S-2; CONSTRUCTION TYPE IA CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031839000"
+ },
+ {
+  "id": "101070510",
+  "address": "1730 W Belmont Ave",
+  "lat": 41.939757,
+  "lng": -87.672306,
+  "issue_date": "2026-07-14",
+  "units": 8,
+  "description": "2019 ERECT A 4 STORY, 8 DWELLING UNIT MASONRY BUILDING (FIRST FLOOR AND BASEMENT DUPLEX), WITH AN ELEVATOR, BALCONIES, BICYCLE PARKING IN THE BASEMENT, ROOF DECK AND STAIR ENCLOSURE. TO INCLUDE A 6-FOOT-HIGH WOOD AND 5 FOOT IRON FENCE, MASONRY TRASH ENCLOSURE AND TWO DETACHED 4 CAR GARAGES WITH ROOF DECKS AND ACCESS METAL STAIRS, AS PER PLANS. STRUCTURAL PEER REVIEW PROVIDED. 2019, CBC, TYPE III-A, R2 OCC.",
+  "geoid": "17031062500"
+ },
+ {
+  "id": "101080509",
+  "address": "3020 N Ashland Ave",
+  "lat": 41.936721,
+  "lng": -87.668703,
+  "issue_date": "2026-07-13",
+  "units": null,
+  "description": "NEW FREESTANDING GROUND UP BUILDING FOR A QUICK SERVE RESTAURANT. PERMIT TO INCLUDE CIVIL, LANDSCAPING, ARCHITECTURAL, STRUCTURAL, MECHANICAL, PLUMBING AND ELECTRICAL DISCIPLINES. (CONSTRUCTION TYPE IIB, NON-SPRINKLERED, A2 OCCUPANCY)I",
+  "geoid": "17031062600"
+ },
+ {
+  "id": "101077321",
+  "address": "6504 N Northwest Hwy",
+  "lat": 41.99897,
+  "lng": -87.810315,
+  "issue_date": "2026-07-10",
+  "units": 8,
+  "description": "PROPOSED 3 STORY/8 UNIT RESIDENCE W/BASEMENT, FRONT/REAR BALCONIES ON ALL FLOORS, 6' SIDE WOOD FENCE, TRASH ENCLOSURE, AND 7 SPACE PARKING PAD ACCESSED VIA DRIVEWAY, PER PLANS.",
+  "geoid": "17031090200"
+ },
+ {
+  "id": "101078843",
+  "address": "10310 S Woodlawn Ave",
+  "lat": 41.707247,
+  "lng": -87.594399,
+  "issue_date": "2026-07-10",
+  "units": null,
+  "description": "INTERIOR RENOVATIONS: PROPOSED OFFICE SPACE IN THE NORTHEAST CORNER OF AN EXISTING 1 STORY WAREHOUSE, PER PLANS.",
+  "geoid": "17031500200"
+ },
+ {
+  "id": "101083788",
+  "address": "2431 W Warren Blvd",
+  "lat": 41.881968,
+  "lng": -87.687711,
+  "issue_date": "2026-07-10",
+  "units": 8,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 8 D.U. BUILDING WITH BASEMENT, DETACHED 3 CAR GARAGE, 3 EXTERIOR PARKING SPACES ON CONCRETE PAD, FRONT BALCONY AT 1ST THRU 4TH STORY, 5' HIGH WOOD FENCE, 6' MASONRY TRASH ENCLOSURE AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031837800"
+ },
+ {
+  "id": "101083790",
+  "address": "2433 W Warren Blvd",
+  "lat": 41.881967,
+  "lng": -87.687788,
+  "issue_date": "2026-07-10",
+  "units": 8,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 8 D.U. BUILDING WITH BASEMENT, DETACHED 3 CAR GARAGE, 3 EXTERIOR PARKING SPACES ON CONCRETE PAD, FRONT BALCONY AT 1ST THRU 4TH STORY, 5' HIGH WOOD FENCE, 6' MASONRY TRASH ENCLOSURE AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031837800"
+ },
+ {
+  "id": "101083793",
+  "address": "2439 W Warren Blvd",
+  "lat": 41.881964,
+  "lng": -87.688018,
+  "issue_date": "2026-07-10",
+  "units": 8,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 8 D.U. BUILDING WITH BASEMENT, DETACHED 3 CAR GARAGE, 3 EXTERIOR PARKING SPACES ON CONCRETE PAD, FRONT BALCONY AT 1ST THRU 4TH STORY, 5' HIGH WOOD FENCE, 6' MASONRY TRASH ENCLOSURE AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031837800"
+ },
+ {
+  "id": "101084103",
+  "address": "2210 W Belmont Ave",
+  "lat": 41.939617,
+  "lng": -87.6837,
+  "issue_date": "2026-07-10",
+  "units": 6,
+  "description": "ERECT 4 STORY IIIA MASONRY 6 DWELLING UNIT BUILDING WITH BASEMENT, ROOF DECK , PERGOLAS, 2, ROOF ACCESS , FIRST FL REAR PORCHE ,SECOND FL FRONT DECK , THIRD FL REAR PORCHE ,AND DETACHED 6 CAR GARAGE WITH ROOF DECK , EXISTING OCCUPANCY R-2 , PROPOSED OCUNPANCY R-2 , TYPE CONSTRUCTION IIIA PER PLANS",
+  "geoid": "17031051000"
+ },
+ {
+  "id": "101078781",
+  "address": "2260 W 47th St",
+  "lat": 41.808545,
+  "lng": -87.681819,
+  "issue_date": "2026-07-09",
+  "units": null,
+  "description": "NEW CONSTRUCTION. INSTALLATION OF AGGREGATE PIERS TO A DEPTH OF 19' BELOW GRADE. PIERS TO BE INSTALLED FOR A 137,410 SQFT STORAGE FACILITY, CONTAINING A STORAGE (S-1) CLASSIFICATION WITH A BUSINESS (B) CLASSIFICATION AS AN ACCESSORY OCCUPANCY AND CONFORMING TO ALL THE REQUIREMENTS OF TYPE II-B CONSTRUCTION.CONSULTANT REVIEWER: V3 COMPANIES",
+  "geoid": "17031610300"
+ },
+ {
+  "id": "101061188",
+  "address": "2939 N Elston Ave",
+  "lat": 41.934923,
+  "lng": -87.691595,
+  "issue_date": "2026-07-02",
+  "units": 6,
+  "description": "NEW 3 STORY SIX UNIT WITH BASEMENT, PROPOSED EXCAVATION, FRONT DECKS @ EACH UNIT ON 1ST, 2ND AND 3RD FLOORS, REAR OPEN STAIRS AND 6 UNENCLOSED PARKING SPACES, ALL WORK AS PER PLANS. **CERTIFIED PLANS CORRECTIONS: CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS **",
+  "geoid": "17031210900"
+ },
+ {
+  "id": "101024440",
+  "address": "2900 N Western Ave",
+  "lat": 41.934006,
+  "lng": -87.688089,
+  "issue_date": "2026-07-01",
+  "units": null,
+  "description": "NEW FOUNDATIN ONLY FOR NEW 2 STORY WAREHOUSE AND DISTRIBUTION AS PER PLANS",
+  "geoid": "17031210900"
+ },
+ {
+  "id": "101083498",
+  "address": "1604 S Fairfield Ave",
+  "lat": 41.85903,
+  "lng": -87.694588,
+  "issue_date": "2026-07-01",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR 3 STORY 6 D.U. BUILDING WITH BASEMENT, 3 EXTERIOR PARKING SPACES ON CONCRETE PAD, 5' HIGH WOOD FENCE, , ENTIRE BUILDING SPRINKLERED AS PER PLAN (OCCUPANCY GROUP R-2, TYPE VA CONSTRUCTION).",
+  "geoid": "17031291600"
+ },
+ {
+  "id": "101063784",
+  "address": "2816 N Kolmar Ave",
+  "lat": 41.932153,
+  "lng": -87.740842,
+  "issue_date": "2026-06-30",
+  "units": 6,
+  "description": "ERECT A 3 STORY TYPE IIIA SIX DWELLING UNIT MASONRY BUILDING WITH FRONT AND REAR OPEN METAL BALCONIES, MASONRY TRASH ENCLOSURE, SIX-FOOT-HIGH WOOD FENCE AND SIX EXTERIOR PARKING STALLS AT THE REAR OF THE PROPERTY, AS PER PLANS. R2 OCCUPANCY CLASSIFICATION.",
+  "geoid": "17031200100"
+ },
+ {
+  "id": "101081894",
+  "address": "1706 S Jefferson St",
+  "lat": 41.858491,
+  "lng": -87.642039,
+  "issue_date": "2026-06-30",
+  "units": null,
+  "description": "REVISION TO PROJECT #101070372, CHANGE FOOTPRINT OF BUILDING (STILL COMPLIANT), INTERIOR AND EXTERIOR ALTERATIONS, PER PLANS.",
+  "geoid": "17031310200"
+ },
+ {
+  "id": "101076976",
+  "address": "5869 N Milwaukee Ave",
+  "lat": 41.988465,
+  "lng": -87.779269,
+  "issue_date": "2026-06-29",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF A 1-STORY FROZEN CUSTARD STORE (LIMITED RESTAURANT) W/ DRIVE-THRU FACILITY, OUTDOOR PATIO AND TRASH ENCLOSURE AT GRADE. 21 ON-SITE AUTOMOBILE PARKING SPACES AND 7 BICYCLE PARKING SPACES. A-2, B AND S-2 OCCUPANCIES. CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031100100"
+ },
+ {
+  "id": "101084475",
+  "address": "1809 W 21st St",
+  "lat": 41.853961,
+  "lng": -87.671418,
+  "issue_date": "2026-06-22",
+  "units": null,
+  "description": "FIELD REVISIONS TO EXISTING PERMIT #101076627 INCLUDING LAYOUT REVISION PER STRUCTURAL VALUE ENGINEERING TO ACCOMODATE BRACING PARTITIONS ACROSS ALL LEVELS. ALL ELECTRICAL AND MECHANICAL DRAWINGS HAVE BEEN UPDATED ACCORDINGLY. RELOCATION OF WINDOWS PER LAYOUT REVISION HAS BEEN REFLECTED ON THE ELEVATIONS. BUILDING FOOTPRINT AND SITE PLAN REMAIN UNCHANGED.",
+  "geoid": "17031310900"
+ },
+ {
+  "id": "101079014",
+  "address": "2 N Riverside Plz",
+  "lat": 41.881977,
+  "lng": -87.638876,
+  "issue_date": "2026-06-18",
+  "units": null,
+  "description": "LEVEL 1 ALTERATION ON FLOORS 1 AND 2 OF A CURRENTLY OCCUPIED 26 STORY FULLY SPTINKERED OFFICE BUILDING, INCLUDING REPLACEMENT OF FINISHES, FIXTURES, AND MECHANICAL EQUIPMENT WITHIN THE INTERIOR AND LIMITED REPAID/REPLACE OF EXTERIOR STOREFRONTS. NO PLUMBING MODIFICATIONS, NO STRUCTURAL MODIFICATIONS. NO CHANGE OF OCCUPANCY. ALTERATIONS ARE LIMITED TO COMMON SPACES ONLY; NO WORK WITHIN TENANT SUITES.(OCC GROUP B; CONS TYP 1A)",
+  "geoid": "17031280100"
+ },
+ {
+  "id": "101080016",
+  "address": "1282 W Washington Blvd",
+  "lat": 41.883047,
+  "lng": -87.659654,
+  "issue_date": "2026-06-17",
+  "units": 16,
+  "description": "FOUNDATION ONLY NEW CONSTRUCTION OF A 5-STORY, 16 DWELLING UNIT RESIDENTIAL (R-2) BUILDING WITH A 32 SPACE PARKING GARAGE (S-2) THAT IS TYPE 1A & 3A CONSTRUCTION. CONSULTANT REVIEWER: V3 COMPANIES OF IL.",
+  "geoid": "17031833000"
+ },
+ {
+  "id": "101081094",
+  "address": "3717 N Keeler Ave",
+  "lat": 41.948686,
+  "lng": -87.732182,
+  "issue_date": "2026-06-17",
+  "units": null,
+  "description": "REVISION TO BUILDING PERMIT #101065717 TO INCLUDE ELIMINATION OF PROPOSED ADDITION, INTERIOR PLAN CHANGES INCLUDING REDUCTION AND RELOCATION OF SOME ROOMS, ELIMINATION OF THREE FULL BATHS, EXPANSION OF A POWDER ROOM TO A FULL BATHROOM, ENCLOSURE OF SOME EXISTING MASONRY OPENINGS (NOT REQUIRED FOR NATURAL LIGHT OR VENTILATION), REVISIONS TO SOME OTHER WINDOW OPENINGS, ELIMINATION OF BRICK VENEER AT WEST ELEVATION ¿ REPLACED WITH CEMENT FIBER BOARD MATERIALS. OCCUPANCY TYPE R-5, CONSTRUCTION TYPE III-A, NS, GROUP R",
+  "geoid": "17031161000"
+ },
+ {
+  "id": "101081162",
+  "address": "2345 W Chicago Ave",
+  "lat": 41.895644,
+  "lng": -87.686186,
+  "issue_date": "2026-06-16",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR 5 STORY 6 D.U. BUILDING, 6 CAR GARAGE AT 1ST FLOOR, DECK AT 2ND STORY OVER PORTION OF GARAGE, DECK AT 2ND THRU 5TH STORY, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, ELEVATOR OVER-RUN, ENTIRE BUILDING SPRINKLERED, 6 ON-SITE BICYCLE PARKING SPACES AS PER PLAN (OCCUPANCY GROUP R-2, S-2 TYPE IIIA CONSTRUCTION). CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031242900"
+ },
+ {
+  "id": "101082370",
+  "address": "2423 W Warren Blvd",
+  "lat": 41.881972,
+  "lng": -87.687403,
+  "issue_date": "2026-06-15",
+  "units": 8,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 8 D.U. BUILDING WITH BASEMENT, DETACHED 3 CAR GARAGE, 3 EXTERIOR PARKING SPACES ON CONCRETE PAD, FRONT BALCONY AT 1ST THRU 4TH STORY, 5' HIGH WOOD FENCE, 6' MASONRY TRASH ENCLOSURE AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031837800"
+ },
+ {
+  "id": "101083119",
+  "address": "71 S Wacker Dr",
+  "lat": 41.880718,
+  "lng": -87.636589,
+  "issue_date": "2026-06-09",
+  "units": null,
+  "description": "DEMOLITION ONLY; INTERIOR NONSTRUCTURAL PARTITION, SUSPENDED CEILING AND FINISHES DEMOLITION OF EXISTING BUSINESS TENANT SPACE TO PREPARE SPACE FOR NEXT TENANT. ACCESSIBLE RESTROOMS, ELEVATORS, EXIT STAIRS AND EGRESS PATHS TO REMAIN AS IS. B OCCUPANCY, CONSTRUCTION TYPE IA.",
+  "geoid": "17031839100"
+ },
+ {
+  "id": "101075042",
+  "address": "3059 N Southport Ave",
+  "lat": 41.937899,
+  "lng": -87.663607,
+  "issue_date": "2026-06-08",
+  "units": 5,
+  "description": "INTERIOR & EXTERIOR ALTERATION TO EXISTING (3) STORY MASONRY COMMERCIAL & RESIDENTIAL BUILDING. CONVERT EXISTING FRONT GROUND FLOOR REPAIR & LAUNDRY SERVICES, CONSUMER USE TO A NEW RESIDENTIAL DWELLING UNIT - TYPE IIIA CONSTRUCTION - (5) DWELLING UNIT & (1) LIVE-WORK PER PLANS **CERTIFIED PLANS CORRECTIONS: CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS **",
+  "geoid": "17031062800"
+ },
+ {
+  "id": "101079906",
+  "address": "2300 N Sheffield Ave",
+  "lat": 41.923644,
+  "lng": -87.653698,
+  "issue_date": "2026-06-05",
+  "units": null,
+  "description": "CAISSONS ONLY FOR THE NEW CONSTRUCTION OF A 4-STORY ATHLETIC CENTER AS PER PLANS. (OCCUPANCY GROUP A-3, B / TYPE II-A CONSTRUCTION)CONSULTANT REVIEWER:V3 COMPANIES OF IL",
+  "geoid": "17031071000"
+ },
+ {
+  "id": "101074227",
+  "address": "3651 N Wilton Ave",
+  "lat": 41.948752,
+  "lng": -87.653017,
+  "issue_date": "2026-06-03",
+  "units": 15,
+  "description": "CONVERT FROM 3 EXISTING RESIDENTIAL UNITS INTO 15 RESIDENTIAL UNITS, ERECT NEW 4 STORY SOUTH ADDITION WITH BASEMENT AND NEW 4TH FLOOR ADDITION ONTO THE EXISTING 3 STORY BRICK BUILDING WITH BASEMENT, NEW REAR OPEN METAL STAIR, NEW 6' HIGH FENCE AND REMOVE EXISTING DETACHED FRAME CAR GARAGE AND REPLACE WITH NEW 1 STORY ATTACHED BRICK CAR GARAGE WITH ROOF DECK, AS PER ARCHITECT'S PLANS. THE SCOPE OF WORK INCLUDES ARCHITECTURE, PLUMBING, HVAC AND ELECTRIC. CURRENT USE: 3 RESIDENTIAL UNITSPROPOSED USE: 15 RESIDENTIAL UNITSFULLY SPRINKLERED BUILDING",
+  "geoid": "17031061000"
+ },
+ {
+  "id": "101074704",
+  "address": "1904 W Adams St",
+  "lat": 41.878887,
+  "lng": -87.674364,
+  "issue_date": "2026-06-02",
+  "units": null,
+  "description": "CAISSONS (VERTICAL PENETRATION) ONLY TO -34 CCD FOR PROPOSED 2 STORY BUILDING WITH A MEZZANINE. NO BASEMENT FOR MIXED USED COMMERICAL BUILDING AND WILL INCLUDE A 6,000 SEAT MUSIC VENUE, STORAGE, COMMERCIAL LOADING, RETAIL AND COMMUNITY SPACE. BUILDING WILL HAVE AN OCCUPIED ROOF. THE PROJECT IS NOT CONSIDERED A HIGH-RISE. OCCUPANCY GROUPS A-1, A-3, B, M, S-1, AND S-2 (NON-SEPARATED). TYPE 1-B CONSTRUCTION. CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031838100"
+ },
+ {
+  "id": "101080704",
+  "address": "5520 S Dr Martin L King Jr Dr",
+  "lat": 41.793875,
+  "lng": -87.616104,
+  "issue_date": "2026-06-01",
+  "units": null,
+  "description": "FULL BUILDING PERMIT FOR TYPE 1 CONSTRUCTION & LANDSCAPED PARK INCLUDING: ARCHITECTURAL CONCRETE MEMORIAL. EXTERIOR SPACES TO ENTRANCE (WITH CANTILEVERED SEATING), MEMORIAL, EXCAVATED AMPHITHEATER, 5% SLOPED PATHS, IN-ACTIVE STORAGE (SHIPPING CONTAINER), LANDSCAPING, PAVING, SIGNAGE AND EXIT (WITH CANTILEVERED SEATING) PER PLANS. ADDITIONALLY, THERE WILL BE NEW SEWER TAP, WATER & ELECTRICAL SERVICES PER PLANS. (OCCUPANCY GROUP A-3, TYPE IB CONSTRUCTION) THIS IS A DCASE PROJECT.",
+  "geoid": "17031400400"
+ },
+ {
+  "id": "101081307",
+  "address": "2219 N Fremont St",
+  "lat": 41.922379,
+  "lng": -87.650935,
+  "issue_date": "2026-05-19",
+  "units": null,
+  "description": "FULL PERMIT FOR NEW WALLS (NEW YARD) FOR EXISTING RESIDENCE AT 2215 N FREMONT (EXISTING R-5 OCCUPANCY GROUP AND EXISTING TYPE IIIB CONSTRUCTION) ALL WORK PER PLANS.",
+  "geoid": "17031071100"
+ },
+ {
+  "id": "101057186",
+  "address": "3329 N Lincoln Ave",
+  "lat": 41.942224,
+  "lng": -87.67027,
+  "issue_date": "2026-05-18",
+  "units": 42,
+  "description": "NEW CONSTRUCTION OF 7-STORY MIXED-USE DEVELOPMENT: 42 RESIDENTIAL UNITS WITH GROUND FLOOR COMMERCIAL SPACE, GROUND FLOOR 20-CAR GARAGE, AND OCCUPIABLE ROOF DECK. EXISTING HISTORICAL FACADE TO REMAIN (OCCUPANCIES R-2, M, & S-2, CONSTRUCTION TYPE 1-B) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031062500"
+ },
+ {
+  "id": "101076270",
+  "address": "2023 W Ogden Ave",
+  "lat": 41.87234,
+  "lng": -87.676722,
+  "issue_date": "2026-05-18",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF OPEN SPACE AREA WITH A SENSORY GARDEN, MULTI-GENERATIONAL PLAY AREA WITH PLAYGROUND AND FITNESS AREA.(OCCUPANCIES A-5, CONSTRUCTION TYPE )",
+  "geoid": "17031838200"
+ },
+ {
+  "id": "101081591",
+  "address": "2631 S Throop St",
+  "lat": 41.844817,
+  "lng": -87.655087,
+  "issue_date": "2026-05-18",
+  "units": 9,
+  "description": "ERECT NEW 2 STORY, III-A, 9DU TOWNHOUSE BUILDING W/ BASEMENTS AND 1 CAR ATTACHED GARAGES (9 TOTAL SPACES) AS PER PLANS (OCCUPANCY GROUP R-2, TYPE III-A CONSTRUCTION) CERTIFIED PLAN CORRECTIONS.",
+  "geoid": "17031840200"
+ },
+ {
+  "id": "101082065",
+  "address": "104 W Oak St",
+  "lat": 41.900659,
+  "lng": -87.631606,
+  "issue_date": "2026-05-18",
+  "units": null,
+  "description": "LEVEL 2 ALTERATION:INTERIOR RENOVATION OF AN EXISTING GROUND LEVEL TENANT SPACE IN A 6 STORY MIXED USE BUILDING CONSISTING OF 1,129 SF RENTABLE AREA. WORK INCLUDES ARCHITECTURAL, ELECTRICAL AND PLUMBING.NO EXTERIOR WORK, NO STRUCTURAL WORK, NO MECHANICAL WORK(OCCUPANCY: B, CONSTRUCTION TYPE IIIB)",
+  "geoid": "17031081000"
+ },
+ {
+  "id": "101082202",
+  "address": "4437 S Vincennes Ave",
+  "lat": 41.813855,
+  "lng": -87.613829,
+  "issue_date": "2026-05-14",
+  "units": 6,
+  "description": "ERECT NEW 6 UNIT 4 STORY VA APARMENT BUILDING WITH BASEMENT, FULLY SPRINKLED SYSTEM 13-R , FIRST , SECOND , THIRD FL FRONT PORCHES , FOURTH FL REAR ROOF DECK AND 6 CAR GARAGE WITH ROOF DECK , EXISTING OCCUPANCY R-2 , PROPOSED OCCUPANCY R-2 , TYPE CONSTRUCTION VA , PER PLANS",
+  "geoid": "17031836000"
+ },
+ {
+  "id": "101078038",
+  "address": "1221 W Belmont Ave",
+  "lat": 41.939716,
+  "lng": -87.659833,
+  "issue_date": "2026-05-12",
+  "units": 40,
+  "description": "FULL BUILDING PERMIT FOR CONSTRUCTION OF A NEW 40 UNIT, 5 STORY MIXED-USE BUILDING WITH GROUND FLOOR RETAIL, GROUND FLOOR FITNESS AMENITY SPACE, (22 INTERIOR, 2 EXTERIOR) AND COMMON ROOF TOP DECK. EXTERIOR STEEL BALCONIES PER PLANS. FULLY SPRINKLERED - NFPA-13R/ OCCUPANCY R-2, CONSTRUCTION TYPE IIIA. 1221-1225 W. BELMONT AVE. CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031062800"
+ },
+ {
+  "id": "101076337",
+  "address": "5354 N Sheridan Rd",
+  "lat": 41.979784,
+  "lng": -87.655228,
+  "issue_date": "2026-05-08",
+  "units": 50,
+  "description": "2019 REVISION TO PREVIOUSLY ISSUED PERMIT #100960694 REVISON PERMIT # 101064593 OF A NEW CONSTRUCTION FIVE STORY RESIDENTIAL BUILDING WITH 50 DWELLING UNITS, REVISION SUBMITTED FOR THE RELOCATION OF THE WATER SERVICE TO THE BUILDING",
+  "geoid": "17031030703"
+ },
+ {
+  "id": "101071680",
+  "address": "11401 S Vincennes Ave",
+  "lat": 41.686555,
+  "lng": -87.666511,
+  "issue_date": "2026-05-05",
+  "units": null,
+  "description": "INSTALL ROOF TOP SOLAR PANELS WITH 300 MODULES AND 2 INVERTERS",
+  "geoid": "17031750500"
+ },
+ {
+  "id": "101079368",
+  "address": "6152 N Sheridan Rd",
+  "lat": 41.993848,
+  "lng": -87.655652,
+  "issue_date": "2026-05-04",
+  "units": 40,
+  "description": "FULL BUILDING PERMIT FOR 5 STORY 40 D.U. BUILDING WITH BASEMENT, 40 CAR GARAGE AT BASEMENT, ROOFTOP DECK, PERGOLA, ROOFTOP STAIR ENCLOSURES, ELEVATOR PENTHOUSE, ONE EXTERIOR LOADING BERTH, DECK AT 1ST STORY OVER PORTION OF GARAGE, DECK AT 1ST THRU 5TH STORY, 42\" HIGH METAL FENCE, ENTIRE BUILDING SPRINKLERED (OCCUPANCY GROUP R-2, S-2, TYPE IIIA CONSTRUCTION) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031030102"
+ },
+ {
+  "id": "101080298",
+  "address": "6509 W Higgins Ave",
+  "lat": 41.977092,
+  "lng": -87.790723,
+  "issue_date": "2026-04-30",
+  "units": 5,
+  "description": "NEW CONSTRUCTION OF A (2,365) SQ. FT., 2-STORY, TYPE VA FRAME, 26' HT., 5-UNIT RESIDENTIAL BUILDING WITH BASEMENT AND ROOF DECK, NEW 5-CAR CONCRETE PARKING PAD, NEW CONCRETE WALK, AND NEW CONCRETE APRON (OCCUPANCY GROUP R-2; TYPE VA CONSTRUCTION).",
+  "geoid": "17031100600"
+ },
+ {
+  "id": "101076518",
+  "address": "811 W Evergreen Ave",
+  "lat": 41.906265,
+  "lng": -87.648599,
+  "issue_date": "2026-04-29",
+  "units": null,
+  "description": "COLOCATE AT&T'S TELECOMMUNCATION FACILITY - ANTENNAS ; RADIOS; ANCILLARY EQUIPMENT; CABINET ON NEW PLATFORM - ON ROOFTOP ; SEE CONSTRUCTION DRAWINGS FOR COMPLETE SCOPE OF WORK",
+  "geoid": "17031842200"
+ },
+ {
+  "id": "101078042",
+  "address": "1351 W Foster Ave",
+  "lat": 41.976144,
+  "lng": -87.66438,
+  "issue_date": "2026-04-27",
+  "units": 6,
+  "description": "NEW CONSTRUCTION FULL BUILDING PERMIT (3) THREE STORY,+ BASEMENT,(6) SIX RESIDENTIAL DWELLING UNIT BUILDING WITH(1) ROOFTOP STAIR PENTHOUSE/ENCLOSURE AND PRIVATE OCCUPIABLE ROOF DECKS.DETACHED SIX (6) CAR GARAGE WITH DECK. OCCUPANCY CLASS R-2, RESIDENTIAL USE,CONSTRUCTION TYPE 3-A WITH FULL SPRINKLER AS PER NFPA.",
+  "geoid": "17031031100"
+ },
+ {
+  "id": "101069835",
+  "address": "4725 N Clifton Ave",
+  "lat": 41.968002,
+  "lng": -87.658714,
+  "issue_date": "2026-04-24",
+  "units": 40,
+  "description": "FOUNDATION AND SUPERSTRUCTURE PERMIT THROUGH LEVEL 2 FOR A 5 STORY 40 UNIT RESIDENTIAL BUILDING WITH AMENITIES AND RETAIL SPACE. ALL AS PER PLANS. (OCCUPANCY GROUPS: R-2, M, S-2; TYPE 1A CONSTRUCTION). CONSULTANT REVIEWER GLOBETROTTERS.",
+  "geoid": "17031830700"
+ },
+ {
+  "id": "101070440",
+  "address": "545 E Oakwood Blvd",
+  "lat": 41.822571,
+  "lng": -87.612538,
+  "issue_date": "2026-04-22",
+  "units": 47,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 47 D.U. BUILDING WITH BASEMENT, 10 EXTERIOR PARKING SPACES ON CONCRETE PAD, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, ELEVATOR PENTHOUSE, DECK AT 1ST TO 4TH STORY, BALCONY AT 2ND TO 4TH STORY, ENTIRE BUILDING SPRINKLERED, 6' HIGH MASONRY TRASH ENCLOSURE, 1 EXTERIOR LOADING BERTH, 42\" WROUGHT IRON FENCE AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION). CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031380100"
+ },
+ {
+  "id": "101077259",
+  "address": "5333 S Harlem Ave",
+  "lat": 41.7948,
+  "lng": -87.801468,
+  "issue_date": "2026-04-16",
+  "units": null,
+  "description": "CONSTRUCTION OF A NEW 2-STORY WOOD CONSTRUCTION MEDICAL OFFICE BUILDING AND ASSOCIATED SURFACE PARKING LOT. BUILDING TO BE CONSTRUCTED AS CORE AND SHELL WITH APPROX. 11,500 SF OF VANILLA BOX SPACE FOR FUTURE TENANTS. FUTURE TENANT OCCUPANCY EXPECTED TO BE GROUPS B AND/OR M. TYPE V-A CONSTRUCTION, NFPA13 AUTOMATICAL SPRINKLER SYSTEM THROUGHOUT. APPROX. 14,200 SF GFA, 2 STORIES.EXISTING STRUCTURE IS TO REMAIN OCCUPIED DURING CONSTRUCTION OF NEW STRUCTURE.",
+  "geoid": "17031560900"
+ },
+ {
+  "id": "101082025",
+  "address": "801 E 95th St",
+  "lat": 41.721934,
+  "lng": -87.60445,
+  "issue_date": "2026-04-13",
+  "units": null,
+  "description": "NEW ACCESSORY SURFACE PARKING LOT WITH 120 SPACES, OF 24 WHICH ARE EVSE-READY. WORK TO INCLUDE NEW ASPHALT, LANDSCAPE AND SITE ELECTRICAL. PARKING LOT TO SERVE CHICAGO STATE UNIVERSITY AND METRA RAIL COMMUTERS.",
+  "geoid": "17031490500"
+ },
+ {
+  "id": "101080037",
+  "address": "19 S La Salle St",
+  "lat": 41.881419,
+  "lng": -87.632203,
+  "issue_date": "2026-04-10",
+  "units": null,
+  "description": "HOIST PERMIT FOR AVR850S SINGLE CAR HOIST",
+  "geoid": "17031839100"
+ },
+ {
+  "id": "100994035",
+  "address": "1628 W Division St",
+  "lat": 41.903438,
+  "lng": -87.668663,
+  "issue_date": "2026-04-09",
+  "units": 121,
+  "description": "2019 FULL BUILDING PERMIT FOR 13-STORY BUILDING WITH 121 DWELLING UNITS AND FIRST FLOOR GARAGE.. SPRINKLER SYSTEM UNDER SEPERATE PERMIT. (OCCUPANCY GROUP R-2; TYPE 1A CONSTRUCTION) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031241400"
+ },
+ {
+  "id": "101077317",
+  "address": "644 W 71st St",
+  "lat": 41.765363,
+  "lng": -87.641327,
+  "issue_date": "2026-04-09",
+  "units": null,
+  "description": "ROOF REPLACEMENT PROJECT WITH MINOR MECHANICAL REPLACEMENT WORK.",
+  "geoid": "17031681200"
+ },
+ {
+  "id": "101077319",
+  "address": "6656 S Normal Blvd",
+  "lat": 41.772754,
+  "lng": -87.637295,
+  "issue_date": "2026-04-09",
+  "units": null,
+  "description": "ROOF REPLACEMENT PROJECT INCLUDING MINOR MEP WORK ASSOCIATE WITH THE ROOF.",
+  "geoid": "17031680900"
+ },
+ {
+  "id": "101074232",
+  "address": "2829 S Stewart Ave",
+  "lat": 41.841653,
+  "lng": -87.636314,
+  "issue_date": "2026-04-08",
+  "units": 8,
+  "description": "(FACE 1) ERECT A 3-STORY, VA WOOD-FRAME, FULLY SPRINKLED TOWNHOUSE DEVELOPMENT. PROJECT CONSISTS OF 2 FACES, EACH CONTAINING 4 DWELLING UNITS, FOR A TOTAL OF 8 TOWNHOUSES. EXISTING . OCCUPANCY R-3 , PROPOSED OCCUPANCY R-3. CONSTRUCTION TYPE: VA.",
+  "geoid": "17031340300"
+ },
+ {
+  "id": "101074233",
+  "address": "2825 S Stewart Ave",
+  "lat": 41.84178,
+  "lng": -87.636317,
+  "issue_date": "2026-04-08",
+  "units": 8,
+  "description": "(FACE 2) ERECT A 3-STORY, VA WOOD-FRAME, FULLY SPRINKLED TOWNHOUSE DEVELOPMENT. PROJECT CONSISTS OF 2 FACES, EACH CONTAINING 4 DWELLING UNITS, FOR A TOTAL OF 8 TOWNHOUSES. EXISTING . OCCUPANCY R-3 , PROPOSED OCCUPANCY R-3. CONSTRUCTION TYPE: VA.",
+  "geoid": "17031340300"
+ },
+ {
+  "id": "101078157",
+  "address": "1805 N Campbell Ave",
+  "lat": 41.914147,
+  "lng": -87.689614,
+  "issue_date": "2026-04-07",
+  "units": 21,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 21 D.U. BUILDING, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, ELEVATOR OVER-RUN, ELEVATOR PENTHOUSE, 11 CAR GARAGE AT 1ST FLOOR, DECK AT 2ND STORY OVER PORTION OF GARAGE, ENTIRE BUILDING SPRINKLERED AS PER PLAN (OCCUPANCY GROUP R-2, S-2 TYPE IIIA CONSTRUCTION) AS PER PLAN. CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031832400"
+ },
+ {
+  "id": "101079046",
+  "address": "2705 W Prindiville St",
+  "lat": 41.92148,
+  "lng": -87.69543,
+  "issue_date": "2026-04-07",
+  "units": 50,
+  "description": "INSTALL CAISSONS ONLY FOR 7 STORY RESIDENTIAL BUILDING WITH 45 STANDARD DWELLING UNITS AND 5 EFFICIENCY UNITS GROUND FLOOR RETAIL SPACE AND 11 INTERIOR VEHICLE PARKING SPACES (CON TYPE 1B FS OCC R2 M S2) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031221400"
+ },
+ {
+  "id": "101062541",
+  "address": "2652 W Madison St",
+  "lat": 41.881209,
+  "lng": -87.693011,
+  "issue_date": "2026-04-03",
+  "units": 8,
+  "description": "PROPOSED 4 STORY/8 UNIT RESIDENCE, 6' FRONT IRON/6' SIDE WOOD FENCES, TRASH ENCLOSURE, AND ATTACHED 3 CAR GARAGE (1 ADA) AND 5 SPACE PARKING PAD, PER PLANS. TYP III-A CONST. R-2 OCC. VARIATION #370-25-Z TO INCREASE THE BUILDING LOCATION STANDARD, 371-25-Z TO INCREASE THE NUMBER OF OFF STREET PARKING SPACES WITHIN 2640' OF A CTA RAIL STATION, #372-25-Z TO DECREASE THE REQUIRED BICYCLE SPACES, AND SPECIAL USE #369-25-S TO ESTABLISH A DWELLING UNIT BELOW THE 2ND FLOOR APPROVED 10.27.2025.",
+  "geoid": "17031837400"
+ },
+ {
+  "id": "101062543",
+  "address": "2656 W Madison St",
+  "lat": 41.881207,
+  "lng": -87.693162,
+  "issue_date": "2026-04-03",
+  "units": 8,
+  "description": "ERECT NEW (4) STORY MULTI-FAMILY RESIDENTIAL MASONRY BUILDING W/ ATTACHED (2 & 1) CAR GARAGE - TYPE IIIB CONSTRUCTION - (8) DWELLING UNIT TOTAL. R-2 OCC.",
+  "geoid": "17031837400"
+ },
+ {
+  "id": "101076906",
+  "address": "4006 N Sheridan Rd",
+  "lat": 41.9547,
+  "lng": -87.654698,
+  "issue_date": "2026-04-03",
+  "units": 91,
+  "description": "CAISSONS (VERTICAL PENETRATION) ONLY FOR NEW 7 STORY 91 DU MIXED USE BUILDING. CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031032100"
+ },
+ {
+  "id": "101078918",
+  "address": "2249 W Belmont Ave",
+  "lat": 41.939382,
+  "lng": -87.685124,
+  "issue_date": "2026-04-03",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 6 D.U. BUILDING WITH BASEMENT, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, REAR TERRACE AT 1ST & 3RD STORY, REAR DECK AT 2ND STORY, FRONT DECK AT 4TH STORY, ATTACHED 2 CAR & 4 CAR GARAGRES WITH ROOFTOP DECK, 6' HIGH WOOD FENCE, 5' HIGH METAL FENCE, 6' HIGH MASONRY TRASH ENCLOSURE AS PER PLAN (OCCUPANCY GROUP R-2, S-2 TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031843700"
+ },
+ {
+  "id": "101075371",
+  "address": "6125 N Kenmore Ave",
+  "lat": 41.993093,
+  "lng": -87.656758,
+  "issue_date": "2026-04-02",
+  "units": 18,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 18 D.U. BUILDING WITH BASEMENT, 10 CAR GARAGE AT BASEMENT, DECK AT 1ST STORY OVER PORTION OF GARAGE, BALCONY AT 2ND/3RD/4TH STORY, ROOFTOP DECK, PERGOLA, ROOFTOP STAIR ENCLOSURE, ELEVATOR PENTHOUSE, ELEVATOR OVER-RUN, 42\" ORNAMENTAL METAL FENCE, ENTIRE BUILDING SPRINKLERED AS PER PLAN (OCCUPANCY GROUP R-2, S-2, TYPE IIIA CONSTRUCTION). CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031030102"
+ },
+ {
+  "id": "101079344",
+  "address": "5035 S East End Ave",
+  "lat": 41.803316,
+  "lng": -87.585287,
+  "issue_date": "2026-04-02",
+  "units": null,
+  "description": "PROPOSED NEW DISH (4) NEW LINE NETWORK AND ASSOCIATED EQUIPMENT PER PLANS",
+  "geoid": "17031390700"
+ },
+ {
+  "id": "101073363",
+  "address": "2724 N Lehmann Ct",
+  "lat": 41.932106,
+  "lng": -87.643696,
+  "issue_date": "2026-03-30",
+  "units": 19,
+  "description": "FULL BUILDING PERMIT FOR 5 STORY, 19 DWELLING UNIT APARTMENT BUILDING WITH AN OCCUPIED ROOFTOP DECK & NON-OPERABLE PERGOLA 8.67 FT. IN HEIGHT . PROJECT INCLUDES A TRASH ENCLOSURE 6 FT. IN HEIGHT, 1ST FL. ACCESSORY BICYCLE PARKING ROOM FOR 20 ENCLOSED BIKE SPACES AND FENCING. (OCCUPANCY GROUP R-2. TYPE IIIA CONSTRUCTION).V3 COMPANIES OF IL",
+  "geoid": "17031070102"
+ },
+ {
+  "id": "101075840",
+  "address": "3600 N Southport Ave",
+  "lat": 41.947157,
+  "lng": -87.664165,
+  "issue_date": "2026-03-30",
+  "units": 10,
+  "description": "FULL BUILDING PERMIT FOR 4-STORY, 10 DWELLING UNIT MULTI-FAMILY RESIDENTIAL BUILDING WITH 1 OUTDOOR PARKING SPACE, 4-CAR DETACHED GARAGE (754 SF, OCCUPANCY GROUP U, TYPE IIIB CONSTRUCTION), AND MASONRY TRASH ENCLOSURE (OCCUPANCY GROUPS R-2 & M, TYPE IIIA CONSTRUCTION(CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS)",
+  "geoid": "17031060400"
+ },
+ {
+  "id": "101078785",
+  "address": "2006 S Blue Island Ave",
+  "lat": 41.854831,
+  "lng": -87.663915,
+  "issue_date": "2026-03-30",
+  "units": 9,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 9 D.U. BUILDING WITH CRAWL SPACE, 1ST FLOOR RETAIL, 4 CAR GARAGE AT 1ST FLOOR, DECK AT 2ND/3RD/4TH STORY, ELEVATOR OVER-RUN, ENTIRE BUILDING SPRINKLERED, 6' HIGH 3'-2\" BY 7'-8\" MASONRY TRASH ENCLOSURE AS PER PLAN (OCCUPANCY GROUP R-2, M, S-2 TYPE IIIA CONSTRUCTION).CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031310700"
+ },
+ {
+  "id": "101079568",
+  "address": "1101 W Waveland Ave",
+  "lat": 41.948894,
+  "lng": -87.656818,
+  "issue_date": "2026-03-27",
+  "units": null,
+  "description": "***STRUCTURAL PEER REVIEW*** CONSTRUCTION OF A NEW ARCHWAY AT THE WEST SIDE OF GALLAGHER WAY WITH BRICK PIERS AND DECORATIVE METAL TRUSS. SCOPE INCLUDES INTEGRAL LIGHTING AND DECORATIVE METAL PLAQUES, LOGO MEDALLIONS AND TEXT. NEW STRUCTURE TO SIT ATOP EXISTING CONCRETE FOUNDATIONS WITHIN EXISTING PLANTERS AND ON PRIVATE PROPERTY. NO CHANGE TO EXISTING OCCUPANCY IN GALLAGHER WAY.",
+  "geoid": "17031061100"
+ },
+ {
+  "id": "101073799",
+  "address": "1612 N Mobile Ave",
+  "lat": 41.909595,
+  "lng": -87.783503,
+  "issue_date": "2026-03-26",
+  "units": null,
+  "description": "ERECT 1 STORY SINGLE TENANT RESTAURANT BUILDING WITH DUAL LANE DRIVE THROUGH INCLUDING MASONRY TRASH ENCLOSURE AND SCREENING FENCING (OCCUPANCY A2 CON IIB)**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031250400"
+ },
+ {
+  "id": "101073941",
+  "address": "6601 N Ridge Blvd",
+  "lat": 42.001742,
+  "lng": -87.678419,
+  "issue_date": "2026-03-25",
+  "units": null,
+  "description": "FULL BUILDING PERMIT FOR ADJACENT PARKING TO EXISTING MANUFACTURING FOR 76 EXTERIOR SURFACE SPACES .(OCCUPANCY GROUP F-1, TYPE IIB CONSTRUCTION)",
+  "geoid": "17031830600"
+ },
+ {
+  "id": "101077252",
+  "address": "3305 W 55th St",
+  "lat": 41.793366,
+  "lng": -87.706247,
+  "issue_date": "2026-03-24",
+  "units": 16,
+  "description": "PREFABRICATED MODULAR CONSTRUCTION: FOUNDATION ONLY NEW CONSTRUCTION OF A 4-STORY MULTI-FAMILY RESIDENTIAL RENTAL BUILDING (R-2, V-A) WITH 16 UNITS, FULLY SPRINKLERED WITH (4) TYPE \"A\" ACCESSIBLE UNITS AND MINIMUM 20% ACCESSIBLE UNITS AND ON-SITE PARKING ACCESS VIA THE REAR ALLEY AS PER PLANS. CONSULTANT REVIEWER: V3 COMPANIES OF ILLINOIS",
+  "geoid": "17031630900"
+ },
+ {
+  "id": "100979631",
+  "address": "566 W Van Buren St",
+  "lat": 41.876846,
+  "lng": -87.64225,
+  "issue_date": "2026-03-23",
+  "units": 199,
+  "description": "FOUNDATION / SUPERSTRUCTURE PERMIT FOR THE NEW CONSTRUCTION OF A 14-STORY RESIDENTIAL BUILDING (199 UNITS) W/ NO BASEMENT TO INCLUDE PARKING ON LEVEL 1 (42 AUTO PARKING SPACES + 199 BIKE PARKING SPACES) AND ASSOCIATE SITE WORK AS PER PLANS. FULL BUILDING UNDER 101073356. (OCCUPANCY CLASSIFICATION: R-2, M / CONSTRUCTION CLASSIFICATION: 1A) CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031281900"
+ },
+ {
+  "id": "101064219",
+  "address": "4002 S Morgan St",
+  "lat": 41.821013,
+  "lng": -87.650885,
+  "issue_date": "2026-03-23",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF ONE (1) STORY WAREHOUSE & ASSOCIATED SITE WORK AS PER PLANS. (OCCUPANCY GROUP: S1,B / TYPE IIB CONSTRUCTION TYPE) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031842600"
+ },
+ {
+  "id": "101066649",
+  "address": "7658 S Cottage Grove Ave",
+  "lat": 41.755021,
+  "lng": -87.605447,
+  "issue_date": "2026-03-20",
+  "units": null,
+  "description": "INSTALLATION OF A 198 KW DC/150 KW AC ROOF MOUNTED PHOTOVOLTAIC SYSTEM CONSISTING OF 440 SOLAR PANELS ON A FLUSH MOUNT RACKING SYSTEM ON THE ROOF OF AN EXISTING 3 STORY BUILDING, PER PLANS.",
+  "geoid": "17031691400"
+ },
+ {
+  "id": "101075594",
+  "address": "1331 S Wells St",
+  "lat": 41.864778,
+  "lng": -87.633248,
+  "issue_date": "2026-03-20",
+  "units": null,
+  "description": "PILES ONLY PERMIT (VERTICAL PENETRATION ONLY) FOR THE NEW CONSTRUCTION OF A 4 STORY STADIUM (OCC GROUPS A-2, A-3, A-5, B, S-1, S-2, F-1, M; CONST TYPE IB) CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031330200"
+ },
+ {
+  "id": "101036007",
+  "address": "955 N Larrabee St",
+  "lat": 41.900311,
+  "lng": -87.64294,
+  "issue_date": "2026-03-18",
+  "units": 78,
+  "description": "NEW CONSTRUCTION 7 STORY, 79FT, 78 UNIT MULTI-FAMILY RESIDENTIAL BUILDING. 39 PARKING SPACES (5 ACCESSIBLE SPACES) PROVIDED IN FIRST FLOOR PARKING GARAGE. NFPA-13 SPRINKLER PROTECTION, CONCRETE PILE FOUNDATION. (OCCUPANCY R-2, S-2; CONSTRUCTION TYPE IA) CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031081900"
+ },
+ {
+  "id": "101072209",
+  "address": "3188 S Archer Ave",
+  "lat": 41.836203,
+  "lng": -87.668389,
+  "issue_date": "2026-03-13",
+  "units": 24,
+  "description": "ERECT NEW 4 STORY, III-A, 24 DU APARTMENT BUILDING W/GROUND FLOOR RETAIL SPACE AND 12 CAR PARKING GARAGE, 14 EXTERIOR PARKING SPACES AND MASONRY TRASH ENCLOSURE AS PER PLANS (OCCUPANCY GROUPS R-2, M, & S-2; TYPE III-A CONSTRUCTION)",
+  "geoid": "17031840400"
+ },
+ {
+  "id": "101077235",
+  "address": "12155 S Indiana Ave",
+  "lat": 41.672726,
+  "lng": -87.617515,
+  "issue_date": "2026-03-12",
+  "units": null,
+  "description": "NEW SINGLE STORY CLUBHOUSE CONSTRUCTION. ALL WORK AS PER PLANS.NOTE: THIS SITE DEVELOPMENT ALSO ENCOMPASSES CONCURRENT REHABILITATION WORK ON THREE (3) EXISTING RESIDENTIAL BUILDINGS UNDER PERMIT APPLICATION NUMBERS # 101075476, #101075479, #101075482.",
+  "geoid": "17031530600"
+ },
+ {
+  "id": "101077576",
+  "address": "2323 W Superior St",
+  "lat": 41.894743,
+  "lng": -87.685355,
+  "issue_date": "2026-03-12",
+  "units": null,
+  "description": "NEW DETACHED, CONSTRUCTION TYPE III-A, GARAGE OF OCCUPANCY TYPE U AT AN EXISTING TWO-FAMILY, CONSTRUCTION TYPE V-A, RESIDENCE OF OCCUPANCY TYPE R-5",
+  "geoid": "17031242900"
+ },
+ {
+  "id": "101078355",
+  "address": "2906 W Augusta Blvd",
+  "lat": 41.89937,
+  "lng": -87.699555,
+  "issue_date": "2026-03-09",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR 3 STORY 6 D.U. BUILDING WITH BASEMENT, REAR PORCH AT 1ST STORY, 3 EXTERIOR PARKING SPACES ON CONCRETE PAD, 5' HIGH WOOD FENCE, 6' HIGH 7' BY 3'-6\" MASONRY TRASH ENCLOSURE AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031240900"
+ },
+ {
+  "id": "101042818",
+  "address": "3351 W 59th St",
+  "lat": 41.786068,
+  "lng": -87.707831,
+  "issue_date": "2026-03-04",
+  "units": null,
+  "description": "CONSTRUCTION OF A 1 STORY PLUS BASEMENT MASONRY BUILDING FOR NEW DAYCARE. PROPOSED E-2 OCCUPANCY.AS PER PLANS**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031660400"
+ },
+ {
+  "id": "101067337",
+  "address": "1504 N Hudson Ave",
+  "lat": 41.909404,
+  "lng": -87.639899,
+  "issue_date": "2026-03-04",
+  "units": 7,
+  "description": "NEW CONSTRUCTION TYPE III-A (7) D.U. 3-STORY MASONRY BLDG. W/ BSMT. (OCCUPANCY R-2) W/ (3) FRONT DECKS, (2) REAR BALCONIES, ROOFTOP DECK, (3) PARKING SPACES & TRASH ENCLOSURE, PER PLANS",
+  "geoid": "17031080400"
+ },
+ {
+  "id": "101078069",
+  "address": "2424 W 25th St",
+  "lat": 41.846678,
+  "lng": -87.686664,
+  "issue_date": "2026-02-27",
+  "units": 6,
+  "description": "NEW CONSTRUCTION 5A FRAME 6-FLAT (6DU), GROUND UP, NEW FOUNDATION, FRAMING, ELECTRICAL, PLUMBING, HVAC, NEW FENCE, REAR PARKING PAD AT ALLEY, GROUND FLOOR TO BE TYPE A ALL WORK AS PER PLANS**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031841300"
+ },
+ {
+  "id": "101075603",
+  "address": "4301 N Milwaukee Ave",
+  "lat": 41.958936,
+  "lng": -87.752835,
+  "issue_date": "2026-02-26",
+  "units": 9,
+  "description": "FULL BUILDING PERMIT FOR NEW 4 STORY, 9 DWELLING UNIT APARTMENT BUILDING WITH 14 ON-SITE PARKING SPACES, 2 COMMERCIAL UNIT (RETAIL) AND ROOFTOP DECK (OCCUPANCY GROUPS R-2, M, TYPE IIIA CONSTRUCTION) (CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS)",
+  "geoid": "17031150200"
+ },
+ {
+  "id": "101077778",
+  "address": "3027 N Elbridge Ave",
+  "lat": 41.935623,
+  "lng": -87.716312,
+  "issue_date": "2026-02-26",
+  "units": null,
+  "description": "REVISION TO #101064635, CHANGES TO ROOF DECK AND CONDENSER UNIT RELOCATION, PER PLANS.",
+  "geoid": "17031210602"
+ },
+ {
+  "id": "101077180",
+  "address": "1830 W 22nd Pl",
+  "lat": 41.851564,
+  "lng": -87.672226,
+  "issue_date": "2026-02-25",
+  "units": 5,
+  "description": "NEW CONSTRUCTION 5,005 GSF, 4-STORY, (5) DWELLING UNIT MASONRY STRUCTURE ON AN EXISTING 2,400 GSF LOT TO BE CHANGED FROM AN EXISTING RS-3 ZONE TO A RM-5.5 ZONE. THE EXISTING REAR YARD 2-CAR ENCLOSED MASONRY GARAGE WILL REMAIN. (OCCUPANCY GROUP R-2, TYPE III-A CONSTRUCTION, PIN# 17-30-201-029-0000).",
+  "geoid": "17031843200"
+ },
+ {
+  "id": "101075133",
+  "address": "6143 N Kenmore Ave",
+  "lat": 41.993575,
+  "lng": -87.656773,
+  "issue_date": "2026-02-18",
+  "units": 40,
+  "description": "FULL BUILDING PERMIT FOR 5 STORY 40 D.U. BUILDING WITH BASEMENT, 40 CAR GARAGE AT BASEMENT, DECK AT 1ST STORY OVER PORTION OF GARAGE, DECK AT 1ST THRU 5TH STORY, ROOFTOP DECK, PERGOLA, ROOFTOP STAIR ENCLOSURES, ELEVATOR PENTHOUSE, 1 EXTERIOR LOADING BERTH, ENTIRE BUILDING SPRINKLERED, 42\" HIGH 156' LONG METAL FENCE AS PER PLAN (OCCUPANCY GROUP R-2, S-2, TYPE IIIA CONSTRUCTION).CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031030102"
+ },
+ {
+  "id": "101073305",
+  "address": "1604 N Hermitage Ave",
+  "lat": 41.910782,
+  "lng": -87.671508,
+  "issue_date": "2026-02-13",
+  "units": 8,
+  "description": "FULL BUILDING PERMIT FOR 5 STORY 8 UNIT MIXED USE BUILDING W/ 1ST FLOOR RETAIL, 2ND-5TH FLOOR BALCONIES, ROOF DECK/ENCLOSURE, AND 8 CAR GARAGE W/ROOF DECK. BUILDING FULLY SPRINKLERED (OCCUPANCY GROUP R-2,M, S-2,TYPE IIIA CONSTRUCTION) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031240200"
+ },
+ {
+  "id": "101063849",
+  "address": "2112 W Peterson Ave",
+  "lat": 41.990729,
+  "lng": -87.682979,
+  "issue_date": "2026-02-06",
+  "units": null,
+  "description": "PROPOSED TESLA EV CHARGING STATION IN TARGET PARKING LOT; ADDING (16) CHARGING DISPENSERS, (4) PAD-MOUNTED POWER CABINETS, (1) CT CABINET W/ METER SOCKET, (1) TRANSFORMER (BY UTILITY COMPANY).",
+  "geoid": "17031020902"
+ },
+ {
+  "id": "101074409",
+  "address": "2132 N Laramie Ave",
+  "lat": 41.919637,
+  "lng": -87.756166,
+  "issue_date": "2026-02-06",
+  "units": null,
+  "description": "NEW 3-STORY REAR WOOD FRAMED OPEN PORCH TO REPLACE EXISTING REAR PORCH LOST TO FIRE SERVING AN EXISTING MULTI-FAMILY RESIDENTIAL BUILDING.",
+  "geoid": "17031191200"
+ },
+ {
+  "id": "101077128",
+  "address": "500 N Michigan Ave",
+  "lat": 41.890971,
+  "lng": -87.624277,
+  "issue_date": "2026-02-06",
+  "units": null,
+  "description": "RX8000 HOIST FOUNDATION AND TIE-IN PERMIT",
+  "geoid": "17031081500"
+ },
+ {
+  "id": "101073183",
+  "address": "6328 W Irving Park Rd",
+  "lat": 41.953042,
+  "lng": -87.7853,
+  "issue_date": "2026-02-05",
+  "units": 9,
+  "description": "PROPOSED 3 STORY/9 UNIT RESIDENCE, FRONT AND REAR NORTH SIDE PORCHES, TRASH ENCLOSURE, AND 9 PARKING SPACES, PER PLANS.",
+  "geoid": "17031150502"
+ },
+ {
+  "id": "101073784",
+  "address": "1802 W Chicago Ave",
+  "lat": 41.896098,
+  "lng": -87.672374,
+  "issue_date": "2026-02-03",
+  "units": 6,
+  "description": "SC 2019. NEW 4 STORY, SIX RESIDENTIAL UNIT BUILDING WITH GROUND FLOOR COMMERCIAL SPACE. 7 CAR INTERIOR PARKING WITH INTERIOR MASONRY TRASH ENCLOSURE. PROVIDE INTERIOR LOBBY AND STORAGE SPACE, ELEVATOR, FRONT RECESSED DECKS AT RESIDENTIAL UNITS, REAR EXTERIOR METAL DECKS WITH PRIVATE OCCUPIABLE ROOF TOP DECK. PROVIDE SPRINKLER SYSTEM THROUGHOUT BUILDING, AS PER PLANS.",
+  "geoid": "17031242200"
+ },
+ {
+  "id": "101069625",
+  "address": "8301 S South Shore Dr",
+  "lat": 41.744647,
+  "lng": -87.547759,
+  "issue_date": "2026-01-30",
+  "units": null,
+  "description": "RENOVATION OF EXISTING 2 STORY W/ BASEMENT COMMERCIAL BUILDING AND CONSTRUCTION OF NEW 2 STORY W/ BASEMENT ADDITION FOR BIRTH CENTER W/ 3 PARKING SPACES AND ASSOCIATED SITE WORK; CHANGE IN OCCUPANCY CLASSIFICATION FROM ASSEMBLY GROUP 'A-3' (RELIGIOUS ASSEMBLY) TO BUSINESS GROUP 'B' (MEDICAL SERVICES) (CONSTRUCTION TYPE IIIA). ASSOCIATED SITE WORK INCL. NEW 7 FT. HIGH TRASH ENCL., NEW 6 FT. HIGH OI FENCING/SWING GATE & NEW 10 FT. HIGH FREE-STANDING LIGHT POLE.(CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS)",
+  "geoid": "17031460200"
+ },
+ {
+  "id": "101073042",
+  "address": "1144 W Loyola Ave",
+  "lat": 42.001647,
+  "lng": -87.660406,
+  "issue_date": "2026-01-30",
+  "units": null,
+  "description": "NEW CONSTRUCTION, FOUNDATION TO LEVEL 1 FRAMING, CAISSONS TO 100' BELOW GRADE, ERS TO 150' BELOW GRADE, UNDERGROUND PLUMBING, LANDSCAPE AND CIVIL SITE WORK AS PER PLANS FOR A 6-FLOOR PLUS BASEMENT CONCRETE BUILDING CONSTRUCTION TYPE IB. OCCUPANCIES INCLUDE B BUSINESS, A-3 ASSEMBLY AND S-1 STORAGE. CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031010400"
+ },
+ {
+  "id": "101071899",
+  "address": "2248 W 47th St",
+  "lat": 41.808549,
+  "lng": -87.681442,
+  "issue_date": "2026-01-29",
+  "units": null,
+  "description": "NEW CONSTRUCTION FOR A 156,546 SF STORAGE FACILITY, CONTAINING A STORAGE (S-1) CLASSIFICATION WITH A BUSINESS (B) CLASSIFICATION AS AN ACCESSORY OCCUPANCY. TYPE II-B CONSTRUCTION. CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031610300"
+ },
+ {
+  "id": "101055587",
+  "address": "5029 N Lincoln Ave",
+  "lat": 41.972652,
+  "lng": -87.690999,
+  "issue_date": "2026-01-28",
+  "units": 47,
+  "description": "FULL BUILDING PERMIT FOR 5 STORY 47 D.U. BUILDING, 1ST FLOOR RETAIL, 16 CAR GARAGE AT 1ST FLOOR, ROOFTOP DECK, PERGOLA, ROOFTOP STAIR ENCLOSURES, ELEVATOR PENTHOUSE, ENTIRE BUILDING SPRINKLERED, 1 EXTERIOR LOADING BERTH, 6' HIGH 14' BY 3.5' MASONRY TRASH ENCLOSURE, PATIO AT 1ST STORY, DECK FROM 2ND TO 5TH STORY AS PER PLAN (OCCUPANCY GROUP R-2, S-2, M, TYPE IIIA CONSTRUCTION) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031040201"
+ },
+ {
+  "id": "101069022",
+  "address": "5300 S Calumet Ave",
+  "lat": 41.798343,
+  "lng": -87.617841,
+  "issue_date": "2026-01-27",
+  "units": 71,
+  "description": "FULL BUILDING PERMIT FOR NEW 6 STORY, 71 DWELLING UNIT APARTMENT BUILDING WITH 24 OUTDOOR PARKING SPACES AND ROOFTOP TERRACE (OCC. R-2, A-2, A-3, B, S-2; TYPE IIA CONSTRUCTION) CONSULTANT REVIEWER: GLOBETROTTERS",
+  "geoid": "17031400300"
+ },
+ {
+  "id": "101065273",
+  "address": "1850 E 95th St",
+  "lat": 41.72254,
+  "lng": -87.578396,
+  "issue_date": "2026-01-20",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF A NEW 1 STORY WAREHOUSE BUILDING WITH ASSOCIATED SITE WORK INCLUDING PARKING AND FENCING ( OCCUPANCY F-1 CONSTRUCTION TYPE IIB).**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031510300"
+ },
+ {
+  "id": "101072069",
+  "address": "3455 S Ashland Ave",
+  "lat": 41.830709,
+  "lng": -87.665427,
+  "issue_date": "2026-01-20",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF A 1-STORY RETAIL (OCCUPANCY GROUP M; TYPE IIIB CONSTRUCTION) BUILDING FOR NEW ADULT USE CANNABIS DISPENSARY AS PER PLANS. *CERTIFIED PLAN CORRECTIONS*",
+  "geoid": "17031840400"
+ },
+ {
+  "id": "101073989",
+  "address": "6207 N Harlem Ave",
+  "lat": 41.993748,
+  "lng": -87.806688,
+  "issue_date": "2026-01-20",
+  "units": null,
+  "description": "FULL BUILDING PERMIT FOR ONE STORY PRIVATE GARAGE WITH THREE PARKING SPACES INSIDE, OCCUPANCY GROUP R-5 AND TYPE VB CONSTRUCTION. THE CURRENT AND PROPOSED USE IS RESIDENTIAL ACCESSORY USE. THE GARAGE BUILDING IS 14'-8\" HIGH AND BUILDING AREA IS 713 SQUARE FEET. THE WORK WILL INCLUDE FOUNDATION, CONCRETE FLAT WORK, ELECTRICAL, ROOFING, DOORS AND WINDOWS AND WOOD FRAME CONSTRUCTION.",
+  "geoid": "17031100300"
+ },
+ {
+  "id": "101074019",
+  "address": "606 W Wrightwood Ave",
+  "lat": 41.929664,
+  "lng": -87.643346,
+  "issue_date": "2026-01-15",
+  "units": 48,
+  "description": "INSTALL FOUNDATION ONLY FOR PROPOSED 5 STORY NO BASEMENT RESIDENTIAL BUILDING WITH 34 STANDARD DWELLING UNITS AND 14 EFFICIENCY DWELLING UNITS INTERIOR PARKING AND GROUND FLOOR COMMERCIAL SPACE (CON TYPE IIIA FS OCC R2, S2 AND A2) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031070200"
+ },
+ {
+  "id": "101044816",
+  "address": "135 N Desplaines St",
+  "lat": 41.884326,
+  "lng": -87.644055,
+  "issue_date": "2026-01-13",
+  "units": 50,
+  "description": "2019. CONSTRUCT NEW 9-STORY BUILDING WITH ROOF DECK, FIRST FLOOR (1) LOADING SPACE AND (3) INTERIOR PARKING SPACES, (50) DWELLING UNITS LOCATED 2ND-9TH FLOOR. TYPE 1-B CONSTRUCTION TYPE, OCCUPANCY GROUPS R2 & M WITH MIXED OCCUPANCY SEPARATION. BUILDING TO BE FULLY SPRINKLERED. 1ST FLOOR COMMERCIAL SPACE + 14 EFFICIENCY +36 DWELLING UNITS. FOUNDATION TO BE CAISSONS AND GRADE BEAMS. CONSULTANT REVIEWER: V3 COMPANIES OF ILLINOIS. (131-133-135 N. DESPLAINES STREET / 627-631 W. RANDOLPH STREET).",
+  "geoid": "17031280100"
+ },
+ {
+  "id": "101063422",
+  "address": "6609 W Fullerton Ave",
+  "lat": 41.923524,
+  "lng": -87.790773,
+  "issue_date": "2026-01-13",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF A 1 STORY RESTAURANT WITH DRIVE THRU AND OUTDOOR SEATING AREA. WORK TO INCLUDE LANDSCAPE AND NEW MASONRY TRASH ENCLOSURE, MECHANICAL, ELECTRICAL, PLUMBING AND STRUCTURAL AS PER PLANS. (A-2 ASSEMBLY, B-BUSINESS, S-1 STORAGE, II-B CONSTRUCTION TYPE) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031831600"
+ },
+ {
+  "id": "101077469",
+  "address": "1635 W 21st Pl",
+  "lat": 41.853098,
+  "lng": -87.667575,
+  "issue_date": "2026-01-13",
+  "units": null,
+  "description": "2019: FIELD REVISION TO EXISTING PERMIT #101063857ELECTRICAL SERVICE CHANGED FROM 400A TO 600A. SUB-PANELS CHANGED FROM 100A TO 125A.",
+  "geoid": "17031310800"
+ },
+ {
+  "id": "101071903",
+  "address": "4435 S Western Blvd",
+  "lat": 41.812885,
+  "lng": -87.683844,
+  "issue_date": "2026-01-12",
+  "units": null,
+  "description": "NEW CONSTRUCTION FOR A ONE STORY 198,248 SF WAREHOUSE BUILDING STORAGE FACILITY, CONTAINING A STORAGE (S-1) CLASSIFICATION WITH A BUSINESS (B) CLASSIFICATION AS AN ACCESSORY OCCUPANCY. TYPE II-B CONSTRUCTION. CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031610300"
+ },
+ {
+  "id": "101071904",
+  "address": "4443 S Western Blvd",
+  "lat": 41.812637,
+  "lng": -87.683834,
+  "issue_date": "2026-01-12",
+  "units": null,
+  "description": "NEW CONSTRUCTION FOR A ONE STORY 73,485 SF STORAGE FACILITY, CONTAINING A STORAGE (S-1) CLASSIFICATION WITH A BUSINESS (B) CLASSIFICATION AS AN ACCESSORY OCCUPANCY AS PER PLANS. TYPE II-B CONSTRUCTION.CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031610300"
+ },
+ {
+  "id": "101076916",
+  "address": "1830 N St Louis Ave",
+  "lat": 41.914605,
+  "lng": -87.713597,
+  "issue_date": "2026-01-12",
+  "units": null,
+  "description": "REVISION OF PERMIT # 101070003. UPDATE ROOF PLAN, ENLARGE (2) OCCUPIABLE ROOF DECKS ABOVE (2) INDIVIDUAL DWELLING UNITS. RELOCATE ELECTRICAL METERS TO COMMON INTERIOR STAIRWELL AT BASEMENT LEVEL.",
+  "geoid": "17031222800"
+ },
+ {
+  "id": "101070817",
+  "address": "2006 S Allport St",
+  "lat": 41.854882,
+  "lng": -87.657703,
+  "issue_date": "2026-01-08",
+  "units": 6,
+  "description": "PROPOSED 3 STORY/6 UNIT RESIDENCE W/BASEMENT, ROOF DECK/ENCLOSURE, FRONT PORCH, AND ATTACHED 2 CAR GARAGE W/1 SPACE PARKING PAD, PER PLANS. ZONING AMENDMENT #22729T1 TO REDUCE THE FRONT/REAR SETBACKS, RELOCATION OF REAR YARD OPEN SPACE TO PROPOSED ROOF DECKS PASSED 05.21.2025.",
+  "geoid": "17031310600"
+ },
+ {
+  "id": "101065722",
+  "address": "2134 W 18th Pl",
+  "lat": 41.856813,
+  "lng": -87.679839,
+  "issue_date": "2026-01-07",
+  "units": 6,
+  "description": "NEW CONSTRUCTION OF 2-STORY W/ BASEMENT RESIDENTIAL FRAME BUILDING (6 DWELLING UNITS) WITH 2-CAR CONCRETE PARKING PAD AND ASSOCIATED SITE WORK, INCLUDING FENCE, PER PLANS (OCCUPANCY TYPE R-2, CONSTRUCTION TYPE 5A). **CERTIFIED PLANS CORRECTIONS: CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS **",
+  "geoid": "17031841200"
+ },
+ {
+  "id": "101058065",
+  "address": "2320 W 78th St",
+  "lat": 41.752031,
+  "lng": -87.681296,
+  "issue_date": "2026-01-05",
+  "units": null,
+  "description": "ERECT A NEW 40 FT X 100 FT X 20 FT ATTACHED TO EXISTING 1-STORY MASONRY MANUFACTURING/INDUSTRIAL BUILDING.(OCCUPANCY: S-1; CONSTRUCTION TYPE III-A/STORAGE OF TRAILERS, EQUIPMENT AND TRUCKS) PER PLANS",
+  "geoid": "17031700100"
+ },
+ {
+  "id": "101077012",
+  "address": "836 W Wellington Ave",
+  "lat": 41.93645,
+  "lng": -87.650552,
+  "issue_date": "2026-01-05",
+  "units": null,
+  "description": "***HOIST PERMIT*** INSTALLATION OF TEMPORARY SINGLE 8000LBS RACK AND PINION CONSTRUCTION HOIST",
+  "geoid": "17031063000"
+ },
+ {
+  "id": "101072323",
+  "address": "3216 W Ogden Ave",
+  "lat": 41.857831,
+  "lng": -87.706173,
+  "issue_date": "2025-12-29",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF A 1-STORY, 6,168SF COMMERCIAL BUILDING FOR A MURAL ARTS PROJECT, INCLUDING CAFE, ADMINISTRATIVE SPACE, AND TWO (2) ART STUDIOS. WORK TO INCLUDE 18,000 SF OF EXTERIOR LANDSCAPED SITE AREA WITH A PERIMETER WALL FOR MURAL ART AND A STANDALONE BLADE ART STRUCTURE. (A-3 OCCUPANCY, IIB CONSTRUCTION) CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031841500"
+ },
+ {
+  "id": "101070000",
+  "address": "4205 W Grand Ave",
+  "lat": 41.90812,
+  "lng": -87.731647,
+  "issue_date": "2025-12-24",
+  "units": null,
+  "description": "NEW CONSTRUCTION 1 STORY MASONRY BUILDING CONTRACTOR STORAGE WITH 4 TENANT SPACES, 8 COVERED CAR PARKING SPACES AND 7 OPEN CAR PARKING SPACES, 20 BIKE SPACES, MASONRY TRASH ENCLOSURE , AND WOOD AND METAL FENCES PER PLANS (OCCUPANCY CLASS S-1, CONSTRUCTION TYPE IIIA) 4205-4221 W. GRAND AVE.",
+  "geoid": "17031230600"
+ },
+ {
+  "id": "101074685",
+  "address": "2840 N Christiana Ave",
+  "lat": 41.933223,
+  "lng": -87.711256,
+  "issue_date": "2025-12-24",
+  "units": null,
+  "description": "SELF-CERT 2019 CRBC: WORK IS FOR THE ADDITION OF A 20' X 20' 1 STORY GARAGE WITH PITCHED ROOF IN THE FRONT YARD OFF OF N. WOODARD ST. NO OTHER BUILDING WORK IN SCOPE.CURRENT USE: R-5/RESIDENTIAL, PROPOSED USE R-5/RESIDENTIAL; (CONSTRUCTION TYPE III-A, NO CHANGE.)",
+  "geoid": "17031210602"
+ },
+ {
+  "id": "101071576",
+  "address": "2240 N Clybourn Ave",
+  "lat": 41.922572,
+  "lng": -87.665943,
+  "issue_date": "2025-12-22",
+  "units": 9,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 9 D.U. BUILDING, 1ST FLOOR RETAIL, 9 CAR GARAGE AT 1ST FLOOR, ROOFTOP DECK, PERGOLA, ROOFTOP STAIR ENCLOSURES, ELEVATOR OVER-RUN, ROOFTOP DECK OVER PORTION OF GARAGE, DECK AT 2ND THRU 4TH STORY, ENTIRE BUILDING SPRINKLERED AS PER PLAN (OCCUPANCY GROUP R-2, S-2, M, TYPE IIIA CONSTRUCTION) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031832500"
+ },
+ {
+  "id": "101072178",
+  "address": "5430 W Belmont Ave",
+  "lat": 41.938733,
+  "lng": -87.762885,
+  "issue_date": "2025-12-19",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF A 1-STORY BANK WITH DRIVE-THRU AND DRIVE-UP ATM. SITE WORK TO INCLUDE NEW PARKING LOT, TRASH ENCLOSURE, DRIVEWAY AND LANDSCAPING (IIB CONSTRUCTION, OCCUPANCY B-BUSINESS)",
+  "geoid": "17031151100"
+ },
+ {
+  "id": "101074854",
+  "address": "1658 N Burling St",
+  "lat": 41.912597,
+  "lng": -87.647264,
+  "issue_date": "2025-12-18",
+  "units": 8,
+  "description": "PROPOSED 4 STORY/8 UNIT RESIDENCE W/BASEMENT, AND ROOFTOP DECK/ELEVATOR ENCLOSURE, 1ST-4TH FLOOR FRONT BALCOMIES, 1ST FLOOR REAR DECK, 4 STORY REAR STAIRS, TRASH ENCLOSURE, 6 CAR BASEMENT GARAGE (1 ADA) AND 3 AND 6 CAR GARAGE, BOTH W/ROOF DECK AND 1 SPACE PARKING PAD, PER PLANS.",
+  "geoid": "17031071800"
+ },
+ {
+  "id": "101074855",
+  "address": "2011 W Grand Ave",
+  "lat": 41.890705,
+  "lng": -87.677407,
+  "issue_date": "2025-12-18",
+  "units": 7,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 7 D.U. BUILDING, 1ST FLOOR OFFICE, ROOFTOP DECK, PERGOLA, ROOFTOP STAIR ENCLOSURES, 4 EXTERIOR PARKING SPACES ON CONCRETE PAD, 6' HIGH 8'-4\" BY 3'-8\" MASONRY TRASH ENCLOSURE, 5' HIGH WOOD FENCE, ENTIRE BUILDING SPRINKLERED AS PER PLAN (OCCUPANCY GROUP R-2, B TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031243000"
+ },
+ {
+  "id": "101072556",
+  "address": "2938 W Fullerton Ave",
+  "lat": 41.924881,
+  "lng": -87.701441,
+  "issue_date": "2025-12-17",
+  "units": 62,
+  "description": "FOUNDATION ONLY FOR 5-STORY BUILDING ADDITION TO CONVERT TO EXISTING 5-STORY BUILDING TO RESIDENTIAL (62 DWELLING UNITS) WITH GROUND FLOOR RETAIL, AT-GRADE PARKING (7 PARKING SPACES) AND ASSOCIATED SITE WORK AS PER PLANS.(OCCUPANCY GROUP: M, R-2 / TYPE IIIA CONSTRUCTION) CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031220400"
+ },
+ {
+  "id": "101064943",
+  "address": "1539 N Pulaski Rd",
+  "lat": 41.909286,
+  "lng": -87.726343,
+  "issue_date": "2025-12-10",
+  "units": 61,
+  "description": "DDS 2019: FULL BUILDING PERMIT FOR 6 STORY 61 DWELLLING UNIT APARTMENT BUILDING CONNECTED TO EXISTING 2 STORY BUILDING WITH 26 PARKING SPACES. (OCCUPANCY GROUP B, R2; TYPE IIA CONSTRUCTION) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031230700"
+ },
+ {
+  "id": "101075257",
+  "address": "1837 N Monticello Ave",
+  "lat": 41.914742,
+  "lng": -87.71777,
+  "issue_date": "2025-12-10",
+  "units": null,
+  "description": "NEW 3-CAR PRIVATE RESIDENTIAL FRAME GARAGE, 3B CONSTRUCTION, PER PLAN (CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS)",
+  "geoid": "17031222900"
+ },
+ {
+  "id": "101071440",
+  "address": "726 N Drake Ave",
+  "lat": 41.894541,
+  "lng": -87.715212,
+  "issue_date": "2025-12-03",
+  "units": 6,
+  "description": "PROPOSED 3 STORY/6 UNIT RESIDENCE W/BASEMENT, FRONT DECKS, REAR DECKS/STAIRS, 5' FRONT IRON/6' SIDE WOOD FENCES, TRASH ENCLOSURE, AND 6 CAR GARAGE, PER PLANS.**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031231500"
+ },
+ {
+  "id": "101075009",
+  "address": "1241 W Newport Ave",
+  "lat": 41.944272,
+  "lng": -87.660721,
+  "issue_date": "2025-12-02",
+  "units": null,
+  "description": "FULL BUILDING PERMIT FOR NEW 1 STORY PRIVATE GARAGE WITH ROOFTOP AMENITY DECK FOR EXISTING 2 STORY BRICK RESIDENCE PER PLANS. (OCCUPANCY GROUP R-5, TYPE VA CONSTRUCTION)",
+  "geoid": "17031061500"
+ },
+ {
+  "id": "101042871",
+  "address": "1721 W 21st St",
+  "lat": 41.853988,
+  "lng": -87.669426,
+  "issue_date": "2025-12-01",
+  "units": 7,
+  "description": "NEW 3-STORY + BASEMENT 7-UNIT RESIDENTIAL BUILDING PER PLANS. TYPE V-A CONSTRUCTION AS PER PLANS**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031310800"
+ },
+ {
+  "id": "101068428",
+  "address": "1355 N Dean St",
+  "lat": 41.907157,
+  "lng": -87.670597,
+  "issue_date": "2025-12-01",
+  "units": 6,
+  "description": "PROPOSED 3 STORY/6 UNIT RESIDENCE W/BASEMENT AND ROOF DECKS/ENCLOSURES, FRONT DECKS, REAR 3 STORY STAIRS, AND ATTACHED 6 CAR GARAGE (1 ADA) W/ROOF DECK, PER PLANS. VARIATION #354-25-Z TO REDUCE THE UNOBSTRUCTED OPEN SPACE APPROVED 09.26.2025.",
+  "geoid": "17031241500"
+ },
+ {
+  "id": "101019928",
+  "address": "3202 N Harlem Ave",
+  "lat": 41.938141,
+  "lng": -87.806899,
+  "issue_date": "2025-11-26",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF GAS STATION WITH NEW AUTOMATIC CAR WASH 4,410 SQ FT, ONE STORY, CONSTRUCTION TYPE 1-B, RETAIL SPACE AND GARBAGE ENCLOSURE AS PER PLANS (CONTINUATION OF APP. 100857413 / 3200 N HARLEM AVE)",
+  "geoid": "17031170800"
+ },
+ {
+  "id": "101065267",
+  "address": "1650 E 95th St",
+  "lat": 41.722481,
+  "lng": -87.583076,
+  "issue_date": "2025-11-26",
+  "units": null,
+  "description": "CONSTRUCT NEW 1 STORY ADDITION TO AN EXISTING 1 STORY WAREHOUSE BUILDING PER PLANS (USE GROUP F-1 CONSTRUCTION TYPE IIB).",
+  "geoid": "17031510300"
+ },
+ {
+  "id": "101071310",
+  "address": "2340 N Seeley Ave",
+  "lat": 41.924008,
+  "lng": -87.679234,
+  "issue_date": "2025-11-26",
+  "units": 56,
+  "description": "FULL BUILDING PERMIT FOR 5 STORY 56 D.U. BUILDING, OFFICE AT 1ST FLOOR, 46 CAR GARAGE AT 1ST FLOOR, ELEVATOR OVER-RUN, ONE LOADING BERTH, ROOFTOP STAIR ENCLOSURE, DECK AT 2ND THRU 5TH STORY, ENTIRE BUILDING SPRINKLERED, 6' HIGH 4' BY 16'-6\" MASONRY TRASH ENCLOSURE, 6' HIGH 165' LONG WOOD FENCE AS PER PLAN (OCCUPANCY GROUP R-2, B, S-2, TYPE IIIA CONSTRUCTION) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031832200"
+ },
+ {
+  "id": "101068649",
+  "address": "424 S Wabash Ave",
+  "lat": 41.876351,
+  "lng": -87.626189,
+  "issue_date": "2025-11-21",
+  "units": null,
+  "description": "FOUNDATION AND SUPERSTRUCTURE PERMIT THROUGH THE UNDERSIDE OF 4TH FLOOR SLAB FOR A PROPOSED 23 STORY, 340 ROOM HOTEL WITH RESTAURANT AT GROUND LEVEL. CAISSONS PERMIT ISSUED UNDER 100968490. ALL AS PER PLANS (OCCUPANCY R-1/A-2; CONSTRUCTION CLASS IA). CONSULTANT REVIEWER: GLOBETROTTERS.",
+  "geoid": "17031320400"
+ },
+ {
+  "id": "101071571",
+  "address": "3555 N Neenah Ave",
+  "lat": 41.945394,
+  "lng": -87.789832,
+  "issue_date": "2025-11-18",
+  "units": 6,
+  "description": "SPR 2019: ADDRESS RANGE 3555-3557 N NEENAH AVE; NEW 3 STORY WITH BASEMENT 6 DU WITH FRONT BALCONIES, TRASH ENCLOSURE, 6 PARKING SPACES, AND 5' METAL FENCE AS PER PLAN (CONSTRUCTION TYPE 3A, OCCUPANCY CODE R-2)**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031171000"
+ },
+ {
+  "id": "101045789",
+  "address": "4531 W Washington Blvd",
+  "lat": 41.881775,
+  "lng": -87.739252,
+  "issue_date": "2025-11-13",
+  "units": 44,
+  "description": "ERECT A NEW 3 STORY WALKUP STRUCTURE WITH 44 AFFORABLE HOUSING UNITS. NEW PARKING LOT WITH 23 CARS PLUS A PASSIVE PLAY AREA PER PLANS. OCCUPANCY GROUP R5 TYPE 3B CONSTRUCTION",
+  "geoid": "17031260400"
+ },
+ {
+  "id": "101064840",
+  "address": "2863 W 21st St",
+  "lat": 41.85361,
+  "lng": -87.697924,
+  "issue_date": "2025-11-13",
+  "units": 9,
+  "description": "ERECT A 3 STORY, 9 DWELLING UNIT TYPE IIIA MASONRY BUILDING WITH A SPRINKLER SYSTEM, BASEMENT, NEW EXTERIOR STAIRS AT THE EAST SIDE OF THE PROPERTY, 5' PRIVACY WOOD FENCE AND AN INTERIOR TRASH ENCLOSURE, PROPOSED EXCAVATION AS PER ARCHITECTURAL PLANS **CERTIFIED PLANS CORRECTIONS: CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS **",
+  "geoid": "17031840700"
+ },
+ {
+  "id": "101068820",
+  "address": "940 W Leland Ave",
+  "lat": 41.967398,
+  "lng": -87.654202,
+  "issue_date": "2025-11-12",
+  "units": 32,
+  "description": "2019: FULL BUILDING PERMIT FOR A 5 STORY 32 UNIT RESIDENTIAL BUILDING (INCL. 6 EFFICIENCY UNITS) WITH 6 VEHICULAR PARKING SPACES, 40 BICYCLE PARKING SPACES, AND TENANT AMENITIES LOCATED ON GRADE. (OCC. R-2; TYPE IIIA CONST.) CONSULTANT REVIEWER: V3.",
+  "geoid": "17031031501"
+ },
+ {
+  "id": "101071539",
+  "address": "6109 S Kenwood Ave",
+  "lat": 41.783888,
+  "lng": -87.592987,
+  "issue_date": "2025-11-10",
+  "units": 15,
+  "description": "ERECT A 4-STORY TYPE IIIA MASONRY RESIDENTIAL BUILDING WITH 15 UNITS, BASEMENT, ELEVATOR OVERRUN, FRONT AND REAR BALCONIES ON ALL FLOORS, 8 OPEN PARKING SPACES, FRONT IRON AND REAR WOOD FENCING. EXISTING OCCUPANCY R-2 , PROPOSED OCCUPANCY R-2, TYPE CONSTRUCTION IIIA , PER PLANS (CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS)",
+  "geoid": "17031420200"
+ },
+ {
+  "id": "101072847",
+  "address": "4045 N Cicero Ave",
+  "lat": 41.954799,
+  "lng": -87.747193,
+  "issue_date": "2025-11-07",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF A ONE (1) STORY RESTAURANT (SHELL & CORE ONLY), AS PER PLANS. (SEE PERMIT# 101067455 FOR SITE WORK) (OCCUPANCY GROUP: A-2 / TYPE IIB CONSTRUCTION)",
+  "geoid": "17031831700"
+ },
+ {
+  "id": "101069092",
+  "address": "1180 N Crosby St",
+  "lat": 41.903306,
+  "lng": -87.646523,
+  "issue_date": "2025-11-05",
+  "units": null,
+  "description": "FULL BUILDING PERMIT TO ERECT A NEW 3-STORY SWITCHGEAR ELECTRICAL BUILDING WITH A BASEMENT ON DRILLED PIER FOUNDATIONS AND EARTH RETENTION SYSTEM AT AN EXISTING COMED TSS CROSBY SUBSTATION AS PER PLANS. WORK TO INCLUDE EARTH RETENTION SYSTEM, MECHANICAL, ELECTRICAL, PLUMBING, AND STRUCTURAL. (CONSTRUCTION TYPE: II-A; OCCUPANCY: F-1 MODERATE HAZARD FACTORY)",
+  "geoid": "17031842200"
+ },
+ {
+  "id": "101074199",
+  "address": "3407 S Carpenter St",
+  "lat": 41.832431,
+  "lng": -87.652075,
+  "issue_date": "2025-11-05",
+  "units": null,
+  "description": "NEW REAR OPEN FRAMED DECK AT FIRST FLOOR OFEXISTING 2-1/2 STORY RESIDENTIAL BUILDING.REMOVE AND RELOCATE EXISTING ELECTRICAL METERS.(OCCUPANCY GROUP R-2 ; TYPE III-B CONSTRUCTION)",
+  "geoid": "17031839700"
+ },
+ {
+  "id": "101035962",
+  "address": "931 N Halsted St",
+  "lat": 41.899829,
+  "lng": -87.647763,
+  "issue_date": "2025-11-04",
+  "units": 464,
+  "description": "FOUNDATION, BELOW GRADE CONSTRUCTION AND SUPER-STRUCTURE PERMIT FOR FLOORS: LOWER LEVEL 2 THRU LEVEL 6TH. (OCCUPANCY GROUPS MERCANTILE (M), RESIDENTIAL (R-2), STORAGE PARKING GARAGE (S2); TYPE IA CONSTRUCTION) CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031842200"
+ },
+ {
+  "id": "101070670",
+  "address": "310 W Huron St",
+  "lat": 41.894875,
+  "lng": -87.636177,
+  "issue_date": "2025-11-03",
+  "units": null,
+  "description": "INSTALL CAISSONS ONLY FOR 9 STORY RESIDENTIAL BUILDING (CON TYPE 1B FS OCC R2) V3 COMPANIES OF IL",
+  "geoid": "17031081800"
+ },
+ {
+  "id": "101074514",
+  "address": "5326 S Indiana Ave",
+  "lat": 41.79745,
+  "lng": -87.621061,
+  "issue_date": "2025-10-29",
+  "units": 6,
+  "description": "NEW CONSTRUCTION OF A (1,874) SQ. FT. 3-STORY, TYPE VA FRAME, 31' HT., 6-UNIT RESIDENCE INCLUDING (44) SQ. FT. WOOD FRONT DECK, (156) SQ. FT. 2-STORY WOOD REAR PORCH, AND NEW (432) SQ. FT. 3-CAR CONCRETE PARKING PAD. (OCCUPANCY GROUP R-2; TYPE VA CONSTRUCTION).",
+  "geoid": "17031400300"
+ },
+ {
+  "id": "101073326",
+  "address": "2222 W Morse Ave",
+  "lat": 42.007336,
+  "lng": -87.686904,
+  "issue_date": "2025-10-28",
+  "units": 7,
+  "description": "ERECT NEW 3 STORY, 7DU APARTMENT BUILDING W/BASEMENT W/7 REAR EXTERIOR PARKING SPACES AND MASONRY TRASH ENCLOSURE AS PER PLANS (OCCUPANCY R-5: TYPE III-A CONSTRUCTION)",
+  "geoid": "17031020400"
+ },
+ {
+  "id": "101063824",
+  "address": "209 S Whipple St",
+  "lat": 41.877941,
+  "lng": -87.702221,
+  "issue_date": "2025-10-27",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR A FULLY SPRINKLERED 2 STORY, 6 UNIT WOOD FRAME BUILDING WITH 3 ON-SITE PARKING SPACES IN RT-4 ZONING.(OCCUPANCY GROUP R-2, TYPE V-B CONSTRUCTION) 209-213 S WHIPPLE.",
+  "geoid": "17031271200"
+ },
+ {
+  "id": "101063822",
+  "address": "3015 W Polk St",
+  "lat": 41.870892,
+  "lng": -87.701577,
+  "issue_date": "2025-10-24",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR 2 STORY, 6 UNIT WOOD FRAME BUILDING WITH 6 ON-SITE PARKING SPACES IN RT-4 ZONING.(OCCUPANCY GROUP R-2, TYPE V-B CONSTRUCTION)",
+  "geoid": "17031837300"
+ },
+ {
+  "id": "101063828",
+  "address": "129 S Whipple St",
+  "lat": 41.878712,
+  "lng": -87.702242,
+  "issue_date": "2025-10-24",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR A FULLY SPRINKLERED 2 STORY, 6 UNIT WOOD FRAME BUILDING WITH 5 ON-SITE PARKING SPACES IN RT-4 ZONING.(OCCUPANCY GROUP R-2, TYPE V-B CONSTRUCTION)",
+  "geoid": "17031271200"
+ },
+ {
+  "id": "101065388",
+  "address": "2337 S Hoyne Ave",
+  "lat": 41.849208,
+  "lng": -87.678068,
+  "issue_date": "2025-10-24",
+  "units": 5,
+  "description": "2019 SC: ERECT A NEW 3 STORY W BASEMENT BUILDING CONSTRUCTION TYPE IIIA 5 DU TOTAL (2 DUPLEX UNITS, BSMT WITH 1ST FLR), NEW REAR METAL PORCH, SPRINKLER SYSTEM, PERIMETER FENCE, TRASH ENCLOSURE AND PARKING AREA, AS PER PLANS.",
+  "geoid": "17031843200"
+ },
+ {
+  "id": "101061910",
+  "address": "4442 S Cicero Ave",
+  "lat": 41.811815,
+  "lng": -87.743417,
+  "issue_date": "2025-10-22",
+  "units": 73,
+  "description": "NEW CONSTRUCTION OF A 6-STORY RESIDENTIAL BUILDING (73 DWELLING UNITS) TO INCLUDE 40 BIKE SPACES AS PER PLANS. (OCCUPANCY GROUP: R-2 / TYPE II-A CONSTRUCTION) CONSULTANT REVIEWER: PRIMERA ENGINEERING",
+  "geoid": "17031560200"
+ },
+ {
+  "id": "101068675",
+  "address": "801 W Addison St",
+  "lat": 41.947207,
+  "lng": -87.649553,
+  "issue_date": "2025-10-21",
+  "units": null,
+  "description": "INSTALL (2) ELECTRIC VEHICLE CHARGING STATIONS AND ALL ASSOCIATED ELECTRICAL EQUIPMENT.",
+  "geoid": "17031832000"
+ },
+ {
+  "id": "101067455",
+  "address": "4059 N Cicero Ave",
+  "lat": 41.955207,
+  "lng": -87.747206,
+  "issue_date": "2025-10-20",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF A ONE (1) STORY RETAIL BUILDING TO INCLUDE AT-GRADE PARKING LOT AND ASSOCIATED SITE WORK, AS PER PLANS. (OCCUPANCY GROUP: M / TYPE IIB CONSTRUCTION). CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031831700"
+ },
+ {
+  "id": "101055331",
+  "address": "1433 S Harding Ave",
+  "lat": 41.861537,
+  "lng": -87.723675,
+  "issue_date": "2025-10-16",
+  "units": null,
+  "description": "CONSTRUCTION OF A NEW ONE STORY 15 FEET BY 71 FEET LEAN-TO SOUTH FACING PASSIVE SOLAR GREENHOUSE WITH PERMEABLE ADA ACCESSIBLE FLOORING BUILDING CLASSIFICATION U: GREENHOUSES,BUILDING TYPE: STEEL-FRAMED STRUCTURECONSTRUCTION TYPE: VB (NO MECHANICAL OR PLUMBING WORK UNDER THIS PERMIT)**CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS**",
+  "geoid": "17031838700"
+ },
+ {
+  "id": "101061913",
+  "address": "4809 W 44th St",
+  "lat": 41.812982,
+  "lng": -87.743732,
+  "issue_date": "2025-10-16",
+  "units": 110,
+  "description": "NEW CONSTRUCTION OF A 6-STORY RESIDENTIAL BUILDING (110 DWELLING UNITS), AT-GRADE PARKING LOT (134 AUTO SPACES + 40 BIKE SPACES) AND ASSOCIATED SITE WORK AS PER PLANS. (OCCUPANCY GROUP: R-2 / TYPE II-A CONSTRUCTION) CONSULTANT REVIEWER: PRIMERA ENGINEERING",
+  "geoid": "17031560200"
+ },
+ {
+  "id": "101070377",
+  "address": "2305 S State St",
+  "lat": 41.850864,
+  "lng": -87.626892,
+  "issue_date": "2025-10-16",
+  "units": 80,
+  "description": "FOUNDATION ONLY FOR THE NEW CONSTRUCTION OF A 12-STORY RESIDENTIAL BUILDING (80 TOTAL DWELLING UNITS; 60 DWELLING UNITS + 20 EFFICIENCY UNITS) WITH MECHANICAL PENTHOUSE TO INCLUDE GROUND FLOOR RETAIL & ASSOCIATED SITE WORK AS PER PLANS. (OCCUPANCY CLASSIFICATION: R-2, M, A-3/ TYPE 1A CONSTRUCTION) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031841000"
+ },
+ {
+  "id": "101071905",
+  "address": "2918 N Albany Ave",
+  "lat": 41.934471,
+  "lng": -87.70519,
+  "issue_date": "2025-10-16",
+  "units": null,
+  "description": "PROPOSED 2 CAR GARAGE, REAR YARD PERGOLA FOR AN EXISTING 2 STORY MULTI UNIT BUILDING (UNITS NOT CONFIRMED), PER PLANS.",
+  "geoid": "17031210700"
+ },
+ {
+  "id": "101074516",
+  "address": "5328 S Indiana Ave",
+  "lat": 41.797399,
+  "lng": -87.62106,
+  "issue_date": "2025-10-15",
+  "units": 6,
+  "description": "NEW CONSTRUCTION OF A (1,874) SQ. FT. 3-STORY, TYPE VA FRAME, 31' HT., 6-UNIT RESIDENCE INCLUDING (44) SQ. FT. WOOD FRONT DECK, (156) SQ. FT. 2-STORY WOOD REAR PORCH, AND NEW (432) SQ. FT. 3-CAR CONCRETE PARKING PAD. (OCCUPANCY GROUP R-2; TYPE VA CONSTRUCTION).",
+  "geoid": "17031400300"
+ },
+ {
+  "id": "101069540",
+  "address": "2509 S Green St",
+  "lat": 41.846337,
+  "lng": -87.64741,
+  "issue_date": "2025-10-10",
+  "units": 16,
+  "description": "FULL BUIDLING PERMIT FOR NEW 4 STORY, 16DU APARTMENT BUILDING W/ ROOFTOP STAIR PENTHOUSE, 8 EXTERIOR PARKING SPACES, AND 6' MASONRY TRASH ENCLOSURE AS PER PLANS (OCCUPANCY GROUP R-2; TYPE III-ACONSTRUCTION) **CERTIFIED PLANS CORRECTIONS: CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS **",
+  "geoid": "17031840200"
+ },
+ {
+  "id": "101068672",
+  "address": "1160 W Diversey Pkwy",
+  "lat": 41.932674,
+  "lng": -87.658229,
+  "issue_date": "2025-10-09",
+  "units": null,
+  "description": "INSTALL (2) ELECTRIC VEHICLE CHARGING STATIONS AND ALL ASSOCIATED ELECTRICAL EQUIPMENT.",
+  "geoid": "17031062900"
+ },
+ {
+  "id": "101059643",
+  "address": "4125 N Narragansett Ave",
+  "lat": 41.955522,
+  "lng": -87.786499,
+  "issue_date": "2025-10-08",
+  "units": 18,
+  "description": "NEW CONSTRUCTION OF A 3 STORY FRAME MULTI-DWELLING RESIDENTIAL BUILDING - WITH 18 D.U, SLAB ON GRADE WITH ROOF-TOP ACCESS. NEW DRIVEWAY (FRONT TO REAR). NEW 18 PARKING STALLS AT REAR. NEW MASONRY TRASH ENCLOSURE. ALL WORK AS PER PLANS, SPRINKLERED SYSTEM UNDER A SEPARATE PERMIT **CERTIFIED PLANS CORRECTIONS: CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS ** CODE COMPLIANT AND SUBJECT TO FIELD INSPECTIONS AT 4125 N NARRAGANSETT AVE, CHICAGO.",
+  "geoid": "17031150502"
+ },
+ {
+  "id": "101070437",
+  "address": "408 E 50th Pl",
+  "lat": 41.803131,
+  "lng": -87.615369,
+  "issue_date": "2025-10-08",
+  "units": 6,
+  "description": "ERECT NEW (3) STORY RESIDENTIAL BUILDING WITH 6'-0 H. MASONRY TRASH ENCLOSURE, (4) METAL BALCONIES AT REAR OF BUILDING (3) EXTERIOR PARKING SPACE AND (1) STORY (3) CAR DETACHED RESIDENTIAL GARAGE. (6) RESIDENTIAL UNITS. TYPE III-A CONSTRUCTION",
+  "geoid": "17031381900"
+ },
+ {
+  "id": "101067018",
+  "address": "2355 W 63rd St",
+  "lat": 41.779077,
+  "lng": -87.683417,
+  "issue_date": "2025-10-07",
+  "units": 44,
+  "description": "5-STORY NEW CONSTRUCTION MIXED-USE BUILDING WITH GROUND FLOOR COMMERCIAL AND 44 RESIDENTIAL UNITS ABOVE. THE RESIDENTIAL UNITS WILL BE 100% AFFORDABLE AND THE COMMERCIAL SPACE IS PROPOSED TO BE FOR A SINGLE COMMERCIAL TENANT. THIS TRANSIT ORIENTED DEVELOPMENT WILL HAVE AN EXTERIOR SURFACE FOR 11 TOTAL PARKING SPACES. CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031660700"
+ },
+ {
+  "id": "101067934",
+  "address": "4009 N Oakley Ave",
+  "lat": 41.95437,
+  "lng": -87.685905,
+  "issue_date": "2025-10-07",
+  "units": 38,
+  "description": "NEW 5-STORY 38-UNIT MULTI-FAMILY RESIDENTIAL(R-2)FULLY SPRINKLERED APARTMENT BUILDING W/ SPRINKLERED GARAGE (S-2) TYPE III-A CONSTRUCTION.CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031050200"
+ },
+ {
+  "id": "101069426",
+  "address": "4728 N Whipple St",
+  "lat": 41.96754,
+  "lng": -87.704926,
+  "issue_date": "2025-10-06",
+  "units": null,
+  "description": "NEW PRIVATE RESIDENTIAL GARAGE, OCCUPANCY GROUP U, CONSTRUCTION TYPE VB.",
+  "geoid": "17031140800"
+ },
+ {
+  "id": "101048821",
+  "address": "2552 S Normal Ave",
+  "lat": 41.845594,
+  "lng": -87.640107,
+  "issue_date": "2025-10-02",
+  "units": 14,
+  "description": "ERECT NEW 4 STORY, 14 DWELLING UNIT APARTMENT BUIDLING WITH PENTHOUSE, GROUND FLOOR GARAGE W/ 11 INDOOR PARKING SPACES, 3 OUTDOOR PARKING SPACES AND MASONRY TRASH ENCLOSURE AS PER PLANS (OCCUPANCY GROUPS R-2, S-2; TYPE III-A CONSTRUCTION)**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031840100"
+ },
+ {
+  "id": "101074284",
+  "address": "1101 W Van Buren St",
+  "lat": 41.876452,
+  "lng": -87.654621,
+  "issue_date": "2025-10-02",
+  "units": null,
+  "description": "REVISION TO 10062042 TO REVISE TENANT SPACE'S UNDERGROUND AND FIRST FLOOR ELECTRICAL AND PLUMBING EQUIPMENT AND LAYOUT. (OCCUPANCY GROUPS R-2, M; CONSTRUCTION TYPE IA)",
+  "geoid": "17031833300"
+ },
+ {
+  "id": "101063081",
+  "address": "3733 E 87th St",
+  "lat": 41.737743,
+  "lng": -87.533804,
+  "issue_date": "2025-10-01",
+  "units": null,
+  "description": "CORE AND SHELL PERMIT FOR THE NEW CONSTRUCTION OF A 44' TALL ONE STORY, APPROXIMATELY 84,979 SF QUANTUM COMPUTING FACILITY WITH ASSOCIATED SUPPORT SPACES INCLUDING OFFICE, EXTERIOR EQUIPMENT, AND 43 PROPOSED VEHICLE PARKING SPACES. (OCC GROUPS F-1, B, S-1; CONST TYPE II-B)",
+  "geoid": "17031460100"
+ },
+ {
+  "id": "101070968",
+  "address": "6502 W North Ave",
+  "lat": 41.909216,
+  "lng": -87.788434,
+  "issue_date": "2025-10-01",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF A 1 STORY COMMERCIAL BUILDING FOR A TACO BELL DRIVE-THRU RESTAURANT WITH A NEW PARKING LOT, FENCING AND A TRASH ENCLOSURE AS PER PLANS.",
+  "geoid": "17031250500"
+ },
+ {
+  "id": "101072653",
+  "address": "2638 W Cortland St",
+  "lat": 41.915812,
+  "lng": -87.693854,
+  "issue_date": "2025-10-01",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR NEW CONSTRUCTION OF 3 STORY ABOVE GRADE (PARTIAL BASEMENT FOR MECHANICAL SPACE), 6 DWELLING UNIT RESIDENTIAL BUILDING WITH NO PARKING SPACES, PARTIAL FENCE ON WEST AND NORTH SIDE BUILDING (OCCUPANCY GROUPS R-2, TYPE V-A CONSTRUCTION)",
+  "geoid": "17031832400"
+ },
+ {
+  "id": "101072170",
+  "address": "3008 E Cheltenham Pl",
+  "lat": 41.752177,
+  "lng": -87.552065,
+  "issue_date": "2025-09-26",
+  "units": null,
+  "description": "MAINTAIN AND UPGRADE AT&T'S EXISTING ROOFTOP TELECOMUNICATION FACILITY ; REMOVE AND REPLACE ANTENNAS, RADIOS, AND ANCILLARY EQUIPMENT.",
+  "geoid": "17031431400"
+ },
+ {
+  "id": "101072206",
+  "address": "2243 W Monroe St",
+  "lat": 41.879791,
+  "lng": -87.68321,
+  "issue_date": "2025-09-25",
+  "units": 20,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 20 D.U. BUILDING WITH BASEMENT, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, ELEVATOR PENTHOUSE, ELEVATOR OVER-RUN, DECK AT 1ST THRU 4TH STORY, DETACHED 6 CAR GARAGE WITH ROOFTOP DECK, 6' HIGH 3' BY 13.6' MASONRY TRASH ENCLOSURE, 42\" HIGH 113' LONG METAL FENCE, ENTIRE BUILDING SPRINKLERED AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031838000"
+ },
+ {
+  "id": "101051379",
+  "address": "2923 W Lawrence Ave",
+  "lat": 41.968397,
+  "lng": -87.70206,
+  "issue_date": "2025-09-24",
+  "units": 40,
+  "description": "NEW CONSTRUCTION OF A 5-STORY RESIDENTIAL BUILDING (40 TOTAL UNITS: 33 DWELLING UNITS + 7 EFFICIENCY UNITS) TO INCLUDE GROUND FLOOR RETAIL, ON-SITE PARKING LOT (19 AUTOMOBILE SPACES + 40 BIKE SPACES), MASONRY TRASH ENCLOSURE AND ASSOCIATED SITE WORK, AS PER PLANS. (OCCUPANCY GROUP: R-2, M / TYPE II-A CONSTRUCTION) CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031140800"
+ },
+ {
+  "id": "101070229",
+  "address": "936 W 31st St",
+  "lat": 41.838104,
+  "lng": -87.650159,
+  "issue_date": "2025-09-23",
+  "units": null,
+  "description": "ERECT NEW 2 STORY, COMMERCIAL BUILDING FOR DAYCARE CENTER AND TUTORING/AFTER SCHOOL ACTIVITIES ROOM, TRASH ENCLOSURE, 7 REAR PARKING SPACES, 4 DROP OFF SPACES (IN PUBLIC STREET) AS PER PLANS (OCCUPANCY GROUPS E-2, B; TYPE II-A CONSTRUCTION) **CERTIFIED PLANS CORRECTIONS: CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS **",
+  "geoid": "17031600600"
+ },
+ {
+  "id": "101067451",
+  "address": "750 W North Ave",
+  "lat": 41.911035,
+  "lng": -87.647852,
+  "issue_date": "2025-09-22",
+  "units": 48,
+  "description": "ERECT 5 STORY MIXED USE BUILDING WITH 48 DWELLING UNITS (4 EFFICIENCY), 1 RETAIL SPACE, OCCUPIABLE PUBLIC ROOFTOP DECK, 50 BICYCLE SPACES AND 15 CAR ATTACHED GARAGE WITH 0 LOADING SPACES. (OCCUPANCY GROUP B, R2, S2, TYPE III-A CONSTRUCTION. ALL AS PER PLANS.CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031071800"
+ },
+ {
+  "id": "101073119",
+  "address": "703 W Chicago Ave",
+  "lat": 41.896314,
+  "lng": -87.646229,
+  "issue_date": "2025-09-19",
+  "units": null,
+  "description": "***HOIST PERMIT*** INSTALLATION OF TEMPORARY DUAL 8000LBS RACK AND PINION CONSTRUCTION HOIST",
+  "geoid": "17031842300"
+ },
+ {
+  "id": "101070814",
+  "address": "903 N Winchester Ave",
+  "lat": 41.897902,
+  "lng": -87.675741,
+  "issue_date": "2025-09-16",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR 3 STORY 6 D.U. BUILDING WITH BASEMENT, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, DETACHED 6 CAR GARAGE WITH ROOF TOP DECK, REAR TERRACE WITH STAIR AT 1ST STORY, REAR DECK WITH STAIR AT 2ND/3RD STORY, ENTIRE BUILDING SPRINKLERED PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).903-905 N WINCHESTER AVE.CONDITIONAL APPROVAL PER 14A-4-404.13., RELEASE OF FULL WRECKING PERMIT STILL PENDING.",
+  "geoid": "17031242200"
+ },
+ {
+  "id": "101065580",
+  "address": "1735 W Grand Ave",
+  "lat": 41.890812,
+  "lng": -87.670964,
+  "issue_date": "2025-09-15",
+  "units": 32,
+  "description": "FULL BUILDING PERMIT FOR 5 STORY 32 D.U. BUILDING, 1ST FLOOR RETAIL, 22 CAR GARAGE AT 1ST FLOOR, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, ELEVATOR PENTHOUSE, DECK AT 2ND/3RD/4TH/5TH STORY, ENTIRE BUILDING SPRINKLERED AS PER PLAN (OCCUPANCY GROUP R-2, M, S-2, TYPE IIIA CONSTRUCTION). CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031243200"
+ },
+ {
+  "id": "101069318",
+  "address": "227 W Chicago Ave",
+  "lat": 41.896478,
+  "lng": -87.635377,
+  "issue_date": "2025-09-15",
+  "units": 56,
+  "description": "INSTALL CAISSONS ONLY FOR 10 STORY 56 DU RESIDENTIAL BUILDING WITH PARKING AND GROUND FLOOR RETAIL SPACE (CON TYPE 1B FS OCC R2 S2 M) CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031081800"
+ },
+ {
+  "id": "101069098",
+  "address": "2755 W Iowa St",
+  "lat": 41.897352,
+  "lng": -87.696499,
+  "issue_date": "2025-09-12",
+  "units": 7,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 7 D.U. BUILDING, 1ST FLOOR RETAIL, 7 CAR GARAGE AT 1ST FLOOR, ROOFTOP DECK OVER PORTION OF GARAGE, BALCONY AT 2ND THRU 4TH STORY, ROOFTOP DECK, PERGOLA, ROOFTOP STAIR ENCLOSURES, ENTIRE BUILDING SPRINKLERED, ELEVATOR SHAFT OVER-RUN AS PER PLAN (OCCUPANCY GROUP R-2, M, S2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031242600"
+ },
+ {
+  "id": "101043856",
+  "address": "1807 S Allport St",
+  "lat": 41.857676,
+  "lng": -87.657496,
+  "issue_date": "2025-09-10",
+  "units": null,
+  "description": "NEW CONSTRUCTION 2-STORY STRUCTURE CONNECTED TO EXISTING BUILDING TO PROVIDE SERVICE SUPPORT SPACE AND ACCESS",
+  "geoid": "17031310600"
+ },
+ {
+  "id": "101066414",
+  "address": "2717 N Lehmann Ct",
+  "lat": 41.932042,
+  "lng": -87.643348,
+  "issue_date": "2025-09-10",
+  "units": null,
+  "description": "DEMOLITION OF EXISTING 80 SF SINGLE STORY MASONRY BUILDING. CONSTRUCTION OF SINGLE STORY STEEL STUD FRAME AND VENEER ENTRY BUILDING ON CONCRETE FOUNDATION. BUSINESS GROUP OCCUPANCY, THE BUILDING IS AN ENTRY AND PACKAGE RECEIVING BUILDING FOR THE EXISTING TOWNHOME DEVELOPMENT. AN ACCESSORY STRUCTURE TO THE EXISTING BUILDINGS. 2A FIRE RATING. NO PLUMBING.",
+  "geoid": "17031070102"
+ },
+ {
+  "id": "101063394",
+  "address": "2824 N Elston Ave",
+  "lat": 41.93267,
+  "lng": -87.68875,
+  "issue_date": "2025-09-09",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF 3 STORY DAY CARE FACILITY W/ROOFTOP PLAYGROUND, NEW PARKING LOT WITH 24 AUTOMOBILE PARKING SPACES. NEW DRIVEWAY, FENCES AND TRASH ENCLOSURE (E-2, I-4 AND A-5 OCCUPANCY GROUPS WITH IIA CONSTRUCTION TYPE) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031210900"
+ },
+ {
+  "id": "101070436",
+  "address": "400 E 50th Pl",
+  "lat": 41.803126,
+  "lng": -87.615703,
+  "issue_date": "2025-09-09",
+  "units": 6,
+  "description": "ERECT NEW (3) STORY RESIDENTIAL BUILDING AND ONE STORY DETACHED RESIDENTIAL GARAGE. (6) RESIDENTIAL UNITS. TYPE III-A CONSTRUCTION",
+  "geoid": "17031381900"
+ },
+ {
+  "id": "100976390",
+  "address": "4357 N Richmond St",
+  "lat": 41.961081,
+  "lng": -87.701984,
+  "issue_date": "2025-09-04",
+  "units": 6,
+  "description": "SELF-CERT - PROPOSED 4 STORY/6 UNIT MIXED USE BUILDING W/GROUND FLOOR RETAIL SPACE AND ROOF DECK, FRONT 2ND-4TH FLOOR BALCONIES, FULL SPRINKLER SYSTEM AND REAR 6 CAR GARAGE W/ROOF DECK, PER PLANS. R-2 OCC. / TYPE III-A CONST.ELEVATOR INSTALLATION IS A SEPARATE SUBMISSION AND APPROVAL BY THE ELEVATOR BUREAU.",
+  "geoid": "17031160601"
+ },
+ {
+  "id": "101065438",
+  "address": "2426 W Eastwood Ave",
+  "lat": 41.96584,
+  "lng": -87.689927,
+  "issue_date": "2025-09-04",
+  "units": null,
+  "description": "SPR: 2426 W. EASTWOOD. RENOVATION TO EXISTING R5 RESIDENCE. NO CHANGE IN USE. INTERIOR RENOVATION OF BASEMENT, 1ST AND 2ND FLOORS AND NEW REAR DECK. REMOVAL OF 164 SQ. FT. REAR ENCLOSED PORCH",
+  "geoid": "17031040700"
+ },
+ {
+  "id": "101053059",
+  "address": "6601 S Evans Ave",
+  "lat": 41.774849,
+  "lng": -87.606916,
+  "issue_date": "2025-08-29",
+  "units": 7,
+  "description": "NEW CONSTRUCTION OF 7 UNIT APARTMENT BUILDING, CONSTRUCTION TYPE VA, OCCUPANCY CLASSIFICATION R-2, INCLUDING NEW ELECTRICAL. PLUMBING AND MECHANICAL EXCAVATION FOR BASEMENT 5'6\" BELOW GRADE, REAR CONCRETE PARKING PAD FOR 5 PARKING SPOTS, TRASH ENCLOSURE, 330' OF 6'-0\" IRON FENCING PER PLANS **CERTIFIED PLANS CORRECTIONS: CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS **",
+  "geoid": "17031420700"
+ },
+ {
+  "id": "101068267",
+  "address": "1237 N California Ave",
+  "lat": 41.903982,
+  "lng": -87.696759,
+  "issue_date": "2025-08-28",
+  "units": null,
+  "description": "REVISION TO 100994216 TO RELOCATE EXTERIOR AT-GRADE GENERATOR. INCLUDES ASSOCIATED LANDSCAPE REVISION AND REDUCTION OF 1 PARKING SPACE. (OCCUPANCY GROUPS R-2; TYPE IIA CONSTRUCTION) IN-HOUSE REVIEW",
+  "geoid": "17031242600"
+ },
+ {
+  "id": "100966969",
+  "address": "935 N Orleans St",
+  "lat": 41.900022,
+  "lng": -87.637156,
+  "issue_date": "2025-08-25",
+  "units": 9,
+  "description": "ERECT 4-STORY MASONRY, 9-UNIT APARTMENT BUILDING WITH BASEMENT, TRASH ENCLOSURE AND 5 PARKING SPACES.",
+  "geoid": "17031838300"
+ },
+ {
+  "id": "101063818",
+  "address": "3031 W Polk St",
+  "lat": 41.870884,
+  "lng": -87.702185,
+  "issue_date": "2025-08-25",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR 2 STORY, 6 UNIT WOOD FRAME (AFFORDABLE UNITS) BUILDING WITH NEW TRASH ENCLOSURE, FENCING, STORAGE BUILDING AND 3 ON-SITE PARKING SPACES (1 EVSE READY PER AA-25-052) IN RT-4 ZONING.(OCCUPANCY GROUP R-2, TYPE V-B CONSTRUCTION) PER PLANS **CERTIFIED PLANS CORRECTIONS: CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS **",
+  "geoid": "17031837300"
+ },
+ {
+  "id": "101067436",
+  "address": "3520 N Pulaski Rd",
+  "lat": 41.945131,
+  "lng": -87.727511,
+  "issue_date": "2025-08-25",
+  "units": 8,
+  "description": "ERECT 3-STORY, 8 DWELLING UNITS RESIDENTIAL BUILDING WITH BASEMENT, 6 PARKING SPACES AND BIKE RACK. ERECT TRASH ENCLOSURE. ERECT COMBINATION OF 5' HIGH WROUGHT IRON AND 6' HIGH WOOD FENCE.",
+  "geoid": "17031161300"
+ },
+ {
+  "id": "101066186",
+  "address": "4010 N Lincoln Ave",
+  "lat": 41.954624,
+  "lng": -87.679245,
+  "issue_date": "2025-08-22",
+  "units": null,
+  "description": "NON-STRUCTURAL INTERIOR FINISH-OUT, SCOPE INCLUDES NEW PARTITION WALLS, ELECTRICAL WORK FROM THE EXISTING PANEL, AND MINOR PLUMBING MODIFICATIONS REQUIRING CONCRETE SLAB REMOVAL. NO CHANGES TO EXISTING HVAC, RESTROOM, OR OCCUPANCY CLASSIFICATION.",
+  "geoid": "17031050200"
+ },
+ {
+  "id": "101067460",
+  "address": "2233 W Oakdale Ave",
+  "lat": 41.934836,
+  "lng": -87.684414,
+  "issue_date": "2025-08-22",
+  "units": 5,
+  "description": "FOUNDATIONS ONLY FOR 5 NEW 3-STORY TOWNHOUSES (R-2) WITH PRIVATE GARAGES, FULLY SPRINKLERED, TYPE V-A CONSTRUCTION AS PER PLANS (PART OF PD 1127). CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031051400"
+ },
+ {
+  "id": "101067465",
+  "address": "2235 W Oakdale Ave",
+  "lat": 41.934835,
+  "lng": -87.68449,
+  "issue_date": "2025-08-22",
+  "units": 8,
+  "description": "FOUNDATIONS ONLY FOR 8 NEW 3-STORY TOWNHOUSES (R-2) WITH PRIVATE GARAGES, FULLY SPRINKLERED, TYPE V-A CONSTRUCTION AS PER PLANS (PART OF PD 1127). [ADDRESS RANGE: 2235 - 2237 W OAKDALE] CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031051400"
+ },
+ {
+  "id": "101067466",
+  "address": "2239 W Oakdale Ave",
+  "lat": 41.934834,
+  "lng": -87.684641,
+  "issue_date": "2025-08-22",
+  "units": 9,
+  "description": "FOUNDATIONS ONLY FOR 9 NEW 3-STORY TOWNHOUSES (R-2) WITH PRIVATE GARAGES, FULLY SPRINKLERED, TYPE V-A CONSTRUCTION AS PER PLANS (PART OF PD 1127). [ADDRESS RANGE: 2239 - 2241 W OAKDALE] CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031051400"
+ },
+ {
+  "id": "101067467",
+  "address": "2243 W Oakdale Ave",
+  "lat": 41.934832,
+  "lng": -87.684792,
+  "issue_date": "2025-08-22",
+  "units": 9,
+  "description": "FOUNDATIONS ONLY FOR 9 NEW 3-STORY TOWNHOUSES (R-2) WITH PRIVATE GARAGES, FULLY SPRINKLERED, TYPE V-A CONSTRUCTION AS PER PLANS (PART OF PD 1127). [ADDRESS RANGE: 2243 - 2245 W OAKDALE] CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031051400"
+ },
+ {
+  "id": "101062335",
+  "address": "3162 N Clybourn Ave",
+  "lat": 41.938957,
+  "lng": -87.687567,
+  "issue_date": "2025-08-21",
+  "units": null,
+  "description": "ERECT NEW ONE STORY BANKING FACILITY WITH DRIVE THRU ATM. WORK TO INCLUDE NEW CIVIL, LANDSCAPE, ARCHITECTURAL, STRUCTURAL, MECHANICAL, PLUMBING AND ELECTRICAL. (B-BUSINESS, IIB CONSTRUCTION) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031843700"
+ },
+ {
+  "id": "101063891",
+  "address": "1931 S Jefferson St",
+  "lat": 41.855889,
+  "lng": -87.641658,
+  "issue_date": "2025-08-21",
+  "units": 8,
+  "description": "FULL BUILDING PERMIT FOR NEW 4-STORY 8-UNIT RESIDENCE WITH A FULL SPRINKLER SYSTEM. (1ST FLOOR + 2ND FLOOR + 3RD FLOOR + 4TH FLOOR + ROOF DECK) (OCCUPANCY GROUP R-2, TYPE V-A CONSTRUCTION) NEW 4-STALL PARKING WITH CURB STOP. NEW REAR STEEL STAIR. PORCELAIN TILE ROOF DECK WITH 42\" HIGH PARAPET WALL AT ROOF PERIMETER. FHA COMPLIANT GROUND FLOOR UNITS. NEW MASONRY TRASH ENCLOSURE.",
+  "geoid": "17031843200"
+ },
+ {
+  "id": "101070438",
+  "address": "422 E 50th Pl",
+  "lat": 41.803141,
+  "lng": -87.614774,
+  "issue_date": "2025-08-20",
+  "units": 6,
+  "description": "ERECT NEW (3) STORY RESIDENTIAL BUILDING AND ONE STORY DETACHED RESIDENTIAL GARAGE. (6) RESIDENTIAL UNITS. TYPE III-A CONSTRUCTION",
+  "geoid": "17031381900"
+ },
+ {
+  "id": "101066720",
+  "address": "2237 W Roscoe St",
+  "lat": 41.94303,
+  "lng": -87.68474,
+  "issue_date": "2025-08-19",
+  "units": 6,
+  "description": "NEW CONSTRUCTION OF A 4 STORY 6 DWELLING UNIT BUILDING WITH ATTACHED GARAGE AND OCCUPIABLE ROOF DECK AS PER PLANS. (CONSTRUCTION CLASSIFICATION R-2 OCCUPANCY CLASSIFICATION 3A)",
+  "geoid": "17031051000"
+ },
+ {
+  "id": "101070738",
+  "address": "2720 N Ashland Ave",
+  "lat": 41.931283,
+  "lng": -87.668509,
+  "issue_date": "2025-08-19",
+  "units": 6,
+  "description": "ERECT 3 STORY IIIA MASONRY 6 DWELLING UNIT BUILDING WITH BASEMENT, 13R SPRINKLER SYSTEM, REAR PORCHES ON FIRST FLOOR ,FRONT BALCONIES ON SECOND AND THIRD FL ROOF ACCESS, PRIVATE ROOF DECK AND PERGOLAS, PRINCIPAL BUILDING AND DETACHED 6 CAR GARAGE WITH ROOF DECK, EXISTING OCCUPANCY R-2 , PROPOSED OCCUPANCY R-2, CONSTRUCTION IIIA , PER PLANS.CONDITIONAL APPROVAL PER 14A-4-404.13., RELEASE OF FULL WRECKING PERMIT STILL PENDING. 2720-2722 N ASHLAND AVE.",
+  "geoid": "17031070700"
+ },
+ {
+  "id": "101069441",
+  "address": "7736 S Burnham Ave",
+  "lat": 41.754373,
+  "lng": -87.557179,
+  "issue_date": "2025-08-13",
+  "units": null,
+  "description": "EXTERIOR IMPROVEMENTS TO EXISTING CPS ELEMENTARY SCHOOL SPORTS PLAYGROUND INCLUDING NEW RESILIENT SURFACING PLAYLOT WITH NEW PLAYGROUND EQUIPMENT, OUTDOOR PAVED SPORTS COURTS AND LANDSCAPE AND PAVING IMPROVEMENTS, REMOVAL OF EXISTING PARKING LOT PAVING AND REGRADING",
+  "geoid": "17031431301"
+ },
+ {
+  "id": "101065426",
+  "address": "1153 S Kostner Ave",
+  "lat": 41.866694,
+  "lng": -87.734842,
+  "issue_date": "2025-08-12",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF A 1-STORY, APPROXIMATELY 181,760 SF PRECAST INDUSTRIAL BUILDING WITH 150 SURFACE PARKING SPACES. (OCC GROUPS B, F-1, S-1; CONST CLASS IIB). THIS PERMIT IS CONDITIONED UPON APPROVAL OF SOIL IMPROVEMENT LOAD TEST RESULTS UNDER PERMIT APP. B200426399. CONSULTANT REVIEWER: V3 COMPANIES OF ILLINOIS.",
+  "geoid": "17031843000"
+ },
+ {
+  "id": "101065427",
+  "address": "4363 W Fifth Ave",
+  "lat": 41.870251,
+  "lng": -87.73487,
+  "issue_date": "2025-08-12",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF A 1-STORY, APPROXIMATELY 181,760 SF PRECAST INDUSTRIAL BUILDING WITH 196 SURFACE PARKING SPACES. (OCC GROUPS B, F-1, S-1; CONST CLASS IIB). THIS PERMIT IS CONDITIONED UPON APPROVAL OF SOIL IMPROVEMENT LOAD TEST RESULTS UNDER PERMIT APP. B200426393. CONSULTANT REVIEWER: V3 COMPANIES OF ILLINOIS.",
+  "geoid": "17031843000"
+ },
+ {
+  "id": "101066123",
+  "address": "5306 N Luna Ave",
+  "lat": 41.977638,
+  "lng": -87.767367,
+  "issue_date": "2025-08-12",
+  "units": null,
+  "description": "PERMIT FOR GARAGE AND STEEL PORCH AND STAIRCASE, PREVIOUSLY ERECTED WITHOUT OBTAINING APPROPRIATE PERMITS: R5 OCCUPANCY (MAIN BUILDING) U OCCUPANCY (DETACHED RESIDENTIAL GARAGE) TYPE IIIB (NON-COMBUSTIBLE GARAGE AND PORCH); CONCRETE FOOTINGS AND FOUNDATIONS, AS WELL AS ELECTRICAL WORK AS PER PLANS, AS WELL AS REDUCE GARAGE FOOT PRINT IN THE E/W/ DIRECTION**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031110501"
+ },
+ {
+  "id": "101070431",
+  "address": "416 E 50th Pl",
+  "lat": 41.803136,
+  "lng": -87.615035,
+  "issue_date": "2025-08-12",
+  "units": 6,
+  "description": "ERECT NEW (3) STORY RESIDENTIAL BUILDING AND ONE STORY DETACHED RESIDENTIAL GARAGE. (6) RESIDENTIAL UNITS. TYPE III-A CONSTRUCTION, R-2 OCC. 416 - 418 E 50TH PLACE.",
+  "geoid": "17031381900"
+ },
+ {
+  "id": "101069060",
+  "address": "4356 W Roosevelt Rd",
+  "lat": 41.866145,
+  "lng": -87.734827,
+  "issue_date": "2025-08-06",
+  "units": null,
+  "description": "FULL BUILDING PERMIT FOR 1 STORY BUILDING ON SHALLOW FOUNDATIONS (OCC GROUP B, CONST CLASS IIB). WORK ASSOCIATED WITH WRECKING PERMIT 101071552 MUST BE COMPLETED AND INSPECTED PRIOR TO PROPOSED NEW CONSTRUCTION.",
+  "geoid": "17031843000"
+ },
+ {
+  "id": "101067186",
+  "address": "919 W Belmont Ave",
+  "lat": 41.939828,
+  "lng": -87.652316,
+  "issue_date": "2025-08-05",
+  "units": 46,
+  "description": "NEW CONSTRUCTION OF A 5-STORY MIXED-USE BUILDING TO INCLUDE GROUND FLOOR RETAIL, AT-GRADE PARKING (6 PARKING SPACES) AND RESIDENTIAL (46 DWELLING UNITS;37 EFFICIENCY UNITS +9 DWELLING UNITS) ON FLOORS 2-5 AND ASSOCIATED SITE WORK AS PER PLANS. (OCCUPANCY GROUP: R-2, A-2 / TYPE III-A CONSTRUCTION) CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031063000"
+ },
+ {
+  "id": "101067291",
+  "address": "1006 E 41st St",
+  "lat": 41.820178,
+  "lng": -87.602365,
+  "issue_date": "2025-08-05",
+  "units": 6,
+  "description": "2019 CONSTRUCT 6 TOWNHOUSE UNITS, TYPE VA CONSTRUCTION 2 STORY FRAME BUILDINGS WITH BASEMENTS, REAR DECKS AND DETACHED 2 CAR PRIVATE GARAGES, AS PER PLANS. R2 OCCUPANCY CLASSIFICATION. 1006, 1008, 1010, 1012, 1014, 1016 E 41ST STREET.",
+  "geoid": "17031836400"
+ },
+ {
+  "id": "101067314",
+  "address": "2843 W Logan Blvd",
+  "lat": 41.928341,
+  "lng": -87.699279,
+  "issue_date": "2025-08-05",
+  "units": null,
+  "description": "CONSTRUCT NEW 23.52 X 24.52 MASONRY GARAGE AS PER PLANS - NO WORK TO EXISTING 2 STORY RESIDENTIAL BUILDING.**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031220400"
+ },
+ {
+  "id": "101069059",
+  "address": "4304 W Roosevelt Rd",
+  "lat": 41.866173,
+  "lng": -87.73272,
+  "issue_date": "2025-08-05",
+  "units": null,
+  "description": "FULL BUILDING PERMIT FOR 1 STORY BUILDING ON SHALLOW FOUNDATIONS (OCC GROUP B, CONST CLASS: IIB). WORK ASSOCIATED WITH WRECKING PERMIT 101071552 MUST BE COMPLETED AND INSPECTED PRIOR TO PROPOSED NEW CONSTRUCTION.",
+  "geoid": "17031843000"
+ },
+ {
+  "id": "101028729",
+  "address": "6659 S Greenwood Ave",
+  "lat": 41.773293,
+  "lng": -87.599544,
+  "issue_date": "2025-07-31",
+  "units": 8,
+  "description": "PROPOSED 4 STORY/8 UNIT RESIDENCE W/ ROOF ENCLOSURE AND 2ND FLOOR ROOF DECK, 4' FENCE, TRASH ENCLOSURES, AND REAR 8 CAR GARAGE W/ROOF DECK, PER PLANS. VARIATION #196/197-25-Z TO REDUCE THE MINIMUM FRONT SETBACK AND RELOCATE THE REQUIRED REAR YARD OPEN SPACE APPROVED 07.21.2025.",
+  "geoid": "17031834400"
+ },
+ {
+  "id": "101040271",
+  "address": "4002 S Princeton Ave",
+  "lat": 41.821725,
+  "lng": -87.633329,
+  "issue_date": "2025-07-31",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF A 1-STORY WAREHOUSE TO INCLUDE AT-GRADE PARKING LOT AND ASSOCIATED SITE WORK, AS PER PLANS. (OCCUPANCY CLASSIFICATION: S-1 / CONSTRUCTION TYPE: II-B) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031835500"
+ },
+ {
+  "id": "101065748",
+  "address": "5400 S Dearborn St",
+  "lat": 41.796297,
+  "lng": -87.626976,
+  "issue_date": "2025-07-31",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR 3 STORY + BASEMENT, 6 DWELLING UNIT APARTMENT BUILDING WITH FULL SPRINKLER SYSTEM -6 PARKING SPACES IN TWO DETACHED GARAGES AT REA OF LOT. (OCCUPANCY GROUP R-2, TYPE III-B CONSTRUCTION) *STRUCTURAL PEER REVIEW*AS PER PLANS. 5400 - 5402 S DEARBORN ST.",
+  "geoid": "17031836100"
+ },
+ {
+  "id": "101069523",
+  "address": "8257 S Paulina St",
+  "lat": 41.74319,
+  "lng": -87.665539,
+  "issue_date": "2025-07-18",
+  "units": null,
+  "description": "SURFACE PARKING LOT ONLY: SITE WORK AND LANDSCAPING FOR EXISTING SURFACE PARKING LOT TO SERVE 1700 W 83RD ST. CHARTER SCHOOL. 24 PARKING SPACES PROVIDED. SCHOOL PERMITTED UNDER 101065166",
+  "geoid": "17031711200"
+ },
+ {
+  "id": "101066467",
+  "address": "5428 N Winthrop Ave",
+  "lat": 41.980888,
+  "lng": -87.658086,
+  "issue_date": "2025-07-17",
+  "units": 12,
+  "description": "DDS: NEW 4 STORY/12 UNIT RESIDENCE W/BASEMENT (4 TYPE A UNITS), ROOF DECK/ENCLOSURE W/ELEVATOR , FRONT 1ST-4TH FLOOR DECKS, REAR 2ND-4TH FLOOR BALCONY, 3.5' FRONT IRON/5' SIDE WOOD FENCES, TRASH ENCLOSURE, AND 6 CAR GARAGE (1 ADA SPACE), PER PLANS. CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031030703"
+ },
+ {
+  "id": "101067617",
+  "address": "2254 W Chicago Ave",
+  "lat": 41.8959,
+  "lng": -87.684126,
+  "issue_date": "2025-07-17",
+  "units": 8,
+  "description": "FULL BUILDING PERMIT FOR 5 STORY 8 D.U. BUILDING, 1ST FLOOR RETAIL, 8 CAR GARAGE AT 1ST FLOOR, FRONT DECK AT 2ND/3RD/4TH/5TH STORY, REAR BALCONY AT 3RD/4TH/5TH STORY, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, REAR ROOFTOP DECK OVER PORTION OF GARAGE AT 2ND STORY, ENTIRE BUILDING SPRINKLERED, ELEVATOR OVER-RUN AS PER PLANS (OCCUPANCY GROUP R-2, S-2, M, TYPE IIIA CONSTRUCTION). CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031242400"
+ },
+ {
+  "id": "101070800",
+  "address": "626 S Wabash Ave",
+  "lat": 41.873825,
+  "lng": -87.626129,
+  "issue_date": "2025-07-17",
+  "units": null,
+  "description": "***HOIST PERMIT*** INSTALLATION OF TEMPORARY SINGLE 8000LBS RACK AND PINION CONSTRUCTION HOIST.",
+  "geoid": "17031320600"
+ },
+ {
+  "id": "101061155",
+  "address": "1141 S Keeler Ave",
+  "lat": 41.866716,
+  "lng": -87.72994,
+  "issue_date": "2025-07-16",
+  "units": 6,
+  "description": "PROPOSED 2 STORY/6 UNIT RESIDENCE, FRONT 5' METAL/5.17' SIDE WOOD FENCES, AND 5 REAR PARKING SPACES (1 ADA), PER PLANS.",
+  "geoid": "17031843000"
+ },
+ {
+  "id": "101029740",
+  "address": "1554 W Le Moyne St",
+  "lat": 41.908931,
+  "lng": -87.667414,
+  "issue_date": "2025-07-15",
+  "units": 44,
+  "description": "FULL BUILDING PERMIT FOR 5 STORY 44 D.U. BUILDING, 1ST FLOOR OFFICE, 16 CAR GARAGE AT 1ST FLOOR, 6 EXTERIOR PARKING SPACES ON CONCRETE PAD, ROOFTOP DECK, TRELLIS, ROOFTOP STAIR ENCLOSURES, ELEVATOR PENTHOUSE, DECK/BALCONY AT 2ND/3RD/4TH/5TH STORY, ENTIRE BUILDING SPRINKLERED, 1 EXTERIOR LOADING BERTH, 6' HIGH MASONRY TRASH ENCLOSURE AS PER PLAN (OCCUPANCY GROUP R-2, S-2, B, TYPE IIIA CONSTRUCTION) AS PER PLAN. CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031241600"
+ },
+ {
+  "id": "101051687",
+  "address": "1342 W Ohio St",
+  "lat": 41.892613,
+  "lng": -87.661145,
+  "issue_date": "2025-07-14",
+  "units": 6,
+  "description": "PROPOSED 3 STORY/6 UNIT RESIDENCE W/ROOF DECK AND ENCLOSURE, 1ST FLOOR BALCONY, AND 3 SPACE PARKING PAD, PER PLANS. VARIATION #37-25-Z TO DECREASE THE FRONT AND SIDE SETBACKS APPROVED 02.24.2025.",
+  "geoid": "17031243400"
+ },
+ {
+  "id": "101070530",
+  "address": "2406 W Grenshaw St",
+  "lat": 41.867628,
+  "lng": -87.686413,
+  "issue_date": "2025-07-14",
+  "units": null,
+  "description": "REPLACE EXISTING WOOD PORCH WITH A NEW PORCH FOR AN EXISTING 3-STORY MASONRY MULTI-UNIT BUILDING. (OCCUPANCY GROUP R-5; TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031282700"
+ },
+ {
+  "id": "101062353",
+  "address": "2407 W Augusta Blvd",
+  "lat": 41.899264,
+  "lng": -87.687285,
+  "issue_date": "2025-07-11",
+  "units": null,
+  "description": "FULL BUILDING PERMIT FOR 1 STORY MINI MART WITH 2 ON-SITE PARKING SPACES (OCCUPANCY GROUP M, TYPE IIIB CONSTRUCTION)CONDITIONAL APPROVAL PER 14A-4-404.13., RELEASE OF FULL WRECKING PERMIT STILL PENDING UNDER PERMIT APP.101070456 2407-2411 W AUGUSTA BLVD.",
+  "geoid": "17031242500"
+ },
+ {
+  "id": "101067955",
+  "address": "2072 N Western Ave",
+  "lat": 41.919693,
+  "lng": -87.687626,
+  "issue_date": "2025-07-03",
+  "units": 9,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 9 D.U. BUILDING, 1ST FLOOR RETAIL, 8 CAR & 1 CAR GARAGES AT 1ST FLOOR, DECK AT 2ND/3RD/4TH STORY, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, REAR ROOFTOP DECK OVER PORTION OF GARAGE AT 2ND STORY, ELEVATOR-OVER RUN ENTIRE BUILDING SPRINKLERED AS PER PLANS (OCCUPANCY GROUP R-2, S-2, M, TYPE IIIA CONSTRUCTION). CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031221500"
+ },
+ {
+  "id": "101069706",
+  "address": "1647 N Central Park Ave",
+  "lat": 41.911387,
+  "lng": -87.716443,
+  "issue_date": "2025-07-01",
+  "units": null,
+  "description": "PROPOSED REAR YARD CANOPY COVERED STRUCTURE SERVING AN EXISTING 3 STORY RESIDENCE (UNITS NOT CONFIRMED), PER PLANS.",
+  "geoid": "17031230300"
+ },
+ {
+  "id": "101059373",
+  "address": "2206 W Lawrence Ave",
+  "lat": 41.96879,
+  "lng": -87.684357,
+  "issue_date": "2025-06-30",
+  "units": 10,
+  "description": "NEW CONSTRUCTION FULL BUILDING PERMIT (5) FIVE STORY, (10) TEN RESIDENTIAL DWELLING UNIT BUILDING WITH (2) ROOFTOP STAIR PENTHOUSE/ENCLOSURE AND PRIVATE OCCUPIABLE ROOF DECK, FRONT DECKS, 3 ENCLOSED PARKING SPACES, 5 UNENCLOSED PARKING SPACES W/CARPORT (FOR 8 TOTAL) OCCUPANCY CLASS R-2, RESIDENTIAL USE, CONSTRUCTION TYPE 3-A WITH FULL SPRINKLER AS PER NFPA PER PLANS (ELEVATOR UNDER SEPARATE PERMIT) **CERTIFIED PLANS CORRECTIONS: CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS **",
+  "geoid": "17031040401"
+ },
+ {
+  "id": "101049418",
+  "address": "410 N Elizabeth St",
+  "lat": 41.889264,
+  "lng": -87.659102,
+  "issue_date": "2025-06-26",
+  "units": 384,
+  "description": "CAISSONS ONLY PERMIT FOR A 33-STORY MIXED OCCUPANCY BUILDING WITH 25 FLOORS OF RESIDENTIAL APARTMENTS TOTALING 384 UNITS. (OCCUPANCY GROUPS: R-2, M, S-2; TYPE 1A CONSTRUCTION). ALL AS PER PLANS.CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031243400"
+ },
+ {
+  "id": "101068156",
+  "address": "4744 W Addison St",
+  "lat": 41.946246,
+  "lng": -87.746355,
+  "issue_date": "2025-06-25",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR 3 STORY 6 D.U. BUILDING, FRONT PATIO AT 1ST STORY, FRONT BALCONY AT 2ND/3RD STORY, 6 EXTERIOR PARKING SPACES ON CONCRETE PAD, 5' HIGH WOOD FENCE AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031831700"
+ },
+ {
+  "id": "101069687",
+  "address": "520 W Hobbie St",
+  "lat": 41.901629,
+  "lng": -87.642081,
+  "issue_date": "2025-06-25",
+  "units": null,
+  "description": "***HOIST PERMIT*** INSTALLATION OF TEMPORARY 8000LBS SINGLE RACK AND PINION CONSTRUCTION HOIST",
+  "geoid": "17031838300"
+ },
+ {
+  "id": "101049133",
+  "address": "5340 N Lincoln Ave",
+  "lat": 41.978909,
+  "lng": -87.692794,
+  "issue_date": "2025-06-24",
+  "units": 9,
+  "description": "NEW CONSTRUCTION : 4 STORY SPRINKLERED MASONRY BUILDING (NO BASEMENT), CONSTRUCTION TYPE IIIA FOR SEPARATED MIXED-USE: 1 OFFICE VANILLA-BOX AT 1ST FLOOR & 9 DU AT UPPER FLOORS (USE GROUP B & R-2) WITH FRONT & REAR BALCONIES, ENCLOSED RESIDENTIAL ACCESSORY PARKING (9 CAR & 9 BICYCLE PARKING SPACES) AT 1ST FLOOR, ROOFTOP ACCESS STAIRS & ELEVATOR (RESIDENTIAL ACCESS ONLY). (OCCUPANCY: R-2; CONSTRUCTION TYPE IIIA) CONSULTANT REVIWER: V3 COMPANIES OF IL",
+  "geoid": "17031040202"
+ },
+ {
+  "id": "101060779",
+  "address": "3530 N Paulina St",
+  "lat": 41.946071,
+  "lng": -87.671423,
+  "issue_date": "2025-06-23",
+  "units": null,
+  "description": "PROPROPOSED 2 CAR GARAGE W/ROOF DECK/PERGOLA, 5' REAR WOOD FENCE, AND TRASH ENCLOSURE SERVING AN EXISTING 3 STORY RESIDENCE PER PLANS. VARIATIONS #110/111-25-Z TO REDUCE THE SIDE/REAR SETBACKS AND REAR YARD OPEN SPACE APPROVED 05.19.2025.",
+  "geoid": "17031831900"
+ },
+ {
+  "id": "101065983",
+  "address": "5709 S Prairie Ave",
+  "lat": 41.790805,
+  "lng": -87.618977,
+  "issue_date": "2025-06-18",
+  "units": 6,
+  "description": "ADDRESS RANGE 5709-5711 S PRAIRIE AVE; NEW 3 STORY MASONRY 6 DU WITH, BALCONIES, TRASH ENCLOSURE, 5' FENCE, AND 6 PARKING SPACES AS PER PLAN (CONSTRUCTION TYPE 3A, OCCUPANCY CODE R-2)",
+  "geoid": "17031400400"
+ },
+ {
+  "id": "101064351",
+  "address": "5953 W Arthington St",
+  "lat": 41.86901,
+  "lng": -87.773944,
+  "issue_date": "2025-06-17",
+  "units": 6,
+  "description": "ERECT NEW (3) STORY MULTI-FAMILY RESIDENTIAL MASONRY BUILDING W/ MASONRY TRASH ENCLOSURE, 6'-0\" H. WOOD & WROUGHT IRON FENCE & (6) PARKING SPACES.- TYPE IIIA CONSTRUCTION - (6) DWELLING UNIT TOTAL R2 OCCUPANCY. 5953-5955 W ARTHINGTON.",
+  "geoid": "17031831400"
+ },
+ {
+  "id": "101065031",
+  "address": "3738 S Calumet Ave",
+  "lat": 41.826293,
+  "lng": -87.618166,
+  "issue_date": "2025-06-17",
+  "units": 6,
+  "description": "SELF-CERT 2019 CBR CCONSTRUCT NEW THREE-STORY, SIX UNITS MASONRY BUILDING ON SLABR-2 OCCUPANCY AND TYPE III-A CONSTRUCTION TYPE",
+  "geoid": "17031839600"
+ },
+ {
+  "id": "101055006",
+  "address": "513 W Fullerton Pkwy",
+  "lat": 41.925452,
+  "lng": -87.641956,
+  "issue_date": "2025-06-09",
+  "units": 8,
+  "description": "SELF-CERT: NEW CONSTRUCTION 8 RESIDENTIAL UNIT, 4-STORY BUILDING WITH BASEMENT AND 2 PRIVATE ROOF DECKS. FULLY SPRINKLERED WITH ELEVATOR PER PLANS. 2 PRIVATE ROOF DECKS WITH PERGOLAS ABOVE 8 CAR DETACHED GARAGE. 1 EXTERIOR REAR STAIR, FRONT BALCONIES ON FLOORS 1-3, & REAR DECKS ON FLOOR (OCC. R-2; CONST TYPE IIIA.ELEVATOR INSTALLATION IS A SEPARATE SUBMISSION AND APPROVAL BY THE ELEVATOR BUREAU.",
+  "geoid": "17031071300"
+ },
+ {
+  "id": "101066341",
+  "address": "3939 W Roosevelt Rd",
+  "lat": 41.866076,
+  "lng": -87.724189,
+  "issue_date": "2025-06-03",
+  "units": null,
+  "description": "2019: NEW FOUNDATION FOR 3 PLAY SCULPTURES AT PARK.",
+  "geoid": "17031838700"
+ },
+ {
+  "id": "101050206",
+  "address": "370 N Morgan St",
+  "lat": 41.888895,
+  "lng": -87.65238,
+  "issue_date": "2025-05-23",
+  "units": 339,
+  "description": "CAISSON ONLY (VERTICAL PENETRATION ONLY) PERMIT FOR THE NEW CONSTRUCTION OF A 31-STORY RESIDENTIAL BUILDING (154 EFFICIENCY UNITS & 339 DWELLING UNITS) TO INCLUDE GROUND FLOOR RETAIL & PARKING ON LEVELS 2-4 (191 PARKING SPACES + 300 BICYCLE PARKING SPACES) AS PER PLANS. (CONSTRUCTION TYPE: 1A / OCCUPANCY CLASSIFICATION: R-2) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031833000"
+ },
+ {
+  "id": "101059623",
+  "address": "2822 W 26th St",
+  "lat": 41.844787,
+  "lng": -87.696187,
+  "issue_date": "2025-05-22",
+  "units": null,
+  "description": "SITE IMPROVEMENTS INCLUDING NEW SURFACE PAVING, STRIPES, CURBS, INTERNAL SIDEWALKS, TRASH ENCLOSURES, LIGHTING, FENCES, BIKE RACKS & STORM-WATER DETENTION SYSTEM FOR FUTURE COMMERCIAL BUILDINGS (UNDER SEPARATE PERMIT) AS PER PLANS.",
+  "geoid": "17031301100"
+ },
+ {
+  "id": "101053184",
+  "address": "1885 W Fullerton Ave",
+  "lat": 41.924944,
+  "lng": -87.675693,
+  "issue_date": "2025-05-21",
+  "units": null,
+  "description": "2019 FOUNDATION ONLY PERMIT (NO MEP WORK UNDER THIS PERMIT.). ALL OTHER WORK COVERED UNDER A SEPARATE NEW CONSTRUCTION PERMIT FOR A PROPOSED 4 STORY MEDICAL OFFICE, AS PER PLANS(NO PLUMBING WORK UNDER THIS PERMIT)",
+  "geoid": "17031832300"
+ },
+ {
+  "id": "101062237",
+  "address": "12260 S Carondolet Ave",
+  "lat": 41.671121,
+  "lng": -87.549725,
+  "issue_date": "2025-05-19",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF A 1-STORY CONTROL BUILDING AS PER PLANS.(OCCUPACY GROUP B; TYPE II-B CONSTRUCTION)**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031838800"
+ },
+ {
+  "id": "101064659",
+  "address": "622 E 107th St",
+  "lat": 41.70021,
+  "lng": -87.607224,
+  "issue_date": "2025-05-19",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF A STANDALONE TRELLIS WITH CONCRETE PAD. (OCCUPANCY: U; CONSTRUCTION TYPE V)",
+  "geoid": "17031500200"
+ },
+ {
+  "id": "100982183",
+  "address": "1221 W Washington Blvd",
+  "lat": 41.88286,
+  "lng": -87.657514,
+  "issue_date": "2025-05-16",
+  "units": 287,
+  "description": "DIRECT DEVELOPER SERVICES - ERECT 19 STORY 287 DU RESIDENTIAL BUILDING. FOUNDATION PERMIT UNDER #100970211. CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031833000"
+ },
+ {
+  "id": "101063254",
+  "address": "1148 E 95th St",
+  "lat": 41.722305,
+  "lng": -87.595246,
+  "issue_date": "2025-05-15",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF GAS STATION AND MART ON VACANT LOT AS PER PLANS. TO INCLUDE NEW PROPOSED FENCING, MASONRY TRASH ENCLOSURE, AND 13 PARKING SPACES. (PROPOSED CONSTRUCTION: II-B;PROPOSED USE:M)**CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS**",
+  "geoid": "17031470100"
+ },
+ {
+  "id": "101067202",
+  "address": "8349 W Irving Park Rd",
+  "lat": 41.951942,
+  "lng": -87.836191,
+  "issue_date": "2025-05-14",
+  "units": null,
+  "description": "FULL BUILDING PERMIT FOR NEW ONE STORY SHELL BUILDING AS PER PLANS; FOUNDATION, CIVIL/STORMWATER PERMIT PREVIOUSLY APPROVED FOR THIS BUILDING UNDER PERMIT NUMBER 101061186. SPECIAL USE ZONING FOR DRIVE-UP WINDOW APPROVED BY ZONING BOARD OF APPEALS 8/18/2024 IN ZBA 304-24-S. (OCCUPANCY A2; CONSTRUCTION TYPE VA)",
+  "geoid": "17031170500"
+ },
+ {
+  "id": "101065839",
+  "address": "1626 S Halsted St",
+  "lat": 41.859183,
+  "lng": -87.64683,
+  "issue_date": "2025-05-12",
+  "units": null,
+  "description": "PROPOSED 1' CONCRETE RETAINING WALL TO ADDRESS STOP WORK ORDER FOR AN EXISTING 1 STORY RESTAURANT, PER PLANS.",
+  "geoid": "17031310300"
+ },
+ {
+  "id": "101061027",
+  "address": "1101 W Argyle St",
+  "lat": 41.973161,
+  "lng": -87.657833,
+  "issue_date": "2025-05-08",
+  "units": 16,
+  "description": "SPR: NEW 5-STORY, MIXED-USE, 16-DWELLING UNIT (R-2)W/ ENCLOSED 8-CAR PARKING GARAGE (U) AND GROUND FLOOR RETAIL SPACE (USE), REAR BALCONIES AT FLOORS 2-5,FULLY SPRINKLERED (S), TYPE III-A CONSTRUCTION",
+  "geoid": "17031031200"
+ },
+ {
+  "id": "101045238",
+  "address": "1345 W Grand Ave",
+  "lat": 41.890933,
+  "lng": -87.66085,
+  "issue_date": "2025-05-06",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 6 D.U. BUILDING, 1ST FLOOR OFFICE, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, ELEVATOR OVER-RUN, 6 CAR GARAGE AT 1ST FLOOR LEVEL, REAR DECK/FRONT BALCONY AT 2ND STORY, FRONT/REAR BALCONY AT 3RD/4TH STORY, ENTIRE BUILDING SPRINKLERED AS PER PLAN (OCCUPANCY GROUP R-2, B, S-2 TYPE IIIA CONSTRUCTION). ELEVATOR INSTALLATION IS A SEPARATE APPROVAL BY ELEVATOR BUREAU.",
+  "geoid": "17031243400"
+ },
+ {
+  "id": "101060898",
+  "address": "2709 W Touhy Ave",
+  "lat": 42.012003,
+  "lng": -87.69777,
+  "issue_date": "2025-05-06",
+  "units": 43,
+  "description": "2019 4 STORY/43 UNIT RESIDENCE W/ROOF DECK/ENCLOSURE, 2ND-4TH FLOOR BALCONIES, AND 45 CAR GARAGE (2 ADA) W/DRIVEWAY, PER PLANS. ZONING AMENDMENT #22370-T1 WHICH INCLUDED REDUCING THE REAR SETBACK PASSED 04.17.2024. CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031020302"
+ },
+ {
+  "id": "101058567",
+  "address": "3800 N Narragansett Ave",
+  "lat": 41.949335,
+  "lng": -87.78655,
+  "issue_date": "2025-05-05",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF A ONE-STORY NON-HABITABLE CRYPT GARDEN MAUSOLEUM WITHIN AN EXISTING CEMETERY (MT. OLIVE CEMETERY) AT 3800 N. NARRAGANSETT AVE. THE PROPOSED MAUSOLEUM WILL BE CONSTRUCTED USING PRECAST CONCRETE SYSTEM WITH NO HEAT OR ELECTRICAL COMPONENTS. (CONSTRUCTION TYPE: II-B; GROUP U MISCELLANEOUS) **CERTIFIED PLANS CORRECTIONS: CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS **",
+  "geoid": "17031170300"
+ },
+ {
+  "id": "101065432",
+  "address": "805 N California Ave",
+  "lat": 41.895862,
+  "lng": -87.696562,
+  "issue_date": "2025-05-05",
+  "units": 9,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 9 D.U. BUILDING, 1ST FLOOR RETAIL, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, 9 CAR GARAGE AT 1ST FLOOR, BALCONY AT 2ND/3RD/4TH STORY, ENTIRE BUILDING SPRINKLERED, ELEVATOR OVER-RUN AS PER PLAN (OCCUPANCY GROUP R-2, M, S-2 TYPE IIIA CONSTRUCTION). CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031242600"
+ },
+ {
+  "id": "101067066",
+  "address": "7026 W Diversey Ave",
+  "lat": 41.930916,
+  "lng": -87.802102,
+  "issue_date": "2025-04-30",
+  "units": null,
+  "description": "REPLACE ESITING MASONRY HIP ROOF 3 CAR GARAGE W/ NEW 1 STORY FLAT ROOF, 3 CAR FRAME GARAGE (OCCUPANCY GROUP U, TYPE V-B CONSTRUCTION)",
+  "geoid": "17031180100"
+ },
+ {
+  "id": "101052105",
+  "address": "11040 S Doty Ave W",
+  "lat": 41.69334,
+  "lng": -87.598986,
+  "issue_date": "2025-04-29",
+  "units": null,
+  "description": "2019: CAISSONS ONLY PERMIT FOR A 4 STORY 100 ROOM HOTEL. OCCUPANCY GROUPS R-1, TYPE IIA CONSTRUCTION. ALL AS PER PLANS. CONSULTANT REVIEWER: V3 CONSULTANTS",
+  "geoid": "17031500200"
+ },
+ {
+  "id": "101064704",
+  "address": "1935 N Mohawk St",
+  "lat": 41.917507,
+  "lng": -87.642283,
+  "issue_date": "2025-04-29",
+  "units": 8,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 8 D.U. BUILDING WITHBASEMENT, 6 CAR GARAGE AT BASEMENT, 2 CAR GARAGE AT 1ST FLOOR, DECKOVER GARAGES, ROOFTOP DECK, PERGOLA, ROOFTOP STAIR ENCLOSURES,ELEVATOR PENTHOUSE, FRONT DECK AT 1ST/ 2ND/3RD/4TH STORY, REAR DECK AT1ST STORY, ENTIRE BUILDING SPRINKLERED, 42\" HIGH ORNAMENTAL METALFENCE, 6' HIGH 13'-8\" BY 4' MASONRY TRASH ENCLOSURE AS PER PLAN(OCCUPANCY GROUP R-2, S-2 TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031071600"
+ },
+ {
+  "id": "101065901",
+  "address": "3923 N Janssen Ave",
+  "lat": 41.953226,
+  "lng": -87.66567,
+  "issue_date": "2025-04-25",
+  "units": 5,
+  "description": "3-STORY, TYPE VA FRAME, 5-DWELLING UNIT BUILDING WITH A BASEMENT. THE BUILDING WILL BE FULLY EQUIPPED WITH AN NFPA 13R SPRINKLER SYSTEM. THE PROJECT INCLUDES THE CONSTRUCTION OF PRIVATE ROOF DECKS, TWO ROOF ACCESS POINTS, FIRST-FLOOR FRONT BALCONIES, AND A REAR ROOF DECK. ADDITIONALLY, THERE WILL BE A FOURTH-FLOOR REAR PORCH AND A DETACHED 5-CAR GARAGE WITH A ROOF DECK AND PERGOLAS. THE PROJECT ALSO INCLUDES THE INSTALLATION OF A 6' REAR WOOD FENCE AND A FRONT ORNAMENTAL FENCE, EXISTING OCCUPANCY R-2 , PROPOSED OCCUPANCY R-2 , TYPE CONSTRUCTION VA , PER PLANS",
+  "geoid": "17031060400"
+ },
+ {
+  "id": "101064058",
+  "address": "515 W Elm St",
+  "lat": 41.90256,
+  "lng": -87.641848,
+  "issue_date": "2025-04-23",
+  "units": 12,
+  "description": "FULL BUILDING PERMIT FOR 5 STORY 12 D.U. BUILDING, 5 CAR & 4 CAR GARAGES AT 1ST FLOOR, DECK AT 2ND/3RD/4TH/5TH STORY, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, ELEVATOR OVER-RUN, ENTIRE BUILDING SPRINKLERED AS PER PLANS (OCCUPANCY GROUP R-2, S-2, TYPE IIIA CONSTRUCTION). CONSULTANT REVIEWER : V3 COMPANIES OF IL",
+  "geoid": "17031838300"
+ },
+ {
+  "id": "101006981",
+  "address": "1954 W 115th St",
+  "lat": 41.684748,
+  "lng": -87.671296,
+  "issue_date": "2025-04-22",
+  "units": null,
+  "description": "B3-1/RS-3. REPLACEMENT OF EXISTING TRAIN STATION WITH TWO WARMING SHELTERS ON THE EAST AND WEST SIDES OF THE TRACK ALONG THE EXISTING PLATFORMS. EXISTING METRA PARKING BETWEEN W115TH ST. AND W EDMAIRE ST. WILL BE REPAVED. EXISTING METRA PARKING SOUTH OF W 115TH WILL BE REPAVED. NEW SITE LIGHTING AND LANDSCAPING WILL BE PROVIDED AS PER PLANS**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031750500"
+ },
+ {
+  "id": "101063248",
+  "address": "231 N Ada St",
+  "lat": 41.886495,
+  "lng": -87.660645,
+  "issue_date": "2025-04-22",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF A SINGLE STORY SLAB-ON-GRADE SALES CENTER OFFICE TO INCLUDE 10 CAR EXTERIOR PARKING LOT AS PER PLANS (OCCUPANCY B, TYPE IIB CONSTRUCTION)",
+  "geoid": "17031833000"
+ },
+ {
+  "id": "101062129",
+  "address": "1547 N Wieland St",
+  "lat": 41.910736,
+  "lng": -87.635542,
+  "issue_date": "2025-04-17",
+  "units": 6,
+  "description": "PROPOSED 4 STORY/6 UNIT RESIDENCE W/BASEMENT, ROOF DECK, FRONT 2ND/3RD FLOOR PORCHES, REAR PORCH/STAIRS WITH ROOF ACCESS, AND ATTACHED 6 SPACE GARAGE, PER PLANS. ADMINISTRATIVE ADJUSTMENT #25-066 TO REDUCE THE REAR SETBACK APPROVED 04.02.2025.",
+  "geoid": "17031080300"
+ },
+ {
+  "id": "101066172",
+  "address": "5323 S Calumet Ave",
+  "lat": 41.797725,
+  "lng": -87.617532,
+  "issue_date": "2025-04-17",
+  "units": 6,
+  "description": "ADDRESS RANGE 5323-5325 S CALUMET; NEW 3 STORY MASONRY 6 DU WITH, BALCONIES, TRASH ENCLOSURE, 5' FENCE AND 6 PARKING SPACES AS PER PLAN (CONSTRUCTION TYPE 3A, OCCUPANCY CODE R-2)**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031400300"
+ },
+ {
+  "id": "101066366",
+  "address": "4536 S Prairie Ave",
+  "lat": 41.811859,
+  "lng": -87.619809,
+  "issue_date": "2025-04-16",
+  "units": 8,
+  "description": "ERECT NEW 4-STORY MASONRY RESIDENTIAL BUILDING W/ (8) DWELLING UNITS & 6'-0 H. WOOD FENCE TRASH ENCLOSURE AS PER PLANS. TYPE III-A CONSTRUCTION. ERECT (1) DETACHED (4) CAR MASONRY GARAGE PER PLANS. TYPE III-B CONSTRUCTION.",
+  "geoid": "17031835800"
+ },
+ {
+  "id": "101032326",
+  "address": "4309 N Lincoln Ave",
+  "lat": 41.959904,
+  "lng": -87.682625,
+  "issue_date": "2025-04-07",
+  "units": 12,
+  "description": "FULL BULDING PERMIT FOR NEW CONSTRUCTION OF 4 STORY MIXED OCCUPANCY BUILDING WITH GROUND LEVEL UNFINISHED COMMERCIAL SPACE AND 12 DWELLING UNITS ABOVE (OCCUPANCY GROUPS B, R-2; TYPE IIIA CONSTRUCTION). WORK TO INCLUDE NEW TRASH ENCLOSURE PER PLAN. THIS PROJECT WILL USE CERTAIN EXISTING EXCTERIOR WALLS ON THE GROUND FLOOR.PROJECT TO INCLUDE SIX (6) PARKING SPACES AND TWENTY-EIGHT BICYCLE PARKING SPACES.(CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS)",
+  "geoid": "17031050200"
+ },
+ {
+  "id": "101056785",
+  "address": "2333 N Cambridge Ave",
+  "lat": 41.924593,
+  "lng": -87.64235,
+  "issue_date": "2025-04-04",
+  "units": 8,
+  "description": "FULL BUILDING FOR 4-STORY, 8-UNIT TOWNHOUSE DEVELOPMENT ON SHALLOW FOOTINGS. (OCCUPANCY:R2 , CONSTRUCTION TYPE: VA) ASSOCIATED WITH PERMIT #101056785. CONSULTANT REVIEWER: THE CODE GROUP",
+  "geoid": "17031071300"
+ },
+ {
+  "id": "101066310",
+  "address": "1942 N Orchard St",
+  "lat": 41.9173,
+  "lng": -87.646223,
+  "issue_date": "2025-04-04",
+  "units": 5,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 5 D.U. BUILDING WITH BASEMENT, ROOFTOP DECK, PERGOLA, ROOFTOP STAIR ENCLOSURES, REAR PORCH AT 1ST/2ND/3RD/4TH STORY, DETACHED 5 CAR GARAGE WITH ROOFTOP DECK, ENTIRE BUILDING SPRINKLERED (OCCUPANCY GROUP R-2, U, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031071800"
+ },
+ {
+  "id": "101054115",
+  "address": "451 W North Ave",
+  "lat": 41.910975,
+  "lng": -87.640618,
+  "issue_date": "2025-04-03",
+  "units": 5,
+  "description": "PROPOSED 4 STORY/5 DWELLING UNIT MIXED USE BUILDING W/1ST FLOOR OFFICE SPACE, THE COMMERCIAL TENANT'S SPACE IN BASEMENT IS LIMITED TO STORAGE ONLY. FRONT 2ND-4TH FLOOR TERRACE, ROOF DECKS/ENCLOSURES, AND TRASH ENCLOSURES, PER PLANS. R-2, B OCCUPANCY / TYPE III-A CONST.ADMINISTRATIVE ADJUSTMENT #24-335 (2/2) TO REDUCE THE NUMBER OF REQUIRED PARKING SPACES APPROVED 01.31.2025.",
+  "geoid": "17031080400"
+ },
+ {
+  "id": "101059358",
+  "address": "2329 N Cambridge Ave",
+  "lat": 41.924466,
+  "lng": -87.642099,
+  "issue_date": "2025-04-02",
+  "units": 8,
+  "description": "FULL BUILDING FOR PROPOSED 4-STORY, 8-UNIT TOWNHOUSE DEVELOPMENT ON SHALLOW FOOTINGS. (OCCUPANCY:R2 , CONSTRUCTION TYPE: VA) ASSOCIATED WITH PERMIT #101056785 CONSULTANT REVIEWER: THE CODE GROUP",
+  "geoid": "17031071300"
+ },
+ {
+  "id": "101066127",
+  "address": "2550 S Leavitt St",
+  "lat": 41.845122,
+  "lng": -87.6807,
+  "issue_date": "2025-04-02",
+  "units": null,
+  "description": "REPAIRS TO AN EXISTING SINGLE STORY WAREHOUSE. EXISTING BUILDING HEIGHT: 1-STORY 32'-0\" NO CHANGEEXISTING BUILING AREA: 35,500 SF, NO CHANGEEXISTING OCCUPANCY: BUSINESS GROUP B, NO CHANGEEXISTING CONSTRUCTION CLASSIFICATION: TYPE 1B, NON-COMBUSTIBLENO ACCESSORY STRUCTURES COVERED IN THIS PERMIT",
+  "geoid": "17031841300"
+ },
+ {
+  "id": "101060580",
+  "address": "3228 S Archer Ave",
+  "lat": 41.835455,
+  "lng": -87.669616,
+  "issue_date": "2025-03-31",
+  "units": null,
+  "description": "FULL BUILDING PERMIT FOR A NEW 1 STORY TYPE II-A BUILDING FOR A NEW DAY CARE CENTER W/ 19 OUTDOOR PARKING SPACES AND 6' MASONRY TRASH ENCLOSURE AS PER PLANS (OCCUPANCY GROUP I-4, TYPE II-A CONSTRUCTION)**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031840400"
+ },
+ {
+  "id": "101065877",
+  "address": "5500 W Madison St",
+  "lat": 41.880376,
+  "lng": -87.763275,
+  "issue_date": "2025-03-28",
+  "units": null,
+  "description": "INTERIOR TENANT ALTERATION OF AN EXISTING (B BUSINESS OCCUPANCY) TENANT SPACE TO A RETAIL BANK (B BUSINESS OCCUPANCY) FOR BMO BANK. SCOPE OF WORK INCLUDES EXISTING TENANT SPACE, INTERIOR DEMO AND NEW ELECTRICAL, PLUMBING, MECHANICAL DISTRIBUTION, AND INTERIOR PARTITIONS, CEILINGS, FLOORING AND FINISHES. NO CHANGE TO EXISTING TENANT SPACE AREA. CONSTRUCTION TYPE IIA",
+  "geoid": "17031251900"
+ },
+ {
+  "id": "100984893",
+  "address": "3310 N Lincoln Ave",
+  "lat": 41.941843,
+  "lng": -87.670335,
+  "issue_date": "2025-03-27",
+  "units": 24,
+  "description": "FULL BUILDING PERMIT FOR 6 STORY 24 DWELLING UNIT MIXED USE BUILDING WITH 7 INDOOR PARKING SPACES, ROOFTOP AMENITY DECK, GROUND FLOOR RETAIL SPACE, 7 INDOOR PARKING SPACES, AND 1 OUTDOOR LOADING SPACE. OCCUPANCY GROUPS R-2, M, S. TYPE IIA CONSTRUCTION.",
+  "geoid": "17031062500"
+ },
+ {
+  "id": "101062828",
+  "address": "11207 S Corliss Ave",
+  "lat": 41.690637,
+  "lng": -87.600711,
+  "issue_date": "2025-03-27",
+  "units": null,
+  "description": "FULL BUILDING PERMIT FOR 1 STORY (NO BASEMENT) DRIVE THRU RESTAURANT BUILDING WITH NEW TRASH ENCLOSURE (OCCUPANCY GROUP B, TYPE IIIB CONSTRUCTION)",
+  "geoid": "17031500300"
+ },
+ {
+  "id": "101053587",
+  "address": "217 N Sangamon St",
+  "lat": 41.886183,
+  "lng": -87.650843,
+  "issue_date": "2025-03-26",
+  "units": null,
+  "description": "PROPOSED VAULT ONLY TO EXISTING BUILDING AND ASSOCIATED SHORING. (OCC: B, A-2, M, S-2; TYPE IA CONST) CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031833000"
+ },
+ {
+  "id": "101060930",
+  "address": "3245 S Calumet Ave",
+  "lat": 41.835245,
+  "lng": -87.618055,
+  "issue_date": "2025-03-24",
+  "units": 7,
+  "description": "APP NO# 101060930 3245-3259 S CALUMET AVE: PLANS FOR THIS PERMIT ARE SUBMITTED UNDER APP # 101060929 3244 S KING DR SELF-CERT 2019 CBC: FULL BUILDING PERMIT FOR 3 STORY 7 TOWNHOMES WITH FULL NFPA 13R SPRINKLER SYSTEM, 1 CAR GARAGE AT BASEMENT, BALCONY AT 2ND STORY, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURE, ENTIRE TOWNHOMES SPRINKLERED AS PER PLAN (OCCUPANCY GROUP R-2, U, TYPE VA CONSTRUCTION).",
+  "geoid": "17031839500"
+ },
+ {
+  "id": "101062827",
+  "address": "11201 S Corliss Ave",
+  "lat": 41.690796,
+  "lng": -87.600663,
+  "issue_date": "2025-03-24",
+  "units": null,
+  "description": "FULL BUILDING PERMIT FOR 1 STORY (NO BASEMENT) DRIVE THRU RESTAURANT BUILDING WITH NEW TRASH ENCLOSURE (OCCUPANCY GROUP B, TYPE IIIB CONSTRUCTION)",
+  "geoid": "17031500300"
+ },
+ {
+  "id": "101060929",
+  "address": "3244 S Dr Martin L King Jr Dr",
+  "lat": 41.83525,
+  "lng": -87.617562,
+  "issue_date": "2025-03-21",
+  "units": 7,
+  "description": "FULL BUILDING PERMIT FOR 3 STORY 7 TOWNHOMES WITH FULL NFPA 13 R SPRINKLER SYSTEM, 1 CAR GARAGE AT BASEMENT FOR EACH TOWNHOME, BALCONY AT 2ND STORY, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURE, ENTIRE TOWNHOMES SPRINKLERED AS PER PLAN (OCCUPANCY GROUP R-2, U, TYPE VA CONSTRUCTION). PLANS SHOWN ON THIS PERMIT IS THE PLAN SET ALSO FOR 3245-3259 S CALUMET AVE UNDER APP# 101060930",
+  "geoid": "17031839500"
+ },
+ {
+  "id": "100999061",
+  "address": "2355 W Flournoy St",
+  "lat": 41.872915,
+  "lng": -87.68597,
+  "issue_date": "2025-03-19",
+  "units": 8,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 8 D.U. BUILDING WITH BASEMENT, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURE, TWO 2 CAR GARAGES AT 1ST FLOOR, FRONT BALCONY AT 1ST/2ND/3RD/4TH STORY AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031282800"
+ },
+ {
+  "id": "101046139",
+  "address": "1401 S Sacramento Dr",
+  "lat": 41.862904,
+  "lng": -87.701867,
+  "issue_date": "2025-03-19",
+  "units": null,
+  "description": "NEW AT&T WIRELESS TELECOMMUNICATION FACILITY. REPLACE EXISTING LATTICE STRUCTURE WITH 60'-0\" MONOPOLE WITH FLOODLIGHT AND WIRELESS COMMUNICATION (2) ANTENNAS MOUNTED TO THE POLE.",
+  "geoid": "17031843100"
+ },
+ {
+  "id": "101065243",
+  "address": "2025 W Augusta Blvd",
+  "lat": 41.899424,
+  "lng": -87.678185,
+  "issue_date": "2025-03-18",
+  "units": 5,
+  "description": "FULL BUILDING PERMIT FOR 3 STORY 5 D.U. BUILDING WITH BASEMENT, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, TERRACE & BALCONY, DETACHED 5 CAR GARAGE WITH ROOFTOP DECK AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031242300"
+ },
+ {
+  "id": "101063633",
+  "address": "843 S Miller St",
+  "lat": 41.870643,
+  "lng": -87.652103,
+  "issue_date": "2025-03-17",
+  "units": 5,
+  "description": "ERECT NEW 4 STORY, 5DU APARTMENT BUILDING W/BASEMENT, REAR EXTERIOR STAIR, 2 EXTERIOR PARKING SPACES AS PER PLANS (OCCUPANCY:R-2 ; CONSTRUCTION TYPE:III-A)",
+  "geoid": "17031833300"
+ },
+ {
+  "id": "101064196",
+  "address": "705 W Chicago Ave",
+  "lat": 41.896313,
+  "lng": -87.646301,
+  "issue_date": "2025-03-14",
+  "units": null,
+  "description": "CAISSONS AND PILES ONLY PERMIT FOR THE NEW CONSTRUCTION OF A PROPOSED MIXED USE BUILDING INCLUDING SIX STORY CASINO AND PARKING PODIUM AND 36-STORY HOTEL. VERTICAL PENETRATION ONLY. (OCC GROUPS A-1. A-2, B, R-1, S-2; CONST TYPE I-B) CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031842300"
+ },
+ {
+  "id": "101056439",
+  "address": "1314 S Pulaski Rd",
+  "lat": 41.863854,
+  "lng": -87.725252,
+  "issue_date": "2025-03-13",
+  "units": null,
+  "description": "PROPOSED STAND-ALONE 12 CAR PARKING LOT W/DRIVEWAY AND FENCING, PER PLANS.",
+  "geoid": "17031290900"
+ },
+ {
+  "id": "101057754",
+  "address": "3607 W Chicago Ave",
+  "lat": 41.895348,
+  "lng": -87.716647,
+  "issue_date": "2025-03-13",
+  "units": 52,
+  "description": "NEW FOUR-STORY BUILDING WITH NO BASEMENT, CONSISTING OF 52 RESIDENTIAL UNITS AND (2) GROUND-FLOOR COMMERCIAL SPACES. THE BUILDING WILL FEATURE 30 PARKING SPACES, DESIGNATED BIKE PARKING, AND RESIDENT AMENITIES INCLUDING A FITNESS CENTER, MULTI-USE COMMUNITY SPACE, A COMMUNITY ROOM, AND AN OUTDOOR TERRACE WITH A PLAY AREA. CONSTRUCTION TYPE IS IIIA, WITH OCCUPANCY CLASSIFICATIONS OF B (BUSINESS), M (MERCANTILE), R-2 (RESIDENTIAL, MULTI-FAMILY), AND S-2 (PARKING GARAGE). CONSULTANT REVIEWER: V3 COMPANIES OF IL **CONSTRUCTION PERMIT IS CONDITIONAL, SUBJECT TO LAWFUL DEMOLITION OF THE EXISTING BUILDINGS AND EXISTING STRUCTURES BEFORE OCCUPANCY***",
+  "geoid": "17031231500"
+ },
+ {
+  "id": "101066357",
+  "address": "1915 N Wood St",
+  "lat": 41.916518,
+  "lng": -87.67258,
+  "issue_date": "2025-03-12",
+  "units": null,
+  "description": "REVISION TO EXISTING PERMIT 101060669 TO ADD ONE NEW BATHROOM ON THE 2ND FLOOR WITH MINOR LAYOUT CHANGE AND ONE NEW BATHROOM IN THE BASEMENT (R5 OCCUPANCY, V-A CONSTRUCTION)",
+  "geoid": "17031832300"
+ },
+ {
+  "id": "101061186",
+  "address": "8345 W Irving Park Rd",
+  "lat": 41.951947,
+  "lng": -87.836027,
+  "issue_date": "2025-03-11",
+  "units": null,
+  "description": "FOUNDATION ONLY PERMIT FOR NEW ONE STORY BUILDING AS PER PLANS (OCCUPANCY A-2; TYPE VA CONSTRUCTION)",
+  "geoid": "17031170500"
+ },
+ {
+  "id": "101046557",
+  "address": "4927 S Cicero Ave",
+  "lat": 41.803147,
+  "lng": -87.742887,
+  "issue_date": "2025-03-10",
+  "units": null,
+  "description": "CONSTRUCTION OF NEW ONE STORY RETAIL OCCUPANCY BUILDING OF TYPE ONE CONSTRUCTION WITH ASSOCIATED SITE WORK; NEW PARKING,LANDSCAPING( CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS)",
+  "geoid": "17031560400"
+ },
+ {
+  "id": "101062967",
+  "address": "2234 W Grand Ave",
+  "lat": 41.890828,
+  "lng": -87.68322,
+  "issue_date": "2025-03-07",
+  "units": 12,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY/12 UNIT MIXED USE BUILDING W/1ST FLOOR RETAIL, ROOF DECK/ENCLOSURE, 2ND-4THFLOOR FRONT PORCHES, 3RD-4TH FLOOR REAR DECKS, AND ENCLOSED 12 CAR GARAGE W/ROOF DECK. ADMINISTRATIVE ADJUSTMENT #24-345(1/2) AND 24-345(2/2) TO DECREASE THE REAR SETBACK AND INCREASE THE NUMBER OF PARKING SPACES APPROVED 02.11.2025. CONSULTANT REVIEWER: V3 COMPANIES OF ILLINOIS",
+  "geoid": "17031242900"
+ },
+ {
+  "id": "100976387",
+  "address": "4353 N Richmond St",
+  "lat": 41.960968,
+  "lng": -87.701981,
+  "issue_date": "2025-03-06",
+  "units": 6,
+  "description": "SELF-CERT: PROPOSED 3 STORY/6 UNIT RESIDENCE W/BASEMENT AND ROOF DECK/ENCLOSURE/TRELLIS, 1ST-3RD FLOOR PORCHES, AND REAR 5 CAR GARAGE W/ROOF DECK, PER PLANS. SPECIAL USE #47-23-S TO ESTABLISH RESIDENTIAL USE BELOW THE 2ND FLOOR APPROVED 09.18.2023. R-2 OCCUPANCY / TYPE III-A CONSTRUCTION.",
+  "geoid": "17031160601"
+ },
+ {
+  "id": "101015260",
+  "address": "4553 N Dover St",
+  "lat": 41.965044,
+  "lng": -87.665228,
+  "issue_date": "2025-03-06",
+  "units": 28,
+  "description": "2019, CONSTRUCT NEW 5 STORY RESIDENTIAL BUILDING, FIRST FLOOR INTERNAL PARKING 25 SPACES,28 DWELLING UNITS ON FLOORS 2ND THRU 5TH, TYPE 3A CONSTRUCTION, OCCUPANCY GROUP R2; FULLY SPRINKLERED, CONSULTANT REVIEWER V3 COMPANIES OF IL",
+  "geoid": "17031031700"
+ },
+ {
+  "id": "101058653",
+  "address": "2236 W Cermak Rd",
+  "lat": 41.852186,
+  "lng": -87.682269,
+  "issue_date": "2025-03-06",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR 3 STORY 6 D.U. BUILDING WITH BASEMENT, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURE, REAR PORCH WITH STAIR AT 1ST/2ND/3RD STORY, REAR STAIR TO ROOFTOP DECK, 3 EXTERIOR PARKING SPACES ON CONCRETE PAD, ENTIRE BUILDING SPRINKLERED AS PER PLAN (OCCUPANCY GROUP R-2, TYPE VA CONSTRUCTION). 2234-2236 W CERMAK RD.",
+  "geoid": "17031841200"
+ },
+ {
+  "id": "101063378",
+  "address": "608 N Latrobe Ave",
+  "lat": 41.891497,
+  "lng": -87.756846,
+  "issue_date": "2025-03-05",
+  "units": 5,
+  "description": "SPR 2019 CRBC: NEW SINGLE FAMILY FRAME RESIDENCE W/ROOF DECK, REAR WOOD DECK & DETACHED TWO CAR FRAME GARAGE AS PER ARCHITECT'S PLANS. SCOPE OF WORK INCLUDES: ARCHITECTURAL, PLUMBING, HVAC AND ELECTRICAL. PROPOSED USE: SINGLE FAMILY RESIDENCE. CLASSIFICATION BUILDING TYPE:V-A; OCCUPANY R-5 DWELLING UNITS.",
+  "geoid": "17031251500"
+ },
+ {
+  "id": "101057868",
+  "address": "8034 S Stony Island Ave",
+  "lat": 41.748595,
+  "lng": -87.586054,
+  "issue_date": "2025-03-02",
+  "units": null,
+  "description": "CONVERT TIRE SHOP FROM PERMIT #100959475 TO A NEW 1 STORY , 4 OFFICE SPACES BUILDING WITH SAME FOOTPRINT/ DRIVEWAY, LANDSCAPE AND STORM WATER PERMIT FROM PERMIT # 100959475/ 111-A CONSTRUCTION",
+  "geoid": "17031834300"
+ },
+ {
+  "id": "101051746",
+  "address": "4340 N California Ave",
+  "lat": 41.960642,
+  "lng": -87.698592,
+  "issue_date": "2025-02-27",
+  "units": 24,
+  "description": "FULL BUILDING PERMIT FOR A 4 STORY 24-UNIT RESIDENTIAL BUILDING WITH A 10-CLASSROOM CHILD DAY CARE ON THE GROUND FLOOR AND OFFICE ON THE SECOND FLOOR (OCCUPANCY GROUPS: R-2, I-4, B; TYPE IIIA CONSTRUCTION) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031160601"
+ },
+ {
+  "id": "101063293",
+  "address": "3645 S Michigan Ave",
+  "lat": 41.828339,
+  "lng": -87.623042,
+  "issue_date": "2025-02-26",
+  "units": 15,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 15 D.U. BUILDING WITH BASEMENT, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, REAR BALCONY & FRONT DECK AT 1ST/2ND/3RD/4TH STORY, ENTIRE BUILDING SPRINKLERED, DETACHED 5 CAR GARAGE, 6' HIGH 4'-2\" BY 10' MASONRY TRASH ENCLOSURE AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION) AS PER PLAN. CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031351400"
+ },
+ {
+  "id": "101058570",
+  "address": "1805 W Grace St",
+  "lat": 41.95046,
+  "lng": -87.674366,
+  "issue_date": "2025-02-14",
+  "units": 62,
+  "description": "ERECT 5 STORY W BASEMENT 62 DU RESIDENTIAL BUILDING WITH 31 GROUND FLOOR PARKING SPACES (CON TYPE IIIA FS OCC R2 S2) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031050600"
+ },
+ {
+  "id": "101060917",
+  "address": "10770 S Doty Ave W",
+  "lat": 41.698464,
+  "lng": -87.595473,
+  "issue_date": "2025-02-13",
+  "units": null,
+  "description": "2019: ERECT NEW 1 STORY PRE-CAST WAREHOUSE BUILDING WITH NEW FENCING, LANDSCAPING AND PARKING PER PLANS. (CONSTRUCTION TYPE IIB USE GROUP S-1 & B). [CORE / SHELL] **CERTIFIED PLANS CORRECTIONS: CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS **",
+  "geoid": "17031500200"
+ },
+ {
+  "id": "101053170",
+  "address": "4540 S State St",
+  "lat": 41.811829,
+  "lng": -87.626299,
+  "issue_date": "2025-02-11",
+  "units": 12,
+  "description": "NEW CONSTRUCTION OF A PROPOSED 3-STORY MULTI-FAMILY RESIDENTIAL BUILDING WITH 12 DWELLING UNITS. OCCUPANCY R-2; CONSTRUCTION TYPE III-B. CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031844600"
+ },
+ {
+  "id": "101059929",
+  "address": "4403 N Christiana Ave",
+  "lat": 41.961297,
+  "lng": -87.711771,
+  "issue_date": "2025-02-11",
+  "units": 25,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 25 D.U. BUILDING, 1ST FLOOR RETAIL, 17 CAR GARAGE AT 1ST FLOOR, ROOFTOP DECK, PERGOLA, ROOFTOP STAIR ENCLOSURES, ELEVATOR PENTHOUSE, ENTIRE BUILDING SPRINKLERED, 1 EXTERIOR LOADING BERTH, 6' HIGH 15' BY 3.5' MASONRY TRASH ENCLOSURE, DECK FROM 2ND TO 4TH STORY AS PER PLAN (OCCUPANCY GROUP R-2, S-2, M, TYPE IIIA CONSTRUCTION) AS PER PLAN.CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031140702"
+ },
+ {
+  "id": "101053169",
+  "address": "4520 S State St",
+  "lat": 41.812393,
+  "lng": -87.626311,
+  "issue_date": "2025-02-10",
+  "units": 40,
+  "description": "CONSTRUCTION OF A NEW, 4-STORY 50,838 SF RESIDENTIAL BUILDING AT STATE AND 45TH. BUILDING WILL FEATURE 40 RESIDENTIAL UNITS, AN OFFICE AND COMMUNITY AMENITY SUITE (2516 SF), AND GROUND-FLOOR RETAIL SPACE (3,720 SF). BUILDING WILL BE TYPE IIIA CONSTRUCTION, NFPA 13D FIRE PROTECTION. THERE IS AN ACCOMPANYING ADJACENT WALK-UP BUILDING TO BE CONSTRUCTED UNDER A SEPARATE PERMIT/CONTRACT. (OCCUPANCIES: R-2, S-2; CONSTRUCTION TYPE IIIA). CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031844600"
+ },
+ {
+  "id": "101060346",
+  "address": "1257 N Ashland Ave",
+  "lat": 41.904899,
+  "lng": -87.66739,
+  "issue_date": "2025-02-07",
+  "units": 24,
+  "description": "FULL BUILDING PERMIT FOR 5-STORY PLUS PENTHOUSE & ROOF DECK, 24 DWELLING UNIT MULTI-FAMILY RESIDENTIAL BUILDING WITH 10 INDOOR PARKING SPACES (OCCUPANCY GROUPS R-2, M, S-2, TYPE IIIA CONSTRUCTION)",
+  "geoid": "17031241600"
+ },
+ {
+  "id": "101060332",
+  "address": "1235 N Ashland Ave",
+  "lat": 41.904419,
+  "lng": -87.667377,
+  "issue_date": "2025-02-06",
+  "units": 16,
+  "description": "FULL BUILDING PERMIT FOR 5-STORY, 16 DWELLING UNIT MULTI-FAMILY RESIDENTIAL BUILDING WITH 4 INDOOR PARKING SPACES (OCCUPANCY GROUPS R-2, M, S-2, TYPE IIIA CONSTRUCTION) INCLUDING 6' MASONRY TRASH ENCLOSURE",
+  "geoid": "17031241600"
+ },
+ {
+  "id": "101048883",
+  "address": "4305 S Pulaski Rd",
+  "lat": 41.814994,
+  "lng": -87.723708,
+  "issue_date": "2025-02-04",
+  "units": null,
+  "description": "NEW CONSTRUCTION OF A SINGLE STORY RESTAURANT WITH A DRIVE THRU AS PER PLANS. NEW TRASH ENCLOSURE AND SITE WORK INCLUDED. (OCCUPANCY A-2, TYPE VA CONSTRUCTION)",
+  "geoid": "17031570100"
+ },
+ {
+  "id": "101055235",
+  "address": "801 S Western Ave",
+  "lat": 41.871322,
+  "lng": -87.686022,
+  "issue_date": "2025-02-03",
+  "units": 36,
+  "description": "ERECT 5-STORY MIXED USE BUILDING - 1ST FLOOR RETAIL AND 36 DWELLING UNITS ON FLRS 2-5. 18 SURFACE PARKING AT GRADE LEVEL. OCCUPANCY GROUPS R-2/M/S-2; CONSTRUCTION TYPE: III-A.",
+  "geoid": "17031282800"
+ },
+ {
+  "id": "101057347",
+  "address": "1289 N Milwaukee Ave",
+  "lat": 41.905232,
+  "lng": -87.669174,
+  "issue_date": "2025-02-03",
+  "units": null,
+  "description": "INTERIOR ALTERATION TO AN EXISTING PET SUPPLIES PLUS TENANT SPACE TO PROVIDE EXPANDED GROOMING AND DOG WASH SERVICES AS PER PLANS OCCUPANCY GROUP M TYPE IIB CONSTRUCTION AS PER PLANS**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031241500"
+ },
+ {
+  "id": "101055110",
+  "address": "9924 S Halsted St",
+  "lat": 41.713435,
+  "lng": -87.643126,
+  "issue_date": "2025-01-30",
+  "units": null,
+  "description": "REMOVE EXISTING GENERATOR AND CONCRETE PAD AND ERECT A NEW 1 STORY 12' X 16' MASONRY BUILDING AND INSTSALL NEW 80 KW DIESEL GENERATOR PER PLANS. ( USE GRUOP U CONSTRUCTION TYPE IIB )**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031730600"
+ },
+ {
+  "id": "101061943",
+  "address": "750 N Avers Ave",
+  "lat": 41.895131,
+  "lng": -87.722549,
+  "issue_date": "2025-01-28",
+  "units": 60,
+  "description": "FULL BUILDING PERMIT FOR FOUR STORY SIXTY UNIT APARTMENT BUILDING WITH GROUND FLOOR RETAIL. (OCC. R-2,TYPE IIA CONST.) CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031231500"
+ },
+ {
+  "id": "101064709",
+  "address": "6336 N Campbell Ave",
+  "lat": 41.996977,
+  "lng": -87.69245,
+  "issue_date": "2025-01-28",
+  "units": null,
+  "description": "NEW THREE STORY ND PARTIAL BASEMENT PARKING, PRECAST CONCRETE BUILDING PER PLAN FOR RELIGIOUS ASSEMBLY",
+  "geoid": "17031020802"
+ },
+ {
+  "id": "101062779",
+  "address": "3954 S Indiana Ave",
+  "lat": 41.822211,
+  "lng": -87.621709,
+  "issue_date": "2025-01-27",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR 3 STORY 6 D.U. BUILDING WITH BASEMENT, REAR PORCH & FRONT TERRACE AT 1ST STORY, REAR BALCONY AT 2ND/3RD STORY, 3 EXTERIOR PARKING SPACES ON CONCRETE PAD AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031380600"
+ },
+ {
+  "id": "101064397",
+  "address": "707 W Briar Pl",
+  "lat": 41.939004,
+  "lng": -87.647149,
+  "issue_date": "2025-01-27",
+  "units": 6,
+  "description": "CONSTRUCT A 4 CAR METAL STUD GARAGE AND A 2 CAR METAL CARPORT TO SERVE AS AN ACCESSORY TO A 4 STORY SIX DWELLING UNIT TYPE IIIA MASONRY BUILDING WITH A BASEMENT, AS PER PLANS.R2 OCCUPANCY CLASSIFICATION.",
+  "geoid": "17031063100"
+ },
+ {
+  "id": "101054040",
+  "address": "8 N Morgan St",
+  "lat": 41.88195,
+  "lng": -87.652186,
+  "issue_date": "2025-01-24",
+  "units": null,
+  "description": "PILES ONLY PERMIT FOR A THREE-STORY BATH HOUSE (OCCUPANCY GROUPS: B, A-2, A-3, S1, S-2; TYPE IIA CONSTRUCTION). V3 COMPANIES OF IL",
+  "geoid": "17031833000"
+ },
+ {
+  "id": "100999062",
+  "address": "2351 W Flournoy St",
+  "lat": 41.872917,
+  "lng": -87.685786,
+  "issue_date": "2025-01-13",
+  "units": 8,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 8 D.U. BUILDING WITH BASEMENT, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURE, TWO 2 CAR GARAGES AT 1ST FLOOR, FRONT BALCONY AT 1ST/2ND/3RD/4TH STORY AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031282800"
+ },
+ {
+  "id": "101062781",
+  "address": "3956 S Indiana Ave",
+  "lat": 41.822156,
+  "lng": -87.621708,
+  "issue_date": "2025-01-13",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR 3 STORY 6 D.U. BUILDING WITH BASEMENT, REAR PORCH & FRONT TERRACE AT 1ST STORY, REAR BALCONY AT 2ND/3RD STORY, 3 EXTERIOR PARKING SPACES ON CONCRETE PAD AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031380600"
+ },
+ {
+  "id": "101059391",
+  "address": "5752 S Indiana Ave",
+  "lat": 41.789528,
+  "lng": -87.620859,
+  "issue_date": "2025-01-10",
+  "units": 6,
+  "description": "ADDRESS RANGE 5752-5754 S INDIANA AVE; NEW 3 STORY MASONRY 6 DU BUILDING WITH, BALCONIES, TRASH ENCLOSURE, 5' FENCE AND 6 PARKING SPACES AS PER PLAN (CONSTRUCTION TYPE 3A, OCCUPANCY CODE R-2)(CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS)",
+  "geoid": "17031400500"
+ },
+ {
+  "id": "101063193",
+  "address": "10710 S Church St",
+  "lat": 41.699102,
+  "lng": -87.660707,
+  "issue_date": "2025-01-08",
+  "units": null,
+  "description": "REPLACE (3) OPEN WOOD PORCHES IN KIND FOR A MULTI-FAMILY RESIDENTIAL BUILDING. EXISTING R-2 OCCUPANCY, NO CHANGE IN OCCUPANCY.",
+  "geoid": "17031750200"
+ },
+ {
+  "id": "101016806",
+  "address": "4713 N Clark St",
+  "lat": 41.967525,
+  "lng": -87.667066,
+  "issue_date": "2025-01-06",
+  "units": 36,
+  "description": "2019 ERECT NEW 5 STORY 3A CONSTRUCTION TYPE RESIDENTIAL BUILDING WITH GROUND FLOOR RESIDENTIAL LOBBY (USE:R-2) OFFICE ( USE:B),AMMENITY SPACE (USE:B), ATTACHED 18 CAR (USE:S-2), TRASH ROOM (USE S-2)BIKE ROOM (USE: S-2) SPRINKLER ROOM, ELECTRICAL ROOM (USE:U), WITH 36 RESIDENTIAL DWELLING UNITS (USE: R-2) CONSULTANT REVIEWER: V3 COMPANIES",
+  "geoid": "17031031700"
+ },
+ {
+  "id": "101051267",
+  "address": "1839 N Dayton St",
+  "lat": 41.914914,
+  "lng": -87.649468,
+  "issue_date": "2024-12-31",
+  "units": 14,
+  "description": "NEW 4 STORY (14 DWELLING UNITS) + BASEMENT (R-2) RESIDENTIAL BUILDING TYPE III-A CONSTRUCTION W/ATTACHED 14-CAR GARAGE (U). ALL WORK PER PLANS.CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031832600"
+ },
+ {
+  "id": "101062778",
+  "address": "3950 S Indiana Ave",
+  "lat": 41.82232,
+  "lng": -87.621712,
+  "issue_date": "2024-12-27",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR 3 STORY 6 D.U. BUILDING WITH BASEMENT, REAR PORCH & FRONT TERRACE AT 1ST STORY, REAR BALCONY AT 2ND/3RD STORY, 3 EXTERIOR PARKING SPACES ON CONCRETE PAD AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION)",
+  "geoid": "17031380600"
+ },
+ {
+  "id": "101033980",
+  "address": "4220 N Richmond St",
+  "lat": 41.95823,
+  "lng": -87.702188,
+  "issue_date": "2024-12-26",
+  "units": null,
+  "description": "INSTALL (1) 30KW NATURAL GAS GENERATOR ON A 4-6¿¿X10¿ CONCRETE PAD. SWAP (1) ATS/CAM LOC. INSTALL ATS ALARM RELAY. INSTALL H-FRAME., INSTALL GAS LINE. INSTALL 10'X16¿ FENCED EXTENSION WITH DOUBLE SWING GATE.",
+  "geoid": "17031160601"
+ },
+ {
+  "id": "101053581",
+  "address": "5256 N Winthrop Ave",
+  "lat": 41.978027,
+  "lng": -87.658008,
+  "issue_date": "2024-12-26",
+  "units": 56,
+  "description": "FULL BUILDING PERMIT FOR 5 STORY 56 D.U. BUILDING, 1ST FLOOR RETAIL, 20 CAR GARAGE AT 1ST FLOOR, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, ELEVATOR PENTHOUSE, ELEVATOR-OVER RUN, ENTIRE BUILDING SPRINKLERED, 6' HIGH 18'-2\" BY 4' MASONRY TRASH ENCLOSURE AS PER PLAN (OCCUPANCY GROUP R-2, S-2, M, TYPE IIIA CONSTRUCTION) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031030703"
+ },
+ {
+  "id": "101062780",
+  "address": "3944 S Indiana Ave",
+  "lat": 41.822484,
+  "lng": -87.621717,
+  "issue_date": "2024-12-20",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR 3 STORY 6 D.U. BUILDING WITH BASEMENT, REAR PORCH & FRONT TERRACE AT 1ST STORY, REAR BALCONY AT 2ND/3RD STORY, 3 EXTERIOR PARKING SPACES ON CONCRETE PAD AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031380600"
+ },
+ {
+  "id": "101050276",
+  "address": "1609 W 21st Pl",
+  "lat": 41.853114,
+  "lng": -87.666548,
+  "issue_date": "2024-12-17",
+  "units": 98,
+  "description": "CAISSONS ONLY PERMIT [VERTICAL PENETRATION ONLY] FOR THE NEW CONSTRUCTION OF AN 8-STORY APARTMENT BUILDING WITH 98 DWELLING UNITS AND 20 CAR PARKING SPACES. (OCCUPANCY GROUP R-2; TYPE IB CONSTRUCTION). CONSULTANT REVIEWER: PRIMERA ENGINEERING",
+  "geoid": "17031310800"
+ },
+ {
+  "id": "101054231",
+  "address": "2780 N Clybourn Ave",
+  "lat": 41.931729,
+  "lng": -87.677679,
+  "issue_date": "2024-12-17",
+  "units": null,
+  "description": "FULL BUILDING PERMIT FOR NEW 1-STORY BANKING FACILITY WITH SITE WORK AS PER PLANS. (OCCUPANCY GROUP B; TYPE 2B CONSTRUCTION)**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031070700"
+ },
+ {
+  "id": "101062729",
+  "address": "3948 S Indiana Ave",
+  "lat": 41.822375,
+  "lng": -87.621714,
+  "issue_date": "2024-12-12",
+  "units": 6,
+  "description": "FULL BUILDING PERMIT FOR 3 STORY 6 D.U. BUILDING WITH BASEMENT, REAR PORCH & FRONT TERRACE AT 1ST STORY, REAR BALCONY AT 2ND/3RD STORY, 3 EXTERIOR PARKING SPACES ON CONCRETE PAD AS PER PLAN (OCCUPANCY GROUP R-2, TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031380600"
+ },
+ {
+  "id": "101061496",
+  "address": "2481 N Milwaukee Ave",
+  "lat": 41.926468,
+  "lng": -87.702928,
+  "issue_date": "2024-12-11",
+  "units": 9,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 9 D.U. BUILDING, 1ST FLOOR RETAIL, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, 9 CAR GARAGE AT 1ST FLOOR & ROOFTOP DECK OVER PORTION OF GARAGE, DECK AT 2ND/3RD/4TH STORY, ENTIRE BUILDING SPRINKLERED, 6' HIGH 3.5' BY 14' MASONRY TRASH ENCLOSURE, ELEVATOR OVER-RUN AS PER PLAN (OCCUPANCY GROUP R-2, M, S-2 TYPE IIIA CONSTRUCTION).",
+  "geoid": "17031220500"
+ },
+ {
+  "id": "101003855",
+  "address": "629 W Lake St",
+  "lat": 41.885588,
+  "lng": -87.64408,
+  "issue_date": "2024-12-09",
+  "units": 49,
+  "description": "2019.CONSTRUCT NEW 8 STORY RESIDENTIAL MIXED USE BUILDING, 1 RETAIL SPACE ON GROUND FLOOR, PRIVATE GARAGE WITH 2 PARKING SPACES AND 1 LOADING DOCK ON GROUND FLOOR. 49 RESIDENTIAL UNITS ABOVE WITH AMENITY ROOM AND GYM AT 2ND THRU 8TH FLOOR. TYPE 1B CONSTRUCTION TYPE, OCCUPANCY GROUP R2, BUILDING TO BE FULLY SPRINKLERED AS PER PLANS, ( 629-31 W LAKE ST, 177-181 N DES PLAINES ST) CONSULTANT REVIEWER V3 COMPANIES OF IL",
+  "geoid": "17031280100"
+ },
+ {
+  "id": "101056660",
+  "address": "2500 S Paulina St",
+  "lat": 41.846768,
+  "lng": -87.668508,
+  "issue_date": "2024-12-06",
+  "units": null,
+  "description": "FULL BUILDING PERMIT FOR NEW NON-HABITABLE EQUIPMENT ENCLOSURE BUILDING AS PER PLANS. (OCCUPANCY GROUP U; TYPE 2B CONSTRUCTION) STRUCTURAL PEER REVIEW. **CERTIFIED PLANS CORRECTIONS: CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS **",
+  "geoid": "17031843200"
+ },
+ {
+  "id": "101051936",
+  "address": "5241 W Chicago Ave",
+  "lat": 41.894808,
+  "lng": -87.757279,
+  "issue_date": "2024-12-05",
+  "units": null,
+  "description": "CONSTRUCT ACCESSORY BUILDING FOOD PREP AND FOOD STORAGE",
+  "geoid": "17031251500"
+ },
+ {
+  "id": "101038543",
+  "address": "5359 N Western Ave",
+  "lat": 41.979383,
+  "lng": -87.689141,
+  "issue_date": "2024-11-27",
+  "units": null,
+  "description": "ERECT RELIGIOUS ASSEMBLY WITH SANCTUARY, FELLOWSHIP HALL, ADMINISTRATION AND SUPPORT SPACES.(CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS)",
+  "geoid": "17031040100"
+ },
+ {
+  "id": "101046175",
+  "address": "1412 N Elk Grove Ave",
+  "lat": 41.90864,
+  "lng": -87.67306,
+  "issue_date": "2024-11-27",
+  "units": 6,
+  "description": "PROPOSED 3 STORY/6 UNIT RESIDENCE W/BASEMENT, ROOF DECK/ENCLOSURE, 1ST FLOOR TERRACE, 2ND FLOOR BALCONY, AND ATTACHED 2 AND 4 CAR GARAGES W/ROOF DECK, PER PLANS. VARIATION #281-24-Z TO DECREASE THE SIDE AND REAR SETBACKS APPROVED 10.21.2024.CONDITIONAL APPROVAL PER 14A-4-404.13., RELEASE OF FULL WRECKING PERMIT STILL PENDING. WRECKING APP. # 101060809",
+  "geoid": "17031241500"
+ },
+ {
+  "id": "101054966",
+  "address": "7905 S Exchange Ave",
+  "lat": 41.751708,
+  "lng": -87.552749,
+  "issue_date": "2024-11-27",
+  "units": 43,
+  "description": "FULL BUILDING PERMIT FOR 6 STORY, 43 DWELLING UNIT SPRINKLERED MIXED-OCCUPANCY BUILDING WITH 1ST FLOOR RETAIL AND 0 OFF-SITE PARKING SPACES. (OCCUPANCY GROUP R-2, M; TYPE IIA CONSTRUCTION) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031460100"
+ },
+ {
+  "id": "101032812",
+  "address": "1010 S Wells St",
+  "lat": 41.869691,
+  "lng": -87.633631,
+  "issue_date": "2024-11-22",
+  "units": 386,
+  "description": "FULL BUILDING AND ASSOCIATED SITE WORK FOR A 21-STORY RESIDENTIAL APARTMENT BUILDING WITH 386 UNITS, PARKING GARAGE AND GROUND FLOOR RETAIL AS PER PLANS.(OCC. R-2, S-2, M, A-3; TYPE 1A CONST) CONSULTANT REVIEWER: GLOBETROTTERS ENGINEERING",
+  "geoid": "17031839000"
+ },
+ {
+  "id": "101046516",
+  "address": "1000 N Lake Shore Dr",
+  "lat": 41.900753,
+  "lng": -87.624235,
+  "issue_date": "2024-11-22",
+  "units": null,
+  "description": "INSTALLATION OF PREFABRICATED GAZEBO ON THE 3RD FLOOR EXISTING ROOF DECK FOR 47 STORY RESIDENTIAL BUILDING AS PER PLANS. (OCCUPANCY GROUP R-2; TYPE I-A CONSTRUCTION)",
+  "geoid": "17031081201"
+ },
+ {
+  "id": "101052260",
+  "address": "1304 S Ashland Ave",
+  "lat": 41.864908,
+  "lng": -87.666485,
+  "issue_date": "2024-11-22",
+  "units": 12,
+  "description": "ERECT NEW (3 & 4) STORY MASONRY BUILDING W/GRREN ROOF, (12) RESIDENTIAL UNITS & (2) COMMERICAL UNITS AS PER PLANS (FULLY SPRINKLED BUILDING) OCC: B, R-2 - TYPE III-A CONST. (CERTIFIED PLAN CORRECTIONS CONDITIONAL PERMIT SUBJECT TO FIELD INSPECTIONS)",
+  "geoid": "17031842900"
+ },
+ {
+  "id": "101052263",
+  "address": "1320 S Ashland Ave",
+  "lat": 41.864406,
+  "lng": -87.666474,
+  "issue_date": "2024-11-22",
+  "units": 12,
+  "description": "ERECT NEW (3 & 4) STORY MASONRY BUILDING W/ (12) RESIDENTIAL UNITS & (2) COMMERICAL UNITS AS PER PLANS (FULLY SPRINKLED BUILDING)**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031842900"
+ },
+ {
+  "id": "101055266",
+  "address": "519 W Fullerton Pkwy",
+  "lat": 41.925449,
+  "lng": -87.642154,
+  "issue_date": "2024-11-22",
+  "units": 8,
+  "description": "SELF-CERT: NEW CONSTRUCTION 8 RESIDENTIAL UNIT, 4-STORY BUILDING WITH BASEMENT AND 2 PRIVATE ROOF DECKS. FULLY SPRINKLERED WITH ELEVATOR PER PLANS. 2 PRIVATE ROOF DECKS WITH PERGOLAS ABOVE 8 CAR DETACHED GARAGE. 1 EXTERIOR REAR STAIR, FRONT BALCONIES ON FLOORS 1-3, & REAR DECKS ON FLOOR (OCC. R-2; CONST TYPE IIIA.ELEVATOR INSTALLATION IS A SEPARATE SUBMISSION AND APPROVAL BY THE ELEVATOR BUREAU.",
+  "geoid": "17031071300"
+ },
+ {
+  "id": "101054398",
+  "address": "465 N Carpenter St",
+  "lat": 41.890871,
+  "lng": -87.653308,
+  "issue_date": "2024-11-21",
+  "units": 72,
+  "description": "FOUNDATION ONLY PERMIT FOR A 5 STORY, 72 DWELLING UNIT BUILDING WITH RETAIL AND PARKING ON THE GROUND LEVEL. OCCUPANCY R-2 AND A-2. TYPE III A CONSTRUCTION.CONSULTANT REVIEWER: PRIMERA ENGINEERING",
+  "geoid": "17031243500"
+ },
+ {
+  "id": "101057224",
+  "address": "466 N Paulina St",
+  "lat": 41.890745,
+  "lng": -87.669719,
+  "issue_date": "2024-11-21",
+  "units": 9,
+  "description": "FULL BUILDING PERMIT FOR 4 STORY 9 D.U. BUILDING, 1ST FLOOR RETAIL, 4 CAR & 5 CAR GARAGES AT 1ST FLOOR, ROOFTOP DECK, ROOFTOP STAIR ENCLOSURES, ELEVATOR OVER-RUN, DECK AT 2ND TO 4TH STORY, ENTIRE BUILDING SPRINKLERED AS PER PLAN (OCCUPANCY GROUP R-2, S-2, M, TYPE IIIA CONSTRUCTION) AS PER PLAN.CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031243200"
+ },
+ {
+  "id": "101059024",
+  "address": "236 W 26th St",
+  "lat": 41.845617,
+  "lng": -87.633339,
+  "issue_date": "2024-11-20",
+  "units": 6,
+  "description": "NEW 5 STORY, 6DU MIXED USE BUILDING W/ BASEMENT, EXTERIOR REAR STEEL STAIR, ELEVATOR PENTHOUSE, GROUND FLOOR RETAIL SPACES AND 6 EXTERIOR PARKING SPACES AS PER PLANS (OCCUPANCY GROUP: R-2 & M; CONSTRUCTION TYPE: III-A)**CERTIFIED CORRECTIONS SUBJECT TO FIELD INSPECTIONS & AUDIT **",
+  "geoid": "17031841100"
+ },
+ {
+  "id": "101062219",
+  "address": "1060 W Addison St",
+  "lat": 41.947317,
+  "lng": -87.656418,
+  "issue_date": "2024-11-15",
+  "units": null,
+  "description": "PERMIT EXPIRES ON 01/15/2025 ***TEMPORARY STRUCTURE*** PERMIT FOR ONE 1-78' X 19' SET OF BLEACHERS AT WRIGLEY FIELD FOR NORTHWESTERN FOOTBALL GAME. BLEACHERS TO BE ERECTIION 11/16/2024AND REMOVAL 11/28/2024.",
+  "geoid": "17031061100"
+ },
+ {
+  "id": "101021605",
+  "address": "3301 W 48th Pl",
+  "lat": 41.805545,
+  "lng": -87.706451,
+  "issue_date": "2024-11-13",
+  "units": null,
+  "description": "NEW SINGLE STORY MAINTENANCE BUILDING 1,510 S.F. FOR WASTE MANAGEMENT CERTIFIED CORRECTION.",
+  "geoid": "17031842800"
+ },
+ {
+  "id": "101027746",
+  "address": "9212 S Burley Ave",
+  "lat": 41.727882,
+  "lng": -87.545747,
+  "issue_date": "2024-11-13",
+  "units": 81,
+  "description": "NEW CONSTRUCTION MIXED USE, 100% AFFORDABLE, TOD BUILDING WITH 81 TOTAL RESIDENTIAL UNITS. THE 5-STORY BUILDING OF 103,887 GSF WILL CONSIST OF STUDIO, 1-BEDROOM, 2-BEDROOM, 3-BEDROOM, AND 4-BEDROOM UNITS WITH GROUND FLOOR ENTRY LOBBY AND RETAIL FRONTING 92ND ST. THE MAIN RESIDENTIAL ENTRY AND PARKING IS ACCESSIBLE OFF BURLEY AVE. CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031461000"
+ },
+ {
+  "id": "101051002",
+  "address": "205 W Superior St",
+  "lat": 41.895481,
+  "lng": -87.634417,
+  "issue_date": "2024-11-13",
+  "units": null,
+  "description": "2019- PHASE 1 OF 2: FOUNDATION THROUGH LEVEL 01 SLAB ONLY OF A 5-STORY MASONRY BUILDING FOR NEW PRIVATE SOCIAL CLUB WITH RESTAURANT SPACE, SPA FACILITIES, AND HOTEL GUEST ROOMS. SCOPE OF WORK TO INCLUDE BELOW GRADE UTILITIES AND MEP SYSTEMS. NON-SEPARATED MIXED USE OCCUPANCY WITH MAIN OCCUPANCY BEING A-2 ASSEMBLY, CONSTRUCTION TYPE I-B. CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031081800"
+ },
+ {
+  "id": "101051521",
+  "address": "1880 N Milwaukee Ave",
+  "lat": 41.915533,
+  "lng": -87.685652,
+  "issue_date": "2024-11-05",
+  "units": 44,
+  "description": "FULL BUILDING PERMIT FOR A 5 STORY 44 DWELLING UNIT RESIDENTIAL BUILDING, 1ST FLOOR GARAGE AND RETAIL SPACE (OCCUPANCY GROUPS R-2, S-2, M; TYPE IIIA CONSTRUCTION). CAISSONS ONLY PERMIT 101038589. ALL AS PER PLANS. CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031222200"
+ },
+ {
+  "id": "101043313",
+  "address": "1653 N Neva Ave",
+  "lat": 41.910468,
+  "lng": -87.803845,
+  "issue_date": "2024-10-30",
+  "units": 8,
+  "description": "NEW CONSTRUCTION OF A 3-STORY RESIDENTIAL TOWNHOME BUILDING (8 DWELLING UNITS) AS PER PLANS. SITEWAO PERMITTED UNDER PERMIT# 101043308. (CONSTRUCTION TYPE: 5A / OCCUPANCY CLASSIFICATION: R-2) CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031250500"
+ },
+ {
+  "id": "101051149",
+  "address": "4510 S Cottage Grove Ave",
+  "lat": 41.812798,
+  "lng": -87.606786,
+  "issue_date": "2024-10-30",
+  "units": 6,
+  "description": "DIRECT DEVELOPER SERVICES : NEW 4 STORY 3A CONSTRUCTION TYPE BUILDING WITH GROUND FLOOR REESIDENTIAL LOBBY (USE R-2) RETAIL (USE M), A, ATTACHED 11 CAR (USE S-2, TRASH ROOM (USE S-2)BIKE ROOM (USE S-2)SPRINKLER ROOM,ELECTRICAL ROOM (USE U )WITH 18 RESIDENTIAL DWELLING UNITS (USE-2) 6 UNITS EACH FLOOR 2 THROUG 4 WHITH ELEVATOR AND STAIRS ACCESS TO COMMON OCCUPIABLE ROOF DECK, FULLY SPRINKLER SYTEM ,EXISTING OCCUPANCY R2 , PROPOSED OCCUPANCY R2/M/S-2 , TYPE CONSTRCTION IIIA.CONSULTANT REVIEWER: V3 COMPANIES OF IL",
+  "geoid": "17031836000"
+ }
 ]
