@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Redline deploys separately, with its own tooling.
+    "services/**",
   ]),
 ]);
 

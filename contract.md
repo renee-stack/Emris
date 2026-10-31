@@ -1,4 +1,4 @@
-# Emris — Shared Contract (v2.1)
+# Emris — Shared Contract (v2.2)
 
 Emris scores Chicago census tracts on permit and infrastructure activity to surface the "path of progress" before it shows up in prices.
 
@@ -196,6 +196,25 @@ The home page `/` reads these query params on load:
 - `?lat=&lng=&z=` → center the map there at that zoom
 - `tract` wins if both are present.
 
+### 2.7 `/api/redline/*`
+
+A proxy to the Redline service in `services/redline`, which answers building permit correction letters. Redline deploys on its own server, because its agent runtime can't run on Vercel. The proxy holds the service key and forwards only these routes. It returns `503` if `REDLINE_API_URL` or `REDLINE_API_KEY` isn't set, `502` if the service doesn't respond, and `413` if a body is over 4 MB.
+
+| Route | Purpose |
+|---|---|
+| `GET offer` | Payments on or off, price, covered places |
+| `POST start/extract` | `{ text }` or `{ pdf_base64 }` → `{ comments, jurisdiction, permit_number }` |
+| `POST start/run` | `{ comments, jurisdiction, permit_number, chicago_2026 }` → `202 { job_id }` |
+| `GET job/[id]` | `{ status: "running" }` or `{ status: "done", result }`. `result` is a report, or `{ stop, message }` for a place or code edition Redline doesn't cover |
+| `GET report/[id]` | The report. The service withholds locked drafts and citations |
+| `POST report/[id]/unlock` | Returns `{ checkout_url }` if payments are on. Otherwise, with `{ design_partner: true }`, returns the unlocked report |
+| `POST report/[id]/review`, `POST report/[id]/optin` | Sign-off decisions, and consent to learn from them. Need an unlocked report, else `402` |
+| `GET report/[id]/export` | Word draft. Needs an unlocked report, else `402` |
+| `POST waitlist` | `{ email, place, reason }` for places not covered |
+| `GET paid` | `?session_id=` → `{ report_id }`, after checking the session with Stripe |
+
+Report IDs are unguessable, and a report link gives access to that report.
+
 ---
 
 ## 3. Scoring method
@@ -258,6 +277,7 @@ Each builder works in their own git worktree and branch and merges into `main`.
 | Data agent | `data` → `../emris-data` | `/scripts`, `/data`, `public/tracts.geojson`, `public/permits.json`, `public/infrastructure.json` |
 | API agent | `api` → `../emris-api` | `/app/api`, `/lib` |
 | iMessage agent | `imessage` → `../emris-imessage` | `/imessage` |
+| Redline | `services/redline` subtree | `/services/redline`, `/app/api/redline`, `/app/(marketing)/redline`, `/components/redline` |
 | UI (Cursor) | `ui` → `../emris-ui` | `/app/(pages)`, `/components`, `app/layout.tsx`, `app/globals.css` (move `app/page.tsx` into `app/(pages)/page.tsx`) |
 
 Rules:
@@ -274,6 +294,8 @@ Put these in `.env.local` (never commit it).
 |---|---|---|
 | `ANTHROPIC_API_KEY` | API agent (`/api/memo`, `/api/ask`) | LLM calls |
 | `APP_BASE_URL` | iMessage agent | Prefix for `url` from `/api/ask`, e.g. `http://localhost:3000` |
+| `REDLINE_API_URL` | `/api/redline/*` | Base URL of the Redline service |
+| `REDLINE_API_KEY` | `/api/redline/*` | Shared secret. Must match the service's `REDLINE_API_KEY` |
 
 ## 6. Mocks
 
