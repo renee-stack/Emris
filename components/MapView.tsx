@@ -9,8 +9,6 @@ import { featureBounds } from "@/lib/spatial";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 const STYLE = "https://tiles.openfreemap.org/styles/positron";
-/** Contiguous US overview until a place is selected. Not a city default. */
-const OVERVIEW = { lng: -98.35, lat: 39.5, zoom: 3.5 };
 const PLACE_PAD = { top: 96, bottom: 180, left: 24, right: 24 };
 const FRAME = { top: 96, bottom: 180, left: 24, right: 440 };
 const SCORE_FALLBACK = ["#e7f4f1", "#b7dfd6", "#6fbfb2", "#2a8f82", "#0e4f48"];
@@ -129,6 +127,7 @@ export default function MapView({
   const markerClass = useRef<typeof Marker | null>(null);
   const onTractRef = useRef(onTractClick);
   const panelRef = useRef(panelOpen);
+  const [hostReady, setHostReady] = useState(false);
 
   const [ready, setReady] = useState(false);
   const [tip, setTip] = useState<Tip | null>(null);
@@ -143,8 +142,12 @@ export default function MapView({
   });
 
   useEffect(() => {
+    if (bounds) setHostReady(true);
+  }, [bounds]);
+
+  useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    if (!container || !hostReady) return;
     let map: MlMap | null = null;
     let observer: ResizeObserver | null = null;
     let cancelled = false;
@@ -153,14 +156,14 @@ export default function MapView({
       const maplibregl = await import("maplibre-gl");
       if (cancelled || !containerRef.current) return;
       const initialBounds = boundsRef.current;
+      if (!initialBounds) return;
       maplibregl.setWorkerUrl(`${window.location.origin}/maplibre-gl-worker.mjs`);
       markerClass.current = maplibregl.Marker;
       map = new maplibregl.Map({
         container: containerRef.current,
         style: STYLE,
-        ...(initialBounds
-          ? { bounds: initialBounds, fitBoundsOptions: { padding: PLACE_PAD } }
-          : { center: [OVERVIEW.lng, OVERVIEW.lat], zoom: OVERVIEW.zoom }),
+        bounds: initialBounds,
+        fitBoundsOptions: { padding: PLACE_PAD },
         logoPosition: "bottom-right",
         attributionControl: { compact: false },
         dragRotate: false,
@@ -290,7 +293,7 @@ export default function MapView({
       if (mapRef.current === map) mapRef.current = null;
       setReady(false);
     };
-  }, []);
+  }, [hostReady]);
 
   useEffect(() => {
     const map = mapRef.current;
