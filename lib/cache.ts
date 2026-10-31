@@ -4,6 +4,7 @@ import { promises as fs } from "node:fs";
 import { createHash } from "node:crypto";
 import path from "node:path";
 import { unstable_cache } from "next/cache";
+import { getPermits, getProjects, getTracts } from "@/lib/data";
 
 // Vercel functions can only write to /tmp (per instance, so it is a warm-instance cache there).
 const ROOT = process.env.VERCEL ? "/tmp/emris-cache" : path.join(process.cwd(), ".cache");
@@ -50,7 +51,20 @@ const CACHE_VERSION = "1";
  * Layers: memory -> local disk (dev) -> Next's data cache on Vercel, which is shared by all
  * instances and survives redeploys. Errors thrown by `compute` are never cached.
  */
-export async function cached<T>(ns: string, key: string, compute: () => Promise<T>): Promise<{ value: T; hit: boolean }> {
+// Fingerprint of the data files, so new tracts, permits or projects never reuse answers written for old data.
+let fingerprint: Promise<string> | undefined;
+function dataFingerprint(): Promise<string> {
+  return (fingerprint ??= (async () => {
+    const [{ as_of, features }, permits, projects] = await Promise.all([getTracts(), getPermits(), getProjects()]);
+    const h = createHash("sha1");
+    h.update(as_of).update(JSON.stringify(projects)).update(String(permits.length));
+    for (const f of features) h.update(`${f.properties.geoid}:${f.properties.score};`);
+    return h.digest("hex").slice(0, 10);
+  })());
+}
+
+export async function cached<T>(ns: string, rawKey: string, compute: () => Promise<T>): Promise<{ value: T; hit: boolean }> {
+  const key = `${CACHE_VERSION}|${await dataFingerprint()}|${rawKey}`;
   const local = await cacheGet<T>(ns, key);
   if (local !== undefined) return { value: local, hit: true };
 
