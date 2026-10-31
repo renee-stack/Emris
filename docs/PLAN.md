@@ -177,6 +177,21 @@ Without an account, visitors can only look at the map and tract scores; everythi
 | IC memo (PDF) | No | Preview of first section | Yes | Unlimited |
 | Watchlists + email alerts | No | 1 area | No | Yes |
 
+The blurred rehab list is enforced on the server. A free account receives the count and the first row only. The other rows are never sent. A signed-out visitor does not receive the list.
+
+These people use the columns above:
+
+| Person | Column |
+| --- | --- |
+| Signed out | Free, no account |
+| Free account | Free account. Search is 3 in a rolling 7 days. Alerts are 1 area. |
+| Free account that has already used 3 searches | Free account, and the next search is refused until the window resets |
+| One-off report buyer | Paid report, and only for the report they bought |
+| Pro, a founding member, a team owner, or a team member, while the subscription is trialing, active, canceled but still inside the paid period, or past due inside the 7-day grace period | Pro subscription |
+| The same person after a failed payment is past the 7-day grace period | Free account |
+
+Pro, founding, and team are the same paid column. Founding memberships are capped at 25. A team plan includes 5 seats. The owner and each member have the Pro column. A one-off purchase does not include every place, export, or alerts.
+
 **Two reports**
 
 1. **Area report** (a tract or a drawn radius): score history and momentum, every multifamily permit in 24 months, catalysts with sources, building age profile, top 10 rehab candidates, comparable tracts in the same metro, and the IC memo.
