@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Cta } from "./cta";
 import { Mark } from "./mark";
+import { SiteTabs } from "./site-tabs";
 
 export type MarketingSection = "home" | "platform" | "pricing" | "access";
 
@@ -74,6 +75,7 @@ export function SiteHeader({ current }: { current?: MarketingSection }) {
           Test it out
         </Link>
       </nav>
+      <SiteTabs />
     </header>
   );
 }

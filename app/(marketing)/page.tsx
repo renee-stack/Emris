@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Cta } from "@/components/marketing/cta";
+import { OpenScoringButton } from "@/components/marketing/site-tabs";
 import { MomentumCard } from "@/components/marketing/momentum-card";
 import { Eyebrow, MarketingShell, band, container } from "@/components/marketing/shell";
 
@@ -119,9 +120,7 @@ export default function LandingPage() {
               <Cta href="/map" variant="outline">
                 Test it out
               </Cta>
-              <Cta href="/platform#scoring" variant="outline">
-                How scoring works
-              </Cta>
+              <OpenScoringButton className="inline-flex items-center justify-center rounded-md border border-ink/25 bg-paper px-4 py-2.5 text-sm font-semibold text-ink hover:border-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink" />
             </div>
             <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
               <li>Census tract resolution</li>
