@@ -1,6 +1,11 @@
+import { io } from "next/cache";
+import type { NextRequest } from "next/server";
 import type { MemoRequest, MemoResponse } from "@/lib/data";
 import { complete } from "@/lib/claude";
 import { cached } from "@/lib/cache";
+import { getDb } from "@/lib/billing/db";
+import { gateMemo } from "@/lib/billing/pure";
+import { accessFor, identityFrom, jsonResponse, withCookies } from "@/lib/billing/identity";
 import { HttpError, errorResponse, tractDetail } from "@/lib/lookup";
 import { getTracts } from "@/lib/data";
 
@@ -25,7 +30,10 @@ Rules:
 
 const trunc = (s: string, n = 160) => (s.length > n ? s.slice(0, n - 1).trimEnd() + "…" : s);
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
+  await io();
+  const db = getDb();
+  const identity = identityFrom(db, req);
   try {
     let body: Partial<MemoRequest>;
     try {
@@ -38,9 +46,11 @@ export async function POST(req: Request) {
     const { as_of, features } = await getTracts();
 
     const { value, hit } = await cached("memo", `${as_of}|${geoid}`, () => writeMemo(geoid, detail, as_of, features.length));
-    return Response.json(value, { headers: { "x-emris-cache": hit ? "hit" : "miss" } });
+    const res = jsonResponse(gateMemo(value, accessFor(db, identity, geoid)), 200, identity.cookies);
+    res.headers.set("x-emris-cache", hit ? "hit" : "miss");
+    return res;
   } catch (err) {
-    return errorResponse(err);
+    return withCookies(errorResponse(err), identity.cookies);
   }
 }
 
@@ -95,5 +105,7 @@ async function writeMemo(
       geoid,
       title: `${detail.tract.name} — Path of Progress Memo`,
       memo_markdown: text,
+      access: "full",
+      locked_sections: [],
     };
 }

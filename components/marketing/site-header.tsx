@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AccountSlot } from "@/components/upgrade-ui";
 import { Cta } from "./cta";
 import { Mark } from "./mark";
 import { SiteTabs } from "./site-tabs";
@@ -48,6 +49,7 @@ export function SiteHeader({ current }: { current?: MarketingSection }) {
           <Link href="/map" className="hidden text-sm text-ink hover:text-teal sm:inline">
             Test it out
           </Link>
+          <AccountSlot />
           <Cta
             href="/access"
             variant={current === "access" ? "safety" : "ink"}

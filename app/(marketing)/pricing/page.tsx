@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const questions = [
   {
     q: "Is there a trial?",
-    a: "Early access teams get a guided walkthrough of their own metro before committing.",
+    a: "The Chicago map includes a 7-day Pro trial. A card is required at checkout. The trial is free, then Pro is $249 a month unless you cancel. A single tract report is $79 and does not include unlimited search.",
   },
   {
     q: "What counts as a metro?",

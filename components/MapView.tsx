@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import type { GeoJSONSource, Map as MlMap, MapLayerMouseEvent, Marker } from "maplibre-gl";
 import { circle } from "@turf/circle";
 import { ArrowDown, ArrowUp, Minus } from "lucide-react";
+import type { AccountSnapshot } from "@/lib/billing/pure";
+import { PlanMark, searchMeterText } from "@/components/upgrade-ui";
 import type { Momentum, ProjectWithDistance, TractCollection } from "@/lib/data";
 import { fetchTracts } from "@/components/load";
 import { featureBounds, readDeepLink } from "@/lib/spatial";
@@ -27,6 +29,7 @@ interface Props {
   fit: { geoid: string; token: number } | null;
   onTractClick: (geoid: string) => void;
   onSearch: (query: string) => void;
+  account: AccountSnapshot | null;
 }
 
 interface Tip {
@@ -105,6 +108,7 @@ export default function MapView({
   fit,
   onTractClick,
   onSearch,
+  account,
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MlMap | null>(null);
@@ -346,6 +350,8 @@ export default function MapView({
     fitGeoid(map, collection, fit.geoid);
   }, [fit, ready]);
 
+  const meter = searchMeterText(account);
+
   return (
     <div className={`absolute inset-0 ${panelOpen ? "panel-open" : ""}`}>
       <div className="absolute inset-0">
@@ -358,7 +364,10 @@ export default function MapView({
           onSearch(query);
         }}
       >
-        <div className="font-display text-[28px] leading-none tracking-tight text-ink">Emris</div>
+        <div className="flex items-center justify-between gap-3">
+          <div className="font-display text-[28px] leading-none tracking-tight text-ink">Emris</div>
+          <PlanMark account={account} surface="map" />
+        </div>
         <label className="sr-only" htmlFor="emris-search">
           Search an address or neighborhood
         </label>
@@ -369,6 +378,11 @@ export default function MapView({
           placeholder="Search an address or neighborhood"
           className="mt-3 w-full border-b border-rule bg-transparent pb-1.5 font-sans text-sm text-ink outline-none placeholder:text-muted focus:border-ink"
         />
+        {meter ? (
+          <p aria-live="polite" className="mt-2 font-sans text-xs text-muted">
+            {meter}
+          </p>
+        ) : null}
       </form>
       <div className="absolute bottom-16 left-4 z-10 rounded-lg border border-rule bg-paper p-3 shadow-md">
         <div className="font-sans text-xs font-medium text-ink">Path-of-progress score</div>

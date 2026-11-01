@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { fetchMemo } from "@/components/load";
+import { UpgradeChoice } from "@/components/upgrade-ui";
+import { sectionList, type AccessLevel } from "@/lib/billing/pure";
 
 interface Props {
   geoid: string;
@@ -22,7 +24,13 @@ function todayLabel(): string {
 }
 
 export default function MemoModal({ geoid, name, score, onClose }: Props) {
-  const [memo, setMemo] = useState<{ geoid: string; title: string; markdown: string } | null>(null);
+  const [memo, setMemo] = useState<{
+    geoid: string;
+    title: string;
+    markdown: string;
+    access: AccessLevel;
+    locked_sections: string[];
+  } | null>(null);
   const [failedGeoid, setFailedGeoid] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [attempt, setAttempt] = useState(0);
@@ -37,7 +45,13 @@ export default function MemoModal({ geoid, name, score, onClose }: Props) {
     void fetchMemo(requested)
       .then((next) => {
         if (cancelled) return;
-        setMemo({ geoid: requested, title: next.title, markdown: next.memo_markdown });
+        setMemo({
+          geoid: requested,
+          title: next.title,
+          markdown: next.memo_markdown,
+          access: next.access,
+          locked_sections: next.locked_sections,
+        });
       })
       .catch(() => {
         if (!cancelled) setFailedGeoid(requested);
@@ -148,6 +162,17 @@ export default function MemoModal({ geoid, name, score, onClose }: Props) {
             >
               {ready?.markdown ?? ""}
             </ReactMarkdown>
+          ) : null}
+          {status === "ready" && ready?.access === "preview" && ready.locked_sections.length > 0 ? (
+            <div className="memo-no-print">
+              <UpgradeChoice
+                className="mt-8"
+                surface="memo"
+                geoid={geoid}
+                heading="Continue reading with Pro"
+                body={`Remaining sections: ${sectionList(ready.locked_sections)}.`}
+              />
+            </div>
           ) : null}
         </div>
         <footer className="memo-no-print flex justify-end gap-3 border-t border-rule px-10 py-4">

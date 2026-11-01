@@ -369,5 +369,7 @@ export function buildMemo(detail: TractDetailResponse): MemoResponse {
     geoid: tract.geoid,
     title: `${tract.name} — Path of Progress Memo`,
     memo_markdown: `## Summary\n\n${summary}\n\n## Signals\n\n${signals}\n\n## Recent Permits\n\n${permits}\n\n## Infrastructure Nearby\n\n${projects}\n\n## Risks & Unknowns\n\n${risks}\n`,
+    access: "full",
+    locked_sections: [],
   };
 }

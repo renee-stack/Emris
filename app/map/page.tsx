@@ -4,7 +4,8 @@ import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import MemoModal from "@/components/MemoModal";
 import SidePanel from "@/components/SidePanel";
-import { ApiError, fetchNear } from "@/components/load";
+import { ApiError, SearchLimitError, fetchAccount, fetchNear } from "@/components/load";
+import type { AccountSnapshot, SearchLimitPayload } from "@/lib/billing/pure";
 import type { NearResponse, ProjectWithDistance } from "@/lib/data";
 import { pointHref, readDeepLink, tractHref } from "@/lib/spatial";
 import type { MapPlace } from "@/components/MapView";
@@ -19,10 +20,11 @@ const MapView = dynamic(() => import("@/components/MapView"), {
 });
 
 interface SearchState {
-  status: "loading" | "ready" | "error";
+  status: "loading" | "ready" | "error" | "limited";
   place: MapPlace | null;
   result: NearResponse | null;
   error: string | null;
+  limit: SearchLimitPayload | null;
 }
 
 interface MemoTarget {
@@ -38,6 +40,8 @@ export default function Page() {
   const [projects, setProjects] = useState<ProjectWithDistance[]>([]);
   const [fit, setFit] = useState<{ geoid: string; token: number } | null>(null);
   const [memo, setMemo] = useState<MemoTarget | null>(null);
+  const [account, setAccount] = useState<AccountSnapshot | null>(null);
+  const [accountReady, setAccountReady] = useState(false);
   const requestId = useRef(0);
 
   const onProjects = useCallback((next: ProjectWithDistance[]) => {
@@ -47,6 +51,30 @@ export default function Page() {
   const closeMemo = useCallback(() => setMemo(null), []);
 
   useEffect(() => {
+    let cancelled = false;
+    void fetchAccount()
+      .then((next) => {
+        if (!cancelled) setAccount(next);
+      })
+      .catch(() => {
+        if (!cancelled) setAccount(null);
+      })
+      .finally(() => {
+        if (!cancelled) setAccountReady(true);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const refreshAccount = useCallback(() => {
+    void fetchAccount()
+      .then(setAccount)
+      .catch(() => setAccount(null));
+  }, []);
+
+  useEffect(() => {
+    if (!accountReady) return;
     const link = readDeepLink(window.location.search);
     if (!link) return;
     const id = ++requestId.current;
@@ -60,15 +88,21 @@ export default function Page() {
       }
       const place = { lat: link.lat, lng: link.lng, zoom: link.zoom };
       setMode("search");
-      setSearch({ status: "loading", place, result: null, error: null });
+      setSearch({ status: "loading", place, result: null, error: null, limit: null });
       void fetchNear(`${link.lat},${link.lng}`)
         .then((result) => {
           if (id !== requestId.current) return;
-          setSearch({ status: "ready", place, result, error: null });
+          setSearch({ status: "ready", place, result, error: null, limit: null });
           setProjects(result.projects);
+          refreshAccount();
         })
         .catch((err: unknown) => {
           if (id !== requestId.current) return;
+          if (err instanceof SearchLimitError) {
+            setSearch({ status: "limited", place: null, result: null, error: null, limit: err.payload });
+            refreshAccount();
+            return;
+          }
           setSearch({
             status: "error",
             place,
@@ -77,11 +111,12 @@ export default function Page() {
               err instanceof ApiError && err.status === 404
                 ? "Couldn't find that address or neighborhood."
                 : "The search didn't go through. Try again.",
+            limit: null,
           });
         });
     }, 0);
     return () => window.clearTimeout(timer);
-  }, []);
+  }, [accountReady, refreshAccount]);
 
   const openTract = useCallback((id: string, fitCamera: boolean) => {
     requestId.current += 1;
@@ -100,17 +135,23 @@ export default function Page() {
     setMode("search");
     setGeoid(null);
     setProjects([]);
-    setSearch({ status: "loading", place: null, result: null, error: null });
+    setSearch({ status: "loading", place: null, result: null, error: null, limit: null });
     void fetchNear(query)
       .then((result) => {
         if (id !== requestId.current) return;
         const place = { lat: result.place.lat, lng: result.place.lng, zoom: 15 };
         window.history.replaceState(null, "", mapHref(pointHref(place.lat, place.lng, place.zoom)));
-        setSearch({ status: "ready", place, result, error: null });
+        setSearch({ status: "ready", place, result, error: null, limit: null });
         setProjects(result.projects);
+        refreshAccount();
       })
       .catch((err: unknown) => {
         if (id !== requestId.current) return;
+        if (err instanceof SearchLimitError) {
+          setSearch({ status: "limited", place: null, result: null, error: null, limit: err.payload });
+          refreshAccount();
+          return;
+        }
         setSearch({
           status: "error",
           place: null,
@@ -119,9 +160,10 @@ export default function Page() {
             err instanceof ApiError && err.status === 404
               ? "Couldn't find that address or neighborhood."
               : "The search didn't go through. Try again.",
+          limit: null,
         });
       });
-  }, []);
+  }, [refreshAccount]);
 
   const onClose = useCallback(() => {
     requestId.current += 1;
@@ -144,6 +186,7 @@ export default function Page() {
         fit={fit}
         onTractClick={(id) => openTract(id, false)}
         onSearch={onSearch}
+        account={account}
       />
       <SidePanel
         open={mode !== null}

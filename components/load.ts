@@ -1,12 +1,13 @@
+import type { SearchLimitPayload, AccountSnapshot } from "@/lib/billing/pure";
 import type {
+  GatedTractResponse,
   MemoResponse,
   NearResponse,
   Permit,
   Project,
   TractCollection,
-  TractDetailResponse,
 } from "@/lib/data";
-import { buildMemo, buildNear, buildTractDetail, type Bundle } from "@/lib/spatial";
+import type { Bundle } from "@/lib/spatial";
 
 export class ApiError extends Error {
   status: number;
@@ -53,18 +54,33 @@ export async function fetchTracts(): Promise<TractCollection> {
   return (await publicBundle()).tracts;
 }
 
-export async function fetchTract(geoid: string): Promise<TractDetailResponse> {
+export class SearchLimitError extends ApiError {
+  payload: SearchLimitPayload;
+  constructor(payload: SearchLimitPayload) {
+    super(402, payload.error);
+    this.payload = payload;
+  }
+}
+
+function isSearchLimit(value: unknown): value is SearchLimitPayload {
+  return Boolean(value) && typeof value === "object" && (value as { code?: unknown }).code === "search_limit";
+}
+
+export async function fetchAccount(): Promise<AccountSnapshot> {
+  const res = await fetch("/api/account", { cache: "no-store" });
+  if (!res.ok) throw new ApiError(res.status, "Could not load the account.");
+  return (await res.json()) as AccountSnapshot;
+}
+
+export async function fetchTract(geoid: string): Promise<GatedTractResponse> {
   const res = await fetch(`/api/tract/${geoid}`, { cache: "no-store" });
   const json = (res.headers.get("content-type") ?? "").includes("json");
-  if (res.ok) return (await res.json()) as TractDetailResponse;
+  if (res.ok) return (await res.json()) as GatedTractResponse;
   if (json) {
     const body = (await res.json().catch(() => null)) as { error?: string } | null;
     throw new ApiError(res.status, body?.error ?? "Could not load tract.");
   }
-  const bundle = await publicBundle();
-  const detail = buildTractDetail(bundle.tracts, bundle.permits, bundle.projects, geoid);
-  if (!detail) throw new ApiError(404, "Tract not found.");
-  return detail;
+  throw new ApiError(res.status, "Could not load tract.");
 }
 
 export async function fetchNear(query: string): Promise<NearResponse> {
@@ -76,11 +92,10 @@ export async function fetchNear(query: string): Promise<NearResponse> {
   if (res.ok) return (await res.json()) as NearResponse;
   if (json) {
     const body = (await res.json().catch(() => null)) as { error?: string } | null;
+    if (res.status === 402 && isSearchLimit(body)) throw new SearchLimitError(body);
     throw new ApiError(res.status, body?.error ?? "Could not search.");
   }
-  const near = buildNear(query, 0.25, await publicBundle());
-  if (!near) throw new ApiError(404, "Couldn't find that place in Chicago.");
-  return near;
+  throw new ApiError(res.status, "Could not search.");
 }
 
 export async function fetchMemo(geoid: string): Promise<MemoResponse> {
@@ -90,8 +105,6 @@ export async function fetchMemo(geoid: string): Promise<MemoResponse> {
     body: JSON.stringify({ geoid }),
     cache: "no-store",
   });
-  const json = (res.headers.get("content-type") ?? "").includes("json");
   if (res.ok) return (await res.json()) as MemoResponse;
-  if (!json) return buildMemo(await fetchTract(geoid));
   throw new ApiError(res.status, "Couldn't generate the memo.");
 }

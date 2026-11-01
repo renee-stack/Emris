@@ -1,4 +1,5 @@
 // Data lookups shared by the API routes (and /api/ask). Server-only.
+import { unstable_rethrow } from "next/navigation";
 import { getPermits, getProjects, getTracts } from "@/lib/data";
 import type { NearResponse, TractDetailResponse, TractFeature } from "@/lib/data";
 import { findTract, permitsNear, projectsNear, tractCentroid } from "@/lib/geo";
@@ -17,6 +18,7 @@ export class HttpError extends Error {
 
 /** JSON error response per contract §2. Unknown errors become 500. */
 export function errorResponse(err: unknown): Response {
+  unstable_rethrow(err);
   if (err instanceof HttpError) return Response.json({ error: err.message }, { status: err.status });
   console.error(err);
   return Response.json({ error: err instanceof Error ? err.message : "Internal error" }, { status: 500 });

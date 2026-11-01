@@ -94,6 +94,32 @@ export interface TractDetailResponse {
   nearby_projects: ProjectWithDistance[]; // within 1 mi of centroid, nearest first
 }
 
+export type AccessLevel = "full" | "preview";
+
+/** A list the API has already trimmed to the caller's plan. `total` is the real count. */
+export interface RecordPreview<T> {
+  total: number;
+  rows: T[];
+}
+
+export interface OwnerRecord {
+  id: string;
+  name: string;
+  address: string;
+}
+
+/**
+ * Tract payload after plan gating. `top_permits` is still at most 10.
+ * Preview plans receive the first row of each record list and the real total; the rest is omitted.
+ */
+export interface GatedTractResponse extends TractDetailResponse {
+  access: AccessLevel;
+  multifamily_permits: RecordPreview<Permit>;
+  rehab_candidates: RecordPreview<Permit>;
+  owners: RecordPreview<OwnerRecord>;
+  permit_history: RecordPreview<Permit>;
+}
+
 /** GET /api/near?q=&radius_mi= */
 export interface NearResponse {
   place: { label: string; lat: number; lng: number };
@@ -110,6 +136,9 @@ export interface MemoResponse {
   geoid: string;
   title: string;
   memo_markdown: string;
+  access: AccessLevel;
+  /** Headings of sections omitted from memo_markdown. Empty when access is full. */
+  locked_sections: string[];
 }
 
 /** POST /api/ask */

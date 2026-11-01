@@ -2,21 +2,26 @@
 
 import { useEffect, useState } from "react";
 import { ArrowDown, ArrowUp, Minus, X } from "lucide-react";
+import type { SearchLimitPayload } from "@/lib/billing/pure";
+import { tractUpsell } from "@/lib/billing/pure";
 import type {
+  GatedTractResponse,
   Momentum,
   NearResponse,
+  Permit,
   ProjectStatus,
   ProjectWithDistance,
-  TractDetailResponse,
 } from "@/lib/data";
 import { ApiError, fetchTract } from "@/components/load";
+import { RecordList, SearchLimitCard, UpgradeChoice } from "@/components/upgrade-ui";
 import { STATUS_LABEL, formatMiles, formatMomentumPct, formatMonth } from "@/lib/spatial";
 
 interface SearchState {
-  status: "loading" | "ready" | "error";
+  status: "loading" | "ready" | "error" | "limited";
   place: { lat: number; lng: number; zoom: number } | null;
   result: NearResponse | null;
   error: string | null;
+  limit: SearchLimitPayload | null;
 }
 
 interface Props {
@@ -82,7 +87,7 @@ export default function SidePanel({
   onProjects,
   onGenerateMemo,
 }: Props) {
-  const [detail, setDetail] = useState<TractDetailResponse | null>(null);
+  const [detail, setDetail] = useState<GatedTractResponse | null>(null);
   const [error, setError] = useState<{ geoid: string; message: string } | null>(null);
   const [attempt, setAttempt] = useState(0);
 
@@ -173,7 +178,7 @@ function TractBody({
 }: {
   loading: boolean;
   error: string | null;
-  detail: TractDetailResponse | null;
+  detail: GatedTractResponse | null;
   onRetry: () => void;
 }) {
   if (error) {
@@ -200,6 +205,19 @@ function TractBody({
     );
   }
   const tract = detail.tract;
+  const locked =
+    detail.multifamily_permits.total > detail.multifamily_permits.rows.length ||
+    detail.rehab_candidates.total > detail.rehab_candidates.rows.length ||
+    detail.permit_history.total > detail.permit_history.rows.length ||
+    detail.owners.total > detail.owners.rows.length;
+  const upsell = locked
+    ? tractUpsell({
+        multifamily: detail.multifamily_permits.total,
+        rehab: detail.rehab_candidates.total,
+        permits: detail.permit_history.total,
+        owners: detail.owners.total,
+      })
+    : null;
   return (
     <div className="pr-8">
       <h2 className="font-display text-[26px] leading-tight text-ink">{tract.name}</h2>
@@ -242,31 +260,52 @@ function TractBody({
         </div>
       </section>
 
-      <section className="mt-8">
-        <h3 className="font-sans text-xs font-medium uppercase tracking-[0.14em] text-muted">
-          Recent multifamily permits
-        </h3>
-        <p className="mt-2 font-sans text-sm text-ink">
-          {tract.permit_count_24mo} permits · {tract.units_24mo} units in the last 24 months
-        </p>
-        {detail.top_permits.length === 0 ? (
-          <p className="mt-3 font-sans text-sm text-muted">
-            No multifamily permits filed here in the last 24 months.
-          </p>
-        ) : (
-          <ul className="mt-2">
-            {detail.top_permits.map((permit) => (
-              <li key={permit.id} className="border-t border-rule py-3">
-                <div className="break-words font-mono text-sm">{permit.address}</div>
-                <div className="mt-0.5 font-sans text-xs text-muted">
-                  {unitsLabel(permit.units)} · {formatMonth(permit.issue_date)}
-                </div>
-                <p className="mt-1 line-clamp-2 font-sans text-sm leading-snug">{permit.description}</p>
-              </li>
-            ))}
-          </ul>
+      {upsell ? (
+        <UpgradeChoice className="mt-8" body={upsell} geoid={tract.geoid} surface="tract_summary" />
+      ) : null}
+
+      <RecordList
+        title="Multifamily permits"
+        total={detail.multifamily_permits.total}
+        rows={detail.multifamily_permits.rows}
+        empty="No multifamily permits on file for this tract."
+        note={`${tract.permit_count_24mo} permits · ${tract.units_24mo} units in the last 24 months`}
+        surface="multifamily"
+        geoid={tract.geoid}
+        render={(permit) => <PermitRow permit={permit} />}
+      />
+      <RecordList
+        title="Rehab candidates"
+        total={detail.rehab_candidates.total}
+        rows={detail.rehab_candidates.rows}
+        empty="No rehab candidates on file for this tract."
+        surface="rehab_candidates"
+        geoid={tract.geoid}
+        render={(permit) => <PermitRow permit={permit} />}
+      />
+      <RecordList
+        title="Owner names"
+        total={detail.owners.total}
+        rows={detail.owners.rows}
+        empty="Owner names are not in this permit extract."
+        surface="owners"
+        geoid={tract.geoid}
+        render={(owner) => (
+          <>
+            <div className="font-sans text-sm">{owner.name}</div>
+            {owner.address ? <div className="mt-0.5 font-sans text-xs text-muted">{owner.address}</div> : null}
+          </>
         )}
-      </section>
+      />
+      <RecordList
+        title="Permit history"
+        total={detail.permit_history.total}
+        rows={detail.permit_history.rows}
+        empty="No permits on file for this tract."
+        surface="permit_history"
+        geoid={tract.geoid}
+        render={(permit) => <PermitRow permit={permit} />}
+      />
 
       <section className="mt-8">
         <h3 className="font-sans text-xs font-medium uppercase tracking-[0.14em] text-muted">
@@ -298,6 +337,18 @@ function TractBody({
   );
 }
 
+function PermitRow({ permit }: { permit: Permit }) {
+  return (
+    <>
+      <div className="break-words font-mono text-sm">{permit.address}</div>
+      <div className="mt-0.5 font-sans text-xs text-muted">
+        {unitsLabel(permit.units)} · {formatMonth(permit.issue_date)}
+      </div>
+      <p className="mt-1 line-clamp-2 font-sans text-sm leading-snug">{permit.description}</p>
+    </>
+  );
+}
+
 function SearchBody({
   search,
   onOpenTract,
@@ -305,6 +356,9 @@ function SearchBody({
   search: SearchState;
   onOpenTract: (geoid: string) => void;
 }) {
+  if (search.status === "limited" && search.limit) {
+    return <SearchLimitCard limit={search.limit} />;
+  }
   if (search.status === "error") {
     return <p className="pr-8 pt-8 font-sans text-sm text-ink">{search.error}</p>;
   }
