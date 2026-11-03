@@ -1,7 +1,7 @@
+import { allow, clientIp } from "@/lib/ratelimit";
 import { supabaseEnv } from "@/lib/supabase/env";
 import { safeNextPath } from "@/lib/supabase/return-path";
-import { createClient } from "@supabase/supabase-js";
-import { allow, clientIp } from "@/lib/ratelimit";
+import { serverClient } from "@/lib/supabase/server";
 
 const HOUR = 60 * 60 * 1000;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -26,11 +26,11 @@ export async function POST(req: Request) {
     return Response.json({ error: "Too many sign-in emails. Try again in an hour." }, { status: 429 });
   }
 
+  const supabase = await serverClient();
+  if (!supabase) return Response.json({ error: "Sign-in isn't configured." }, { status: 503 });
+
   const origin = new URL(req.url).origin;
   const next = safeNextPath(typeof body.next === "string" ? body.next : null, origin);
-  const supabase = createClient(env.url, env.key, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  });
   const { error } = await supabase.auth.signInWithOtp({
     email,
     options: {

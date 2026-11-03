@@ -45,7 +45,9 @@ export async function GET(request: Request) {
     }
   }
 
-  const response = NextResponse.redirect(new URL(destination, url.origin));
+  const target = new URL(destination, url.origin);
+  const redirectTo = target.origin === url.origin ? target : new URL("/map", url.origin);
+  const response = NextResponse.redirect(redirectTo);
   response.headers.set("Referrer-Policy", "no-referrer");
   return response;
 }
