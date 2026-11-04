@@ -31,7 +31,7 @@ End your reply with exactly one fenced JSON block, and nothing after it. Include
 ```
 
 - `comment`: the comment's id from the letter.
-- `discipline`: one of `zoning`, `egress`, `fire`, `structural`, `accessibility`, `energy`, `mep`, `interior_environment`, `admin`.
+- `discipline`: one of `zoning`, `egress`, `fire`, `structural`, `accessibility`, `energy`, `mep`, `interior_environment`, `drainage`, `geotech`, `tree`, `admin`. Stormwater and side sewers are `drainage`, soils and steep slopes are `geotech`, and tree protection is `tree`.
 - `citation`: the id of the governing entry, or `null` if no code section applies.
 - `route`: who acts next.
   - `licensed_review`: a design decision or professional judgment for the architect or engineer.

@@ -28,6 +28,8 @@ services:
       REDLINE_MODEL: ${REDLINE_MODEL:-}
       STRIPE_PAYMENT_LINK: ${STRIPE_PAYMENT_LINK:-}
       STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
+      REDLINE_FREE_RUNS_PER_DAY: ${REDLINE_FREE_RUNS_PER_DAY:-40}
     volumes:
       # Reports, the waitlist and sign-off notes. These can hold client letters, so treat this volume as confidential.
       - redline-data:/data

@@ -180,6 +180,13 @@ export async function allowFreeRun(client: string, limit: number, s?: Store): Pr
   return (s ?? (await getStore())).hitRateLimit(hashClient(client), limit, 3_600_000);
 }
 
+/** The key for one count shared by every visitor, over a rolling day. */
+export const ALL_VISITORS = "all-visitors";
+
+export async function allowFreeRunToday(limit: number, s?: Store): Promise<boolean> {
+  return (s ?? (await getStore())).hitRateLimit(ALL_VISITORS, limit, 86_400_000);
+}
+
 // ---------- maintenance ----------
 
 /** Purges at startup and hourly. Logs counts only, never ids or letter text. */

@@ -20,13 +20,15 @@ import { readUpload } from "./read-upload.ts";
 import { stripPersonal } from "./strip-personal.ts";
 import { jobResponse, startJob, type JobOutcome } from "./jobs.ts";
 import { createReport, earnsFreeRound, exportDoc, loadReport, newReportId, publicView, updateReport, type Report } from "./reports.ts";
-import { allowFreeRun, getStore, startMaintenance } from "./store.ts";
+import { allowFreeRun, allowFreeRunToday, getStore, startMaintenance } from "./store.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.DEMO_PORT ?? 8792);
 const MAX_BODY_BYTES = 200_000;
 const MAX_UPLOAD_BYTES = 15_000_000; // about 10 MB of file, once base64 encoded
 const FREE_RUNS_PER_HOUR = 6;
+// Every free preview runs the agent, so this caps what they cost in a day, across all visitors.
+const FREE_RUNS_PER_DAY = Number(process.env.REDLINE_FREE_RUNS_PER_DAY) || 40;
 const PRICE = "$59";
 // When set, /api/ calls need this key, so only the Emris proxy can reach the service. Stripe's /paid redirect is exempt,
 // because it proves itself by checking the session with Stripe. So is the webhook, which proves itself by its signature.
@@ -202,6 +204,7 @@ async function runReport(b: Record<string, unknown>, client: string): Promise<Jo
     .slice(0, 40);
   if (!comments.length) return { status: 400, value: { error: "No comments to review." } };
   if (!(await allowFreeRun(client, FREE_RUNS_PER_HOUR))) return { status: 429, value: { error: "That's the limit of free previews for now. Try again in an hour." } };
+  if (!(await allowFreeRunToday(FREE_RUNS_PER_DAY))) return { status: 429, value: { error: "Redline has given out all of today's free previews. Try again tomorrow." } };
 
   const permit = String(b.permit_number ?? "").trim().slice(0, 40) || null;
   const project = stripPersonal(String(b.project ?? "").slice(0, 600));
