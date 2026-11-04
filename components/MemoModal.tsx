@@ -49,10 +49,12 @@ export default function MemoModal({ geoid, name, score, onClose }: Props) {
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key !== "Escape") return;
+      event.stopImmediatePropagation();
+      onClose();
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener("keydown", onKey, true);
+    return () => window.removeEventListener("keydown", onKey, true);
   }, [onClose]);
 
   useEffect(() => {
@@ -134,6 +136,7 @@ export default function MemoModal({ geoid, name, score, onClose }: Props) {
           ) : null}
           {status === "ready" ? (
             <ReactMarkdown
+              skipHtml
               components={{
                 h2: ({ children }) => (
                   <h2 className="mb-2 mt-8 font-display text-[22px] leading-tight first:mt-0">

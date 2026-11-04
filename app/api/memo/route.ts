@@ -1,4 +1,5 @@
 import type { MemoRequest, MemoResponse } from "@/lib/data";
+import { requestUser } from "@/lib/auth/session";
 import { complete } from "@/lib/claude";
 import { cached } from "@/lib/cache";
 import { HttpError, errorResponse, tractDetail } from "@/lib/lookup";
@@ -27,6 +28,8 @@ const trunc = (s: string, n = 160) => (s.length > n ? s.slice(0, n - 1).trimEnd(
 
 export async function POST(req: Request) {
   try {
+    const user = await requestUser();
+    if (!user) throw new HttpError(401, "Sign in to generate a memo.");
     let body: Partial<MemoRequest>;
     try {
       body = await req.json();
