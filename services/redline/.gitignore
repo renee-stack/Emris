@@ -1,0 +1,14 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+
+# Built from public data by npm run real:build
+.cache/
+jurisdictions/*/comments.jsonl
+feedback/
+
+# Each market gets its own branch checked out here
+.market-worktrees/

@@ -1,0 +1,5 @@
+# HTTPS in front of Redline's API on a single VM. Caddy gets and renews the certificate itself.
+# REDLINE_DOMAIN can be an sslip.io name for the VM's address, like 136-119-7-65.sslip.io, until there's a real domain.
+{$REDLINE_DOMAIN} {
+	reverse_proxy api:8792
+}

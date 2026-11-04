@@ -1,0 +1,44 @@
+# Redline's service: the API, which runs the agent on Claude through Vertex AI and serves the research tools itself.
+#
+#   cd deploy && cp .env.example .env    then fill in .env
+#   docker compose up -d --build
+#   docker compose exec api npm run check:services
+#
+# Google Cloud credentials come from the host: on a Compute Engine VM, its service account. Elsewhere, mount a key
+# file and set GOOGLE_APPLICATION_CREDENTIALS. For HTTPS on a single VM, add compose.gcp.yaml.
+
+name: redline
+
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+      args:
+        REDLINE_GIT_SHA: ${REDLINE_GIT_SHA:-unknown}
+    restart: unless-stopped
+    init: true
+    security_opt: ["no-new-privileges:true"]
+    environment:
+      REDLINE_HOST: 0.0.0.0
+      DEMO_PORT: "8792"
+      REDLINE_API_KEY: ${REDLINE_API_KEY:?Set REDLINE_API_KEY in deploy/.env}
+      VERTEX_PROJECT_ID: ${VERTEX_PROJECT_ID:-}
+      VERTEX_REGION: ${VERTEX_REGION:-global}
+      REDLINE_MODEL: ${REDLINE_MODEL:-}
+      STRIPE_PAYMENT_LINK: ${STRIPE_PAYMENT_LINK:-}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+    volumes:
+      # Reports, the waitlist and sign-off notes. These can hold client letters, so treat this volume as confidential.
+      - redline-data:/data
+    ports:
+      - "${REDLINE_PUBLIC_PORT:-8792}:8792"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8792/health').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  redline-data: {}

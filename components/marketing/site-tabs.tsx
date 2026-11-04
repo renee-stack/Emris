@@ -40,6 +40,9 @@ export function SiteTabs() {
           <Link href="/map" className={itemClass} role="tab">
             Test it out
           </Link>
+          <Link href="/redline" className={itemClass} role="tab">
+            Answer a correction letter
+          </Link>
           <button
             type="button"
             role="tab"
