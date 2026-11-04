@@ -1,7 +1,8 @@
 # The only public app. REDLINE_API_KEY and any Stripe values are Fly secrets, not set here.
 # Deploy from the repo root, the build context:
 #   fly deploy --config deploy/fly/api.toml --dockerfile deploy/Dockerfile --ha=false
-# Keep the hosts below in step with the app names in trueforge.toml and mcp.toml.
+# The model runs on Vertex AI, so Fly needs Google Cloud credentials: a service account key as a Fly secret,
+# written to a file at boot and named in GOOGLE_APPLICATION_CREDENTIALS. The Google Cloud VM needs none of that.
 
 app = "redline-api"
 primary_region = "iad"
@@ -9,8 +10,7 @@ primary_region = "iad"
 [env]
   REDLINE_HOST = "::"
   DEMO_PORT = "8792"
-  TRUEFORGE_BASE_URL = "http://redline-trueforge.internal:8790"
-  REDLINE_MCP_URL = "http://redline-mcp.internal:8791/mcp"
+  VERTEX_REGION = "global"
 
 [[mounts]]
   source = "redline_api_data"

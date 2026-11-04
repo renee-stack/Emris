@@ -1,10 +1,10 @@
 // npm run run-evals [-- --no-commit] [-- --allow-dirty]
 //
-// One run = one TrueForge session. Each task in evals/tasks/ is one root turn in that session
+// One run = one session. Each task in evals/tasks/ is one root turn in that session
 // (so tasks don't see each other). Then:
 //   runs/run-NN/results.json   the agent's reply and score for each task
 //   runs/run-NN/score.json     the run score and per-task details
-//   runs/run-NN/session.json   the whole session, exported from TrueForge
+//   runs/run-NN/session.json   the whole session, as the runtime recorded it
 //   runs/summary.csv           one new row
 // and a commit "run NN: score X" (skip with --no-commit).
 
@@ -44,13 +44,13 @@ const run = rows.length + 1;
 const dir = runDir(run);
 const nn = String(run).padStart(2, "0");
 
-// 2. Make the TrueForge agent match agent/ at this commit.
+// 2. Make the agent match agent/ at this commit.
 const tf = client();
 const agent = await syncAgent(tf, headSha());
 const tasks = loadTasks();
 console.log(`Run ${nn}: agent "${agent.name}" at ${agentCommit.slice(0, 7)}, ${tasks.length} tasks`);
 
-// 3. One session for the whole run. https://trueforge.dev/api/overview#session
+// 3. One session for the whole run.
 const started = Date.now();
 const { data: session } = await tf.sessions.create({
   agent: { name: readAgent().agent.name },
@@ -89,6 +89,6 @@ console.log(`\nRun ${nn} score: ${total.score} (holdout ${total.holdout_score}, 
 // 6. Commit the run, so git history reads: run 1 → agent change → run N.
 if (!flag("no-commit")) {
   git("add", "runs");
-  git("commit", "-q", "-m", `run ${nn}: score ${total.score}`, "-m", `TrueForge session: ${session.id}\nagent_commit: ${agentCommit}`);
+  git("commit", "-q", "-m", `run ${nn}: score ${total.score}`, "-m", `Session: ${session.id}\nagent_commit: ${agentCommit}`);
   console.log(`✓ Committed ${dir.replace(/.*\/runs\//, "runs/")}. Next: npm run improve`);
 }

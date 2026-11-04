@@ -1,15 +1,16 @@
-// Shared helpers for the starter scripts: config, the TrueForge client, git, the agent files and the eval tasks.
-// SDK: @truefoundry/trueforge-sdk (https://trueforge.dev/api/quickstart). The TypeScript SDK uses camelCase
-// field names (previousTurnId, iterationLimit); the HTTP API and the docs' JSON use snake_case.
+// Shared helpers for the scripts: config, the agent runtime, git, the agent files and the eval tasks.
+// The runtime (scripts/runtime.ts) runs agents on Claude through Google Vertex AI. It replaced TrueForge and keeps
+// the shape of TrueForge's client, which is why callers still name it `tf`.
 
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { TrueForge, TrueForgeApi } from "@truefoundry/trueforge-sdk";
+import { Runtime, RuntimeApi, type TurnResult } from "./runtime.ts";
 import type { ScoredTask } from "../evals/score.ts";
 
-export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+/** REDLINE_HOME points these tools at another checkout of the repo: the market loop's branch worktree. */
+export const ROOT = process.env.REDLINE_HOME ? resolve(process.env.REDLINE_HOME) : resolve(dirname(fileURLToPath(import.meta.url)), "..");
 export const AGENT_DIR = join(ROOT, "agent");
 export const TASKS_DIR = join(ROOT, "evals", "tasks");
 export const RUNS_DIR = join(ROOT, "runs");
@@ -19,21 +20,11 @@ export const SUMMARY_CSV = join(RUNS_DIR, "summary.csv");
 
 // ---------- config ----------
 
-if (existsSync(join(ROOT, ".env"))) process.loadEnvFile(join(ROOT, ".env"));
+const TOOL_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+if (existsSync(join(TOOL_ROOT, ".env"))) process.loadEnvFile(join(TOOL_ROOT, ".env"));
 
-export const env = {
-  baseUrl: process.env.TRUEFORGE_BASE_URL ?? "http://localhost:8790",
-  token: process.env.TRUEFORGE_TOKEN || undefined,
-  /** Public HTTPS URL of this repo; only needed for skill_mode "git". */
-  repoUrl: process.env.SKILL_REPO_URL || undefined,
-};
-
-export function client(): TrueForge {
-  return new TrueForge({
-    baseUrl: env.baseUrl,
-    token: env.token, // only when the server has OIDC login on; local npx needs none
-    timeoutInSeconds: 600, // turns stream over SSE and can take minutes
-  });
+export function client(): Runtime {
+  return new Runtime();
 }
 
 export function die(msg: string): never {
@@ -72,9 +63,9 @@ export interface AgentFile {
   name: string;
   description: string;
   model: { name: string; params?: Record<string, unknown> };
-  /** "inline": skills are pasted into the instructions (no sandbox). "git": real TrueForge skills (needs a sandbox and a public repo). */
+  /** "inline": skills are pasted into the instructions. "git" needed TrueForge's sandbox and isn't supported any more. */
   skill_mode?: "inline" | "git";
-  /** MCP connectors this agent uses. setup registers them in TrueForge and attaches them to the agent. */
+  /** Tool servers this agent uses. permit-research runs in-process, so the URL is no longer used. */
   mcp_servers?: { name: string; url: string }[];
 }
 
@@ -90,9 +81,6 @@ export function readAgent(): { agent: AgentFile; instructions: string; skills: S
   const agent = JSON.parse(readFileSync(join(AGENT_DIR, "agent.json"), "utf8")) as AgentFile;
   if (process.env.TF_AGENT_NAME) agent.name = process.env.TF_AGENT_NAME;
   if (process.env.TF_MODEL) agent.model = { ...agent.model, name: process.env.TF_MODEL };
-  // agent.json points at 127.0.0.1, which in a container is the container itself. See docs/deploy.md.
-  const mcpUrl = process.env.REDLINE_MCP_URL;
-  if (mcpUrl) agent.mcp_servers = agent.mcp_servers?.map((s) => ({ ...s, url: mcpUrl }));
   const instructions = readFileSync(join(AGENT_DIR, "instructions.md"), "utf8");
   const skillsDir = join(AGENT_DIR, "skills");
   const skills: SkillFile[] = [];
@@ -123,83 +111,28 @@ function parseFrontmatter(text: string): { meta: Record<string, string>; body: s
   return { meta, body: m[2] };
 }
 
-/** The TrueForge agent spec built from agent/. */
-export function buildManifest(gitRef?: string): TrueForgeApi.AgentSpec {
-  const { agent, instructions, skills } = readAgent();
-  const mode = agent.skill_mode ?? "inline";
-  const config: TrueForgeApi.RuntimeConfig = {
-    askUserQuestions: { enabled: false }, // evals run unattended: never pause for a question
-    generativeUi: { enabled: false }, // we want plain text + JSON back
-    dynamicSubAgents: { enabled: false }, // one agent, so runs are comparable
-  };
-  // Research tools are read-only, so they never pause for approval. Sign-off on the output happens in the demo's review queue.
-  const mcpServers = (agent.mcp_servers ?? []).map((s) => ({ name: s.name, preload: true, requireApprovalForTools: [] }));
-  if (mode === "inline") {
-    // Simplest path, no sandbox: the playbook lives in the instructions, and the agent rewrites it.
-    const inlined = skills
-      .map((s) => `\n\n---\n\n# Skill: ${s.name}\n\n_${s.description}_\n\n${s.body.trim()}`)
-      .join("");
-    return { model: agent.model, instructions: instructions.trim() + inlined, mcpServers, config };
-  }
-  // "git" mode: real TrueForge skills, cloned from this repo at the commit that runs (needs a sandbox).
-  if (!gitRef) die("skill_mode git needs a git ref");
-  return {
-    model: agent.model,
-    instructions: instructions.trim(),
-    skills: skills.map((s) => ({ name: s.name })),
-    mcpServers,
-    config: { ...config, sandbox: { enabled: true } }, // skills require the sandbox
-  };
+/** The agent spec built from agent/. With a place, other places' local skills are left out, so their rules can't leak in. */
+export function buildManifest(_gitRef?: string, opts: { place?: string } = {}): RuntimeApi.AgentSpec {
+  const { agent, instructions, skills: allSkills } = readAgent();
+  if ((agent.skill_mode ?? "inline") !== "inline") die('skill_mode "git" needed TrueForge\'s sandbox. Set "skill_mode": "inline" in agent/agent.json.');
+  const skills = opts.place ? allSkills.filter((s) => !s.name.startsWith("local-") || s.name === `local-${opts.place}`) : allSkills;
+  // The playbook lives in the instructions, and the improve step rewrites it there.
+  const inlined = skills.map((s) => `\n\n---\n\n# Skill: ${s.name}\n\n_${s.description}_\n\n${s.body.trim()}`).join("");
+  const mcpServers = (agent.mcp_servers ?? []).map((s) => ({ name: s.name }));
+  return { model: agent.model, instructions: instructions.trim() + inlined, mcpServers };
 }
 
-/**
- * Create or update the TrueForge agent so it matches agent/ at `gitRef`.
- * agents.create / agents.update / agents.list: https://trueforge.dev/create-agent/overview#create-an-agent-via-the-api
- */
-export async function syncAgent(tf: TrueForge, gitRef: string): Promise<TrueForgeApi.Agent> {
-  const { agent, skills } = readAgent();
-  if ((agent.skill_mode ?? "inline") === "git") {
-    if (!env.repoUrl) die("skill_mode is \"git\": set SKILL_REPO_URL in .env to your public GitHub repo URL.");
-    const { data: caps } = await tf.server.getCapabilities();
-    if (!caps.skill.enabled) {
-      die(
-        `skill_mode is "git" but this TrueForge server can't run skills: ${caps.skill.reason ?? "no sandbox"}\n` +
-          `  Local npx: on Linux install bubblewrap, socat and ripgrep, then restart TrueForge (macOS needs no extra packages).\n` +
-          `  Or configure Daytona in Settings → Sandbox providers. Or go back to "skill_mode": "inline" (no sandbox needed).`,
-      );
-    }
-    // Register each skill from this repo, pinned to the commit that runs.
-    // settings.skills.createOrUpdate: https://trueforge.dev/api-reference/skills/create-or-replace-a-skill
-    // TODO(verify): end to end with a pushed public repo; the commit must be pushed before the run.
-    for (const s of skills) {
-      await tf.settings.skills.createOrUpdate({
-        manifest: { type: "git", name: s.name, description: s.description, url: env.repoUrl, path: s.path, ref: gitRef },
-      });
-    }
-  }
-  for (const s of agent.mcp_servers ?? []) {
-    const health = await fetch(new URL("/health", s.url)).catch(() => null);
-    // Throws, not die(): the service calls this too, and one customer's request mustn't exit the process.
-    if (!health?.ok) throw new Error(`The ${s.name} MCP server isn't running at ${s.url}. Start it: npm run mcp`);
-    // settings.mcpServers.createOrUpdate: register the connector by name, so the agent can attach it.
-    await tf.settings.mcpServers.createOrUpdate({
-      manifest: { type: "remote", name: s.name, description: "Local code lookup and permit statistics, by jurisdiction.", url: s.url },
-    });
-  }
+/** Register the agent with the runtime so sessions can name it. `gitRef` is kept for callers; the spec doesn't depend on it. */
+export async function syncAgent(tf: Runtime, gitRef: string): Promise<RuntimeApi.Agent> {
+  const { agent } = readAgent();
   const manifest = buildManifest(gitRef);
   const existing = await findAgent(tf, agent.name);
-  if (existing) {
-    const { data } = await tf.agents.update(existing.id, { description: agent.description, manifest });
-    return data;
-  }
-  const { data } = await tf.agents.create({ name: agent.name, description: agent.description, manifest });
-  return data;
+  if (existing) return (await tf.agents.update(existing.id, { description: agent.description, manifest })).data;
+  return (await tf.agents.create({ name: agent.name, description: agent.description, manifest })).data;
 }
 
-export async function findAgent(tf: TrueForge, name: string): Promise<TrueForgeApi.Agent | undefined> {
-  const page = await tf.agents.list({ agentName: name }); // substring match, so check the exact name
-  for await (const a of page) if (a.name === name) return a;
-  return undefined;
+export async function findAgent(tf: Runtime, name: string): Promise<RuntimeApi.Agent | undefined> {
+  return (await tf.agents.list({ agentName: name })).find((a) => a.name === name);
 }
 
 // ---------- tasks ----------
@@ -235,60 +168,23 @@ export function taskPrompt(t: Pick<Task, "project" | "sheets" | "comments">): st
 
 // ---------- turns and sessions ----------
 
-/** Text of a final model message (string or content parts). */
-export function messageText(msg: TrueForgeApi.ModelMessageEvent | null | undefined): string {
-  const c = msg?.content;
-  if (!c) return "";
-  if (typeof c === "string") return c;
-  return c.map((p) => ("text" in p ? p.text : "")).join("");
-}
-
-export interface TurnResult {
-  turnId: string;
-  status: string;
-  text: string;
-  error?: string;
-}
+export type { TurnResult };
 
 /**
- * Run one turn and wait for turn.done. `previousTurnId: "none"` makes it a new root turn,
+ * Run one turn and wait for the answer. A root turn starts a new conversation,
  * so tasks in the same session don't see each other.
- * createTurnStream: https://trueforge.dev/api/use-agent#create-and-stream-a-turn
  */
-export async function runTurn(tf: TrueForge, sessionId: string, content: string, root = true): Promise<TurnResult> {
-  const stream = await tf.sessions.createTurnStream(
-    sessionId,
-    { input: [{ type: "user.message", content }], ...(root ? { previousTurnId: "none" } : {}) },
-    { maxRetries: 0 }, // a retried POST would start a second turn
-  );
-  let turnId = "";
-  for await (const { data: event } of stream.withMetadata()) {
-    if (event.type === "turn.created") turnId = event.turnId;
-    if (event.type === "turn.done") {
-      const s = event.state;
-      if (s.status === "done") return { turnId, status: s.status, text: messageText(s.output) };
-      if (s.status === "error") return { turnId, status: s.status, text: "", error: s.message };
-      return { turnId, status: s.status, text: "" };
-    }
-  }
-  return { turnId, status: "no-turn-done", text: "" };
+export async function runTurn(tf: Runtime, sessionId: string, content: string, root = true): Promise<TurnResult> {
+  return tf.runTurn(sessionId, content, root);
 }
 
-/**
- * Everything TrueForge keeps about a session: the session, every turn, and every turn's events.
- * There is no export endpoint, so we page through sessions.get / listTurns / listTurnEvents.
- * https://trueforge.dev/sessions and https://trueforge.dev/api-reference/agent-sessions/list-turn-events
- */
-export async function exportSession(tf: TrueForge, sessionId: string) {
+/** Everything the runtime kept about a session: the session, every turn, and every turn's events. */
+export async function exportSession(tf: Runtime, sessionId: string) {
   const { data: session } = await tf.sessions.get(sessionId);
-  const turns: (TrueForgeApi.Turn & { events: TrueForgeApi.SessionEvent[] })[] = [];
-  for await (const turn of await tf.sessions.listTurns(sessionId)) {
-    const events: TrueForgeApi.SessionEvent[] = [];
-    for await (const e of await tf.sessions.listTurnEvents(sessionId, turn.id, { order: "asc" })) events.push(e);
-    turns.push({ ...turn, events });
-  }
+  const turns: (RuntimeApi.Turn & { events: RuntimeApi.SessionEvent[] })[] = [];
+  for (const turn of await tf.sessions.listTurns(sessionId)) turns.push({ ...turn, events: await tf.sessions.listTurnEvents(sessionId, turn.id) });
   turns.sort((a, b) => a.createdAt.localeCompare(b.createdAt));
-  return { exported_at: new Date().toISOString(), base_url: env.baseUrl, session, turns };
+  return { exported_at: new Date().toISOString(), runtime: "vertex", session, turns };
 }
 
 export type SessionExport = Awaited<ReturnType<typeof exportSession>>;
@@ -298,8 +194,7 @@ export function sessionStats(exp: SessionExport): { tokens: number; toolCalls: n
   let tokens = 0;
   let toolCalls = 0;
   for (const t of exp.turns) {
-    const metrics = "metrics" in t.state ? t.state.metrics : undefined;
-    tokens += metrics?.totalTokens ?? 0;
+    tokens += t.state.metrics.totalTokens;
     for (const e of t.events) if (e.type === "model.message") toolCalls += e.toolCalls?.length ?? 0;
   }
   return { tokens, toolCalls };

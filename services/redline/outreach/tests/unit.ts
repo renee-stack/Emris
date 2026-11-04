@@ -10,7 +10,7 @@ import { type Claim, fromSkeleton, type Message, openHome, OUTREACH_DIR, parseVa
 import { approvalProblems, assignVariant, draftable, loadAll } from "../messages.ts";
 import { assembleProspect, findEmails, findNotices, type Page, permitNameOnSite, pickLinks, robotsAllows, verifyExtracted } from "../research.ts";
 import { computeVerdict, fisherExact, guardrail, wilson } from "../stats.ts";
-import { initTestHome, seedOutcomes, TEST_SENDER, testProspect } from "./fixtures.ts";
+import { fixedArmsPlaybook, initTestHome, seedOutcomes, TEST_SENDER, testProspect } from "./fixtures.ts";
 
 let passed = 0;
 const failures: string[] = [];
@@ -20,7 +20,7 @@ function check(name: string, ok: boolean, detail = ""): void {
 }
 const near = (a: number, b: number, eps = 1e-3) => Math.abs(a - b) < eps;
 
-const playbook = readFileSync(join(OUTREACH_DIR, "agent", "playbook.md"), "utf8");
+const playbook = fixedArmsPlaybook(readFileSync(join(OUTREACH_DIR, "agent", "playbook.md"), "utf8"));
 const variants = parseVariants(playbook);
 const policy = JSON.parse(readFileSync(join(OUTREACH_DIR, "agent", "policy.json"), "utf8")) as Policy;
 const claims = (JSON.parse(readFileSync(join(OUTREACH_DIR, "agent", "claims.json"), "utf8")) as { claims: Claim[] }).claims;
@@ -161,6 +161,9 @@ check("gate blocks an effort promise", issueCodes({ body: `${goodBody} It takes 
 check("gate blocks a listed fact that wasn't used", issueCodes({ body: goodBody.replace("your two-flat work", "your work").replace("is why I'm writing", "is why I'm writing"), facts_used: ["F2"] }).includes("fact_unused"));
 check("gate blocks a name from nowhere", issueCodes({ body: `Hi Matt, ${goodBody}` }).includes("name_unsourced"));
 check("gate allows the firm's name", !issueCodes({ body: `Hi Fictional Firm 1, ${goodBody}` }).includes("name_unsourced"));
+const withPrincipal = { ...prospect, facts: [...prospect.facts, { ...prospect.facts[0], id: "F99", kind: "principal", value: "Matt Fictional" }] };
+check("gate accepts a first-name greeting from a listed person", !lintDraft({ ...good, body: `Hi Matt, ${goodBody}`, facts_used: [...good.facts_used, "F99"] }, withPrincipal as typeof prospect, v2, claims).length);
+check("gate blocks a listed person who isn't greeted", lintDraft({ ...good, facts_used: [...good.facts_used, "F99"] }, withPrincipal as typeof prospect, v2, claims).some((i) => i.code === "fact_unused"));
 check("gate blocks an unsourced number", issueCodes({ body: `${goodBody} We've read 40 letters.` }).includes("number_unsourced"));
 check("gate blocks a percentage", issueCodes({ body: `${goodBody} It catches 95% of comments.` }).includes("banned_phrase"));
 check("gate requires the limits claim", issueCodes({ body: goodBody.replace("{{claim:redline_limits}}", "") }).includes("claim_required_missing"));

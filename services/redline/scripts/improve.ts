@@ -3,7 +3,7 @@
 // The agent reads how its last run was reviewed and rewrites its own instructions and skills.
 //   1. Takes the run's failed letters (never the holdout ones) with the scorer's feedback, plus any
 //      reject notes architects left in the demo's review queue (feedback/reviews.jsonl).
-//   2. Opens a TrueForge session with the agent itself (or, with --coach, an inline coach agent on the same model)
+//   2. Opens a session with the agent itself (or, with --coach, an inline coach agent on the same model)
 //      and asks it for new versions of agent/instructions.md and agent/skills/*/SKILL.md.
 //   3. Writes the files and commits them with the trailer "Agent-Session: <session_id>".
 // You review the commit (git show) and keep it or drop it (git reset --hard HEAD~1). You don't edit it.
@@ -130,7 +130,7 @@ ${reviewNotes}`;
 const tf = client();
 const coach = flag("coach");
 const { data: session } = await tf.sessions.create({
-  // The agent itself (by name), or a coach: an inline TrueForge agent on the same model.
+  // The agent itself (by name), or a coach: an inline agent on the same model.
   agent: coach
     ? { spec: { model: agent.model, instructions: "You coach a permit corrections agent: you rewrite its instruction files from its failed runs.", config: { askUserQuestions: { enabled: false }, generativeUi: { enabled: false } } } }
     : { name: agent.name },

@@ -7,7 +7,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { die, option } from "../../scripts/lib.ts";
 import { gitIn, type Message, openHome, OUTREACH_DIR, type OutreachEvent, parseVariants, readJsonl, type Suppression } from "../lib.ts";
-import { initTestHome, seedOutcomes } from "./fixtures.ts";
+import { fixedArmsPlaybook, initTestHome, seedOutcomes } from "./fixtures.ts";
 
 const root = option("dir") ?? die("Give --dir, an empty scratch directory.");
 const realPlaybookBefore = readFileSync(join(OUTREACH_DIR, "agent", "playbook.md"), "utf8");
@@ -68,7 +68,7 @@ if (a && b) {
     check("a suppressed recipient can't be approved", blocked.code !== 0 && blocked.out.includes("suppression"), blocked.out);
   }
   const printed = readFileSync(h.playbook, "utf8");
-  check("the flow didn't change the playbook", printed === readFileSync(join(OUTREACH_DIR, "agent", "playbook.md"), "utf8"));
+  check("the flow didn't change the playbook", printed === fixedArmsPlaybook(readFileSync(join(OUTREACH_DIR, "agent", "playbook.md"), "utf8")));
 }
 
 // ---------- learn on too little data: refuses, even with a tempting gap and a reviewer note ----------

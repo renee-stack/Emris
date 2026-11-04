@@ -4,7 +4,7 @@
 // /start is the customer flow: drop a letter, see a free preview, unlock it. Payments use a Stripe Payment Link
 // when STRIPE_PAYMENT_LINK and STRIPE_SECRET_KEY are set (demo/payments.ts, docs/stripe-setup.md). Without them,
 // unlocking is a free design-partner offer.
-// Each analysis is a TrueForge session. Reject notes go to feedback/reviews.jsonl (not committed, because it can
+// Each analysis is one session in scripts/runtime.ts. Reject notes go to feedback/reviews.jsonl (not committed, because it can
 // hold client text), and improve learns from them.
 
 import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync } from "node:fs";
@@ -12,7 +12,7 @@ import { createServer, type IncomingMessage, type ServerResponse } from "node:ht
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseItems } from "../evals/score.ts";
-import { client, exportSession, FEEDBACK_FILE, headSha, readAgent, ROOT, runTurn, SUMMARY_CSV, syncAgent } from "../scripts/lib.ts";
+import { buildManifest, client, exportSession, FEEDBACK_FILE, headSha, readAgent, ROOT, runTurn, SUMMARY_CSV, syncAgent } from "../scripts/lib.ts";
 import { guardItems } from "./guard.ts";
 import { MAX_LETTER_CHARS, parseLetter, type ParsedComment } from "./parse-letter.ts";
 import { checkoutUrl, configWarning, confirmPayment, handleStripeWebhook, paymentsOn, requiresServiceKey } from "./payments.ts";
@@ -129,7 +129,7 @@ function ensureAgent(tf: ReturnType<typeof client>) {
 async function analyze(letter: Letter) {
   const tf = client();
   await ensureAgent(tf);
-  const { data: session } = await tf.sessions.create({ agent: { name: readAgent().agent.name }, metadata: { purpose: "demo" } });
+  const { data: session } = await tf.sessions.create({ agent: { spec: buildManifest(headSha(), { place: letter.project.jurisdiction }) }, metadata: { purpose: "demo" } });
   await tf.sessions.update(session.id, { title: `review: ${letter.project.address}` });
   const turn = await runTurn(tf, session.id, promptFor(letter), false);
   if (turn.status !== "done") throw new Error(turn.error ?? `The turn ended with status ${turn.status}`);
@@ -138,7 +138,7 @@ async function analyze(letter: Letter) {
   const items = guardItems(parsed, letter, packs);
   analyzed.set(session.id, letter);
   const exp = await exportSession(tf, session.id);
-  // The audit trail: every tool call the agent made in this session, as TrueForge recorded it.
+  // The audit trail: every tool call the agent made in this session, as the runtime recorded it.
   const trace = exp.turns.flatMap((t) =>
     t.events.flatMap((e) => (e.type === "model.message" ? (e.toolCalls ?? []).map((c) => ({ name: c.function.name, args: c.function.arguments })) : [])),
   );
@@ -163,6 +163,8 @@ function send(res: ServerResponse, status: number, value: unknown) {
 const PLACE_HINTS: [string, RegExp][] = [
   ["seattle", /\bSeattle\b|\bSDCI\b/i],
   ["chicago", /\bChicago\b|\bDepartment of Buildings\b/i],
+  // Packs added by the market loop name their own hints.
+  ...packs.filter((p) => p.profile.hints?.length).map((p): [string, RegExp] => [p.profile.id, new RegExp(`\\b(?:${p.profile.hints.map((h: string) => h.replace(/[.*+?^\${}()|[\]\\]/g, "\\$&")).join("|")})\\b`, "i")]),
 ];
 const PERMIT_PATTERNS = [/\b\d{7}-[A-Z]{2}(?![A-Za-z0-9])/, /\b1\d{8}\b/];
 const placeName = (id: string) => packs.find((p) => p.profile.id === id)?.profile.name ?? null;
@@ -233,7 +235,7 @@ async function handleProduct(req: IncomingMessage, res: ServerResponse): Promise
   const page = () => res.writeHead(200, { "content-type": "text/html; charset=utf-8" }).end(readFileSync(join(here, "start.html")));
   if (req.method === "GET" && (path === "/start" || /^\/r\/[a-f0-9]{32}$/.test(path))) return page(), true;
   if (req.method === "GET" && path === "/api/offer") {
-    return send(res, 200, { payments: paymentsOn(), price: PRICE, places: packs.map((p) => ({ id: p.profile.id, name: p.profile.name })) }), true;
+    return send(res, 200, { payments: paymentsOn(), price: PRICE, places: packs.filter((p) => p.profile.status !== "evaluating").map((p) => ({ id: p.profile.id, name: p.profile.name })) }), true;
   }
   if (req.method === "GET" && path === "/paid") {
     const id = await confirmPayment(url.searchParams.get("session_id") ?? "");

@@ -5,7 +5,7 @@
 //
 // Contact details are found by code, not by the model: an email address is kept only if it appears verbatim on a
 // fetched page. The model extracts descriptive facts, and each one needs a verbatim quote that code then checks.
-// TrueForge's web search is off on this server, so finding each firm's website is a seed step a person (or a
+// The agent has no web search, so finding each firm's website is a seed step a person (or a
 // session with search) does. This code never guesses a URL or an address.
 
 import { writeFileSync } from "node:fs";

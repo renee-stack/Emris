@@ -1,4 +1,4 @@
-# The Redline image: the API by default, or the MCP server with a different command (see compose.yaml).
+# The Redline image: the API, which also runs the research tools in-process.
 # Build from the repo root:  docker build -f deploy/Dockerfile --build-arg REDLINE_GIT_SHA=$(git rev-parse HEAD) .
 # NOT YET BUILT: Docker wasn't available where this was written.
 
@@ -37,7 +37,7 @@ RUN test ! -e .env \
  && ln -s /data/feedback feedback \
  && mkdir -p /data \
  && chown node:node /data
-EXPOSE 8791 8792
+EXPOSE 8792
 # Starts as root only so drop-root.sh can fix volume ownership. The service runs as the node user.
 ENTRYPOINT ["/app/deploy/drop-root.sh"]
 # Refuses to start without a key, because an open API would let anyone spend the model credit and read reports.

@@ -1,0 +1,23 @@
+# Adds HTTPS for a single VM, such as a Google Cloud e2-micro. Use it with compose.yaml:
+#
+#   docker compose -f compose.yaml -f compose.gcp.yaml up -d --build
+#
+# Set REDLINE_DOMAIN in .env, and REDLINE_PUBLIC_PORT=127.0.0.1:8792 so only Caddy can reach the API.
+# See docs/deploy.md, "Deploy on a Google Cloud VM".
+
+services:
+  caddy:
+    image: caddy:2.8
+    restart: unless-stopped
+    depends_on: [api]
+    environment:
+      REDLINE_DOMAIN: ${REDLINE_DOMAIN:?Set REDLINE_DOMAIN in deploy/.env}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./gcp/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+
+volumes:
+  caddy-data: {}

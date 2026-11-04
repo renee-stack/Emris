@@ -61,7 +61,7 @@ export function validateChange({ before, after, verdict, knownClaims, privateStr
   }
   const oldIds = new Set(oldVariants.map((v) => v.id));
   for (const v of newVariants.filter((x) => !oldIds.has(x.id))) {
-    if (!/^V\d+-[a-z0-9-]+$/.test(v.id)) problems.push(`New variant id ${v.id} must look like V4-short-name.`);
+    if (!/^V\d+-[a-z0-9-]+$/.test(v.id)) problems.push(`New variant id ${v.id} must look like V5-short-name.`);
     if (v.status !== "proposed") problems.push(`New variant ${v.id} must start as "proposed". A person or a decided verdict activates it.`);
     for (const c of v.required_claims ?? []) if (!knownClaims.includes(c)) problems.push(`New variant ${v.id} needs a claim that doesn't exist: ${c}. Claims are added by a person, with a source.`);
     if (!v.angle?.trim() || !v.ask?.trim() || !v.segments?.length) problems.push(`New variant ${v.id} is incomplete.`);
@@ -105,15 +105,15 @@ ${notes.length ? notes.map((n) => `- ${n}`).join("\n") : "(none)"}
 - Never name or describe a recipient, a firm, a domain or a person. Write general rules.
 - Don't state results or quote rates anywhere. Code writes those.
 - Keep the frontmatter, the headings, and the two lines <!-- VARIANTS --> and <!-- STANDING --> exactly as they are.
-- Existing variants are frozen and aren't yours to edit. New ideas are new variants: id like V4-short-name, with segments, angle and ask. Tell the drafter to insert claims rather than describe Redline. required_claims may only list: ${[...new Set(variants.flatMap((v) => v.required_claims))].join(", ") || "(none)"}, or be empty.
+- Existing variants are frozen and aren't yours to edit. New ideas are new variants: id like V5-short-name, with segments, angle and ask. Tell the drafter to insert claims rather than describe Redline. required_claims may only list: ${[...new Set(variants.flatMap((v) => v.required_claims))].join(", ") || "(none)"}, or be empty.
 
-Reply in this format and nothing else. Use [] when you have nothing for a list:
+Reply in this format and nothing else. Don't ask questions, because nobody can answer here. If a note is too thin to act on, leave the text as it is. Use [] when you have nothing for a list:
 
 <<<PLAYBOOK
 (the whole file below, with your changes)
 >>>
 <<<NEW_VARIANTS
-[{"id":"V4-short-name","segments":["architecture_firm","permit_expediter"],"angle":"","ask":"","required_claims":[]}]
+[{"id":"V5-short-name","segments":["architecture_firm","permit_expediter"],"angle":"","ask":"","required_claims":[]}]
 >>>
 <<<ACTIVATE
 ["id of a proposed variant to turn on"]

@@ -1,4 +1,4 @@
-// Shared helpers for the outreach agent: where its files live, its records, and its TrueForge agent.
+// Shared helpers for the outreach agent: where its files live, its records, and its agent.
 // The client, turn and session helpers come from scripts/lib.ts. Nothing here touches agent/, evals/ or runs/.
 
 import { execFileSync } from "node:child_process";
@@ -6,7 +6,7 @@ import { createHash } from "node:crypto";
 import { appendFileSync, existsSync, mkdirSync, readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import type { TrueForge, TrueForgeApi } from "@truefoundry/trueforge-sdk";
+import type { Runtime, RuntimeApi } from "../scripts/runtime.ts";
 import { die, findAgent, option, runTurn } from "../scripts/lib.ts";
 
 export const OUTREACH_DIR = dirname(fileURLToPath(import.meta.url));
@@ -265,16 +265,16 @@ export function variantSha(v: Variant): string {
   return sha(JSON.stringify({ id: v.id, segments: v.segments, angle: v.angle, ask: v.ask, required_claims: v.required_claims })).slice(0, 12);
 }
 
-// ---------- the TrueForge agent ----------
+// ---------- the agent ----------
 
 /**
  * Create or update the agent. It gets no tools at all: no MCP servers, no web search, no sandbox, no sub-agents.
  * That is what "no sending tool" rests on, so it's checked again after saving.
  */
-export async function syncOutreachAgent(tf: TrueForge): Promise<TrueForgeApi.Agent> {
+export async function syncOutreachAgent(tf: Runtime): Promise<RuntimeApi.Agent> {
   const file = JSON.parse(readFileSync(join(OUTREACH_DIR, "agent", "agent.json"), "utf8")) as { name: string; description: string; model: { name: string; params?: Record<string, unknown> } };
   const instructions = readFileSync(join(OUTREACH_DIR, "agent", "instructions.md"), "utf8").trim();
-  const manifest: TrueForgeApi.AgentSpec = {
+  const manifest: RuntimeApi.AgentSpec = {
     model: file.model,
     instructions,
     mcpServers: [],
@@ -314,8 +314,8 @@ export function startLedger(h: Home, command: string): Ledger {
   return { command, usd: 0, tokens: 0, turns: 0 };
 }
 
-/** One model turn with a budget check first, and its cost added to the ledger. TrueForge reports an estimated cost per turn. */
-export async function billedTurn(h: Home, tf: TrueForge, sessionId: string, ledger: Ledger, prompt: string): Promise<string> {
+/** One model turn with a budget check first, and its cost added to the ledger. The runtime estimates each turn's cost from its token counts. */
+export async function billedTurn(h: Home, tf: Runtime, sessionId: string, ledger: Ledger, prompt: string): Promise<string> {
   const policy = loadPolicy(h);
   if (ledger.usd >= policy.budget.max_usd_per_command) {
     throw new BudgetStop(`Stopped: this command reached its $${policy.budget.max_usd_per_command} limit (estimated $${ledger.usd.toFixed(4)}).`);

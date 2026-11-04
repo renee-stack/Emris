@@ -1,9 +1,9 @@
 // FICTIONAL TEST DATA. Every firm, address and outcome here is invented, uses a reserved .example domain, and carries
 // dataset: "test". None of it describes a real business or a real response.
 
-import { cpSync, existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { appendJsonl, gitIn, type Home, type Message, openHome, OUTREACH_DIR, type OutreachEvent, type Prospect, type Segment, type Sender, sha, type Suppression } from "../lib.ts";
+import { appendJsonl, gitIn, type Home, type Message, openHome, OUTREACH_DIR, type OutreachEvent, parseVariants, type Prospect, replaceVariants, type Segment, type Sender, sha, type Suppression } from "../lib.ts";
 
 export const TEST_SENDER: Sender = {
   from_name: "Test Sender (fictional)",
@@ -39,10 +39,18 @@ export function testProspect(n: number, segment: Segment = n % 2 ? "architecture
 }
 
 /** A scratch home holding fictional data, in its own git repo, so learn can show a real diff without touching this repo. */
+/** The experiment tests run on two fixed arms, whichever variants the live playbook has active. */
+export function fixedArmsPlaybook(text: string): string {
+  const arms = ["V1-time-share", "V2-need-real-letters"];
+  return replaceVariants(text, parseVariants(text).map((v) => ({ ...v, status: arms.includes(v.id) ? ("active" as const) : ("proposed" as const) })));
+}
+
 export function initTestHome(dir: string, prospects = 6): Home {
   if (existsSync(join(dir, "data", "DATASET"))) throw new Error(`${dir} is already a test home.`);
   mkdirSync(join(dir, "data"), { recursive: true });
   cpSync(join(OUTREACH_DIR, "agent"), join(dir, "agent"), { recursive: true });
+  const copied = join(dir, "agent", "playbook.md");
+  writeFileSync(copied, fixedArmsPlaybook(readFileSync(copied, "utf8")));
   writeFileSync(join(dir, "data", "DATASET"), "test\n");
   writeFileSync(join(dir, "data", "sender.json"), JSON.stringify(TEST_SENDER, null, 2));
   writeFileSync(join(dir, ".gitignore"), "data/\n");

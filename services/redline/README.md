@@ -2,7 +2,7 @@
 
 Redline turns a building department's correction letter into a ready-to-review response package: each comment sorted, cited to the governing code section, routed to whoever has to act, and drafted. Anything that needs a licensed professional's judgment is held for their sign-off.
 
-Built on [TrueForge](https://trueforge.dev) for the **Stranger Builds** challenge *"Build an agent that gets better every time it runs"*, from the TrueForge starter.
+Started on [TrueForge](https://trueforge.dev) for the **Stranger Builds** challenge *"Build an agent that gets better every time it runs"*, and now runs on Claude through Google Vertex AI.
 
 **Why corrections:** about two-thirds of Chicago permit time is spent with the applicant, not the city. The Department of Buildings reported 50 of 71 days in [November 2024](https://www.chicago.gov/content/dam/city/depts/obm/supp_info/2025Budget/2025BudgetOpeningStatements/Department%20Hearing%20Opening%20Statement%20DOB%20-%20FINAL.pdf), and [secondary reporting](https://chicagocitywire.com/chicago-buildings-department-reports-88-day-average-permit-time-down-slightly-in-volume) of October 2026 testimony gives about two-thirds of 88 days. The 117-day figure in the demo is a different measure, so don't compare it with these.
 
@@ -10,7 +10,7 @@ Built on [TrueForge](https://trueforge.dev) for the **Stranger Builds** challeng
 
 ```
 run the letters ──► the re-review scores them ──► the agent rewrites its own playbook ──► run again ──► higher score?
- (TrueForge session)     (evals/score.ts)          (committed with Agent-Session: <id>)
+  (one session)     (evals/score.ts)          (committed with Agent-Session: <id>)
 ```
 
 ## Run 1 vs run N
@@ -20,6 +20,8 @@ run the letters ──► the re-review scores them ──► the agent rewrites
 - **The change that did it:** commit `8b1fe6c`, the agent's rewrite of `correction-playbook`, with `Agent-Session: 01m69pgej4ab3j93madhjetcsk`.
 - **What the agent learned:** state the required revision marks, leave design values and compliance conclusions to the licensed professional, and list only sheets that are actually revised.
 - **What still fails:** it overapplies the revision-mark wording to 4 of 15 items where it doesn't belong, which the frozen scorer doesn't penalize, and one code-classification item still skips the architect. We dropped its first rewrite for the same overapplication and tightened the improve prompt; the kept rewrite still has the flaw.
+
+These runs used the tools as submitted. This branch has since added more, including past-comment search, so a rerun here isn't the same test: one scored 97.5 with about twice the tokens. To rerun under the submitted conditions, check out the `challenge-submission` tag.
 
 ## What the agent does
 
@@ -48,6 +50,10 @@ The agent sorts what it learns by where it holds:
 
 `npm run real:build` rebuilds real letters from Seattle's public records, and `npm run real:run` runs the agent on them, hiding reviewers' citations so they can be checked. Results are in `runs-real/`. See `docs/emris-integration.md` for how this connects to Emris.
 
+**Scores:** on 40 real Seattle letters, the agent went from 71 with no history to 77.7 with the city's past comments, then 80.6 with a process lookup we added by hand. Those three runs could see the review that labels each comment, which inflated them. Rerun with it hidden, the 80.6 agent scores 78, and later runs should be compared with that one.
+
+**This branch doesn't reproduce those scores.** `agent/` on `main` stays exactly as submitted for the challenge. The agent behind the Seattle runs, with its hand-written process lookup, is on the [`real-data`](https://github.com/quindelin/corrections-agent/tree/real-data) branch until judging ends.
+
 ## Built for many places
 
 Everything specific to a place lives in a jurisdiction pack. The tools, scorer and playbook are shared.
@@ -72,41 +78,49 @@ In `inline` skill mode every local skill is pasted into the instructions, which 
 - Routing has no outcome yet for disputing a comment.
 - Learned rules need a scope and an expiry, so they don't outlive a code change.
 
-## How it uses TrueForge
+## Finding new places
 
-- **Runtime:** the agent runs on TrueForge, and each run or demo analysis is a session.
-- **SDK:** agent sync, sessions, turns and session export, in `scripts/lib.ts`.
-- **MCP tools:** `mcp/server.ts` is registered as the `permit-research` connector, with `list_jurisdictions`, `search_code`, `get_section` and `permit_stats`.
+`npm run markets -- run` looks for places whose permit data shows corrections, then builds, scores and improves the agent for the best new one on its own branch, and stops for you to review. See [markets/README.md](markets/README.md).
+
+**Cincinnati** was the first: holdout 66.2 to 70.6, with a likely range that crosses zero, so the verdict is inconclusive. Its letters, pack and scores are here, in `realdata/cincinnati/`, `jurisdictions/cincinnati/` and `runs-real/cincinnati/`. The rules the agent wrote for it aren't, because one citation rule is wrong and its playbook change made Chicago worse. See `markets/reports/cincinnati.md`.
+
+## Supporting agents
+
+The goal is a company whose agents improve from real outcomes. That's where this is heading, not what it does today. None of these agents can send anything, no message or request has been sent, and neither is part of the challenge proof.
+
+- **Customer outreach** (`outreach/`) finds firms, drafts messages and learns from replies. It's only been tested on fictional outcomes.
+- **Government records** (`gov-outreach/`) drafts and tracks records requests for real plan review comments. It's only been tested on fictional agencies. Its drafts in `gov-outreach/drafts/` haven't been reviewed by a lawyer, and you'd send them yourself.
+
+## How it runs
+
+- **Runtime:** the agent runs on Claude through Google Vertex AI, in a short loop in `scripts/runtime.ts`. Each run or demo analysis is a session, and every model call and tool call is recorded in it.
+- **Tools:** the research tools in `mcp/tools.ts` (`list_jurisdictions`, `search_code`, `get_section`, `similar_comments`, `permit_stats`) run in the same process. `npm run mcp` still serves them over MCP for other clients.
 - **Audit trail:** the demo shows every tool call from the session export.
 
-TrueForge doesn't choose models per task or per subagent yet ([docs](https://trueforge.dev/models)), so one model does all of this. The architect sign-off is in the demo app, not a TrueForge tool approval.
+Runs 1 and 2 in `runs/` were made on [TrueForge](https://trueforge.dev) during the hackathon, and are kept as they ran. A rerun on Vertex isn't the same test, so compare new runs with each other. The architect sign-off is in the demo app.
 
 ## Quickstart
 
-You need Node.js 22.14+, git, and one model key.
+You need Node.js 22.14+, git, and a Google Cloud project with Claude Haiku 4.5 enabled in [Vertex AI's Model Garden](https://console.cloud.google.com/vertex-ai/model-garden).
 
-**1. Start TrueForge** in its own terminal. The allowed host lets it reach the local MCP server.
+**1. Sign in to Google Cloud** for Application Default Credentials, and say which project to use:
 
 ```bash
-OUTBOUND_URL_ALLOWED_HOSTS='["127.0.0.1"]' npx @truefoundry/trueforge@latest
+gcloud auth application-default login
 ```
 
-Open http://localhost:8790 → **Settings → Models** → pick your provider → paste your key → **Create**.
+Copy `.env.example` to `.env` and set `VERTEX_PROJECT_ID`. The region defaults to `global`.
 
-**2. Install, and start the tools** in a second terminal:
+**2. Install:**
 
 ```bash
 npm install
 ```
 
-```bash
-npm run mcp
-```
-
-**3. Create the agent.** `agent/agent.json` uses `truefoundry/claude-haiku-4-5`, a custom provider pointing at a TrueFoundry AI Gateway. For another model, set `TF_MODEL=provider/model` in `.env` (copy it from `.env.example`).
+**3. Check the agent and the model.** `--ping` makes one tiny model call. `agent/agent.json` names `claude-haiku-4-5`, which runs as `claude-haiku-4-5@20251001`. Set `REDLINE_MODEL` to use another Vertex model id.
 
 ```bash
-npm run setup
+npm run setup -- --ping
 ```
 
 **4. Run the loop.** Don't change `evals/` after run 1.
@@ -143,7 +157,7 @@ Reports, jobs, rate limits, the payment ledger and the waitlist go through one i
 - **Retention:** reports are deleted after 90 days, or `REDLINE_RETENTION_DAYS`. Instances purge at startup and hourly, and an expired report can't be read even before the purge. Once a permit's reports are deleted, its next round is no longer free. Jobs last an hour.
 - **Deleting one report:** `npm run store -- delete <report id>`, or `deleteReport()` in `demo/reports.ts`. There's no HTTP route for it. `npm run store -- purge` runs the retention purge now.
 - **Personal data:** rate limits keep a keyed hash of the client address, not the address. Set `REDLINE_RATE_LIMIT_SECRET` to the same value on every instance, or they fall back to `REDLINE_API_KEY`. Jobs keep a report's id, not its contents.
-- **Not covered:** `feedback/reviews.jsonl` and the review queue's in-memory letters stay local to one instance, and retention doesn't reach them or TrueForge sessions. Report text isn't encrypted by this code, so use a database with encryption at rest. Existing local reports aren't copied into Postgres.
+- **Not covered:** `feedback/reviews.jsonl` and the review queue's in-memory letters stay local to one instance, and retention doesn't reach them. Report text isn't encrypted by this code, so use a database with encryption at rest. Existing local reports aren't copied into Postgres.
 - **Tests:** `npm run test:demo` runs the same behavior tests on both backends. Postgres is PGlite, the real engine compiled to WebAssembly, reached through the `pg` driver. It has one backend process, so statements never run truly in parallel. These tests have not run against a real Postgres server.
 
 To package it for a container host, see [docs/deploy.md](docs/deploy.md).
@@ -186,9 +200,14 @@ agent/            agent.json, instructions.md, skills/ (what the agent rewrites)
 evals/            tasks/*.json (07 and 08 are holdouts), score.ts
 jurisdictions/    one pack per place
 mcp/server.ts     the research tools
+markets/          the agent that finds new places and makes Redline work there
+outreach/         the customer outreach agent
+gov-outreach/     the government records agent
+realdata/         real letters and the eval against the city's own labels
+runs-real/        results on real letters, separate from runs/
 demo/             the review queue
 feedback/         architect decisions from the demo (created on first use)
-scripts/          setup, run-evals, improve, export-session
+scripts/          setup, run-evals, improve, runtime
 runs/             one folder per run, plus summary.csv
 docs/             locale research, deployment
 deploy/           Dockerfiles, compose and Fly.io config
@@ -196,12 +215,9 @@ deploy/           Dockerfiles, compose and Fly.io config
 
 ## Troubleshooting
 
-- **`Can't reach TrueForge`**: is it still running? For another port, set `TRUEFORGE_BASE_URL`.
-- **`The permit-research MCP server isn't running`**: run `npm run mcp`.
-- **`Model "..." is not configured`**: add the provider in Settings → Models, and set `TF_MODEL` to the exact name shown there.
-- **Tool calls fail, or the connector is blocked**: start TrueForge with `OUTBOUND_URL_ALLOWED_HOSTS` as in step 1.
+- **`Could not load the default credentials`**: run `gcloud auth application-default login`, or on a VM, give it a service account with the Vertex AI User role.
+- **`Permission denied` or `model not found` from Vertex**: enable Claude Haiku 4.5 in Model Garden for the project in `VERTEX_PROJECT_ID`, and check the region.
 - **`agent/ or evals/ has uncommitted changes`**: commit them, so `agent_commit` says exactly what ran.
-- **The model rejects `temperature`**: remove `params` in `agent/agent.json`.
 
 ## Challenge checklist
 

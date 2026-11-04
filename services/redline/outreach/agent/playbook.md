@@ -42,7 +42,7 @@ Each message uses exactly one variant, and the code assigns it. A variant's text
 [
   {
     "id": "V1-time-share",
-    "status": "active",
+    "status": "retired",
     "segments": [
       "architecture_firm",
       "permit_expediter"
@@ -55,7 +55,7 @@ Each message uses exactly one variant, and the code assigns it. A variant's text
   },
   {
     "id": "V2-need-real-letters",
-    "status": "active",
+    "status": "retired",
     "segments": [
       "architecture_firm",
       "permit_expediter"
@@ -73,6 +73,17 @@ Each message uses exactly one variant, and the code assigns it. A variant's text
     ],
     "angle": "Open with a question about which correction comments cost them the most time. Insert the claims about Redline, then ask.",
     "ask": "A short reply naming the kind of comment that costs them the most time.",
+    "required_claims": []
+  },
+  {
+    "id": "V4-run-your-letter",
+    "status": "active",
+    "segments": [
+      "architecture_firm",
+      "permit_expediter"
+    ],
+    "angle": "Insert the claims about Redline, say why you're writing to this firm, ask for one redacted letter, offer to run it and send back the result so they can say where it's wrong, and state how the letter will be handled.",
+    "ask": "One redacted correction letter from a finished project, with Redline's result on it sent back to them.",
     "required_claims": []
   }
 ]

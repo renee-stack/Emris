@@ -100,7 +100,7 @@ export function lintDraft(d: { subject: string; body: string; facts_used: string
     const fact = prospect.facts.find((f) => f.id === id);
     if (!fact) {
       block("fact_unknown", `Fact ${id} doesn't exist for this prospect.`);
-    } else if (!factUsed(fact.value, own)) {
+    } else if (!factUsed(fact.value, own) && !(greeting && fact.kind === "principal" && fact.value.toLowerCase().split(/\s+/).includes(greeting.toLowerCase()))) {
       block("fact_unused", `Fact ${id} is listed in facts_used, but nothing from it is in the message. Use it, or remove it from the list.`);
     }
   }

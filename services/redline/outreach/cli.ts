@@ -3,7 +3,7 @@
 import { client, die, flag, option } from "../scripts/lib.ts";
 import { quota, validateSender } from "./compliance.ts";
 import { learn } from "./learn.ts";
-import { loadSender, now, openHome, parseVariants, totalSpend } from "./lib.ts";
+import { type Home, loadSender, now, openHome, parseVariants, readJsonl, totalSpend } from "./lib.ts";
 import { approve, draft, draftable, exportOutbox, loadAll, logOutcome, reject, resume, review, reviewProspect, suppress } from "./messages.ts";
 import { buildCandidates, research } from "./research.ts";
 import { computeVerdict, messageState } from "./stats.ts";
@@ -35,7 +35,7 @@ Learn
 
 Status
   status                                       what's waiting, limits, suppression, verdict, spend
-  spend                                        estimated cost of every session on this TrueForge server
+  spend                                        estimated model spend in this home, by command
 
 Testing
   init-test --dir DIR                          make a scratch home of clearly fictional data`);
@@ -62,30 +62,23 @@ function status(): void {
   console.log(`Estimated model spend in this home: $${totalSpend(h).toFixed(4)}.`);
 }
 
-/** TrueForge's own estimate for every session on the server, evals included. It's not the gateway's invoice. */
-async function spend(): Promise<void> {
-  const tf = client();
-  const byPurpose = new Map<string, { sessions: number; usd: number; tokens: number }>();
-  let sessions = 0;
-  for await (const session of await tf.sessions.list()) {
-    sessions += 1;
-    const purpose = String((session.metadata as Record<string, unknown> | undefined)?.purpose ?? "other");
-    const row = byPurpose.get(purpose) ?? { sessions: 0, usd: 0, tokens: 0 };
-    row.sessions += 1;
-    for await (const t of await tf.sessions.listTurns(session.id)) {
-      const metrics = "metrics" in t.state ? t.state.metrics : undefined;
-      row.usd += metrics?.totalCostInUsd ?? 0;
-      row.tokens += metrics?.totalTokens ?? 0;
-    }
-    byPurpose.set(purpose, row);
-    if (sessions >= Number(option("max-sessions") ?? 500)) break;
+/** This home's model spend by command, from its ledger. An estimate from token counts, not Google's invoice. */
+function spend(h: Home): void {
+  const rows = readJsonl<{ command: string; usd: number; tokens: number }>(h.spend);
+  const byCommand = new Map<string, { runs: number; usd: number; tokens: number }>();
+  for (const r of rows) {
+    const row = byCommand.get(r.command) ?? { runs: 0, usd: 0, tokens: 0 };
+    row.runs += 1;
+    row.usd += r.usd;
+    row.tokens += r.tokens ?? 0;
+    byCommand.set(r.command, row);
   }
   let total = 0;
-  for (const [purpose, r] of [...byPurpose].sort()) {
-    console.log(`${purpose.padEnd(22)} ${String(r.sessions).padStart(4)} sessions  ${String(r.tokens).padStart(9)} tokens  ~$${r.usd.toFixed(4)}`);
+  for (const [command, r] of [...byCommand].sort()) {
+    console.log(`${command.padEnd(22)} ${String(r.runs).padStart(4)} runs  ${String(r.tokens).padStart(9)} tokens  ~$${r.usd.toFixed(4)}`);
     total += r.usd;
   }
-  console.log(`${"total".padEnd(22)} ${String(sessions).padStart(4)} sessions  ${"".padStart(16)}~$${total.toFixed(4)}  (TrueForge's estimate, not the gateway's invoice)`);
+  console.log(`${"total".padEnd(22)} ${String(rows.length).padStart(4)} runs  ${"".padStart(16)}~$${total.toFixed(4)}  (an estimate, not Google's invoice)`);
 }
 
 const command = process.argv[2];
@@ -132,7 +125,7 @@ switch (command) {
     status();
     break;
   case "spend":
-    await spend();
+    spend(openHome());
     break;
   case "init-test":
     initTestHome(option("dir") ?? die("Give --dir, a scratch directory outside your real data."));

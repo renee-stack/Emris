@@ -1,5 +1,5 @@
 {
- "note": "Real letters from Seattle's public Plan Comments dataset. Reviewers' code citations are hidden in the text and kept as labels. Contact details removed.",
+ "note": "Real letters from Seattle's public Plan Comments dataset. Reviewers' code citations are hidden in the text and kept as labels. Contact details, staff names and section headings removed.",
  "letters": [
   {
    "id": "01-drainage-7034014-CN",
@@ -24,7 +24,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "It appears that the project to the north at 2536 30th Ave W may be closely related to this project. As the project plans have not been submitted, it is not clear whether these two projects are closely related or not. The preliminary Site Plan for the project to the north shows shared access through a vehicle maneuvering using the lot to the south. Provide information to confirm if this project is closely related to any other projects that are being submitted. If the project is closely related, the thresholds must be considered using the total of all closely related projects. If this includes 5,000 SF or more of new plus replaced hard surface, the approved point of discharge will the Public Storm Main which will need to be extended from W Smith St. If the projects are not closely related, provide clear information including submitting a plan for the adjacent lot that there are no shared elements including access, utilities or other physical elements such as walls.Eric Dripps (4)",
+     "text": "It appears that the project to the north at 2536 30th Ave W may be closely related to this project. As the project plans have not been submitted, it is not clear whether these two projects are closely related or not. The preliminary Site Plan for the project to the north shows shared access through a vehicle maneuvering using the lot to the south. Provide information to confirm if this project is closely related to any other projects that are being submitted. If the project is closely related, the thresholds must be considered using the total of all closely related projects. If this includes 5,000 SF or more of new plus replaced hard surface, the approved point of discharge will the Public Storm Main which will need to be extended from W Smith St. If the projects are not closely related, provide clear information including submitting a plan for the adjacent lot that there are no shared elements including access, utilities or other physical elements such as walls.[name removed] (4)",
      "labels": {
       "discipline": "drainage",
       "citations": [],
@@ -87,7 +87,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "Specific Details: Between CY1 and CY2 several dimensions on the site plan were removed. Please restore the required setback dimensions and the dimensions from the DADU eaves to the PL.Zoning - General and Special Corrections (1)",
+     "text": "Specific Details: Between CY1 and CY2 several dimensions on the site plan were removed. Please restore the required setback dimensions and the dimensions from the DADU eaves to the PL.",
      "labels": {
       "discipline": "zoning",
       "citations": [],
@@ -123,7 +123,7 @@
     },
     {
      "id": "C4",
-     "text": "[code reference removed] (Improvement Requirements for Existing Streets in Residential and Commercial Zones): Pedestrian Updates in Urban Village: [Repeat Correction] This project is located in an urban village. Per [code reference removed], the sidewalks, curbs, curb ramps, and accessible crossings may need to be brought into compliance in order to meet standards in the Right-of-Way Improvements Manual. Please provide proof of correspondence with SDOT confirming or negating the need for pedestrian circulation updates. Contact Jackson Keenan-Koch ([email removed]).Zoning - [code reference removed] - Streets, Alleys, and Easements (1)",
+     "text": "[code reference removed] (Improvement Requirements for Existing Streets in Residential and Commercial Zones): Pedestrian Updates in Urban Village: [Repeat Correction] This project is located in an urban village. Per [code reference removed], the sidewalks, curbs, curb ramps, and accessible crossings may need to be brought into compliance in order to meet standards in the Right-of-Way Improvements Manual. Please provide proof of correspondence with SDOT confirming or negating the need for pedestrian circulation updates. Contact [name removed] ([email removed]).Zoning - [code reference removed] - Streets, Alleys, and Easements (1)",
      "labels": {
       "discipline": "zoning",
       "citations": [
@@ -185,7 +185,7 @@
     },
     {
      "id": "C2",
-     "text": "Specify that the exterior wall less than 5' - 0\" from the fire separation line shall be symmetrically rated one hour wall Sheet A3.0Ordinance Structural (4)",
+     "text": "Specify that the exterior wall less than 5' - 0\" from the fire separation line shall be symmetrically rated one hour wall Sheet A3.0",
      "labels": {
       "discipline": "fire",
       "citations": [],
@@ -405,7 +405,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "Demolition Permit: This project is contingent upon issuance of a demolition permit. Demolition permit 7026976-DM must be issued prior to zoning approval.Zoning - General and Special Corrections (2)",
+     "text": "Demolition Permit: This project is contingent upon issuance of a demolition permit. Demolition permit 7026976-DM must be issued prior to zoning approval.",
      "labels": {
       "discipline": "zoning",
       "citations": [],
@@ -474,7 +474,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "[code reference removed] B.1. Provide a note on the plan that the site is designated as a potential landslide area due to steep slopes.ECA GeoTech (8)",
+     "text": "[code reference removed] B.1. Provide a note on the plan that the site is designated as a potential landslide area due to steep slopes.",
      "labels": {
       "discipline": "geotech",
       "citations": [
@@ -641,7 +641,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "This project has been reviewed for conformance with one or more of the following codes: 2021 Seattle Residential Code (SRC).Ordinance Structural (4)",
+     "text": "This project has been reviewed for conformance with one or more of the following codes: 2021 Seattle Residential Code (SRC).",
      "labels": {
       "discipline": null,
       "citations": [],
@@ -710,7 +710,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "This project has been reviewed for conformance with one or more of the following codes: 2018 Seattle Building Code (SBC); 2018 Seattle Existing Building Code (SEBC); 2018 Seattle Energy Code (SEC); Grading Code; Environmentally Critical Areas Regulations (ECA).Ordinance (9)",
+     "text": "This project has been reviewed for conformance with one or more of the following codes: 2018 Seattle Building Code (SBC); 2018 Seattle Existing Building Code (SEBC); 2018 Seattle Energy Code (SEC); Grading Code; Environmentally Critical Areas Regulations (ECA).",
      "labels": {
       "discipline": null,
       "citations": [],
@@ -845,7 +845,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "Please ADD a Site Plan, per Tip 103 - Site PlanAddressing (2)",
+     "text": "Please ADD a Site Plan, per Tip 103 - Site Plan",
      "labels": {
       "discipline": "addressing",
       "citations": [],
@@ -888,7 +888,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "Please provide an arborist report and ISA basic risk assessment form to document the existing conditions in regards to the proposed removal of the tier 2 cedar tree, The arborist report should be provided by a registered provider: https://www.seattle.gov/trees/service-providers per risk assessment section requirements of directors rule 7-2024 https://www.seattle.gov/dpd/codes/dr/DR%207-2024.pdfTree (4)",
+     "text": "Please provide an arborist report and ISA basic risk assessment form to document the existing conditions in regards to the proposed removal of the tier 2 cedar tree, The arborist report should be provided by a registered provider: https://www.seattle.gov/trees/service-providers per risk assessment section requirements of directors rule 7-2024 https://www.seattle.gov/dpd/codes/dr/DR%207-2024.pdf",
      "labels": {
       "discipline": "tree",
       "citations": [],
@@ -943,7 +943,7 @@
     "jurisdiction": "seattle",
     "address": "4448 CALIFORNIA AVE SW",
     "description": "Construct new mixed-use building occupy per plan. Permit class: Multifamily. Zoning: NC2.",
-    "reviewer": "Seattle SDCI, 6823941-CN Plan Set_Cycle2_CJ_Summary + yazdidk"
+    "reviewer": "Seattle SDCI, 6823941-CN Plan Set_Cycle2_CJ_Summary"
    },
    "outcome": {
     "review_cycles": 11,
@@ -953,7 +953,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "Sheet C1.0: Interceptor Swale shall meet the requirements of [code reference removed] of Volume 2 of the Seattle Stormwater manual BMP E2.80: Earth Dike and Drainage Swale and BMP E2.35: Check Dams,4.2.1.4. Please include a construction detail for interceptor Swale which meets the design criteria of BMP E2.35 and BMP E 2.80.Drainage (7)",
+     "text": "Sheet C1.0: Interceptor Swale shall meet the requirements of [code reference removed] of Volume 2 of the Seattle Stormwater manual BMP E2.80: Earth Dike and Drainage Swale and BMP E2.35: Check Dams,4.2.1.4. Please include a construction detail for interceptor Swale which meets the design criteria of BMP E2.35 and BMP E 2.80.",
      "labels": {
       "discipline": "drainage",
       "citations": [],
@@ -1056,7 +1056,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "CYCLE 1 Sheet A2.1 [code reference removed] - Provide details and notes that clearly show a 1-hour rated floor/ceiling and/or wall assembly between the two dwelling units. [code reference removed] - Provide details and notes that clearly show how the rated wall assembly between the two dwelling units is continuous from foundation to underside of roof sheathing CYCLE 2 Repeat comment: [code reference removed] - Provide details or notes to clearly show the 1-hr wall assembly between the two dwellings is continuous to the underside of SFR roof sheathing.Ordinance (2)",
+     "text": "CYCLE 1 Sheet A2.1 [code reference removed] - Provide details and notes that clearly show a 1-hour rated floor/ceiling and/or wall assembly between the two dwelling units. [code reference removed] - Provide details and notes that clearly show how the rated wall assembly between the two dwelling units is continuous from foundation to underside of roof sheathing CYCLE 2 Repeat comment: [code reference removed] - Provide details or notes to clearly show the 1-hr wall assembly between the two dwellings is continuous to the underside of SFR roof sheathing.",
      "labels": {
       "discipline": "fire",
       "citations": [
@@ -1131,7 +1131,7 @@
     },
     {
      "id": "C3",
-     "text": "[code reference removed] C.The geotechnical report uploaded is missing the test pit logs, which are necessary to evaluate if pin piles are required for all of the proposed foundations. Please upload the report with all of the logs included. Additional plan review and assignment of geotechnical special inspections will occur in a subsequent review cycle. Sheet S2.0 ECA GeoTech (3)",
+     "text": "[code reference removed] C.The geotechnical report uploaded is missing the test pit logs, which are necessary to evaluate if pin piles are required for all of the proposed foundations. Please upload the report with all of the logs included. Additional plan review and assignment of geotechnical special inspections will occur in a subsequent review cycle. Sheet S2.0",
      "labels": {
       "discipline": "geotech",
       "citations": [
@@ -1168,7 +1168,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "Please show Tree 3, listed on the arborist report on the site plan if it is still present.Deborah McGarry (4)",
+     "text": "Please show Tree 3, listed on the arborist report on the site plan if it is still present.[name removed] (4)",
      "labels": {
       "discipline": "tree",
       "citations": [],
@@ -1235,7 +1235,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "A Memorandum of Drainage Control (MDC) is required prior to approval of this building permit per [code reference removed] B.1.d. The draft MDC is approved by this reviewer. The MDC must be signed and notarized by the owner and recorded with King County prior to approval of Drainage Review for this permit. Note: Exhibit A for the MDC is generated by the On-site Stormwater Management Calculator. Attach Exhibit A to the MDC form at the link found above. Submit MDC (1)",
+     "text": "A Memorandum of Drainage Control (MDC) is required prior to approval of this building permit per [code reference removed] B.1.d. The draft MDC is approved by this reviewer. The MDC must be signed and notarized by the owner and recorded with King County prior to approval of Drainage Review for this permit. Note: Exhibit A for the MDC is generated by the On-site Stormwater Management Calculator. Attach Exhibit A to the MDC form at the link found above.",
      "labels": {
       "discipline": "drainage",
       "citations": [
@@ -1247,7 +1247,7 @@
     },
     {
      "id": "C2",
-     "text": "Because project ’s proposed side sewer/service drain will cross another ’s property or properties, a new Side Sewer Easement Agreement is required prior to approval of this building permit per [code reference removed] A. Please submit a draft Side Sewer Easement Agreement. Submit the unrecorded, but completed form for review with the next submittal. Once we verify that it has been prepared correctly, it must be signed and notarized by the owner/s of properties that must be crossed (Grantor/s) as well as the owner of the project property (Grantee) and then recorded with King County before the Building Permit may be approved. The forms for the Side Sewer Easement Agreement can be found on the SDCI Stormwater Code Website under the Forms and Documents section... http://www.seattle.gov/sdci/codes/codes-we-enforce-(a-z)/stormwater-codeSubmit SS Easement (1)",
+     "text": "Because project ’s proposed side sewer/service drain will cross another ’s property or properties, a new Side Sewer Easement Agreement is required prior to approval of this building permit per [code reference removed] A. Please submit a draft Side Sewer Easement Agreement. Submit the unrecorded, but completed form for review with the next submittal. Once we verify that it has been prepared correctly, it must be signed and notarized by the owner/s of properties that must be crossed (Grantor/s) as well as the owner of the project property (Grantee) and then recorded with King County before the Building Permit may be approved. The forms for the Side Sewer Easement Agreement can be found on the SDCI Stormwater Code Website under the Forms and Documents section... http://www.seattle.gov/sdci/codes/codes-we-enforce-(a-z)/stormwater-code",
      "labels": {
       "discipline": "drainage",
       "citations": [
@@ -1259,7 +1259,7 @@
     },
     {
      "id": "C3",
-     "text": "Because the project ’s proposed side sewer/service drain will be shared by other parcels/lots, a recorded Joint Use and Maintenance Agreement is required prior to approval of this building permit per [code reference removed] B. Please submit a draft Joint Use and Maintenance Agreement form. Submit the unrecorded, but completed form for review with the next submittal. Once we verify that it has been prepared correctly, it must be signed and notarized by all owners of properties that will be served by the shares side sewer and recorded with King County before the Building Permit may be approved. The forms for the Joint Use and Maintenance Agreement can be found on the SDCI Stormwater Code Website under the Forms and Documents section... http://www.seattle.gov/sdci/codes/codes-we-enforce-(a-z)/stormwater-codeSubmit SS JUMA (1)",
+     "text": "Because the project ’s proposed side sewer/service drain will be shared by other parcels/lots, a recorded Joint Use and Maintenance Agreement is required prior to approval of this building permit per [code reference removed] B. Please submit a draft Joint Use and Maintenance Agreement form. Submit the unrecorded, but completed form for review with the next submittal. Once we verify that it has been prepared correctly, it must be signed and notarized by all owners of properties that will be served by the shares side sewer and recorded with King County before the Building Permit may be approved. The forms for the Joint Use and Maintenance Agreement can be found on the SDCI Stormwater Code Website under the Forms and Documents section... http://www.seattle.gov/sdci/codes/codes-we-enforce-(a-z)/stormwater-code",
      "labels": {
       "discipline": "drainage",
       "citations": [
@@ -1294,7 +1294,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "This project has been reviewed for conformance with one or more of the following codes: 2018 Seattle Residential Code (SRC).Ordinance Structural (4)",
+     "text": "This project has been reviewed for conformance with one or more of the following codes: 2018 Seattle Residential Code (SRC).",
      "labels": {
       "discipline": null,
       "citations": [],
@@ -1363,7 +1363,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "CODE EDITION. This project has been reviewed for conformance with one or more of the following codes: 2021 Seattle Residential Code (SRC); 2021 Seattle Energy Code (SEC). Revise the plans to specify these code editions.Ordinance Structural (9)",
+     "text": "CODE EDITION. This project has been reviewed for conformance with one or more of the following codes: 2021 Seattle Residential Code (SRC); 2021 Seattle Energy Code (SEC). Revise the plans to specify these code editions.",
      "labels": {
       "discipline": null,
       "citations": [],
@@ -1490,7 +1490,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "Sheet A130 [code reference removed]: Please note on drawing that the design professional or builder shall complete and post a \"Compliance Certificate\" at designated location to final inspection. A single blank form should be included on the plan drawings. This is available online at http://www.energy.wsu.edu/Documents/Compliance%20Certificate%202018%20WSEC.pdfEnergy (4)",
+     "text": "Sheet A130 [code reference removed]: Please note on drawing that the design professional or builder shall complete and post a \"Compliance Certificate\" at designated location to final inspection. A single blank form should be included on the plan drawings. This is available online at http://www.energy.wsu.edu/Documents/Compliance%20Certificate%202018%20WSEC.pdf",
      "labels": {
       "discipline": "energy",
       "citations": [
@@ -1569,7 +1569,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "This project has been reviewed for conformance with one or more of the following codes: 2021 Seattle Mechanical Code (SMC); 2021 Seattle Energy Code (SEC); 2021 Seattle Fuel Gas Code (SFGC); 2021 Seattle Residential Code (SRC); and 2021 Seattle Building Code (SBC).Energy (4)",
+     "text": "This project has been reviewed for conformance with one or more of the following codes: 2021 Seattle Mechanical Code (SMC); 2021 Seattle Energy Code (SEC); 2021 Seattle Fuel Gas Code (SFGC); 2021 Seattle Residential Code (SRC); and 2021 Seattle Building Code (SBC).",
      "labels": {
       "discipline": "energy",
       "citations": [],
@@ -1632,7 +1632,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "Repeated and Revised See design data on sheet G1. It appears at rest earth pressures do not match the geotechnical report for this site (see report by geotech consultants, inc. dated June 6, 2024). Revise to match.JBronner (3)",
+     "text": "Repeated and Revised See design data on sheet G1. It appears at rest earth pressures do not match the geotechnical report for this site (see report by geotech consultants, inc. dated June 6, 2024). Revise to match.[name removed] (3)",
      "labels": {
       "discipline": "structural",
       "citations": [],
@@ -1691,7 +1691,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "No Action Required Code Edition: This project has been reviewed for ordinance conformance with the 2018 Seattle Residential Code (SRC) and structural conformance with the 2018 Seattle Building Code (SBC).Ordinance Structural (4)",
+     "text": "No Action Required Code Edition: This project has been reviewed for ordinance conformance with the 2018 Seattle Residential Code (SRC) and structural conformance with the 2018 Seattle Building Code (SBC).",
      "labels": {
       "discipline": null,
       "citations": [],
@@ -1760,7 +1760,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "A0.0: Code Edition - Revise the plan set to state that this project has been reviewed for ordinance conformance with the 2021 Seattle Residential Code (SRC) and structural conformance with the 2021 Seattle Building Code (SBC).Ordinance Structural (4)",
+     "text": "A0.0: Code Edition - Revise the plan set to state that this project has been reviewed for ordinance conformance with the 2021 Seattle Residential Code (SRC) and structural conformance with the 2021 Seattle Building Code (SBC).",
      "labels": {
       "discipline": null,
       "citations": [],
@@ -1827,7 +1827,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "This project has been reviewed for conformance with one or more of the following codes: 2018 Seattle Building Code (SBC)Structural Engineer (5)",
+     "text": "This project has been reviewed for conformance with one or more of the following codes: 2018 Seattle Building Code (SBC)",
      "labels": {
       "discipline": "structural",
       "citations": [],
@@ -1906,7 +1906,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "Thank you for providing the Green Building Standard Development Site Form. However, the Statement of Green Building Inspection is also required. Please upload both of the completed forms to the portal and ensure they are both embedded within the plan set. Zoning (2)",
+     "text": "Thank you for providing the Green Building Standard Development Site Form. However, the Statement of Green Building Inspection is also required. Please upload both of the completed forms to the portal and ensure they are both embedded within the plan set.",
      "labels": {
       "discipline": "zoning",
       "citations": [],
@@ -1951,7 +1951,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "Please include the tree information within the plan set. The arborist report Site plan includes all the required information that needs to be part of the approved plans. The following two corrections are for the site replacement trees and should be added to the tree site plan:Paul Humphries (4)",
+     "text": "Please include the tree information within the plan set. The arborist report Site plan includes all the required information that needs to be part of the approved plans. The following two corrections are for the site replacement trees and should be added to the tree site plan:[name removed] (4)",
      "labels": {
       "discipline": "tree",
       "citations": [],
@@ -2014,7 +2014,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "This project has been reviewed for conformance with the 2021 Seattle Residential Code (SRC) and 2021 Seattle Building Code (SBC).Ordinance Structural (4)",
+     "text": "This project has been reviewed for conformance with the 2021 Seattle Residential Code (SRC) and 2021 Seattle Building Code (SBC).",
      "labels": {
       "discipline": null,
       "citations": [],
@@ -2147,7 +2147,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "Master Use Permit: Review Timing: Currently this project is being reviewed under Master Use Permit (MUP) 3041800-LU. After the MUP has been issued, I will need to verify the project scope and application of development standards are consistent between the MUP and the building permit. Zoning review cannot be approved until the MUP has been issued. Please incorporate any required conditions of the MUP decision into the plan set and note any changes between the MUP and building permit in your response letter. Additionally, mark the MUP pages in this plan set as FOR REFERENCE ONLY.Zoning - General and Special Corrections (4)",
+     "text": "Master Use Permit: Review Timing: Currently this project is being reviewed under Master Use Permit (MUP) 3041800-LU. After the MUP has been issued, I will need to verify the project scope and application of development standards are consistent between the MUP and the building permit. Zoning review cannot be approved until the MUP has been issued. Please incorporate any required conditions of the MUP decision into the plan set and note any changes between the MUP and building permit in your response letter. Additionally, mark the MUP pages in this plan set as FOR REFERENCE ONLY.",
      "labels": {
       "discipline": "zoning",
       "citations": [],
@@ -2286,7 +2286,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "Sheet C3.1: Repeated correction: Curb discharge is permitted for this project, but since the curb is less than 4-inches tall, a Curb Discharge Concrete Culvert With Steel Plate will be required. Also, show and call out the Curb Discharge Concrete Culvert With Steel Plat in the plan view extending from the property line to the curb with the cast-in-place box located within the property line. Note: The use of such a Curb Discharge Concrete Culvert With Steel Plate box require an annual/long term SDOT Street Use Permit and an annual fee will be charged.Drainage (5)",
+     "text": "Sheet C3.1: Repeated correction: Curb discharge is permitted for this project, but since the curb is less than 4-inches tall, a Curb Discharge Concrete Culvert With Steel Plate will be required. Also, show and call out the Curb Discharge Concrete Culvert With Steel Plat in the plan view extending from the property line to the curb with the cast-in-place box located within the property line. Note: The use of such a Curb Discharge Concrete Culvert With Steel Plate box require an annual/long term SDOT Street Use Permit and an annual fee will be charged.",
      "labels": {
       "discipline": "drainage",
       "citations": [],
@@ -2367,7 +2367,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "This project has been reviewed for conformance with one or more of the following codes: 2018 Seattle Residential Code (SRC) Corrections are relatively minor; please contact me once revised submittal has been uploaded to the portal, and I will expedite the review.Ordinance Structural (2)",
+     "text": "This project has been reviewed for conformance with one or more of the following codes: 2018 Seattle Residential Code (SRC) Corrections are relatively minor; please contact me once revised submittal has been uploaded to the portal, and I will expedite the review.",
      "labels": {
       "discipline": null,
       "citations": [],
@@ -2389,7 +2389,7 @@
     },
     {
      "id": "C3",
-     "text": "Level 2/S2.1, PSW/S5.3 - 2015 - SDPWS - 4.3.6.4.2.1 - Revise the perforated shear wall detailing to include anchors for uniform uplift at bottom of wall sheathing for full height walls. Previous Correction - 2015 - SDPWS - 4.3.6.4.4 - Level 1 Shear Walls/S2.1 - Continuous load path to the foundation appears to be missing at clouded hold down locations. Revise to include hold downs at foundation level or clarify the code path used.Structural Engineer (1)",
+     "text": "Level 2/S2.1, PSW/S5.3 - 2015 - SDPWS - 4.3.6.4.2.1 - Revise the perforated shear wall detailing to include anchors for uniform uplift at bottom of wall sheathing for full height walls. Previous Correction - 2015 - SDPWS - 4.3.6.4.4 - Level 1 Shear Walls/S2.1 - Continuous load path to the foundation appears to be missing at clouded hold down locations. Revise to include hold downs at foundation level or clarify the code path used.",
      "labels": {
       "discipline": "structural",
       "citations": [],
@@ -2422,7 +2422,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "Sheet A1.3: Please show and label the roof drains being routed to an onsite catch basin with a minimum 2-foot-deep sump with a down-turned elbow on the outlet prior to connecting to the existing combined side sewer within property lines. Please show the DADU's sanitary sewer connection downstream of the proposed catch basin for the roof drain.Drainage (3)",
+     "text": "Sheet A1.3: Please show and label the roof drains being routed to an onsite catch basin with a minimum 2-foot-deep sump with a down-turned elbow on the outlet prior to connecting to the existing combined side sewer within property lines. Please show the DADU's sanitary sewer connection downstream of the proposed catch basin for the roof drain.",
      "labels": {
       "discipline": "drainage",
       "citations": [],
@@ -2471,7 +2471,7 @@
     "jurisdiction": "seattle",
     "address": "4531 CORLISS AVE N",
     "description": "Construct east one family dwelling per plan. (Construct (3) one-family dwelling per plan. Review and process for 3 records under 7065717-CN) Permit class: Single Family/Duplex. Zoning: unknown.",
-    "reviewer": "Seattle SDCI, 7065717-CN OS_Cycle1_Summary + SancheM"
+    "reviewer": "Seattle SDCI, 7065717-CN OS_Cycle1_Summary"
    },
    "outcome": {
     "review_cycles": 5,
@@ -2481,7 +2481,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "FYI - NO CORRECTION RESPONSE REQUIRED. CODE EDITION. (G1.1) This project has been reviewed for conformance with one or more of the following codes: 2021 Seattle Residential Code (SRC); 2021 Seattle Energy Code (SEC); Grading Code.Ordinance Structural (8)",
+     "text": "FYI - NO CORRECTION RESPONSE REQUIRED. CODE EDITION. (G1.1) This project has been reviewed for conformance with one or more of the following codes: 2021 Seattle Residential Code (SRC); 2021 Seattle Energy Code (SEC); Grading Code.",
      "labels": {
       "discipline": null,
       "citations": [],
@@ -2598,7 +2598,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "The associated LBA 3033984-LU needs to be finalized prior to zoning approval. Please include the approved and recorded plat in the plan set.Zoning (2)",
+     "text": "The associated LBA 3033984-LU needs to be finalized prior to zoning approval. Please include the approved and recorded plat in the plan set.",
      "labels": {
       "discipline": "zoning",
       "citations": [],
@@ -2641,7 +2641,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "This project has been reviewed for conformance with one or more of the following codes: 2021 Seattle Residential Code (SRC)Ordinance Structural (6)",
+     "text": "This project has been reviewed for conformance with one or more of the following codes: 2021 Seattle Residential Code (SRC)",
      "labels": {
       "discipline": null,
       "citations": [],
@@ -2738,7 +2738,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "FYI ONLY, NO RESPONSE REQUIRED. This project has been reviewed for conformance with one or more of the following codes: 2018 Seattle Building Code (SBC)Structural Engineer (4)",
+     "text": "FYI ONLY, NO RESPONSE REQUIRED. This project has been reviewed for conformance with one or more of the following codes: 2018 Seattle Building Code (SBC)",
      "labels": {
       "discipline": "structural",
       "citations": [],
@@ -2801,7 +2801,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "Sheet G0-01 2018 [code reference removed] Ventilation Quality Adjustment: edit the whole house exhaust fan CFM as required by section M1505.4.3.1 (to close this comment increase the listed 50 CFM to 75 CFM).Energy (3)",
+     "text": "Sheet G0-01 2018 [code reference removed] Ventilation Quality Adjustment: edit the whole house exhaust fan CFM as required by section M1505.4.3.1 (to close this comment increase the listed 50 CFM to 75 CFM).",
      "labels": {
       "discipline": "energy",
       "citations": [
@@ -2913,7 +2913,7 @@
     },
     {
      "id": "C5",
-     "text": "For information only: This project has been reviewed for conformance with one or more of the following codes: 2021 Seattle Mechanical Code (SMC); 2021 Seattle Energy Code (SEC); 2021 Seattle Fuel Gas Code (SFGC); 2021 Seattle Residential Code (SRC); and 2021 Seattle Building Code (SBC).Energy (5)",
+     "text": "For information only: This project has been reviewed for conformance with one or more of the following codes: 2021 Seattle Mechanical Code (SMC); 2021 Seattle Energy Code (SEC); 2021 Seattle Fuel Gas Code (SFGC); 2021 Seattle Residential Code (SRC); and 2021 Seattle Building Code (SBC).",
      "labels": {
       "discipline": "energy",
       "citations": [],
@@ -3017,7 +3017,7 @@
    "comments": [
     {
      "id": "C1",
-     "text": "Delete these sections, they do not apply.Fire (10)",
+     "text": "Delete these sections, they do not apply.",
      "labels": {
       "discipline": "fire",
       "citations": [],

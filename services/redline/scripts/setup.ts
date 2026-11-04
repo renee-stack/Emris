@@ -1,29 +1,23 @@
-// npm run setup
-// Creates the TrueForge agent from agent/ (or updates it if it exists), and checks the server and the model.
+// npm run setup [-- --ping]
+// Registers the agent from agent/ with the runtime and shows what it will run. --ping also makes one tiny model call,
+// which checks the Google Cloud credentials and that Claude is enabled for the project.
 // run-evals calls the same sync before every run, so the agent that runs always matches agent/ at HEAD.
 
-import { client, die, env, headSha, readAgent, syncAgent } from "./lib.ts";
+import { client, die, flag, headSha, readAgent, syncAgent } from "./lib.ts";
+import { vertexModel } from "./runtime.ts";
 
 const tf = client();
 const { agent, skills } = readAgent();
-
-try {
-  const { data: models } = await tf.models.list();
-  const names = models.map((m) => m.name);
-  if (!names.includes(agent.model.name)) {
-    console.warn(
-      `! Model "${agent.model.name}" is not configured on ${env.baseUrl}.\n` +
-        `  Configured: ${names.join(", ") || "(none)"}\n` +
-        `  Add a provider in Settings → Models, then set the model in agent/agent.json or TF_MODEL in .env.`,
-    );
-  }
-} catch (e) {
-  die(`Can't reach TrueForge at ${env.baseUrl}. Is it running? (npx @truefoundry/trueforge@latest)\n  ${(e as Error).message}`);
-}
-
 const saved = await syncAgent(tf, headSha());
-console.log(`✓ Agent "${saved.name}" (${saved.id}) is in sync with agent/ at ${headSha().slice(0, 7)}`);
-console.log(`  model: ${saved.manifest.model.name}`);
-console.log(`  tools: ${(agent.mcp_servers ?? []).map((s) => s.name).join(", ") || "(none)"}`);
-console.log(`  skills: ${skills.map((s) => s.name).join(", ") || "(none)"} — mode: ${agent.skill_mode ?? "inline"}`);
-console.log(`  Try it in the UI: ${env.baseUrl} → Agents → ${saved.name} → Try`);
+const model = vertexModel(saved.manifest.model);
+console.log(`✓ Agent "${saved.name}" matches agent/ at ${headSha().slice(0, 7)}`);
+console.log(`  model: ${model} on Vertex AI, project ${process.env.VERTEX_PROJECT_ID || process.env.ANTHROPIC_VERTEX_PROJECT_ID || "(from credentials)"}, region ${process.env.VERTEX_REGION || process.env.CLOUD_ML_REGION || "global"}`);
+console.log(`  tools: ${(agent.mcp_servers ?? []).map((s) => s.name).join(", ") || "(none)"}, in-process`);
+console.log(`  skills: ${skills.map((s) => s.name).join(", ") || "(none)"}, pasted into the instructions`);
+
+if (flag("ping")) {
+  const { data: session } = await tf.sessions.create({ agent: { spec: { model: saved.manifest.model, instructions: "Reply with the single word OK." } } });
+  const turn = await tf.runTurn(session.id, "Ping.");
+  if (turn.status !== "done") die(`The model call failed: ${turn.error}\n  Check \`gcloud auth application-default login\`, the project, and that Claude is enabled in Vertex AI's Model Garden.`);
+  console.log(`✓ ${model} answered: ${turn.text.trim().slice(0, 40)}`);
+}

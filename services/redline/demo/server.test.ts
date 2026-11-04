@@ -18,13 +18,13 @@ import { fixtureReport, freePorts, LOCKED_SECRETS, newId, startPostgresStandIn }
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const [LOCAL_PORT, INSTANCE_A, INSTANCE_B, DB_PORT, CLI_DB_PORT, DEAD_PORT] = await freePorts(6);
-const DEAD_TRUEFORGE = `http://127.0.0.1:${DEAD_PORT}`;
+const DEAD_VERTEX = `http://127.0.0.1:${DEAD_PORT}/v1`;
 
 async function startServer(port: number, env: Record<string, string>): Promise<ChildProcess> {
   const child = spawn(process.execPath, ["--import", "tsx", "--import", "./demo/test-no-network.ts", "demo/server.ts"], {
     cwd: ROOT,
     // Empty values also win over a developer's .env, so a test can't reach a real database or payment account.
-    env: { PATH: process.env.PATH, HOME: process.env.HOME, DEMO_PORT: String(port), TRUEFORGE_BASE_URL: DEAD_TRUEFORGE, TRUEFORGE_TOKEN: "", DATABASE_URL: "", STRIPE_PAYMENT_LINK: "", STRIPE_SECRET_KEY: "", STRIPE_WEBHOOK_SECRET: "", REDLINE_API_KEY: "", ...env },
+    env: { PATH: process.env.PATH, HOME: process.env.HOME, DEMO_PORT: String(port), ANTHROPIC_VERTEX__BASE_URL: DEAD_VERTEX, VERTEX_PROJECT_ID: "test-project", DATABASE_URL: "", STRIPE_PAYMENT_LINK: "", STRIPE_SECRET_KEY: "", STRIPE_WEBHOOK_SECRET: "", REDLINE_API_KEY: "", ...env },
     stdio: "ignore",
   });
   for (let i = 0; i < 100; i++) {
