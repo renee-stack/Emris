@@ -10,7 +10,7 @@ import { jobResponse, STALE_JOB_MS, startJob } from "./jobs.ts";
 import { publicView, type Report } from "./reports.ts";
 import { createLocalStore } from "./store-local.ts";
 import { applyMigrations, cleanText, createPostgresStore, toJsonb } from "./store-postgres.ts";
-import { allowFreeRun, DEFAULT_RETENTION_DAYS, hashClient, isExpired, JOB_TTL_MS, retentionDays, type Store, type StoreOptions } from "./store.ts";
+import { allowFreeRun, allowFreeRunToday, DEFAULT_RETENTION_DAYS, hashClient, isExpired, JOB_TTL_MS, retentionDays, type Store, type StoreOptions } from "./store.ts";
 import { fixtureReport, freePorts, LOCKED_SECRETS, newId, startPostgresStandIn } from "./test-support.ts";
 
 const DAY = 86_400_000;
@@ -339,6 +339,17 @@ for (const backend of [localBackend(), postgresBackend()]) {
       assert.equal(await restarted.hitRateLimit("k", 6, HOUR), true, "the first three have aged out");
       for (let i = 0; i < 2; i++) assert.equal(await restarted.hitRateLimit("k", 6, HOUR), true);
       assert.equal(await restarted.hitRateLimit("k", 6, HOUR), false);
+    });
+
+    it("shares the daily count across visitors, and keeps it through quiet hours", async () => {
+      const store = open();
+      for (let i = 0; i < 3; i++) assert.equal(await allowFreeRunToday(3, store), true);
+      assert.equal(await allowFreeRunToday(3, store), false);
+      clock += 2 * HOUR;
+      await store.purgeExpired();
+      assert.equal(await allowFreeRunToday(3, store), false, "an idle hour doesn't reset the day");
+      clock += 22 * HOUR + 1;
+      assert.equal(await allowFreeRunToday(3, store), true, "the day has passed");
     });
 
     it("never stores a client's address, and purges idle limits", async () => {

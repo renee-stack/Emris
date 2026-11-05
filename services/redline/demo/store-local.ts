@@ -6,7 +6,7 @@ import { randomBytes } from "node:crypto";
 import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import type { Report } from "./reports.ts";
-import { ID_PATTERN, isExpired, JOB_TTL_MS, keepIdentity, mergePaymentFact, PAYMENT_ID_PATTERN, retentionDays, type JobRecord, type PaymentRecord, type PurgeCounts, type Store, type StoreOptions, type WaitlistEntry } from "./store.ts";
+import { ALL_VISITORS, ID_PATTERN, isExpired, JOB_TTL_MS, keepIdentity, mergePaymentFact, PAYMENT_ID_PATTERN, retentionDays, type JobRecord, type PaymentRecord, type PurgeCounts, type Store, type StoreOptions, type WaitlistEntry } from "./store.ts";
 
 interface JobFile {
   status: "running" | "done";
@@ -145,8 +145,8 @@ export function createLocalStore(dir: string, options: StoreOptions = {}): Store
       removeOldTemp(jobsDir);
       removeOldTemp(dir);
       const rates = readRates();
-      // A hit only counts inside its window, and the longest window in use is an hour.
-      const kept = Object.entries(rates).filter(([, hits]) => hits.some((t) => t > now() - 3_600_000));
+      // A hit only counts inside its window: a day for the shared daily count, an hour for each client.
+      const kept = Object.entries(rates).filter(([key, hits]) => hits.some((t) => t > now() - (key === ALL_VISITORS ? 86_400_000 : 3_600_000)));
       counts.rateLimits = Object.keys(rates).length - kept.length;
       if (counts.rateLimits) write(rateFile, JSON.stringify(Object.fromEntries(kept)));
       return counts;
