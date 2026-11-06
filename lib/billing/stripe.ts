@@ -6,9 +6,11 @@ import {
   isSubscriptionPlan,
   lookupKey,
   planFromLookup,
+  pricing,
   recordedPriceId,
   seatChargeCents,
   seatLookupKey,
+  stripeCatalog,
   type Interval,
   type PurchasablePlan,
   type StripeLookupKey,
@@ -63,6 +65,83 @@ export async function ensureCustomer(
   return created.id;
 }
 
+function catalogItem(key: StripeLookupKey) {
+  const item = stripeCatalog.find((entry) => entry.lookupKey === key);
+  if (!item) throw new BillingError("Unknown Stripe catalog price.", 500, "internal");
+  return item;
+}
+
+async function ensureProductId(stripe: Stripe, productKey: string, productName: string): Promise<string> {
+  for (const active of [true, false] as const) {
+    let startingAfter: string | undefined;
+    for (let page = 0; page < 20; page += 1) {
+      const listed = await stripe.products.list({
+        active,
+        limit: 100,
+        ...(startingAfter ? { starting_after: startingAfter } : {}),
+      });
+      const match = listed.data.find((product) => product.metadata?.emris_key === productKey);
+      if (match) {
+        if (!match.active || match.name !== productName) {
+          await stripe.products.update(match.id, { name: productName, active: true });
+        }
+        return match.id;
+      }
+      if (!listed.has_more || listed.data.length === 0) break;
+      startingAfter = listed.data[listed.data.length - 1]?.id;
+      if (!startingAfter) break;
+    }
+  }
+  const created = await stripe.products.create(
+    {
+      name: productName,
+      metadata: { emris_key: productKey },
+    },
+    { idempotencyKey: `emris-product-${productKey}` },
+  );
+  return created.id;
+}
+
+function priceMatches(
+  price: Stripe.Price,
+  amount: number,
+  interval: Interval | null,
+): boolean {
+  if (price.unit_amount !== amount) return false;
+  if (price.currency !== pricing.currency) return false;
+  if (!price.active) return false;
+  if (interval) return price.recurring?.interval === interval && (price.recurring.interval_count ?? 1) === 1;
+  return !price.recurring;
+}
+
+async function createCatalogPrice(
+  stripe: Stripe,
+  key: StripeLookupKey,
+): Promise<{ priceId: string; productId: string }> {
+  const item = catalogItem(key);
+  const productId = await ensureProductId(stripe, item.productKey, item.productName);
+  const listed = await stripe.prices.list({ lookup_keys: [key], limit: 1 });
+  const existing = listed.data[0];
+  if (existing && priceMatches(existing, item.unitAmount, item.interval) && stripeId(existing.product) === productId) {
+    return { priceId: existing.id, productId };
+  }
+
+  const created = await stripe.prices.create(
+    {
+      product: productId,
+      currency: pricing.currency,
+      unit_amount: item.unitAmount,
+      lookup_key: key,
+      transfer_lookup_key: Boolean(existing),
+      nickname: item.nickname,
+      metadata: { ...item.metadata },
+      ...(item.interval ? { recurring: { interval: item.interval } } : {}),
+    },
+    { idempotencyKey: `emris-price-${key}-${item.unitAmount}-${item.interval ?? "once"}` },
+  );
+  return { priceId: created.id, productId };
+}
+
 async function resolvePriceId(
   stripe: Stripe,
   key: StripeLookupKey,
@@ -71,31 +150,27 @@ async function resolvePriceId(
 ): Promise<{ priceId: string; productId: string }> {
   const recorded = recordedPriceId(key);
   if (recorded) {
-    const price = await stripe.prices.retrieve(recorded);
-    const productId = stripeId(price.product);
-    if (!productId) throw new BillingError("Billing isn't configured.", 500, "internal");
-    return { priceId: price.id, productId };
+    try {
+      const price = await stripe.prices.retrieve(recorded);
+      if (priceMatches(price, amount, interval)) {
+        const productId = stripeId(price.product);
+        if (!productId) throw new BillingError("Billing isn't configured.", 500, "internal");
+        return { priceId: price.id, productId };
+      }
+    } catch (error) {
+      if (!isMissing(error)) throw error;
+    }
   }
 
   const listed = await stripe.prices.list({ lookup_keys: [key], limit: 1 });
   const current = listed.data[0];
-  if (
-    current &&
-    current.unit_amount === amount &&
-    current.currency === "usd" &&
-    current.active &&
-    (interval ? current.recurring?.interval === interval : !current.recurring)
-  ) {
+  if (current && priceMatches(current, amount, interval)) {
     const productId = stripeId(current.product);
     if (!productId) throw new BillingError("Billing isn't configured.", 500, "internal");
     return { priceId: current.id, productId };
   }
 
-  throw new BillingError(
-    "Stripe prices aren't set up yet. Run npm run stripe:setup with a test key, then redeploy.",
-    500,
-    "internal",
-  );
+  return createCatalogPrice(stripe, key);
 }
 
 export async function ensurePrice(

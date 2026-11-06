@@ -40,28 +40,28 @@ function redact(message: string, secret: string): string {
 }
 
 function readStripeKey(): string {
-  const file = path.join(process.cwd(), ".env");
-  if (!existsSync(file)) {
-    console.error("STRIPE_SECRET_KEY is not set. Add it to .env, then run npm run stripe:setup.");
-    process.exit(1);
-  }
-  let value = "";
-  for (const line of readFileSync(file, "utf8").split(/\r?\n/)) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith("#")) continue;
-    const eq = trimmed.indexOf("=");
-    if (eq < 0) continue;
-    if (trimmed.slice(0, eq).trim() !== "STRIPE_SECRET_KEY") continue;
-    value = trimmed.slice(eq + 1).trim();
-    if (
-      (value.startsWith('"') && value.endsWith('"')) ||
-      (value.startsWith("'") && value.endsWith("'"))
-    ) {
-      value = value.slice(1, -1);
+  let value = process.env.STRIPE_SECRET_KEY?.trim() ?? "";
+  if (!value) {
+    const file = path.join(process.cwd(), ".env");
+    if (existsSync(file)) {
+      for (const line of readFileSync(file, "utf8").split(/\r?\n/)) {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith("#")) continue;
+        const eq = trimmed.indexOf("=");
+        if (eq < 0) continue;
+        if (trimmed.slice(0, eq).trim() !== "STRIPE_SECRET_KEY") continue;
+        value = trimmed.slice(eq + 1).trim();
+        if (
+          (value.startsWith('"') && value.endsWith('"')) ||
+          (value.startsWith("'") && value.endsWith("'"))
+        ) {
+          value = value.slice(1, -1);
+        }
+      }
     }
   }
   if (!value) {
-    console.error("STRIPE_SECRET_KEY is not set. Add it to .env, then run npm run stripe:setup.");
+    console.error("STRIPE_SECRET_KEY is not set. Add it to .env or the environment, then run npm run stripe:setup.");
     process.exit(1);
   }
   if (!value.startsWith("sk_test_") && !value.startsWith("rk_test_")) {
