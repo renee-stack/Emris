@@ -1,7 +1,9 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
+export type AdminClient = SupabaseClient;
+
 /** Service-role client. Server routes only. Never import this from a client component. */
-export function adminClient(): SupabaseClient | null {
+export function adminClient(): AdminClient | null {
   if (typeof window !== "undefined") {
     throw new Error("The service role client cannot run in the browser.");
   }

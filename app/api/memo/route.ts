@@ -1,5 +1,5 @@
 import type { MemoRequest, MemoResponse } from "@/lib/data";
-import { requestUser } from "@/lib/auth/session";
+import { paidPlan, requestUser } from "@/lib/auth/session";
 import { complete } from "@/lib/claude";
 import { cached } from "@/lib/cache";
 import { HttpError, errorResponse, tractDetail } from "@/lib/lookup";
@@ -30,6 +30,9 @@ export async function POST(req: Request) {
   try {
     const user = await requestUser();
     if (!user) throw new HttpError(401, "Sign in to generate a memo.");
+    if (!(await paidPlan(user.id))) {
+      throw new HttpError(402, "Upgrade to Pro to generate investment committee memos.");
+    }
     let body: Partial<MemoRequest>;
     try {
       body = await req.json();
