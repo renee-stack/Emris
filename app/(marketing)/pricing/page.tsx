@@ -130,8 +130,8 @@ async function PricingContent() {
               {comparison.map((row) => (
                 <tr key={row.feature} className="border-b border-rule/70">
                   <td className="py-3 pr-4 text-muted">{row.feature}</td>
-                  {row.cells.map((cell) => (
-                    <td key={`${row.feature}-${cell}`} className="px-4 py-3">
+                  {row.cells.map((cell, index) => (
+                    <td key={`${row.feature}-${index}`} className="px-4 py-3">
                       {cell}
                     </td>
                   ))}

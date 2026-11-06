@@ -34,7 +34,7 @@ async function beginCheckout(plan: "pro" | "team" | "founding", interval: Interv
     body: JSON.stringify({ plan, interval: plan === "founding" ? "month" : interval }),
   });
   const data = (await response.json()) as { url?: string; error?: string; code?: string };
-  if (response.status === 401) return "sign-in";
+  if (response.status === 401 || data.code === "auth_required") return "sign-in";
   if (!response.ok || !data.url) {
     throw new Error(data.error || "Checkout could not start.");
   }
@@ -43,11 +43,11 @@ async function beginCheckout(plan: "pro" | "team" | "founding", interval: Interv
 
 export function PricingBoard({ spotsLeft }: { spotsLeft: number | null }) {
   const router = useRouter();
-  const [interval, setInterval] = useState<Interval>("month");
+  const [billingInterval, setBillingInterval] = useState<Interval>("month");
   const [pending, setPending] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const showFounding = spotsLeft === null || spotsLeft > 0;
-  const annual = interval === "year";
+  const annual = billingInterval === "year";
   const free = pricing.plans.free;
   const pro = pricing.plans.pro;
   const team = pricing.plans.team;
@@ -66,7 +66,7 @@ export function PricingBoard({ spotsLeft }: { spotsLeft: number | null }) {
     setError(null);
     setPending(plan);
     try {
-      const destination = await beginCheckout(plan, interval);
+      const destination = await beginCheckout(plan, billingInterval);
       if (destination === "sign-in") {
         router.push(`/signin?next=${encodeURIComponent("/pricing")}`);
         return;
@@ -88,18 +88,18 @@ export function PricingBoard({ spotsLeft }: { spotsLeft: number | null }) {
         <button
           type="button"
           role="radio"
-          aria-checked={interval === "month"}
-          className={`rounded-full px-4 py-2 text-sm font-semibold ${interval === "month" ? "bg-ink text-paper" : "text-ink"}`}
-          onClick={() => setInterval("month")}
+          aria-checked={billingInterval === "month"}
+          className={`rounded-full px-4 py-2 text-sm font-semibold ${billingInterval === "month" ? "bg-ink text-paper" : "text-ink"}`}
+          onClick={() => setBillingInterval("month")}
         >
           Monthly
         </button>
         <button
           type="button"
           role="radio"
-          aria-checked={interval === "year"}
-          className={`rounded-full px-4 py-2 text-sm font-semibold ${interval === "year" ? "bg-ink text-paper" : "text-ink"}`}
-          onClick={() => setInterval("year")}
+          aria-checked={billingInterval === "year"}
+          className={`rounded-full px-4 py-2 text-sm font-semibold ${billingInterval === "year" ? "bg-ink text-paper" : "text-ink"}`}
+          onClick={() => setBillingInterval("year")}
         >
           Annual
           <span className="ml-2 font-mono text-[10px] tracking-[0.12em] text-safety uppercase">2 months free</span>
