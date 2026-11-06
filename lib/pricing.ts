@@ -250,3 +250,134 @@ export function formatCents(cents: number): string {
 export function annualSavingsCents(monthlyCents: number): number {
   return monthlyCents * (12 - ANNUAL_MULTIPLIER);
 }
+
+/** Billing runtime constants. Kept next to the catalog so checkout and webhooks share one source. */
+export const TRIAL_DAYS = 7;
+export const GRACE_DAYS = 3;
+export const TEAM_MIN_SEATS = teamIncludedSeats;
+export const TEAM_MAX_SEATS = 100;
+export const INVITE_TTL_DAYS = 7;
+export const FOUNDING_SPOTS = foundingSubscriberCap;
+export const FOUNDING_GONE = "Founding spots are gone";
+export const CONTACT_EMAIL = "renee@lumina.house";
+
+export type Interval = "month" | "year";
+export type AccountPlan = "free" | "pro" | "team" | "founding";
+export type ReportPlan = "area_report" | "property_report";
+export type PurchasablePlan = "pro" | "team" | "founding" | ReportPlan;
+export type SubscriptionPlan = "pro" | "team" | "founding";
+
+export function planLabel(plan: string): string {
+  switch (plan) {
+    case "pro":
+      return pricing.plans.pro.name;
+    case "team":
+      return pricing.plans.team.name;
+    case "founding":
+      return pricing.plans.founding.name;
+    case "area_report":
+      return pricing.plans.areaReport.name;
+    case "property_report":
+      return pricing.plans.propertyReport.name;
+    default:
+      return pricing.plans.free.name;
+  }
+}
+
+export function isSubscriptionPlan(plan: string): plan is SubscriptionPlan {
+  return plan === "pro" || plan === "team" || plan === "founding";
+}
+
+export function isReportPlan(plan: string): plan is ReportPlan {
+  return plan === "area_report" || plan === "property_report";
+}
+
+export function isPurchasablePlan(plan: string): plan is PurchasablePlan {
+  return isSubscriptionPlan(plan) || isReportPlan(plan);
+}
+
+export function chargeCents(plan: PurchasablePlan, interval: Interval | null): number {
+  if (plan === "area_report") return areaReportCents;
+  if (plan === "property_report") return propertyReportCents;
+  if (plan === "founding") return foundingMonthlyCents;
+  if (plan === "pro") return interval === "year" ? proMonthlyCents * ANNUAL_MULTIPLIER : proMonthlyCents;
+  return interval === "year" ? teamMonthlyCents * ANNUAL_MULTIPLIER : teamMonthlyCents;
+}
+
+export function seatChargeCents(interval: Interval): number {
+  return interval === "year" ? extraSeatMonthlyCents * ANNUAL_MULTIPLIER : extraSeatMonthlyCents;
+}
+
+/** Stable Stripe lookup keys from stripeCatalog. */
+export function lookupKey(plan: PurchasablePlan, interval: Interval | null): StripeLookupKey {
+  if (plan === "area_report" || plan === "property_report") return plan;
+  if (plan === "founding") return "founding_pro_monthly";
+  if (plan === "pro") return interval === "year" ? "pro_annual" : "pro_monthly";
+  return interval === "year" ? "team_annual" : "team_monthly";
+}
+
+export function seatLookupKey(interval: Interval): StripeLookupKey {
+  return interval === "year" ? "team_seat_annual" : "team_seat_monthly";
+}
+
+export function planFromLookup(key: string | null | undefined): {
+  plan: PurchasablePlan;
+  interval: Interval | null;
+} | null {
+  switch (key) {
+    case "pro_monthly":
+      return { plan: "pro", interval: "month" };
+    case "pro_annual":
+      return { plan: "pro", interval: "year" };
+    case "team_monthly":
+    case "team_seat_monthly":
+      return { plan: "team", interval: "month" };
+    case "team_annual":
+    case "team_seat_annual":
+      return { plan: "team", interval: "year" };
+    case "founding_pro_monthly":
+      return { plan: "founding", interval: "month" };
+    case "area_report":
+      return { plan: "area_report", interval: null };
+    case "property_report":
+      return { plan: "property_report", interval: null };
+    default:
+      return null;
+  }
+}
+
+export function reportTypeFor(plan: ReportPlan): "area" | "property" {
+  return plan === "area_report" ? "area" : "property";
+}
+
+export function recordedPriceId(key: StripeLookupKey): string {
+  return stripePriceIds[key]?.trim() ?? "";
+}
+
+export const pricingFaq: { q: string; a: string }[] = [
+  {
+    q: "Can I cancel anytime?",
+    a: "Yes. Open the billing portal and cancel. Access continues through the period you've already paid, then the account returns to Free. Founding members keep the locked price if they subscribe again.",
+  },
+  {
+    q: "What counts as a search?",
+    a: `Each successful nearby search counts as one. A free account gets ${freeSearches} in any rolling ${searchWindowDays} days. Pro, Founding, and Team search without that cap.`,
+  },
+  {
+    q: "How do reports work?",
+    a: "Area and property reports are one-time payments. When Stripe confirms payment, Emris stores an entitlement for that target on your account.",
+  },
+  {
+    q: "Annual billing?",
+    a: `Annual plans are billed at ${ANNUAL_MULTIPLIER} times the monthly price (two months free). Founding membership is monthly only.`,
+  },
+];
+
+export const comparison: { feature: string; cells: [string, string, string] }[] = [
+  { feature: "Tract scores and map", cells: ["Yes", "Yes", "Yes"] },
+  { feature: "Search", cells: [`${freeSearches} / ${searchWindowDays} days`, "Unlimited", "Unlimited"] },
+  { feature: "Full permit detail", cells: ["Preview", "Yes", "Yes"] },
+  { feature: "IC memos", cells: ["Preview", "Unlimited", "Unlimited"] },
+  { feature: "Watchlists and alerts", cells: ["No", "Yes", "Yes"] },
+  { feature: "Seats", cells: ["1", "1", `${teamIncludedSeats}+`] },
+];
